@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Sovereo Index | World Map</title>
+<meta name="description" content="The whole Sovereo Index at a glance: every country shaded by its score across the six social determinants of wealth and health.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="favicon.svg">
+<meta name="theme-color" content="#0E1A2B">
+<link rel="canonical" href="https://www.sovereo.com/Sovereo_Index_Map.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Sovereo Intelligence Research">
+<meta property="og:title" content="The Sovereo Index | World Map">
+<meta property="og:description" content="Every country shaded by its score across the six social determinants of wealth and health.">
+<meta property="og:image" content="https://www.sovereo.com/og-image.png">
+<meta property="og:url" content="https://www.sovereo.com/Sovereo_Index_Map.html">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="The Sovereo Index | World Map">
+<meta name="twitter:image" content="https://www.sovereo.com/og-image.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#0E1A2B;--navy:#14233B;--paper:#FBF8F1;--paper2:#F3EDE0;--gold:#B0863C;--gold2:#C8A45C;--line:#E3DBCB;--mut:#5C6675;--soft:#7B8494;--serif:"Fraunces",Georgia,serif;--sans:"Inter","Segoe UI",Helvetica,Arial,sans-serif;}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--paper);color:var(--ink);font-family:var(--sans);line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1180px;margin:0 auto;padding:0 28px}
+.eyebrow{font-size:12.5px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--gold)}
+.mast{position:sticky;top:0;z-index:50;background:rgba(251,248,241,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.mast .row{display:flex;align-items:center;justify-content:space-between;height:72px}
+.brand{font-weight:800;letter-spacing:.30em;font-size:22px;color:var(--ink)}
+.brand small{display:block;font-weight:600;letter-spacing:.16em;font-size:10px;color:var(--soft);margin-top:2px}
+.nav{display:flex;gap:28px;align-items:center}
+.nav a{font-size:14.5px;font-weight:500;color:var(--ink)}
+.nav a:hover{color:var(--gold)} .nav a.on{color:var(--gold)}
+.nav .cta{background:#E7B85A;color:var(--ink);font-weight:700;padding:10px 18px;border-radius:6px;font-weight:600}
+.nav .cta:hover{background:var(--gold);color:#fff}
+@media(max-width:880px){.nav a:not(.cta){display:none}}
+.head{padding:40px 0 8px}
+.head h1{font-family:var(--serif);font-weight:800;font-size:40px;line-height:1.06;letter-spacing:-.015em;margin:12px 0 0;max-width:20ch}
+.head p{font-size:17px;color:var(--mut);max-width:70ch;margin:14px 0 0}
+@media(max-width:680px){.head h1{font-size:30px}}
+.controls{display:flex;gap:14px;flex-wrap:wrap;align-items:center;margin:24px 0 4px}
+.controls label{font-size:13px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--soft)}
+select{padding:12px 16px;border-radius:9px;border:1px solid var(--line);background:#fff;color:var(--ink);font-family:inherit;font-size:15.5px;font-weight:600;cursor:pointer}
+select:focus{outline:none;border-color:var(--gold)}
+.mapcard{background:#fff;border:1px solid var(--line);border-radius:16px;padding:10px;margin-top:14px;box-shadow:0 14px 40px rgba(14,26,43,.06);position:relative}
+#map{display:block;margin:0 auto;height:52vh;width:auto;max-width:100%;max-height:540px;border-radius:10px;background:#F7FAFD}
+.country{stroke:#FBF8F1;stroke-width:.4;cursor:pointer;transition:opacity .1s}
+.country:hover{stroke:#0E1A2B;stroke-width:1}
+.tip{position:fixed;pointer-events:none;background:var(--ink);color:#fff;padding:9px 13px;border-radius:8px;font-size:13.5px;line-height:1.4;opacity:0;transition:opacity .1s;z-index:80;box-shadow:0 8px 24px rgba(0,0,0,.25);max-width:240px}
+.tip b{color:var(--gold2)} .tip .v{font-family:var(--serif);font-size:18px;font-weight:600;color:#fff}
+.legend{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin:18px 2px 0;font-size:13.5px;color:var(--mut)}
+.legbar{height:14px;width:280px;max-width:60vw;border-radius:7px;background:linear-gradient(90deg,#D98C7A,#EDE3CC,#2E6CA6);border:1px solid var(--line)}
+.legend .nd{display:inline-flex;align-items:center;gap:7px}
+.legend .sw{width:15px;height:15px;border-radius:4px;background:#DDD7C8;border:1px solid var(--line);display:inline-block}
+.lead{margin:20px 0 0;display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
+@media(max-width:760px){.lead{grid-template-columns:1fr 1fr}}
+.lead .c{background:#fff;border:1px solid var(--line);border-radius:11px;padding:14px 15px}
+.lead .c .r{font-size:11px;color:var(--soft);letter-spacing:.1em;text-transform:uppercase}
+.lead .c .n{font-weight:600;font-size:15px;margin-top:3px}
+.lead .c .s{font-family:var(--serif);font-size:21px;font-weight:600;color:var(--gold);margin-top:2px}
+.foot-note{font-size:13px;color:var(--soft);margin:22px 0 0;max-width:80ch;line-height:1.55}
+.loading{text-align:center;color:var(--soft);padding:80px 0;font-size:15px}
+footer{background:var(--ink);color:#9AA6B6;padding:46px 0 40px;font-size:13.5px;margin-top:56px}
+footer .frow{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap}
+footer .brand{color:#fff;font-size:18px;margin-bottom:6px}
+footer a{color:#C9D2DE} footer a:hover{color:var(--gold2)}
+footer .links{display:flex;gap:24px;flex-wrap:wrap}
+.fineprint{border-top:1px solid #25344b;margin-top:26px;padding-top:18px;color:var(--soft);max-width:82ch}
+</style>
+</head>
+<body>
+<div class="mast"><div class="wrap row">
+  <a class="brand" href="index.html">SOVEREO<small>INTELLIGENCE RESEARCH</small></a>
+  <nav class="nav">
+    <a href="Sovereo_Index_Table.html">The Index</a>
+    <a href="Sovereo_Index_Builder.html">Shortlist</a>
+    <a class="on" href="Sovereo_Index_Map.html">World Map</a>
+    <a href="Sovereo_Index_Background.html">Methodology</a>
+    <a href="Sovereo_Scientific_Basis.html">Science</a>
+    <a class="cta" href="Sovereo_Relocation_Diagnostic.html">Take the Diagnostic</a>
+  </nav>
+</div></div>
+
+<header class="head"><div class="wrap">
+  <span class="eyebrow">The Sovereo Index &middot; 2026 Edition</span>
+  <h1>The world, mapped by the conditions for a long, healthy, wealthy life.</h1>
+  <p>Every nation shaded by its score on the six social determinants of wealth and health. Recolour the map by any single pillar to see where each force concentrates. Blue is high, red is low, grey is insufficient data.</p>
+</div></header>
+
+<main class="wrap">
+  <div class="controls">
+    <label for="metric">Colour by</label>
+    <select id="metric">
+      <option value="-1">Overall Sovereo Index</option>
+      <option value="0">Income &amp; Opportunity</option>
+      <option value="1">Education</option>
+      <option value="2">Health &amp; Longevity</option>
+      <option value="3">Environment</option>
+      <option value="4">Lifestyle &amp; Belonging</option>
+      <option value="5">Legacy &amp; Sovereignty</option>
+      <option value="6">Capital &amp; Enterprise</option>
+    </select>
+  </div>
+  <div class="mapcard">
+    <div class="loading" id="loading">Rendering the world&hellip;</div>
+    <svg id="map" viewBox="0 0 960 500" preserveAspectRatio="xMidYMid meet" style="display:none"></svg>
+  </div>
+  <div class="legend">
+    <span class="nd"><span class="sw"></span> Insufficient data</span>
+    <span id="lmin">low</span><span class="legbar"></span><span id="lmax">high</span>
+    <span id="metriclabel" style="font-weight:600;color:var(--ink)"></span>
+  </div>
+  <div class="lead" id="lead"></div>
+  <p class="foot-note">Filled-country choropleth rendered from the Sovereo Index. Hover or tap a country for its score. Pillars are computed from UNDP, the World Bank, WHO, the Yale Environmental Performance Index, the Heritage Foundation, EF and the UCLA Williams Institute, normalised to a common 0 to 100 scale. The Capital and Enterprise layer adds the Chinn-Ito capital-account-openness index and is reported separately from the six-pillar overall. Grey countries lack sufficient public data for a reliable score.</p>
+</main>
+<div class="tip" id="tip"></div>
+
+<footer><div class="wrap">
+  <div class="frow">
+    <div><div class="brand">SOVEREO</div>Intelligence Research</div>
+    <div class="links">
+      <a href="index.html">Home</a><a href="Sovereo_Index_Table.html">The Index</a>
+      <a href="Sovereo_Relocation_Diagnostic.html">Diagnostic</a><a href="Sovereo_Scientific_Basis.html">Science</a>
+      <a href="Sovereo_Country_Reports.html">Reports</a><a href="terms.html">Terms</a><a href="privacy.html">Privacy</a>
+    </div>
+  </div>
+  <div class="fineprint">&copy; 2026 Sovereo Intelligence Research. The Sovereo Index is an educational research instrument built from public datasets. It is not legal, tax, immigration or financial advice.</div>
+</div></footer>
+
+<script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+<script src="https://cdn.jsdelivr.net/npm/topojson-client@3"></script>
+<script>
+const MD={"DZA": {"n": "Algeria", "o": 58.7, "p": [70.9, 67.8, 75, 41.7, 55.4, 41.5, 28.5]}, "AGO": {"n": "Angola", "o": 48.8, "p": [71.3, 53.7, 41.8, 40.1, 42.7, 43.3, 20.9]}, "BEN": {"n": "Benin", "o": 45.7, "p": [67.7, 39.7, 30.8, 37.6, 45.8, 52.6, 36.4]}, "BWA": {"n": "Botswana", "o": 62.1, "p": [78, 66.7, 54.8, 45.2, 52.6, 75.4, 75.0]}, "BFA": {"n": "Burkina Faso", "o": 44.3, "p": [69.3, 31.8, 31.7, 39.6, 62.7, 30.7, 34.3]}, "BDI": {"n": "Burundi", "o": 43, "p": [62.1, 38.9, 39, 31.7, 57.1, 29.5, 25.6]}, "CPV": {"n": "Cabo Verde", "o": 64.3, "p": [73.6, 51.9, 74.5, 38.7, 72.2, 75, 80.7]}, "CMR": {"n": "Cameroon", "o": 44.5, "p": [66.9, 51.9, 39.1, 38.6, 41.1, 29.5, 27.0]}, "CAF": {"n": "Central African Republic", "o": 34.1, "p": [57.1, 34, 21.2, 37.3, 32.9, 22.1, 24.8]}, "TCD": {"n": "Chad", "o": 33.1, "p": [66.5, 31, 14.5, 33.6, 27.2, 25.7, 31.2]}, "COM": {"n": "Comoros", "o": 46.8, "p": [61.1, 57, 47.9, 38, 34.7, 42.1, 32.1]}, "COG": {"n": "Congo (Republic)", "o": 51.1, "p": [65.6, 63, 45.1, 41.6, 0, 40.4, 26.6]}, "COD": {"n": "Congo (DRC)", "o": 34.7, "p": [58.3, 54.9, 34, 39.5, 0, 21.5, 26.9]}, "CIV": {"n": "Cote d'Ivoire", "o": 48.4, "p": [72.4, 47.9, 34.1, 42.9, 0, 44.6, 38.3]}, "DJI": {"n": "Djibouti", "o": 41.8, "p": [70.2, 30.4, 45.7, 32.7, 28.9, 42.7, 55.6]}, "EGY": {"n": "Egypt", "o": 57, "p": [80, 70.3, 61.8, 43.3, 47.9, 39, 49.3]}, "GNQ": {"n": "Equatorial Guinea", "o": 50.1, "p": [70.2, 62.3, 39.2, 41.7, 0, 36.9, 26.4]}, "ERI": {"n": "Eritrea", "o": 42.7, "p": [58.3, 37.4, 53.2, 29.1, 48, 30.4, 5.3]}, "SWZ": {"n": "Eswatini", "o": 54.3, "p": [72.5, 71.3, 40.4, 38.6, 58.3, 44.6, 35.3]}, "ETH": {"n": "Ethiopia", "o": 42.1, "p": [62.4, 33.6, 49.5, 35.3, 42.5, 29.2, 25.5]}, "GAB": {"n": "Gabon", "o": 53, "p": [74.3, 67, 52.4, 53.4, 28, 42.7, 38.5]}, "GMB": {"n": "Gambia", "o": 45.7, "p": [69.9, 40.5, 45.3, 37.7, 24.4, 56.4, 70.8]}, "GHA": {"n": "Ghana", "o": 54.9, "p": [75.8, 55.4, 44.3, 36.8, 58.9, 58.5, 35.2]}, "GIN": {"n": "Guinea", "o": 39.4, "p": [65.4, 37.2, 30.7, 36.3, 30.6, 36.4, 24.9]}, "GNB": {"n": "Guinea-Bissau", "o": 54.1, "p": [66.2, 41.8, 40.2, 41.9, 96.3, 38.1, 24.9]}, "KEN": {"n": "Kenya", "o": 52.5, "p": [71.9, 60.6, 39, 36.2, 65.7, 41.4, 59.8]}, "LSO": {"n": "Lesotho", "o": 42.3, "p": [68.3, 56.3, 21.1, 35.6, 20.9, 51.5, 36.8]}, "LBR": {"n": "Liberia", "o": 47.5, "p": [62.3, 49.6, 34.8, 34.3, 58.1, 45.9, 56.9]}, "LBY": {"n": "Libya", "o": 46.9, "p": [86.3, 61.8, 55.3, 38.7, 18.9, 20.3, NaN]}, "MDG": {"n": "Madagascar", "o": 42.3, "p": [70.7, 40.5, 38.9, 30.1, 28.2, 45.5, 33.0]}, "MWI": {"n": "Malawi", "o": 48.8, "p": [67.3, 45, 49.6, 32.9, 45.9, 52.4, 34.0]}, "MLI": {"n": "Mali", "o": 31.8, "p": [66.3, 24.9, 29.8, 32.9, 15.3, 21.7, 34.2]}, "MRT": {"n": "Mauritania", "o": 49.3, "p": [70.8, 38.3, 52.8, 34.6, 57.2, 42.1, 32.2]}, "MUS": {"n": "Mauritius", "o": 70.9, "p": [84.2, 73, 71.2, 48, 72.9, 76, 73.9]}, "MAR": {"n": "Morocco", "o": 59.1, "p": [75.8, 62.5, 72.3, 39.5, 55, 49.7, 49.6]}, "MOZ": {"n": "Mozambique", "o": 45.6, "p": [61.7, 45.4, 38.9, 38.8, 54.4, 34.3, 29.0]}, "NAM": {"n": "Namibia", "o": 57, "p": [68.6, 57, 49.7, 43, 56, 67.9, 39.6]}, "NER": {"n": "Niger", "o": 41.8, "p": [65.4, 27.8, 32, 37.1, 57.5, 31, 30.3]}, "NGA": {"n": "Nigeria", "o": 41.6, "p": [68.8, 54.5, 12.7, 37.9, 45.5, 30.4, 32.9]}, "RWA": {"n": "Rwanda", "o": 50.3, "p": [70.5, 51.2, 50.8, 32.5, 40.8, 56.2, 65.8]}, "STP": {"n": "Sao Tome and Principe", "o": 61.3, "p": [65.9, 55.7, 56.3, 36.4, 89.2, 64.3, 55.5]}, "SEN": {"n": "Senegal", "o": 50.2, "p": [67.6, 35.2, 53.4, 43.6, 44.8, 56.8, 41.4]}, "SYC": {"n": "Seychelles", "o": 69.7, "p": [67.3, 87.3, 65.3, 47.9, 73.4, 76.8, 72.1]}, "SLE": {"n": "Sierra Leone", "o": 47.2, "p": [64, 37, 33.7, 39.9, 61.1, 47.6, 27.1]}, "SOM": {"n": "Somalia", "o": 29.6, "p": [77.1, 27.1, 25.2, 32.4, 0, 15.6, NaN]}, "ZAF": {"n": "South Africa", "o": 55.7, "p": [67.3, 77, 46.1, 42.3, 47, 54.4, 36.0]}, "SSD": {"n": "South Sudan", "o": 36.9, "p": [46.3, 34.8, 21.8, 37.7, 40.3, 40.4, null]}, "SDN": {"n": "Sudan", "o": 40.1, "p": [57.8, 37.2, 46.7, 38.9, 40.4, 19.5, 28.7]}, "TZA": {"n": "Tanzania", "o": 51.2, "p": [71.7, 44.1, 48.6, 43.6, 50.6, 48.9, 37.0]}, "TGO": {"n": "Togo", "o": 42.5, "p": [66.6, 55.9, 36.4, 35.5, 15.8, 44.5, 40.0]}, "TUN": {"n": "Tunisia", "o": 59, "p": [66.5, 66.1, 75.7, 45.2, 52.5, 47.9, 29.7]}, "UGA": {"n": "Uganda", "o": 49.3, "p": [63.9, 53.2, 52.1, 34.9, 51.2, 40.3, 52.6]}, "ZMB": {"n": "Zambia", "o": 54, "p": [66.9, 55.3, 46.7, 44.5, 57.4, 53.4, 66.6]}, "ZWE": {"n": "Zimbabwe", "o": 49.2, "p": [56.3, 60.5, 36.5, 50, 58, 33.8, 28.9]}, "AFG": {"n": "Afghanistan", "o": 42.8, "p": [79, 38.4, 45.8, 30.8, 46.1, 17, NaN]}, "ARM": {"n": "Armenia", "o": 63.4, "p": [82.5, 77.8, 73.4, 44.6, 53.4, 48.7, 79.2]}, "AZE": {"n": "Azerbaijan", "o": 59.6, "p": [84.6, 72.8, 69.8, 40.5, 42.9, 47.3, 55.7]}, "BHR": {"n": "Bahrain", "o": 71.5, "p": [91.3, 81.3, 89.4, 35.3, 78.3, 53.4, 87.5]}, "BGD": {"n": "Bangladesh", "o": 53.5, "p": [73, 56.8, 70.5, 28, 57.2, 35.7, 34.2]}, "BTN": {"n": "Bhutan", "o": 60.9, "p": [69.5, 56, 65.6, 41.8, 54.3, 78.4, 33.0]}, "BRN": {"n": "Brunei", "o": 74.5, "p": [86.4, 69, 72.4, 48.3, 98.4, 72.4, 67.9]}, "KHM": {"n": "Cambodia", "o": 51.3, "p": [74, 48.4, 59.1, 31.2, 47.8, 47.1, 69.8]}, "CHN": {"n": "China", "o": 58.9, "p": [62.9, 69.8, 79.9, 35.4, 53.6, 51.9, 28.9]}, "CYP": {"n": "Cyprus", "o": 75.2, "p": [76.7, 86.9, 90.4, 53.9, 67.9, 75.3, 86.1]}, "GEO": {"n": "Georgia", "o": 67.1, "p": [81.4, 88.9, 70, 47.2, 59.7, 55.5, 77.4]}, "IND": {"n": "India", "o": 54.6, "p": [69.8, 58.9, 62.9, 27.6, 59, 49.3, 35.8]}, "IDN": {"n": "Indonesia", "o": 56.3, "p": [77.7, 66, 60.4, 33.6, 51.8, 48.5, 48.1]}, "IRN": {"n": "Iran", "o": 56.6, "p": [65.8, 75, 79, 41.5, 50, 28.6, 10.1]}, "IRQ": {"n": "Iraq", "o": 48.4, "p": [82.2, 56.9, 63.8, 30.2, 36.3, 21, NaN]}, "ISR": {"n": "Israel", "o": 69.8, "p": [66, 86.6, 92.6, 48.3, 67, 58.6, 82.8]}, "JPN": {"n": "Japan", "o": 77, "p": [70.9, 85.4, 99.2, 61.4, 56.7, 88.2, 83.8]}, "JOR": {"n": "Jordan", "o": 61.6, "p": [76.2, 70.5, 79.5, 47.2, 41.8, 54.5, 78.2]}, "KAZ": {"n": "Kazakhstan", "o": 62.1, "p": [80.8, 80.7, 69.7, 47.7, 41.7, 52.1, 41.9]}, "KWT": {"n": "Kuwait", "o": 64.7, "p": [77.8, 69.4, 86.9, 43.9, 52.4, 57.7, 58.0]}, "KGZ": {"n": "Kyrgyzstan", "o": 56.6, "p": [77.5, 75.5, 61.9, 42.6, 44.3, 37.8, 51.7]}, "LAO": {"n": "Laos", "o": 47.3, "p": [70.6, 46.9, 54.2, 24.9, 36.6, 50.6, 31.3]}, "LBN": {"n": "Lebanon", "o": 57.1, "p": [70.4, 67, 79.5, 40, 53.2, 32.6, 34.2]}, "MYS": {"n": "Malaysia", "o": 67.5, "p": [81.3, 72.2, 76.2, 40.9, 68.3, 66.1, 56.1]}, "MDV": {"n": "Maldives", "o": 68.3, "p": [70.2, 60.2, 88.7, 38.1, 97.9, 54.7, 48.0]}, "MNG": {"n": "Mongolia", "o": 57.3, "p": [76, 69.3, 62.1, 34.4, 42.1, 59.8, 66.2]}, "MMR": {"n": "Myanmar", "o": 44.4, "p": [68.1, 53.2, 48.3, 27.1, 50, 19.7, 22.0]}, "NPL": {"n": "Nepal", "o": 55.1, "p": [65.6, 53.2, 58.2, 31.7, 72.3, 49.5, 24.4]}, "PRK": {"n": "North Korea", "o": 33.9, "p": [0, 0, 67.5, 27.9, 0, 40.2, 5.3]}, "OMN": {"n": "Oman", "o": 68.5, "p": [83.2, 77, 85.8, 50.7, 51.2, 63.2, 74.8]}, "PAK": {"n": "Pakistan", "o": 44.3, "p": [72.2, 36.3, 50.4, 25.3, 53.1, 28.6, 36.5]}, "PHL": {"n": "Philippines", "o": 58.9, "p": [77.5, 68.9, 56.7, 32.1, 71.2, 46.8, 56.1]}, "QAT": {"n": "Qatar", "o": 69.3, "p": [82.3, 72.4, 92.5, 46.3, 54.3, 67.9, 78.1]}, "SAU": {"n": "Saudi Arabia", "o": 66.1, "p": [81, 85.8, 82.1, 42.2, 49.2, 56.2, 61.5]}, "SGP": {"n": "Singapore", "o": 80.6, "p": [86.1, 86.5, 96.4, 52.9, 79.2, 82.4, 94.0]}, "KOR": {"n": "South Korea", "o": 75.2, "p": [71.5, 88.6, 98.1, 50.6, 64.2, 78.1, 83.7]}, "LKA": {"n": "Sri Lanka", "o": 60.6, "p": [70, 72.4, 78.5, 38.8, 51.9, 51.9, 25.1]}, "SYR": {"n": "Syria", "o": 47.7, "p": [80.9, 40.4, 63.2, 31, 55.9, 14.6, NaN]}, "TJK": {"n": "Tajikistan", "o": 51.6, "p": [70.7, 67.7, 62.3, 30, 38.7, 40.1, 30.4]}, "THA": {"n": "Thailand", "o": 61.3, "p": [79.7, 72.8, 75.5, 45.7, 47.6, 46.4, 50.0]}, "TLS": {"n": "Timor-Leste", "o": 62.5, "p": [72.5, 57.6, 50.5, 50, 86.4, 57.7, 49.1]}, "TUR": {"n": "Turkey", "o": 61.7, "p": [80, 80, 77.6, 37.3, 54.6, 40.5, 42.2]}, "TKM": {"n": "Turkmenistan", "o": 57.2, "p": [70, 74.1, 57.4, 40.6, 59.5, 41.4, 17.7]}, "ARE": {"n": "United Arab Emirates", "o": 74.1, "p": [80.2, 86.6, 94, 51, 66.2, 66.8, 77.1]}, "UZB": {"n": "Uzbekistan", "o": 59.5, "p": [81.9, 74.3, 64, 41.7, 47.9, 47.5, 43.3]}, "VNM": {"n": "Vietnam", "o": 59.9, "p": [77.4, 72.9, 70.3, 24.6, 61.6, 52.6, 52.3]}, "YEM": {"n": "Yemen", "o": 42.5, "p": [71.7, 39.1, 55.1, 38.1, 38.5, 12.7, NaN]}, "ALB": {"n": "Albania", "o": 67.9, "p": [78.7, 74.2, 84.6, 52.2, 58.2, 59.7, 54.8]}, "AND": {"n": "Andorra", "o": 83.7, "p": [81, 79.1, 97.3, 69.3, 83.1, 92.3, null]}, "AUT": {"n": "Austria", "o": 79.6, "p": [65.3, 86.4, 91.3, 67.7, 85.2, 81.4, 84.2]}, "BLR": {"n": "Belarus", "o": 63.5, "p": [75.7, 79.2, 69.8, 56.9, 59.7, 39.7, 36.2]}, "BEL": {"n": "Belgium", "o": 80.7, "p": [69.8, 92.3, 91.8, 66.7, 86.4, 77.5, 91.5]}, "BIH": {"n": "Bosnia and Herzegovina", "o": 69.3, "p": [82.2, 73.1, 79.6, 45.8, 86.2, 48.6, 42.8]}, "BGR": {"n": "Bulgaria", "o": 70.9, "p": [79.8, 80.7, 73.2, 55.7, 72, 63.7, 58.9]}, "HRV": {"n": "Croatia", "o": 75.9, "p": [75.6, 85.7, 81.7, 62, 78.4, 72.2, 70.2]}, "CZE": {"n": "Czechia", "o": 80.9, "p": [79, 89.9, 85.2, 63.8, 85.1, 82.3, 86.0]}, "DNK": {"n": "Denmark", "o": 82.8, "p": [67.7, 93.4, 91.2, 67.8, 89.5, 87.4, 95.6]}, "EST": {"n": "Estonia", "o": 80.4, "p": [79.1, 89.6, 83.3, 75.7, 70.6, 84.3, 93.5]}, "FIN": {"n": "Finland", "o": 84.4, "p": [73.8, 93.3, 91.2, 73.9, 85.8, 88.7, 93.3]}, "FRA": {"n": "France", "o": 77.4, "p": [69.7, 83.9, 95.2, 66.9, 76.1, 72.4, 87.9]}, "DEU": {"n": "Germany", "o": 82.6, "p": [69.3, 95.7, 89.7, 74.3, 86.8, 79.8, 84.3]}, "GRC": {"n": "Greece", "o": 76.6, "p": [68.9, 88.5, 91, 67.3, 76.1, 67.6, 79.9]}, "HUN": {"n": "Hungary", "o": 73.7, "p": [82.9, 84.1, 77.2, 58, 74.8, 65.5, 84.7]}, "ISL": {"n": "Iceland", "o": 84.5, "p": [67.1, 96.4, 93.4, 64.6, 96.7, 89.1, 88.2]}, "IRL": {"n": "Ireland", "o": 83.3, "p": [76.9, 89.1, 92.6, 65.8, 91, 84.7, 94.0]}, "ITA": {"n": "Italy", "o": 75.8, "p": [71.8, 82.5, 96.3, 60.2, 70.9, 73.3, 87.9]}, "LVA": {"n": "Latvia", "o": 75, "p": [76.7, 90.5, 74.8, 59.9, 71.7, 76.1, 89.4]}, "LIE": {"n": "Liechtenstein", "o": 86, "p": [91.1, 84.2, 96.1, 71.2, 82.9, 90.5, 84.1]}, "LTU": {"n": "Lithuania", "o": 75.4, "p": [78.6, 91.1, 74.4, 63.7, 64.1, 80.4, 87.4]}, "LUX": {"n": "Luxembourg", "o": 82.8, "p": [72.9, 81.8, 92.1, 74, 86.5, 89.5, 94.0]}, "MLT": {"n": "Malta", "o": 80.8, "p": [71.3, 85.6, 95.1, 67, 89.1, 76.5, 83.3]}, "MDA": {"n": "Moldova", "o": 61.2, "p": [76.6, 80.1, 60.6, 45.7, 54.3, 49.7, 39.3]}, "MCO": {"n": "Monaco", "o": 86.3, "p": [0, 0, 100, 68.5, 89.7, 87.1, null]}, "MNE": {"n": "Montenegro", "o": 69.8, "p": [78.7, 85.7, 77.4, 47.6, 66.3, 62.8, 57.3]}, "NLD": {"n": "Netherlands", "o": 83.4, "p": [72.1, 92.2, 91.9, 66.9, 94, 83.1, 94.2]}, "MKD": {"n": "North Macedonia", "o": 72, "p": [83.6, 75.2, 78.3, 49.6, 86.5, 59.1, 56.6]}, "NOR": {"n": "Norway", "o": 84.8, "p": [68.9, 93.7, 95.2, 69.9, 92.2, 89.1, 91.1]}, "POL": {"n": "Poland", "o": 77.2, "p": [81.3, 90.4, 81.8, 63.7, 76.3, 69.7, 74.5]}, "PRT": {"n": "Portugal", "o": 78.2, "p": [72.7, 80.9, 92.5, 61.8, 83.7, 77.9, 86.8]}, "ROU": {"n": "Romania", "o": 72.1, "p": [83.4, 77.5, 74.1, 57.1, 73.1, 67.3, 74.8]}, "RUS": {"n": "Russia", "o": 59.1, "p": [75.2, 78, 66.2, 46.7, 52.9, 35.9, 26.0]}, "SMR": {"n": "San Marino", "o": 82.4, "p": [75.9, 78.4, 100, 62.7, 87.9, 89.3, 70.2]}, "SRB": {"n": "Serbia", "o": 68.2, "p": [79.6, 80.6, 76.5, 48.8, 68, 55.6, 67.7]}, "SVK": {"n": "Slovakia", "o": 76.1, "p": [78.2, 85.2, 81, 63.4, 75.6, 73.4, 65.8]}, "SVN": {"n": "Slovenia", "o": 79, "p": [69.7, 91.7, 90.3, 62.2, 80.1, 80, 74.0]}, "ESP": {"n": "Spain", "o": 77.8, "p": [70, 85.4, 96.2, 63.9, 80.5, 70.7, 83.6]}, "SWE": {"n": "Sweden", "o": 84, "p": [70.5, 92.5, 95, 70.3, 90.5, 85.4, 92.7]}, "CHE": {"n": "Switzerland", "o": 82.7, "p": [68.2, 92.8, 97, 67.6, 81.8, 89, 92.6]}, "UKR": {"n": "Ukraine", "o": 63.6, "p": [87.1, 74.1, 66.9, 54.5, 55.6, 43.4, NaN]}, "GBR": {"n": "United Kingdom", "o": 82.3, "p": [69.2, 94.4, 89.4, 72.6, 89.8, 78.4, 87.6]}, "ATG": {"n": "Antigua and Barbuda", "o": 72.8, "p": [72.1, 81.9, 78.9, 55.6, 64.3, 84.2, 74.4]}, "BHS": {"n": "Bahamas", "o": 61.2, "p": [68, 75.7, 70.1, 56.1, 20.4, 76.9, 34.8]}, "BRB": {"n": "Barbados", "o": 68.6, "p": [61, 79.3, 74.8, 53.6, 59.8, 83, 46.8]}, "BLZ": {"n": "Belize", "o": 56.6, "p": [70.9, 62.5, 67.3, 47.4, 23.9, 67.4, 40.0]}, "CAN": {"n": "Canada", "o": 81.5, "p": [70.2, 90.4, 93.2, 61.1, 91.8, 82.6, 83.5]}, "CRI": {"n": "Costa Rica", "o": 69.2, "p": [69.1, 74.9, 88, 55.5, 50.2, 77.5, 76.9]}, "CUB": {"n": "Cuba", "o": 62.5, "p": [56.7, 74, 80.2, 52.5, 63, 48.4, 22.2]}, "DMA": {"n": "Dominica", "o": 59, "p": [71, 73.1, 60.4, 49.4, 22.7, 77.5, 54.5]}, "DOM": {"n": "Dominican Republic", "o": 62.8, "p": [76.6, 69.3, 67.8, 47.7, 52.4, 63.3, 64.9]}, "SLV": {"n": "El Salvador", "o": 56.9, "p": [75, 55.2, 63.1, 41.6, 58.4, 47.9, 65.3]}, "GRD": {"n": "Grenada", "o": 67, "p": [73.5, 77.5, 72, 46, 46.6, 86.4, 16.2]}, "GTM": {"n": "Guatemala", "o": 51.3, "p": [77.8, 49.2, 64.6, 32.5, 37.7, 46.2, 76.7]}, "HTI": {"n": "Haiti", "o": 37.8, "p": [53.9, 48.2, 42.7, 36.4, 16.9, 28.8, 40.2]}, "HND": {"n": "Honduras", "o": 52, "p": [73, 53.3, 65.4, 40.2, 37.6, 42.8, 40.2]}, "JAM": {"n": "Jamaica", "o": 55.5, "p": [67.7, 67.6, 61.4, 48.5, 19.1, 69, 55.0]}, "MEX": {"n": "Mexico", "o": 56.6, "p": [75, 71.4, 71.6, 44.2, 32.7, 44.6, 66.3]}, "NIC": {"n": "Nicaragua", "o": 58.4, "p": [72.7, 65.1, 71.3, 47.4, 54.2, 40, 69.7]}, "PAN": {"n": "Panama", "o": 66.6, "p": [79.5, 73.1, 84.6, 53, 50.1, 59.2, 77.4]}, "KNA": {"n": "Saint Kitts and Nevis", "o": 59.6, "p": [73.5, 86.2, 63.3, 53.1, 0, 81.5, 16.2]}, "LCA": {"n": "Saint Lucia", "o": 57.5, "p": [70.5, 64.1, 64.8, 51.2, 19, 75.4, 53.3]}, "VCT": {"n": "Saint Vincent and the Grenadines", "o": 57.7, "p": [72.7, 82.8, 60.7, 54.2, 0, 76.1, 47.3]}, "TTO": {"n": "Trinidad and Tobago", "o": 54.6, "p": [71, 75.5, 67.1, 52.5, 0, 61.3, 58.5]}, "USA": {"n": "United States", "o": 75.6, "p": [71.3, 90.6, 83.7, 57.2, 77.5, 73, 91.0]}, "ARG": {"n": "Argentina", "o": 69.9, "p": [76.5, 87.3, 78.3, 47, 75.2, 54.9, 42.2]}, "BOL": {"n": "Bolivia", "o": 57.8, "p": [69.6, 76.8, 53.1, 44.3, 62, 41.1, 33.4]}, "BRA": {"n": "Brazil", "o": 61, "p": [68.2, 72, 73.9, 53, 46.9, 52.2, 35.7]}, "CHL": {"n": "Chile", "o": 72.7, "p": [76.6, 84.6, 89, 49.5, 64.6, 71.9, 68.3]}, "COL": {"n": "Colombia", "o": 59.9, "p": [75.5, 69.8, 79.2, 49.7, 36.7, 48.4, 51.9]}, "ECU": {"n": "Ecuador", "o": 56.9, "p": [67.6, 71.2, 78.3, 51.3, 27, 45.8, 51.7]}, "GUY": {"n": "Guyana", "o": 57.5, "p": [76.2, 65.2, 57.7, 49, 39.9, 57.1, 58.0]}, "PRY": {"n": "Paraguay", "o": 61.8, "p": [85.6, 68.6, 68.1, 39, 59.1, 50.6, 59.3]}, "PER": {"n": "Peru", "o": 63.4, "p": [74.2, 75.3, 79.3, 46.5, 56.8, 48.5, 75.5]}, "SUR": {"n": "Suriname", "o": 61.7, "p": [66.3, 58.5, 67.5, 56.9, 62.3, 58.4, 27.1]}, "URY": {"n": "Uruguay", "o": 70.9, "p": [65.8, 83.7, 80.4, 44.4, 66.1, 85.1, 80.7]}, "VEN": {"n": "Venezuela", "o": 52, "p": [52.6, 68.3, 64.3, 53.3, 53.6, 20.1, 4.7]}, "AUS": {"n": "Australia", "o": 82.7, "p": [69.6, 92.9, 96.9, 63.1, 88.7, 85.2, 91.1]}, "FJI": {"n": "Fiji", "o": 67.4, "p": [75.5, 73, 49.5, 46.2, 93.1, 67, 42.4]}, "KIR": {"n": "Kiribati", "o": 60.2, "p": [57.4, 63.4, 47.1, 44.3, 76.3, 72.6, 56.5]}, "MHL": {"n": "Marshall Islands", "o": 66.6, "p": [50.2, 84.3, 48.4, 42.9, 86, 87.7, 70.2]}, "FSM": {"n": "Micronesia", "o": 63.1, "p": [53.8, 56.5, 49.1, 41.4, 97, 81, 70.3]}, "NRU": {"n": "Nauru", "o": 58.2, "p": [56.9, 67.2, 34.6, 47.5, 0, 84.8, null]}, "NZL": {"n": "New Zealand", "o": 81.3, "p": [68.9, 92.9, 91.7, 57.4, 88.7, 88, 87.2]}, "PLW": {"n": "Palau", "o": 68.6, "p": [60.5, 83.4, 55.1, 63.2, 62.6, 87.1, null]}, "PNG": {"n": "Papua New Guinea", "o": 50.5, "p": [55.6, 48.5, 46.1, 37, 68.9, 46.9, 31.3]}, "WSM": {"n": "Samoa", "o": 67, "p": [61.1, 72.3, 62, 47.6, 79.1, 80, 39.6]}, "SLB": {"n": "Solomon Islands", "o": 59.2, "p": [50.4, 51, 58.7, 42.2, 87.6, 65.6, 27.2]}, "TON": {"n": "Tonga", "o": 70.4, "p": [59.6, 85.8, 65.4, 40.7, 96.8, 73.9, 38.0]}, "TUV": {"n": "Tuvalu", "o": 57, "p": [45.5, 70.3, 48.9, 47.5, 39, 91, null]}, "VUT": {"n": "Vanuatu", "o": 65.4, "p": [59.5, 56.8, 61.4, 45, 98.9, 70.8, 76.4]}, "VAT": {"n": "Holy See (Vatican City)", "o": null, "p": [0, 0, 0, 29.5, 0, 0, null]}, "PSE": {"n": "Palestine", "o": 50.2, "p": [66.9, 69.9, 43.3, 35.6, 51.7, 33.8, null]}};
+const N2I={"4":"AFG","8":"ALB","12":"DZA","20":"AND","24":"AGO","28":"ATG","31":"AZE","32":"ARG","36":"AUS","40":"AUT","44":"BHS","48":"BHR","50":"BGD","51":"ARM","52":"BRB","56":"BEL","64":"BTN","68":"BOL","70":"BIH","72":"BWA","76":"BRA","84":"BLZ","90":"SLB","96":"BRN","100":"BGR","104":"MMR","108":"BDI","112":"BLR","116":"KHM","120":"CMR","124":"CAN","132":"CPV","140":"CAF","144":"LKA","148":"TCD","152":"CHL","156":"CHN","170":"COL","174":"COM","178":"COG","180":"COD","188":"CRI","191":"HRV","192":"CUB","196":"CYP","203":"CZE","204":"BEN","208":"DNK","212":"DMA","214":"DOM","218":"ECU","222":"SLV","226":"GNQ","231":"ETH","232":"ERI","233":"EST","242":"FJI","246":"FIN","250":"FRA","262":"DJI","266":"GAB","268":"GEO","270":"GMB","275":"PSE","276":"DEU","288":"GHA","296":"KIR","300":"GRC","308":"GRD","320":"GTM","324":"GIN","328":"GUY","332":"HTI","336":"VAT","340":"HND","348":"HUN","352":"ISL","356":"IND","360":"IDN","364":"IRN","368":"IRQ","372":"IRL","376":"ISR","380":"ITA","384":"CIV","388":"JAM","392":"JPN","398":"KAZ","400":"JOR","404":"KEN","408":"PRK","410":"KOR","414":"KWT","417":"KGZ","418":"LAO","422":"LBN","426":"LSO","428":"LVA","430":"LBR","434":"LBY","438":"LIE","440":"LTU","442":"LUX","450":"MDG","454":"MWI","458":"MYS","462":"MDV","466":"MLI","470":"MLT","478":"MRT","480":"MUS","484":"MEX","492":"MCO","496":"MNG","498":"MDA","499":"MNE","504":"MAR","508":"MOZ","512":"OMN","516":"NAM","520":"NRU","524":"NPL","528":"NLD","548":"VUT","554":"NZL","558":"NIC","562":"NER","566":"NGA","578":"NOR","583":"FSM","584":"MHL","585":"PLW","586":"PAK","591":"PAN","598":"PNG","600":"PRY","604":"PER","608":"PHL","616":"POL","620":"PRT","624":"GNB","626":"TLS","634":"QAT","642":"ROU","643":"RUS","646":"RWA","659":"KNA","662":"LCA","670":"VCT","674":"SMR","678":"STP","682":"SAU","686":"SEN","688":"SRB","690":"SYC","694":"SLE","702":"SGP","703":"SVK","704":"VNM","705":"SVN","706":"SOM","710":"ZAF","716":"ZWE","724":"ESP","728":"SSD","729":"SDN","740":"SUR","748":"SWZ","752":"SWE","756":"CHE","760":"SYR","762":"TJK","764":"THA","768":"TGO","776":"TON","780":"TTO","784":"ARE","788":"TUN","792":"TUR","795":"TKM","798":"TUV","800":"UGA","804":"UKR","807":"MKD","818":"EGY","826":"GBR","834":"TZA","840":"USA","854":"BFA","858":"URY","860":"UZB","862":"VEN","882":"WSM","887":"YEM","894":"ZMB"};
+const PILLARS=["Income & Opportunity","Education","Health & Longevity","Environment","Lifestyle & Belonging","Legacy & Sovereignty","Capital & Enterprise"];
+const svg=d3.select("#map"), W=960, H=500;
+const proj=d3.geoNaturalEarth1().scale(178).translate([W/2,H/2+10]);
+const path=d3.geoPath(proj);
+const tip=document.getElementById("tip");
+let FEATURES=null, metric=-1;
+function valFor(iso){const d=MD[iso];if(!d)return null;return metric===-1?d.o:d.p[metric];}
+function colorScale(){
+  const vals=[];for(const k in MD){const v=metric===-1?MD[k].o:MD[k].p[metric];if(v!=null&&!isNaN(v))vals.push(v);}
+  const mn=d3.min(vals), mx=d3.max(vals), mid=(mn+mx)/2;
+  document.getElementById("lmin").textContent=Math.round(mn);
+  document.getElementById("lmax").textContent=Math.round(mx);
+  return d3.scaleLinear().domain([mn,mid,mx]).range(["#D98C7A","#EDE3CC","#2E6CA6"]).clamp(true);
+}
+function draw(){
+  const cs=colorScale();
+  document.getElementById("metriclabel").textContent=metric===-1?"Overall index":PILLARS[metric];
+  svg.selectAll("path.country").data(FEATURES).join("path")
+    .attr("class","country").attr("d",path)
+    .attr("fill",f=>{const iso=N2I[String(+f.id)];const v=valFor(iso);return v==null?"#DDD7C8":cs(v);})
+    .on("mousemove",(e,f)=>{const iso=N2I[String(+f.id)];const d=MD[iso];
+      const nm=d?d.n:(f.properties&&f.properties.name)||"";
+      const v=valFor(iso);
+      tip.innerHTML=v==null?("<b>"+nm+"</b><br>Insufficient data"):("<b>"+nm+"</b><br><span class='v'>"+v.toFixed(1)+"</span> / 100");
+      tip.style.opacity=1;tip.style.left=Math.min(e.clientX+14,window.innerWidth-250)+"px";tip.style.top=(e.clientY+14)+"px";})
+    .on("mouseleave",()=>{tip.style.opacity=0;});
+  // leaderboard for current metric
+  const ranked=Object.keys(MD).map(k=>({n:MD[k].n,v:metric===-1?MD[k].o:MD[k].p[metric]})).filter(x=>x.v!=null).sort((a,b)=>b.v-a.v).slice(0,5);
+  document.getElementById("lead").innerHTML=ranked.map((r,i)=>"<div class='c'><div class='r'>#"+(i+1)+"</div><div class='n'>"+r.n+"</div><div class='s'>"+r.v.toFixed(1)+"</div></div>").join("");
+}
+document.getElementById("metric").addEventListener("change",e=>{metric=+e.target.value;draw();});
+d3.json("https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json").then(world=>{
+  FEATURES=topojson.feature(world,world.objects.countries).features.filter(f=>String(+f.id)!=="10");
+  // trim overseas departments (French Guiana, Caribbean) from the France shape so it does not appear in the Americas
+  FEATURES.forEach(f=>{if(String(+f.id)==="250"&&f.geometry&&f.geometry.type==="MultiPolygon"){f.geometry.coordinates=f.geometry.coordinates.filter(poly=>poly[0].some(pt=>pt[0]>-20));}});
+  document.getElementById("loading").style.display="none";
+  document.getElementById("map").style.display="block";
+  draw();
+}).catch(()=>{document.getElementById("loading").textContent="The map could not load. Please refresh.";});
+</script>
+</body>
+</html>
