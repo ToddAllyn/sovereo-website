@@ -19,11 +19,11 @@ export async function onRequestPost(context) {
     if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
       return jsonResp({ ok: false, error: 'Please enter a valid email address.' }, 400);
     }
-    if (!env.RESEND_API_KEY || !env.RESEND_AUDIENCE_ID) {
+    if (!env.RESEND_API_KEY) {
       return jsonResp({ ok: false, error: 'Signup is not fully configured yet.' }, 500);
     }
 
-    const r = await fetch('https://api.resend.com/audiences/' + env.RESEND_AUDIENCE_ID + '/contacts', {
+    const r = await fetch('https://api.resend.com/contacts', {
       method: 'POST',
       headers: {
         'Authorization': 'Bearer ' + env.RESEND_API_KEY,
