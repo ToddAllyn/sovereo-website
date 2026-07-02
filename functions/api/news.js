@@ -1,10 +1,10 @@
 // GET /api/news?country=Portugal
-// Live, filtered, per-country signals for the Sovereo Atlas.
-// Pulls from GDELT (free, no key, refreshed ~every 15 min), narrowed to the
-// themes Sovereo cares about, and tags each story to the index pillar it touches.
+// Live, English, country-anchored signals for the Sovereo Atlas.
+// Pulls from GDELT (free, no key, ~15 min refresh), narrowed to Sovereo themes
+// and English-language sources, then tags each story to the index pillar it touches.
 // Runs server-side, so there is no CORS problem; results are edge-cached.
 
-const THEME = '(visa OR residency OR "residence permit" OR citizenship OR tax OR "capital controls" OR inflation OR currency OR "cost of living" OR expat OR immigration OR retire OR "golden visa" OR "property rights" OR safety OR unrest)';
+const THEME = '(visa OR residency OR "residence permit" OR citizenship OR passport OR tax OR "capital controls" OR inflation OR currency OR "cost of living" OR expat OR immigration OR retire OR pension OR "golden visa" OR "property rights" OR healthcare OR crime OR protest OR unrest OR election OR sanctions OR corruption OR "interest rate")';
 
 export async function onRequestGet(context) {
   const { request } = context;
@@ -17,31 +17,63 @@ export async function onRequestGet(context) {
   };
   if (!country) return new Response(JSON.stringify({ articles: [] }), { headers: cors });
 
-  const q = '"' + country.replace(/"/g, "") + '" ' + THEME;
+  const q = '"' + country.replace(/"/g, "") + '" ' + THEME + ' sourcelang:eng';
   const api = "https://api.gdeltproject.org/api/v2/doc/doc?query=" + encodeURIComponent(q) +
-    "&mode=artlist&format=json&maxrecords=18&timespan=21d&sort=datedesc";
+    "&mode=artlist&format=json&maxrecords=60&timespan=21d&sort=datedesc";
 
   try {
     const r = await fetch(api, { headers: { "User-Agent": "SovereoAtlas/1.0" }, cf: { cacheTtl: 900, cacheEverything: true } });
     if (!r.ok) return new Response(JSON.stringify({ articles: [], error: "source " + r.status }), { headers: cors });
     const data = await r.json();
+    const cn = country.toLowerCase();
+    const adj = ADJ[country] ? ADJ[country].toLowerCase() : null;
     const seen = new Set();
-    const articles = (data.articles || [])
+
+    let arts = (data.articles || [])
       .filter(a => a && a.title && a.url)
-      .filter(a => { const k = (a.title || "").slice(0, 60).toLowerCase(); if (seen.has(k)) return false; seen.add(k); return true; })
-      .slice(0, 10)
-      .map(a => ({
-        title: cleanTitle(a.title),
-        url: a.url,
-        source: a.domain || "",
-        time: rel(a.seendate),
-        pillar: tag(a.title)
-      }));
-    return new Response(JSON.stringify({ country, articles }), { headers: cors });
+      .filter(a => {
+        const k = (a.title || "").slice(0, 60).toLowerCase();
+        if (seen.has(k)) return false;
+        seen.add(k);
+        return true;
+      })
+      .map(a => {
+        const title = cleanTitle(a.title);
+        const lt = title.toLowerCase();
+        return {
+          title: title,
+          url: a.url,
+          source: a.domain || "",
+          time: rel(a.seendate),
+          pillar: tag(title),
+          _rel: (lt.indexOf(cn) > -1 || (adj && lt.indexOf(adj) > -1)) ? 1 : 0
+        };
+      });
+
+    // Rank: country named in the headline first, then anything specific (non-General),
+    // recency preserved within each group (source is already date-descending).
+    arts.sort((a, b) => {
+      if (a._rel !== b._rel) return b._rel - a._rel;
+      const ag = a.pillar === "General" ? 1 : 0, bg = b.pillar === "General" ? 1 : 0;
+      return ag - bg;
+    });
+
+    arts = arts.slice(0, 10).map(a => { delete a._rel; return a; });
+    return new Response(JSON.stringify({ country, articles: arts }), { headers: cors });
   } catch (e) {
     return new Response(JSON.stringify({ articles: [], error: "fetch failed" }), { headers: cors });
   }
 }
+
+// A few demonyms help anchor stories that name the people, not the country.
+const ADJ = {
+  "Portugal": "Portuguese", "Spain": "Spanish", "France": "French", "Germany": "German",
+  "Italy": "Italian", "Greece": "Greek", "Netherlands": "Dutch", "Japan": "Japanese",
+  "China": "Chinese", "Mexico": "Mexican", "Brazil": "Brazilian", "Argentina": "Argentine",
+  "Thailand": "Thai", "Vietnam": "Vietnamese", "Malaysia": "Malaysian", "Turkey": "Turkish",
+  "Poland": "Polish", "Sweden": "Swedish", "Norway": "Norwegian", "Ireland": "Irish",
+  "Colombia": "Colombian", "Morocco": "Moroccan", "Egypt": "Egyptian", "India": "Indian"
+};
 
 function cleanTitle(t) {
   t = (t || "").replace(/\s+/g, " ").trim();
@@ -49,7 +81,6 @@ function cleanTitle(t) {
 }
 
 function rel(seendate) {
-  // GDELT format: 20260701T120000Z
   const m = /^(\d{4})(\d{2})(\d{2})T(\d{2})(\d{2})(\d{2})Z$/.exec(seendate || "");
   if (!m) return "";
   const then = Date.UTC(+m[1], +m[2] - 1, +m[3], +m[4], +m[5], +m[6]);
@@ -62,12 +93,14 @@ function rel(seendate) {
 
 function tag(text) {
   const t = (text || "").toLowerCase();
-  if (/visa|residenc|citizenship|passport|golden|immigration|permit/.test(t)) return "Legacy";
-  if (/tax|capital control|repatriat|invest|business|property right|expropriat|central bank/.test(t)) return "Capital";
-  if (/inflation|currency|peso|lira|devalu|cost of living|price|economy|gdp|recession/.test(t)) return "Income";
-  if (/crime|violence|kidnap|cartel|security|unrest|protest|coup|attack/.test(t)) return "Safety";
-  if (/health|hospital|medical|doctor|disease/.test(t)) return "Health";
-  if (/climate|flood|wildfire|drought|pollution|earthquake|hurricane|air quality/.test(t)) return "Environment";
-  if (/discrimin|migrant|refugee|racism|lgbt|welcome/.test(t)) return "Belonging";
+  if (/\bvisa|residenc|citizenship|passport|golden visa|immigration|permit|naturaliz|deport|border/.test(t)) return "Legacy";
+  if (/\btax|capital control|repatriat|invest|business|property right|expropriat|central bank|interest rate|bond|debt|sanction|trade/.test(t)) return "Capital";
+  if (/inflation|currency|peso|lira|devalu|cost of living|\bprice|economy|gdp|recession|wage|unemployment|pension|salary/.test(t)) return "Income";
+  if (/school|universit|student|education|literacy|tuition|scholarship/.test(t)) return "Education";
+  if (/crime|violence|kidnap|cartel|security|unrest|protest|coup|attack|\bwar\b|terror|shooting|murder|riot/.test(t)) return "Safety";
+  if (/health|hospital|medical|doctor|disease|clinic|vaccine|outbreak|care system/.test(t)) return "Health";
+  if (/climate|flood|wildfire|drought|pollution|earthquake|hurricane|air quality|heatwave|emission|environment/.test(t)) return "Environment";
+  if (/discrimin|migrant|refugee|racism|lgbt|welcome|minorit|integration|xenophob|asylum/.test(t)) return "Belonging";
+  if (/election|parliament|president|government|coalition|referendum|\blaw\b|policy|reform|minister/.test(t)) return "Legacy";
   return "General";
 }

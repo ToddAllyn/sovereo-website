@@ -21,6 +21,7 @@ body{background:#05080f;color:var(--cream);font-family:"Inter",Arial,sans-serif;
 .wrap{display:flex;height:calc(100vh - 53px)}
 .map{flex:1;position:relative;overflow:hidden}
 #glb{width:100%;height:100%}
+.loader{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:var(--soft);font-size:14px;z-index:2}
 .legend{position:absolute;left:16px;bottom:16px;background:rgba(14,26,43,.85);border:1px solid var(--line);border-radius:8px;padding:10px 12px;font-size:11px;color:var(--mut);z-index:5}
 .legbar{height:8px;width:150px;border-radius:4px;margin:6px 0 4px;background:linear-gradient(90deg,#26364f,#8a7b45,#E7B85A)}
 .panel{width:400px;flex:none;background:#0E1A2B;border-left:1px solid var(--line);overflow:auto;padding:22px 22px 40px}
@@ -46,15 +47,25 @@ body{background:#05080f;color:var(--cream);font-family:"Inter",Arial,sans-serif;
 .imeta{font-size:11.5px;color:var(--soft);margin-top:4px}
 .cta{display:block;margin-top:20px;background:linear-gradient(90deg,#E7B85A,#E2571E);color:#160b06;text-align:center;font-weight:700;padding:13px;border-radius:9px;text-decoration:none;font-size:14.5px}
 .loading{color:var(--soft);font-size:13px;padding:8px 0}
+@media (max-width:820px){
+  body{height:auto;overflow:auto}
+  .top{flex-wrap:wrap;gap:10px}
+  .note{display:none}
+  .search{margin-left:0}
+  .search input{width:160px}
+  .wrap{flex-direction:column;height:auto}
+  .map{height:58vh;min-height:340px}
+  .panel{width:100%;flex:none}
+}
 </style></head>
 <body>
 <div class="top">
   <span class="wm">SOVEREO</span><span class="badge">Atlas</span>
   <div class="search"><input id="q" placeholder="Search a country..." autocomplete="off"><div class="results" id="res"></div></div>
-  <span class="note">Drag to spin. Scroll to zoom. Click any country.</span>
+  <span class="note">Drag to spin. Scroll to zoom. Click a country to fly in.</span>
 </div>
 <div class="wrap">
-  <div class="map"><div id="glb"></div>
+  <div class="map"><div id="glb"></div><div class="loader" id="loader">Loading the globe...</div>
     <div class="legend">Sovereo Index (overall)<div class="legbar"></div><span style="float:left">low</span><span style="float:right">high</span></div>
   </div>
   <div class="panel" id="panel"><div class="hint">Pick a country on the globe or search above.<br><br>You will see its <b>Sovereo scorecard</b> and a <b>live signals feed</b>, each story tagged to the index pillar it touches.</div></div>
@@ -83,14 +94,17 @@ function color(ov,a){
   var t=Math.max(0,Math.min(1,(ov-30)/(86-30)));
   var A=[38,54,79],B=[231,184,90];
   var r=Math.round(A[0]+(B[0]-A[0])*t),g=Math.round(A[1]+(B[1]-A[1])*t),b=Math.round(A[2]+(B[2]-A[2])*t);
-  return "rgba("+r+","+g+","+b+","+(a==null?0.8:a)+")";
+  return "rgba("+r+","+g+","+b+","+(a==null?0.82:a)+")";
 }
 var PILL=[["inc","Income","#E8A13C"],["edu","Education","#5C9CE0"],["hea","Health","#37B086"],["env","Environment","#6FB1C7"],["bel","Belonging","#C9739B"],["leg","Legacy","#9784CE"],["cap","Capital","#E2571E"]];
-var PTAG={Legacy:"#9784CE",Capital:"#E2571E",Income:"#E8A13C",Safety:"#C9739B",Health:"#37B086",Environment:"#6FB1C7",Belonging:"#C9739B",General:"#8B95A3"};
+var PTAG={Legacy:"#9784CE",Capital:"#E2571E",Income:"#E8A13C",Safety:"#E0715C",Health:"#37B086",Environment:"#6FB1C7",Belonging:"#C9739B",Education:"#5C9CE0",General:"#8B95A3"};
 function esc(s){return (s||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
 function bar(l,col,v){
   var w=(v==null)?0:v;
   return '<div class="prow"><div class="pnm">'+l+'</div><div class="ptrack"><div class="pfill" style="width:'+w+'%;background:'+col+'"></div></div><div class="pval">'+((v==null)?"n/a":v)+'</div></div>';
+}
+function resetPanel(){
+  document.getElementById("panel").innerHTML='<div class="hint">Pick a country on the globe or search above.<br><br>You will see its <b>Sovereo scorecard</b> and a <b>live signals feed</b>, each story tagged to the index pillar it touches.</div>';
 }
 function select(c){
   var p=document.getElementById("panel");
@@ -112,7 +126,7 @@ function itemHTML(x){
 function loadSignals(c){
   var el=document.getElementById("sig");
   var ctrl=new AbortController();
-  var to=setTimeout(function(){ctrl.abort();},8000);
+  var to=setTimeout(function(){ctrl.abort();},12000);
   fetch(NEWS+encodeURIComponent(c.n),{signal:ctrl.signal}).then(function(r){return r.ok?r.json():Promise.reject();}).then(function(d){
     clearTimeout(to);
     var a=(d&&d.articles)||[];
@@ -123,17 +137,32 @@ function loadSignals(c){
     el.innerHTML='<div class="plab">Live signals</div><div class="loading">Live feed did not respond. Try again shortly.</div>';
   });
 }
-function tint(f){var c=lookup(f);return c?color(c.ov):"rgba(120,130,145,0.25)";}
-function labelFor(f){
-  var c=lookup(f);
-  var nm=esc(f.properties.name||f.properties.ADMIN||"");
-  if(c)return '<div style="font-family:Inter,Arial;font-size:12.5px;background:#0E1A2B;color:#FBF8F1;border:1px solid #C8A45C;border-radius:6px;padding:5px 9px"><b style="color:#E7B85A">'+nm+'</b>'+MID+c.ov+MID+'#'+c.rank+'</div>';
-  return '<div style="font-family:Inter,Arial;font-size:12px;background:#0E1A2B;color:#8B95A3;border:1px solid rgba(255,255,255,.15);border-radius:6px;padding:5px 9px">'+nm+MID+'no data</div>';
+// Rough centroid of a feature's largest ring, returns [lng,lat].
+function centroid(f){
+  var g=f.geometry;if(!g)return[0,0];
+  var polys=g.type==="Polygon"?[g.coordinates]:g.coordinates;
+  var best=null,bn=-1;
+  polys.forEach(function(poly){var r=poly[0];if(r&&r.length>bn){bn=r.length;best=r;}});
+  if(!best)return[0,0];
+  var x=0,y=0;best.forEach(function(pt){x+=pt[0];y+=pt[1];});
+  return[x/best.length,y/best.length];
 }
-var world=null;
+var world=null,selected=null,FEATS=[];
+function capColor(f){
+  if(f===selected){var c=lookup(f);return c?color(c.ov,1):"rgba(231,184,90,0.9)";}
+  var c2=lookup(f);return c2?color(c2.ov):"rgba(120,130,145,0.22)";}
+function altFor(f){return f===selected?0.09:(f.__hover?0.05:0.012);}
+function choose(f,fly){
+  var c=lookup(f);if(!c)return;
+  selected=f;
+  world.controls().autoRotate=false;
+  world.polygonCapColor(capColor).polygonAltitude(altFor);
+  if(fly){var ce=centroid(f);world.pointOfView({lat:ce[1],lng:ce[0],altitude:1.6},900);}
+  select(c);
+}
 fetch("https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json").then(function(r){return r.json();}).then(function(topo){
   var all=topojson.feature(topo,topo.objects.countries).features;
-  var feats=all.filter(function(f){return (f.properties&&f.properties.name)!=="Antarctica";});
+  FEATS=all.filter(function(f){return (f.properties&&f.properties.name)!=="Antarctica";});
   world=Globe()(document.getElementById("glb"))
     .backgroundColor("#05080f")
     .globeImageUrl("//unpkg.com/three-globe/example/img/earth-blue-marble.jpg")
@@ -142,19 +171,22 @@ fetch("https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json").then(fun
     .showAtmosphere(true)
     .atmosphereColor("#5C9CE0")
     .atmosphereAltitude(0.16)
-    .polygonsData(feats)
-    .polygonAltitude(function(f){return f.__hover?0.06:0.012;})
-    .polygonCapColor(tint)
+    .polygonsData(FEATS)
+    .polygonAltitude(altFor)
+    .polygonCapColor(capColor)
     .polygonSideColor(function(){return "rgba(0,0,0,0.12)";})
     .polygonStrokeColor(function(){return "rgba(10,20,34,0.55)";})
     .polygonLabel(labelFor)
     .onPolygonHover(function(h){
-      feats.forEach(function(d){d.__hover=(d===h);});
-      world.polygonAltitude(function(f){return f.__hover?0.06:0.012;});
+      FEATS.forEach(function(d){d.__hover=(d===h);});
+      world.polygonAltitude(altFor);
     })
-    .onPolygonClick(function(f){
-      var c=lookup(f);
-      if(c){select(c);world.controls().autoRotate=false;}
+    .onPolygonClick(function(f){choose(f,true);})
+    .onGlobeClick(function(){
+      selected=null;
+      world.controls().autoRotate=true;
+      world.polygonCapColor(capColor).polygonAltitude(altFor).pointOfView({altitude:2.3},800);
+      resetPanel();
     });
   var g=document.getElementById("glb");
   function size(){world.width(g.clientWidth).height(g.clientHeight);}
@@ -163,9 +195,20 @@ fetch("https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json").then(fun
   world.controls().autoRotate=true;
   world.controls().autoRotateSpeed=0.5;
   world.pointOfView({lat:20,lng:10,altitude:2.3},0);
+  var ld=document.getElementById("loader");if(ld)ld.style.display="none";
 }).catch(function(e){
-  document.querySelector(".map").innerHTML='<div style="padding:40px;color:#8B95A3">Could not load the globe engine. '+String(e)+'</div>';
+  var ld=document.getElementById("loader");if(ld)ld.textContent="Could not load the globe. "+String(e);
 });
+function labelFor(f){
+  var c=lookup(f);
+  var nm=esc(f.properties.name||f.properties.ADMIN||"");
+  if(c)return '<div style="font-family:Inter,Arial;font-size:12.5px;background:#0E1A2B;color:#FBF8F1;border:1px solid #C8A45C;border-radius:6px;padding:5px 9px"><b style="color:#E7B85A">'+nm+'</b>'+MID+c.ov+MID+'#'+c.rank+'</div>';
+  return '<div style="font-family:Inter,Arial;font-size:12px;background:#0E1A2B;color:#8B95A3;border:1px solid rgba(255,255,255,.15);border-radius:6px;padding:5px 9px">'+nm+MID+'no data</div>';
+}
+function featForCountry(c){
+  for(var i=0;i<FEATS.length;i++){if(lookup(FEATS[i])===c)return FEATS[i];}
+  return null;
+}
 var q=document.getElementById("q"),res=document.getElementById("res");
 var LIST=DATA.slice().sort(function(a,b){return a.n.localeCompare(b.n);});
 q.addEventListener("input",function(){
@@ -179,7 +222,7 @@ res.addEventListener("click",function(e){
   var d=e.target.closest("[data-n]");
   if(!d)return;
   var c=BYNAME[norm(d.getAttribute("data-n"))];
-  if(c){select(c);res.style.display="none";q.value=c.n;}
+  if(c){res.style.display="none";q.value=c.n;var f=featForCountry(c);if(f&&world){choose(f,true);}else{select(c);}}
 });
 document.addEventListener("click",function(e){if(!e.target.closest(".search"))res.style.display="none";});
 </script>
