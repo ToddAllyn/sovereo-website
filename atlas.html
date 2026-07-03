@@ -60,9 +60,10 @@ body{background:#05080f;color:var(--cream);font-family:"Inter",Arial,sans-serif;
 </style></head>
 <body>
 <div class="top">
-  <span class="wm">SOVEREO</span><span class="badge">Atlas</span>
+  <a href="index.html" class="wm" style="text-decoration:none">SOVEREO</a><span class="badge">Atlas</span>
   <div class="search"><input id="q" placeholder="Search a country..." autocomplete="off"><div class="results" id="res"></div></div>
-  <span class="note">Drag to spin. Scroll to zoom. Click a country to fly in.</span>
+  <span class="note">Drag to spin. Click a country to fly in. &nbsp;<a href="Sovereo_Index_Map.html" style="color:var(--gold);text-decoration:none">Flat map &rarr;</a></span>
+  <a href="Sovereo_Relocation_Diagnostic.html" style="margin-left:14px;background:#E7B85A;color:#0E1A2B;padding:8px 16px;border-radius:6px;font-weight:700;font-size:13px;text-decoration:none;white-space:nowrap">Take the diagnostic</a>
 </div>
 <div class="wrap">
   <div class="map"><div id="glb"></div><div class="loader" id="loader">Loading the globe...</div>
@@ -113,7 +114,7 @@ function select(c){
   html+='<div class="plab">The six forces, plus capital</div>';
   html+=PILL.map(function(x){return bar(x[1],x[2],c[x[0]]);}).join("");
   html+='<div class="sig" id="sig"><div class="plab">Live signals</div><div class="loading">Loading real headlines...</div></div>';
-  html+='<a class="cta" href="https://www.sovereo.com/Sovereo_Relocation_Diagnostic.html" target="_blank">See where you fit best, free &rarr;</a>';
+  html+='<a class="cta" href="Sovereo_Relocation_Diagnostic.html">See where you fit best, free &rarr;</a>';
   p.innerHTML=html;
   loadSignals(c);
 }
@@ -175,55 +176,4 @@ fetch("https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json").then(fun
     .polygonAltitude(altFor)
     .polygonCapColor(capColor)
     .polygonSideColor(function(){return "rgba(0,0,0,0.12)";})
-    .polygonStrokeColor(function(){return "rgba(10,20,34,0.55)";})
-    .polygonLabel(labelFor)
-    .onPolygonHover(function(h){
-      FEATS.forEach(function(d){d.__hover=(d===h);});
-      world.polygonAltitude(altFor);
-    })
-    .onPolygonClick(function(f){choose(f,true);})
-    .onGlobeClick(function(){
-      selected=null;
-      world.controls().autoRotate=true;
-      world.polygonCapColor(capColor).polygonAltitude(altFor).pointOfView({altitude:2.3},800);
-      resetPanel();
-    });
-  var g=document.getElementById("glb");
-  function size(){world.width(g.clientWidth).height(g.clientHeight);}
-  size();
-  window.addEventListener("resize",size);
-  world.controls().autoRotate=true;
-  world.controls().autoRotateSpeed=0.5;
-  world.pointOfView({lat:20,lng:10,altitude:2.3},0);
-  var ld=document.getElementById("loader");if(ld)ld.style.display="none";
-}).catch(function(e){
-  var ld=document.getElementById("loader");if(ld)ld.textContent="Could not load the globe. "+String(e);
-});
-function labelFor(f){
-  var c=lookup(f);
-  var nm=esc(f.properties.name||f.properties.ADMIN||"");
-  if(c)return '<div style="font-family:Inter,Arial;font-size:12.5px;background:#0E1A2B;color:#FBF8F1;border:1px solid #C8A45C;border-radius:6px;padding:5px 9px"><b style="color:#E7B85A">'+nm+'</b>'+MID+c.ov+MID+'#'+c.rank+'</div>';
-  return '<div style="font-family:Inter,Arial;font-size:12px;background:#0E1A2B;color:#8B95A3;border:1px solid rgba(255,255,255,.15);border-radius:6px;padding:5px 9px">'+nm+MID+'no data</div>';
-}
-function featForCountry(c){
-  for(var i=0;i<FEATS.length;i++){if(lookup(FEATS[i])===c)return FEATS[i];}
-  return null;
-}
-var q=document.getElementById("q"),res=document.getElementById("res");
-var LIST=DATA.slice().sort(function(a,b){return a.n.localeCompare(b.n);});
-q.addEventListener("input",function(){
-  var v=q.value.trim().toLowerCase();
-  if(!v){res.style.display="none";return;}
-  var m=LIST.filter(function(c){return c.n.toLowerCase().indexOf(v)>-1;}).slice(0,8);
-  res.innerHTML=m.map(function(c){return '<div data-n="'+esc(c.n)+'">'+esc(c.n)+' <span style="color:#8B95A3;font-size:12px">'+MID+c.ov+MID+'#'+c.rank+'</span></div>';}).join("");
-  res.style.display=m.length?"block":"none";
-});
-res.addEventListener("click",function(e){
-  var d=e.target.closest("[data-n]");
-  if(!d)return;
-  var c=BYNAME[norm(d.getAttribute("data-n"))];
-  if(c){res.style.display="none";q.value=c.n;var f=featForCountry(c);if(f&&world){choose(f,true);}else{select(c);}}
-});
-document.addEventListener("click",function(e){if(!e.target.closest(".search"))res.style.display="none";});
-</script>
-</body></html>
+    .polygonStrokeColor(functio
