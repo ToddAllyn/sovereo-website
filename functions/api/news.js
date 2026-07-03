@@ -80,22 +80,20 @@ export async function onRequestGet(context) {
     const settled = await Promise.allSettled(CURATED.map(function (f) { return fetchFeed(f); }));
     let items = [];
     settled.forEach(function (s) { if (s.status === "fulfilled" && s.value) items = items.concat(s.value); });
+    const FRESH = 60 * 24 * 60 * 60 * 1000; // ignore anything older than ~60 days
     for (const it of items) {
-      // Relevance: home-country feed (3) beats country named in the headline (2) beats a body-only mention (1).
-      const inTitle = mentions(it.title.toLowerCase(), terms);
-      const inDesc = inTitle ? false : mentions((it.desc || "").toLowerCase(), terms);
       const home = HOME[it.source] === cn;
-      const score = home ? 3 : (inTitle ? 2 : (inDesc ? 1 : 0));
-      if (!score) continue;
+      const inTitle = mentions(it.title.toLowerCase(), terms);
+      // Require the country in the headline, or a source dedicated to that country.
+      // Body-only mentions are dropped, since they cause cross-country leaks (a Mexico story that name-checks Brazil).
+      if (!home && !inTitle) continue;
+      if (it.ts && (Date.now() - it.ts) > FRESH) continue;
       const key = it.title.slice(0, 60).toLowerCase();
       if (seen.has(key)) continue;
       seen.add(key);
-      curated.push({ title: clean(it.title), url: it.url, source: it.source, time: rel(it.ts), pillar: tag(it.title + " " + (it.desc || "")), _ts: it.ts || 0, _score: score });
+      curated.push({ title: clean(it.title), url: it.url, source: it.source, time: rel(it.ts), pillar: tag(it.title + " " + (it.desc || "")), _ts: it.ts || 0, _score: home ? 3 : 2 });
     }
     curated.sort(function (a, b) { if (b._score !== a._score) return b._score - a._score; return (b._ts || 0) - (a._ts || 0); });
-    // If we have enough strong hits, drop the weaker body-only mentions entirely.
-    const strong = curated.filter(function (x) { return x._score >= 2; });
-    if (strong.length >= 6) curated = strong;
   } catch (e) { curated = []; }
 
   let out = curated.slice(0, 10);
@@ -119,7 +117,7 @@ export async function onRequestGet(context) {
 async function fetchFeed(f) {
   try {
     const ctrl = new AbortController();
-    const to = setTimeout(function () { ctrl.abort(); }, 4000);
+    const to = setTimeout(function () { ctrl.abort(); }, 5500);
     const r = await fetch(f.u, {
       signal: ctrl.signal,
       headers: { "User-Agent": UA, "Accept": "application/rss+xml, application/atom+xml, application/xml, text/xml, */*" },
