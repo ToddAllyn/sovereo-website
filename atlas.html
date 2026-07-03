@@ -69,7 +69,7 @@ body{background:#05080f;color:var(--cream);font-family:"Inter",Arial,sans-serif;
   <div class="map"><div id="glb"></div><div class="loader" id="loader">Loading the globe...</div>
     <div class="legend">Sovereo Index (overall)<div class="legbar"></div><span style="float:left">low</span><span style="float:right">high</span></div>
   </div>
-  <div class="panel" id="panel"><div class="hint">Pick a country on the globe or search above.<br><br>You will see its <b>Sovereo scorecard</b> and a <b>live signals feed</b>, each story tagged to the index pillar it touches.</div></div>
+  <div class="panel" id="panel"><div class="hint">Pick a country on the globe or search above.<br><br>You will see its <b>Sovereo scorecard</b> and a <b>live signals feed</b>, each story tagged to the index pillar it touches.<br><br><span style="font-size:11.5px">Signals are drawn from curated public news feeds and the GDELT Project, linked to their sources.</span></div></div>
 </div>
 <script src="atlas-data.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/topojson/3.0.2/topojson.min.js"></script>
@@ -168,12 +168,4 @@ fetch("https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json").then(fun
     .backgroundColor("#05080f")
     .globeImageUrl("//unpkg.com/three-globe/example/img/earth-blue-marble.jpg")
     .bumpImageUrl("//unpkg.com/three-globe/example/img/earth-topology.png")
-    .backgroundImageUrl("//unpkg.com/three-globe/example/img/night-sky.png")
-    .showAtmosphere(true)
-    .atmosphereColor("#5C9CE0")
-    .atmosphereAltitude(0.16)
-    .polygonsData(FEATS)
-    .polygonAltitude(altFor)
-    .polygonCapColor(capColor)
-    .polygonSideColor(function(){return "rgba(0,0,0,0.12)";})
-    .polygonStrokeColor(functio
+    .backgroundIm

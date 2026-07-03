@@ -1,98 +1,179 @@
 // GET /api/news?country=Portugal
-// Live, English, country-anchored signals for the Sovereo Atlas.
-// Pulls from GDELT (free, no key, ~15 min refresh), narrowed to Sovereo themes
-// and English-language sources, then tags each story to the index pillar it touches.
-// Runs server-side, so there is no CORS problem; results are edge-cached.
+// Sovereo Atlas signals. Curated editorial feeds (the SITREP source spine) are pulled first,
+// filtered to the selected country and tagged to the index pillar each story touches, with the
+// GDELT Project as backfill so no country is ever empty. Runs server-side (no CORS). Only a
+// successful, non-empty result is edge-cached (15 min); errors and empties are never cached,
+// so a hiccup self-heals on the next request.
+
+const CURATED = [
+  // Latin America / Andes
+  { n: "MercoPress", u: "https://en.mercopress.com/rss" },
+  { n: "Colombia Reports", u: "https://colombiareports.com/feed/" },
+  { n: "Brazilian Report", u: "https://brazilian.report/feed/" },
+  { n: "InSight Crime", u: "https://insightcrime.org/feed/" },
+  { n: "Americas Quarterly", u: "https://www.americasquarterly.org/feed/" },
+  // MENA / Gulf
+  { n: "Middle East Eye", u: "https://www.middleeasteye.net/rss" },
+  { n: "The National", u: "https://www.thenationalnews.com/rss/" },
+  { n: "Arab News", u: "https://www.arabnews.com/rss.xml" },
+  { n: "Al-Monitor", u: "https://www.al-monitor.com/rss.xml" },
+  // Africa
+  { n: "Daily Maverick", u: "https://www.dailymaverick.co.za/rss/" },
+  { n: "The Africa Report", u: "https://www.theafricareport.com/feed/" },
+  { n: "Premium Times", u: "https://www.premiumtimesng.com/feed" },
+  // Asia
+  { n: "The Hindu", u: "https://www.thehindu.com/news/national/feeder/default.rss" },
+  { n: "The Diplomat", u: "https://thediplomat.com/feed/" },
+  { n: "Rappler", u: "https://www.rappler.com/feed/" },
+  { n: "Nikkei Asia", u: "https://asia.nikkei.com/rss/feed/nar" },
+  // Europe CEE / Eurasia
+  { n: "Balkan Insight", u: "https://balkaninsight.com/feed/" },
+  { n: "Eurasianet", u: "https://eurasianet.org/rss.xml" },
+  { n: "bne IntelliNews", u: "https://www.intellinews.com/feed" },
+  // Residency / tax + country risk
+  { n: "IMI Daily", u: "https://www.imidaily.com/feed/" },
+  { n: "Schengen News", u: "https://www.schengen.news/feed/" },
+  { n: "Crisis Group", u: "https://www.crisisgroup.org/rss.xml" }
+];
 
 const THEME = '(visa OR residency OR "residence permit" OR citizenship OR passport OR tax OR "capital controls" OR inflation OR currency OR "cost of living" OR expat OR immigration OR retire OR pension OR "golden visa" OR "property rights" OR healthcare OR crime OR protest OR unrest OR election OR sanctions OR corruption OR "interest rate")';
+
+const UA = "Mozilla/5.0 (compatible; SovereoAtlas/1.0; +https://www.sovereo.com)";
 
 export async function onRequestGet(context) {
   const { request } = context;
   const url = new URL(request.url);
   const country = (url.searchParams.get("country") || "").trim();
-  // Successful, non-empty results are cached at the edge for 15 min.
-  // Errors and empty results are never cached, so a hiccup self-heals on the next hit.
-  const okHeaders = {
-    "Access-Control-Allow-Origin": "*",
-    "Content-Type": "application/json",
-    "Cache-Control": "public, max-age=300, s-maxage=900"
-  };
-  const noCache = {
-    "Access-Control-Allow-Origin": "*",
-    "Content-Type": "application/json",
-    "Cache-Control": "no-store"
-  };
-  if (!country) return new Response(JSON.stringify({ articles: [] }), { headers: noCache });
+  const ok = { "Access-Control-Allow-Origin": "*", "Content-Type": "application/json", "Cache-Control": "public, max-age=300, s-maxage=900" };
+  const no = { "Access-Control-Allow-Origin": "*", "Content-Type": "application/json", "Cache-Control": "no-store" };
+  if (!country) return new Response(JSON.stringify({ articles: [] }), { headers: no });
 
+  const cn = country.toLowerCase();
+  const terms = [cn];
+  if (ADJ[country]) terms.push(ADJ[country].toLowerCase());
+  if (ALT[country]) ALT[country].forEach(function (x) { terms.push(x.toLowerCase()); });
+
+  const seen = new Set();
+  let curated = [];
+
+  // 1) Curated editorial feeds, in parallel. Each feed fetch is edge-cached, so repeats are cheap.
+  try {
+    const settled = await Promise.allSettled(CURATED.map(function (f) { return fetchFeed(f); }));
+    let items = [];
+    settled.forEach(function (s) { if (s.status === "fulfilled" && s.value) items = items.concat(s.value); });
+    for (const it of items) {
+      const hay = (it.title + " " + (it.desc || "")).toLowerCase();
+      if (!mentions(hay, terms)) continue;
+      const key = it.title.slice(0, 60).toLowerCase();
+      if (seen.has(key)) continue;
+      seen.add(key);
+      curated.push({ title: clean(it.title), url: it.url, source: it.source, time: rel(it.ts), pillar: tag(it.title + " " + (it.desc || "")), _ts: it.ts || 0 });
+    }
+    curated.sort(function (a, b) { return (b._ts || 0) - (a._ts || 0); });
+  } catch (e) { curated = []; }
+
+  let out = curated.slice(0, 10);
+
+  // 2) GDELT backfill only if curated coverage is thin.
+  if (out.length < 8) {
+    const g = await gdelt(country);
+    for (const a of g) {
+      const key = a.title.slice(0, 60).toLowerCase();
+      if (seen.has(key)) continue;
+      seen.add(key);
+      out.push(a);
+      if (out.length >= 10) break;
+    }
+  }
+
+  out = out.map(function (a) { return { title: a.title, url: a.url, source: a.source, time: a.time, pillar: a.pillar }; });
+  return new Response(JSON.stringify({ country, articles: out }), { headers: out.length ? ok : no });
+}
+
+async function fetchFeed(f) {
+  try {
+    const ctrl = new AbortController();
+    const to = setTimeout(function () { ctrl.abort(); }, 6000);
+    const r = await fetch(f.u, {
+      signal: ctrl.signal,
+      headers: { "User-Agent": UA, "Accept": "application/rss+xml, application/atom+xml, application/xml, text/xml, */*" },
+      cf: { cacheTtl: 900, cacheEverything: true }
+    });
+    clearTimeout(to);
+    if (!r.ok) return [];
+    const t = await r.text();
+    return parseFeed(t, f.n);
+  } catch (e) { return []; }
+}
+
+function parseFeed(xml, source) {
+  const out = [];
+  let blocks = xml.match(/<item[\s\S]*?<\/item>/gi);
+  if (!blocks) blocks = xml.match(/<entry[\s\S]*?<\/entry>/gi);
+  if (!blocks) return out;
+  for (let i = 0; i < blocks.length && i < 25; i++) {
+    const b = blocks[i];
+    let title = pick(b, /<title[^>]*>([\s\S]*?)<\/title>/i);
+    let link = pick(b, /<link[^>]*>([\s\S]*?)<\/link>/i);
+    if (!link) {
+      let m = b.match(/<link[^>]*rel="alternate"[^>]*href="([^"]+)"/i) || b.match(/<link[^>]*href="([^"]+)"/i);
+      if (m) link = m[1];
+    }
+    let desc = pick(b, /<description[^>]*>([\s\S]*?)<\/description>/i) || pick(b, /<summary[^>]*>([\s\S]*?)<\/summary>/i) || pick(b, /<content[^>]*>([\s\S]*?)<\/content>/i);
+    let dstr = pick(b, /<pubDate[^>]*>([\s\S]*?)<\/pubDate>/i) || pick(b, /<updated[^>]*>([\s\S]*?)<\/updated>/i) || pick(b, /<published[^>]*>([\s\S]*?)<\/published>/i) || pick(b, /<dc:date[^>]*>([\s\S]*?)<\/dc:date>/i);
+    title = decode(stripTags(title));
+    link = decode(stripTags(link)).trim();
+    if (!title || !link) continue;
+    let ts = dstr ? Date.parse(stripTags(dstr).trim()) : 0;
+    if (isNaN(ts)) ts = 0;
+    out.push({ title: title, url: link, desc: decode(stripTags(desc)).slice(0, 300), ts: ts, source: source });
+  }
+  return out;
+}
+
+function pick(s, re) { const m = s.match(re); return m ? m[1] : ""; }
+function stripTags(s) { return (s || "").replace(/<!\[CDATA\[([\s\S]*?)\]\]>/g, "$1").replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim(); }
+function decode(s) {
+  return (s || "")
+    .replace(/&#x([0-9a-fA-F]+);/g, function (_, h) { try { return String.fromCharCode(parseInt(h, 16)); } catch (e) { return ""; } })
+    .replace(/&#(\d+);/g, function (_, d) { try { return String.fromCharCode(parseInt(d, 10)); } catch (e) { return ""; } })
+    .replace(/&quot;/g, '"').replace(/&apos;/g, "'").replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&amp;/g, "&");
+}
+function clean(t) { t = (t || "").replace(/\s+/g, " ").trim(); return t.length > 140 ? t.slice(0, 137) + "..." : t; }
+
+function mentions(hay, terms) {
+  for (const t of terms) {
+    if (!t) continue;
+    if (t.length < 5) {
+      if (new RegExp("\\b" + t.replace(/[.*+?^${}()|[\]\\]/g, "\\$&") + "\\b").test(hay)) return true;
+    } else if (hay.indexOf(t) > -1) return true;
+  }
+  return false;
+}
+
+async function gdelt(country) {
   const q = '"' + country.replace(/"/g, "") + '" ' + THEME + ' sourcelang:english';
-  const api = "https://api.gdeltproject.org/api/v2/doc/doc?query=" + encodeURIComponent(q) +
-    "&mode=artlist&format=json&maxrecords=60&timespan=21d&sort=datedesc";
-
+  const api = "https://api.gdeltproject.org/api/v2/doc/doc?query=" + encodeURIComponent(q) + "&mode=artlist&format=json&maxrecords=30&timespan=21d&sort=datedesc";
   try {
     const r = await fetch(api, { headers: { "User-Agent": "SovereoAtlas/1.0" }, cf: { cacheTtl: 900, cacheEverything: true } });
-    if (!r.ok) return new Response(JSON.stringify({ articles: [], error: "source " + r.status }), { headers: noCache });
-    const data = await r.json();
+    if (!r.ok) return [];
+    const d = await r.json();
     const cn = country.toLowerCase();
-    const adj = ADJ[country] ? ADJ[country].toLowerCase() : null;
-    const seen = new Set();
-
-    let arts = (data.articles || [])
-      .filter(a => a && a.title && a.url)
-      .filter(a => {
-        const k = (a.title || "").slice(0, 60).toLowerCase();
-        if (seen.has(k)) return false;
-        seen.add(k);
-        return true;
-      })
-      .map(a => {
-        const title = cleanTitle(a.title);
-        const lt = title.toLowerCase();
-        return {
-          title: title,
-          url: a.url,
-          source: a.domain || "",
-          time: rel(a.seendate),
-          pillar: tag(title),
-          _rel: (lt.indexOf(cn) > -1 || (adj && lt.indexOf(adj) > -1)) ? 1 : 0
-        };
-      });
-
-    // Rank: country named in the headline first, then anything specific (non-General),
-    // recency preserved within each group (source is already date-descending).
-    arts.sort((a, b) => {
-      if (a._rel !== b._rel) return b._rel - a._rel;
-      const ag = a.pillar === "General" ? 1 : 0, bg = b.pillar === "General" ? 1 : 0;
-      return ag - bg;
-    });
-
-    arts = arts.slice(0, 10).map(a => { delete a._rel; return a; });
-    const headers = arts.length ? okHeaders : noCache;
-    return new Response(JSON.stringify({ country, articles: arts }), { headers });
-  } catch (e) {
-    return new Response(JSON.stringify({ articles: [], error: "fetch failed" }), { headers: noCache });
-  }
+    return (d.articles || []).filter(function (a) { return a && a.title && a.url; }).map(function (a) {
+      const title = clean(a.title);
+      return { title: title, url: a.url, source: a.domain || "", time: rel(gts(a.seendate)), pillar: tag(title), _rel: title.toLowerCase().indexOf(cn) > -1 ? 1 : 0 };
+    }).sort(function (a, b) { return b._rel - a._rel; });
+  } catch (e) { return []; }
 }
 
-// A few demonyms help anchor stories that name the people, not the country.
-const ADJ = {
-  "Portugal": "Portuguese", "Spain": "Spanish", "France": "French", "Germany": "German",
-  "Italy": "Italian", "Greece": "Greek", "Netherlands": "Dutch", "Japan": "Japanese",
-  "China": "Chinese", "Mexico": "Mexican", "Brazil": "Brazilian", "Argentina": "Argentine",
-  "Thailand": "Thai", "Vietnam": "Vietnamese", "Malaysia": "Malaysian", "Turkey": "Turkish",
-  "Poland": "Polish", "Sweden": "Swedish", "Norway": "Norwegian", "Ireland": "Irish",
-  "Colombia": "Colombian", "Morocco": "Moroccan", "Egypt": "Egyptian", "India": "Indian"
-};
-
-function cleanTitle(t) {
-  t = (t || "").replace(/\s+/g, " ").trim();
-  return t.length > 140 ? t.slice(0, 137) + "..." : t;
-}
-
-function rel(seendate) {
+function gts(seendate) {
   const m = /^(\d{4})(\d{2})(\d{2})T(\d{2})(\d{2})(\d{2})Z$/.exec(seendate || "");
-  if (!m) return "";
-  const then = Date.UTC(+m[1], +m[2] - 1, +m[3], +m[4], +m[5], +m[6]);
-  const mins = Math.max(1, Math.round((Date.now() - then) / 60000));
+  if (!m) return 0;
+  return Date.UTC(+m[1], +m[2] - 1, +m[3], +m[4], +m[5], +m[6]);
+}
+function rel(ts) {
+  if (!ts) return "";
+  const mins = Math.max(1, Math.round((Date.now() - ts) / 60000));
   if (mins < 60) return mins + "m ago";
   const hrs = Math.round(mins / 60);
   if (hrs < 24) return hrs + "h ago";
@@ -112,3 +193,20 @@ function tag(text) {
   if (/election|parliament|president|government|coalition|referendum|\blaw\b|policy|reform|minister/.test(t)) return "Legacy";
   return "General";
 }
+
+const ADJ = {
+  "Portugal": "Portuguese", "Spain": "Spanish", "France": "French", "Germany": "German",
+  "Italy": "Italian", "Greece": "Greek", "Netherlands": "Dutch", "Japan": "Japanese",
+  "China": "Chinese", "Mexico": "Mexican", "Brazil": "Brazilian", "Argentina": "Argentine",
+  "Thailand": "Thai", "Vietnam": "Vietnamese", "Malaysia": "Malaysian", "Turkey": "Turkish",
+  "Poland": "Polish", "Sweden": "Swedish", "Norway": "Norwegian", "Ireland": "Irish",
+  "Colombia": "Colombian", "Morocco": "Moroccan", "Egypt": "Egyptian", "India": "Indian"
+};
+
+const ALT = {
+  "United States": ["u.s.", "usa", "american"],
+  "United Kingdom": ["u.k.", "britain", "british"],
+  "United Arab Emirates": ["uae", "emirati", "dubai", "abu dhabi"],
+  "South Korea": ["korea", "korean"],
+  "Czechia": ["czech"]
+};
