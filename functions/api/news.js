@@ -33,7 +33,23 @@ const CURATED = [
   // Residency / tax + country risk
   { n: "IMI Daily", u: "https://www.imidaily.com/feed/" },
   { n: "Schengen News", u: "https://www.schengen.news/feed/" },
-  { n: "Crisis Group", u: "https://www.crisisgroup.org/rss.xml" }
+  { n: "Nomad Capitalist", u: "https://nomadcapitalist.com/feed/" },
+  { n: "Crisis Group", u: "https://www.crisisgroup.org/rss.xml" },
+  // Expanded country-naming desks
+  { n: "Buenos Aires Herald", u: "https://buenosairesherald.com/feed" },
+  { n: "Latin America Reports", u: "https://latinamericareports.com/feed/" },
+  { n: "Duvar English", u: "https://www.duvarenglish.com/feed" },
+  { n: "Amwaj Media", u: "https://amwaj.media/en/rss" },
+  { n: "African Business", u: "https://african.business/feed" },
+  { n: "Ecofin Agency", u: "https://www.ecofinagency.com/feed" },
+  { n: "African Arguments", u: "https://africanarguments.org/feed/" },
+  { n: "LiveMint", u: "https://www.livemint.com/rss/news" },
+  { n: "The Wire India", u: "https://thewire.in/rss" },
+  { n: "Korea Herald", u: "https://www.koreaherald.com/rss/newsAll.xml" },
+  { n: "OC Media", u: "https://oc-media.org/feed/" },
+  { n: "EurActiv", u: "https://www.euractiv.com/feed/?post_type=news" },
+  { n: "Al Jazeera", u: "https://www.aljazeera.com/xml/rss/all.xml" },
+  { n: "OCCRP", u: "https://www.occrp.org/en/feed" }
 ];
 
 const THEME = '(visa OR residency OR "residence permit" OR citizenship OR passport OR tax OR "capital controls" OR inflation OR currency OR "cost of living" OR expat OR immigration OR retire OR pension OR "golden visa" OR "property rights" OR healthcare OR crime OR protest OR unrest OR election OR sanctions OR corruption OR "interest rate")';
