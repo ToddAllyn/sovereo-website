@@ -53,6 +53,14 @@ a{color:inherit;text-decoration:none}
 .chip{font-size:13.5px;font-weight:600;color:var(--mut);background:#fff;border:1px solid var(--line);border-radius:20px;padding:8px 14px;cursor:pointer}
 .chip:hover{border-color:var(--gold)}
 .chip.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+.lschips{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:12px 0 0}
+.lslab{font-size:12.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--soft);margin-right:2px}
+.lschip{font-size:13px;font-weight:600;color:var(--mut);background:#fff;border:1px dashed var(--line);border-radius:20px;padding:7px 13px;cursor:pointer}
+.lschip:hover{border-color:var(--gold)}
+.lschip.on{background:var(--gold);color:#fff;border-style:solid;border-color:var(--gold)}
+.lsnote{font-size:13px;color:var(--soft);margin:9px 0 0;max-width:70ch}
+.card .lsb{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;font-weight:600;color:#7a5623;background:#faf3e3;border:1px solid #e7d6ad;border-radius:6px;padding:5px 9px;margin:10px 0 0}
+.card .lsb b{font-family:var(--serif);font-size:14px}
 .count{font-size:13.5px;color:var(--soft);margin:16px 0 0}
 .empty{padding:28px 0;color:var(--mut);font-size:15.5px}.empty a{color:var(--gold);text-decoration:underline}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:26px;margin-top:14px}
@@ -149,6 +157,15 @@ footer .links{display:flex;gap:24px;flex-wrap:wrap}
     <button class="chip" data-r="Asia">Asia-Pacific</button>
     <button class="chip" data-r="Africa">Africa</button>
   </div>
+  <div class="lschips" id="lschips">
+    <span class="lslab">Best for:</span>
+    <button class="lschip on" data-s="">Any life stage</button>
+    <button class="lschip" data-s="aspiring">Aspiring expat</button>
+    <button class="lschip" data-s="active">Active expat</button>
+    <button class="lschip" data-s="retiree">Retiree</button>
+    <button class="lschip" data-s="legacy">Legacy builder</button>
+  </div>
+  <p class="lsnote" id="lsnote"></p>
   <div class="count" id="count"></div>
   <div class="grid" id="grid"></div>
   <div id="packbar">
@@ -239,7 +256,10 @@ const FLAG={
 "New Zealand":"Distance and cost are the honest trade-offs.",
 "Oman":"Quiet and stable, but a smaller expat ecosystem."
 };
-const state={q:'',region:'All',sort:'az'};
+const LS={"Monaco":[87.8,87.6,88.1,89.9],"Liechtenstein":[86.2,85.7,85.8,87.4],"Norway":[84.0,86.0,86.0,91.3],"Iceland":[83.5,85.9,85.1,91.1],"Finland":[84.6,85.3,84.7,90.7],"Sweden":[84.2,85.6,85.8,90.1],"Andorra":[82.4,83.2,85.0,88.9],"Netherlands":[85.3,85.3,85.2,89.8],"Ireland":[85.8,84.9,85.0,89.6],"Denmark":[83.8,84.3,84.0,91.4],"Luxembourg":[83.6,83.3,85.2,89.7],"Switzerland":[81.9,83.8,83.6,90.7],"Australia":[82.9,84.4,84.2,89.6],"Germany":[81.0,84.2,82.8,85.2],"San Marino":[78.3,82.0,83.6,82.9],"United Kingdom":[82.1,84.3,83.4,85.8],"Canada":[81.2,83.1,82.6,86.0],"New Zealand":[81.4,82.4,81.2,88.9],"Czechia":[82.8,81.9,80.2,85.1],"Malta":[80.5,82.7,83.5,83.0],"Belgium":[82.1,83.0,82.5,86.2],"Singapore":[85.4,82.1,81.4,87.6],"Estonia":[82.3,80.8,79.3,86.4],"Austria":[78.3,80.8,81.3,84.4],"Slovenia":[76.2,79.9,77.9,81.0],"Portugal":[79.9,79.8,80.9,83.1],"Spain":[78.1,80.2,80.7,80.3],"France":[78.2,79.6,80.3,81.4],"Poland":[78.1,78.7,75.4,76.1],"Japan":[74.5,76.7,76.1,84.4],"Greece":[76.0,78.9,78.1,77.6],"Slovakia":[74.4,76.6,73.9,73.9],"Croatia":[75.3,76.9,74.7,75.2],"Italy":[77.4,77.8,78.3,81.1],"United States":[79.4,77.8,75.8,82.6],"Lithuania":[78.3,75.6,71.7,81.9],"Cyprus":[77.8,76.7,74.9,81.1],"South Korea":[75.4,76.6,75.0,82.0],"Latvia":[79.3,76.2,72.8,81.7],"Brunei":[79.1,75.2,75.0,73.1],"United Arab Emirates":[75.8,76.2,74.0,75.5],"Hungary":[79.4,75.9,73.5,76.1],"Antigua and Barbuda":[72.2,72.1,69.7,78.4],"Chile":[72.0,73.6,70.8,73.7],"Romania":[76.0,73.1,71.1,72.3],"North Macedonia":[73.4,73.8,72.0,65.4],"Bahrain":[82.0,75.8,74.0,73.9],"Mauritius":[75.4,70.8,68.8,74.1],"Bulgaria":[70.8,71.6,68.2,66.6],"Uruguay":[72.0,70.9,68.4,81.2],"Tonga":[64.3,70.2,65.4,66.4],"Argentina":[66.3,71.5,66.3,60.3],"Israel":[72.5,73.5,72.0,74.3],"Montenegro":[69.2,70.8,66.1,66.4],"Seychelles":[71.1,69.9,65.3,75.5],"Qatar":[72.6,70.4,70.0,72.7],"Bosnia and Herzegovina":[68.6,71.6,69.5,57.4],"Costa Rica":[68.5,69.0,68.5,75.2],"Barbados":[60.5,66.5,63.0,68.4],"Palau":[65.7,66.4,61.3,78.2],"Oman":[71.6,69.8,67.6,69.8],"Maldives":[67.7,70.7,73.3,61.2],"Serbia":[71.5,70.4,67.2,66.3],"Albania":[66.2,68.8,66.7,62.7],"Malaysia":[68.5,67.8,65.1,65.2],"Fiji":[67.3,66.8,62.5,61.4],"Georgia":[73.2,69.6,64.0,68.9],"Grenada":[53.4,62.3,55.7,58.6],"Samoa":[60.8,65.0,62.0,64.8],"Panama":[70.4,68.3,67.1,68.4],"Marshall Islands":[67.2,65.6,61.0,77.8],"Saudi Arabia":[67.1,67.8,62.4,64.1],"Vanuatu":[71.3,66.4,69.3,72.2],"Kuwait":[64.7,65.8,64.4,61.9],"Cabo Verde":[71.3,64.3,67.3,72.9],"Ukraine":[70.5,66.0,62.0,55.1],"Belarus":[59.9,65.4,60.4,49.6],"Armenia":[71.3,66.4,62.9,65.1],"Peru":[68.7,66.6,64.7,64.5],"Micronesia":[67.3,62.4,63.7,72.5],"Dominican Republic":[65.6,63.0,60.3,64.0],"Timor-Leste":[65.0,62.6,61.8,57.3],"Cuba":[51.6,63.4,60.6,49.0],"Botswana":[68.1,60.8,57.7,69.6],"Kazakhstan":[59.6,62.4,55.8,54.1],"Paraguay":[67.1,63.4,60.0,58.5],"Turkey":[61.2,64.2,58.6,52.0],"Suriname":[54.1,60.4,59.5,50.3],"Jordan":[66.9,63.5,61.9,65.2],"Sao Tome and Principe":[64.9,61.6,61.8,62.1],"Thailand":[61.6,62.8,59.0,54.5],"Moldova":[59.5,61.8,55.0,52.7],"Bahamas":[50.9,57.5,51.5,57.8],"Brazil":[54.9,61.1,57.5,51.8],"Bhutan":[54.9,57.5,55.8,57.7],"Sri Lanka":[53.4,60.7,56.4,49.6],"Kiribati":[61.1,59.1,57.1,64.2],"Vietnam":[63.3,61.5,57.0,58.2],"Colombia":[58.8,60.9,58.0,54.6],"Azerbaijan":[63.0,61.0,56.2,55.4],"Saint Kitts and Nevis":[44.6,53.8,42.6,52.6],"Uzbekistan":[60.1,60.3,54.4,51.9],"Solomon Islands":[52.9,58.0,59.0,53.4],"Morocco":[60.5,60.2,58.4,54.4],"Russia":[54.9,60.8,54.3,44.0],"Tunisia":[52.9,59.5,56.9,48.4],"Dominica":[56.1,55.9,50.1,62.7],"China":[52.2,59.4,56.2,50.6],"Philippines":[65.2,60.9,56.9,56.3],"Algeria":[54.2,60.0,56.7,46.3],"Nicaragua":[64.5,61.6,60.7,57.2],"Nauru":[58.4,53.7,45.9,72.0],"Bolivia":[56.2,59.2,52.6,47.4],"Saint Vincent and the Grenadines":[51.5,53.9,44.8,59.3],"Saint Lucia":[54.3,54.3,50.6,60.4],"Guyana":[60.0,57.1,53.3,56.9],"Mongolia":[62.5,57.6,53.2,61.6],"Turkmenistan":[51.7,57.7,51.0,42.6],"Lebanon":[54.6,59.8,57.2,45.0],"Egypt":[60.1,58.9,54.1,49.9],"Namibia":[55.4,54.6,51.7,54.8],"Tuvalu":[50.5,52.8,47.8,73.1],"El Salvador":[63.7,58.5,58.3,56.8],"Ecuador":[54.5,58.0,54.7,52.7],"Iran":[47.2,58.8,53.5,37.2],"Kyrgyzstan":[59.7,58.8,53.0,50.7],"Belize":[51.4,53.9,50.1,54.1],"Mexico":[60.8,58.6,54.9,56.6],"Indonesia":[59.4,57.2,52.8,52.5],"South Africa":[53.4,55.0,47.1,50.7],"Jamaica":[53.6,53.2,48.6,58.8],"Nepal":[52.5,55.0,53.3,45.7],"Ghana":[55.8,53.3,49.4,49.7],"India":[54.6,55.0,52.2,49.0],"Trinidad and Tobago":[52.5,53.0,46.6,57.0],"Eswatini":[55.5,54.7,47.4,46.8],"Guinea-Bissau":[55.5,55.0,55.5,40.7],"Zambia":[61.0,54.6,53.3,57.4],"Bangladesh":[54.3,55.5,53.6,44.0],"Gabon":[51.6,52.7,46.8,44.6],"Kenya":[61.6,54.3,50.6,52.0],"Honduras":[52.2,52.4,50.5,45.3],"Venezuela":[41.4,54.4,50.1,30.5],"Tajikistan":[49.9,52.4,46.5,43.4],"Cambodia":[60.9,52.7,52.6,55.4],"Guatemala":[62.1,53.0,53.1,56.8],"Tanzania":[52.3,50.2,49.3,44.7],"Congo (Republic)":[48.7,51.3,44.1,40.1],"Papua New Guinea":[49.6,50.5,49.5,44.6],"Rwanda":[57.9,50.1,48.4,56.3],"Senegal":[50.8,48.3,49.7,47.4],"Palestine":[57.4,52.7,46.0,45.5],"Equatorial Guinea":[49.7,50.3,42.1,37.9],"Mauritania":[51.0,49.2,49.5,41.1],"Uganda":[54.2,50.8,49.1,48.2],"Zimbabwe":[47.8,50.1,45.7,39.0],"Angola":[46.8,47.5,42.6,37.9],"Malawi":[49.1,47.4,45.7,44.8],"Cote d'Ivoire":[52.7,47.3,42.8,41.9],"Iraq":[57.8,51.9,48.4,37.0],"Syria":[59.9,52.0,53.3,33.0],"Liberia":[55.2,48.1,46.0,49.9],"Laos":[47.5,46.0,43.1,43.2],"Sierra Leone":[47.9,45.7,44.8,39.8],"Libya":[55.4,49.4,43.0,34.0],"Comoros":[45.4,46.5,42.1,41.2],"Benin":[48.6,43.5,41.2,42.9],"Gambia":[54.6,44.5,44.1,54.0],"Mozambique":[46.8,46.0,43.8,36.8],"Cameroon":[45.6,45.1,40.6,34.2],"Myanmar":[46.0,46.7,42.4,31.3],"Burkina Faso":[50.2,44.8,45.0,35.2],"Pakistan":[50.3,45.8,45.8,36.8],"Burundi":[45.3,43.8,42.6,33.4],"Afghanistan":[55.2,45.7,44.6,29.8],"Eritrea":[37.8,42.6,41.7,28.0],"Togo":[44.6,41.2,34.9,41.2],"Yemen":[51.2,45.9,46.2,28.1],"Lesotho":[44.9,39.7,31.8,41.7],"Madagascar":[44.9,40.6,37.4,38.6],"Ethiopia":[42.7,42.5,42.8,32.1],"Djibouti":[49.8,41.3,42.2,43.6],"Niger":[46.5,41.9,42.5,33.1],"Nigeria":[47.5,41.7,34.5,34.5],"Sudan":[41.6,41.8,41.5,29.7],"Guinea":[40.9,38.0,35.0,31.9],"Haiti":[39.8,38.6,35.2,35.3],"South Sudan":[40.6,35.8,34.2,36.5],"Congo (DRC)":[34.5,34.9,27.7,27.2],"Central African Republic":[37.3,34.1,31.3,25.7],"North Korea":[11.6,33.3,37.8,29.9],"Chad":[40.0,32.4,28.9,27.2],"Mali":[38.2,31.7,30.5,26.1],"Somalia":[39.3,29.1,25.0,17.2]};
+const STAGES=[["aspiring","Aspiring expat"],["active","Active expat"],["retiree","Retiree"],["legacy","Legacy builder"]];
+const STIDX={aspiring:0,active:1,retiree:2,legacy:3};
+const state={q:'',region:'All',sort:'az',stage:''};
 const grid=document.getElementById('grid'), countEl=document.getElementById('count');
 const esc=s=>s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/"/g,'&quot;');
 const LIVE = COUNTRIES.filter(c=>c.k.indexOf('REPLACE_')!==0);
@@ -248,8 +268,13 @@ function card(c){
     ? '<span class="buy" style="background:var(--soft);cursor:default">Coming soon</span>'
     : '<a class="payhip-buy-button buy" data-theme="none" data-product="'+c.k+'" href="https://payhip.com/b/'+c.k+'">Buy &middot; $59</a>';
   const fl = FLAG[c.n] ? '<div class="flag">The catch: '+esc(FLAG[c.n])+'</div>' : '';
+  let lsb='';
+  if(state.stage && LS[c.n]){
+    const sc=LS[c.n][STIDX[state.stage]];
+    lsb='<div class="lsb"><b>'+sc.toFixed(1)+'</b> fit for the '+STAGES[STIDX[state.stage]][1].toLowerCase()+'</div>';
+  }
   return '<div class="card"><img class="cov" src="img/reports/'+c.f+'-01.png" alt="Sovereo '+esc(c.n)+' Country Report cover" loading="lazy" onerror="this.style.display=\'none\'">'+
-    '<div class="body"><div class="cty">'+esc(c.n)+'</div><p class="hook">'+esc(c.h)+'</p>'+fl+
+    '<div class="body"><div class="cty">'+esc(c.n)+'</div><p class="hook">'+esc(c.h)+'</p>'+fl+lsb+
     '<div class="spec">'+esc(c.r)+' &middot; 45+ pages &middot; <span class="verstamp">Verified June 2026</span></div>'+
     '<label class="pk"><input type="checkbox" class="pkbox" data-k="'+c.k+'" data-n="'+esc(c.n)+'"> Add to 3-pack</label>'+
     '<div class="row2"><span class="price">$59</span>'+btn+'</div></div></div>';
@@ -257,7 +282,16 @@ function card(c){
 function render(){
   const q=state.q.trim().toLowerCase();
   let list=LIVE.filter(c=>(state.region==='All'||c.r===state.region)&&c.n.toLowerCase().includes(q));
-  if(state.sort==='score') list=list.slice().sort((a,b)=>b.s-a.s);
+  if(state.stage){
+    const i=STIDX[state.stage];
+    list=list.slice().sort((a,b)=>{
+      const av=LS[a.n]?LS[a.n][i]:null, bv=LS[b.n]?LS[b.n][i]:null;
+      if(av===null&&bv===null) return a.n.localeCompare(b.n);
+      if(av===null) return 1; if(bv===null) return -1;
+      return bv-av;
+    });
+  }
+  else if(state.sort==='score') list=list.slice().sort((a,b)=>b.s-a.s);
   else if(state.sort==='az') list=list.slice().sort((a,b)=>a.n.localeCompare(b.n));
   grid.innerHTML = list.length ? list.map(card).join('') :
     '<div class="empty">No countries match that yet. <a href="mailto:sovereo@proton.me?subject=Country%20Report%20request">Request it</a> and we will prioritize it.</div>';
@@ -269,6 +303,18 @@ document.getElementById('sort').addEventListener('change',e=>{state.sort=e.targe
 document.querySelectorAll('#chips .chip').forEach(ch=>ch.addEventListener('click',()=>{
   document.querySelectorAll('#chips .chip').forEach(x=>x.classList.remove('on'));
   ch.classList.add('on'); state.region=ch.dataset.r; render();
+}));
+const LSNOTE={
+  aspiring:'Ranked for the aspiring expat building income or a business abroad: weighted toward income, capital openness and lifestyle.',
+  active:'Ranked for the active expat or working family: weighted toward health, education, environment and belonging.',
+  retiree:'Ranked for the retiree: weighted toward health and longevity, cost and climate, and everyday safety.',
+  legacy:'Ranked for the legacy builder: weighted toward legacy and sovereignty, capital and enterprise, and education.'
+};
+document.querySelectorAll('#lschips .lschip').forEach(ch=>ch.addEventListener('click',()=>{
+  document.querySelectorAll('#lschips .lschip').forEach(x=>x.classList.remove('on'));
+  ch.classList.add('on'); state.stage=ch.dataset.s;
+  document.getElementById('lsnote').textContent = state.stage ? LSNOTE[state.stage]+' Directional fit from the Sovereo Index pillars, not a substitute for the full report.' : '';
+  render();
 }));
 const pack=new Set(), packNames={};
 function refreshPack(){
