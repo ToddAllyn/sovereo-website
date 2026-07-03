@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Capital &amp; Enterprise: Rank the World for Your Money | Sovereo</title>
+<meta name="description" content="Which countries let your capital in, put it to work, and let it back out? The Sovereo Capital and Enterprise lens scores all countries on capital openness, repatriation, and the business climate, built from Chinn-Ito and Heritage data.">
+<meta name="robots" content="all">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="favicon.svg">
+<meta name="theme-color" content="#0E1A2B">
+<link rel="canonical" href="https://www.sovereo.com/capital-enterprise.html">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#0E1A2B;--navy:#14233B;--paper:#FBF8F1;--paper2:#F3EDE0;--gold:#B0863C;--gold2:#C8A45C;--line:#E3DBCB;--mut:#5C6675;--soft:#7B8494;--serif:"Fraunces",Georgia,serif;--sans:"Inter","Segoe UI",Helvetica,Arial,sans-serif;}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--paper);color:var(--ink);font-family:var(--sans);line-height:1.65;-webkit-font-smoothing:antialiased}
+a{color:var(--gold);text-decoration:none}a:hover{text-decoration:underline}
+.wrap{max-width:1120px;margin:0 auto;padding:0 28px}.narrow{max-width:860px}
+.eyebrow{font-size:12.5px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--gold)}
+.mast{position:sticky;top:0;z-index:50;background:rgba(251,248,241,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.mast .row{display:flex;align-items:center;justify-content:space-between;height:72px}
+.brand{font-weight:800;letter-spacing:.30em;font-size:22px;color:var(--ink)}
+.brand small{display:block;font-weight:600;letter-spacing:.16em;font-size:10px;color:var(--soft);margin-top:2px}
+.nav{display:flex;gap:26px;align-items:center}
+.nav a{font-size:14.5px;font-weight:500;color:var(--ink)}.nav a:hover,.nav a.on{color:var(--gold);text-decoration:none}
+.nav .cta{background:#E7B85A;color:var(--ink);font-weight:700;padding:10px 18px;border-radius:6px}
+.nav .cta:hover{background:var(--gold);color:#fff}
+@media(max-width:880px){.nav a:not(.cta){display:none}}
+.hero{background:var(--ink);color:var(--paper);padding:54px 0 46px}
+.hero .eyebrow{color:var(--gold2)}
+.hero h1{font-family:var(--serif);font-weight:800;font-size:40px;line-height:1.1;margin:14px 0 0}
+.hero p{font-size:17px;color:#C9D2DE;margin:16px 0 0;max-width:680px}
+@media(max-width:600px){.hero h1{font-size:31px}}
+main{padding:44px 0 20px}
+h2{font-family:var(--serif);font-size:26px;font-weight:600;margin:0 0 6px}
+.lead{font-size:17px;color:var(--mut);max-width:66ch;margin:6px 0 0}
+.qgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin:26px 0 0}
+.q{border:1px solid var(--line);border-radius:12px;background:#fff;padding:18px 18px 16px}
+.q .n{font-family:var(--serif);font-size:15px;font-weight:700;color:var(--gold)}
+.q h3{font-size:16.5px;font-weight:700;margin:7px 0 5px;color:var(--ink)}
+.q p{font-size:14px;color:#3a4452;margin:0}
+.vs{display:grid;grid-template-columns:1fr auto 1fr;gap:0;margin:24px 0 0;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:#fff}
+@media(max-width:640px){.vs{grid-template-columns:1fr}}
+.vs .side{padding:22px 22px 20px}
+.vs .mid{background:var(--paper2);display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-style:italic;color:var(--soft);font-size:15px;padding:10px 14px}
+@media(max-width:640px){.vs .mid{padding:6px}}
+.vs h3{font-family:var(--serif);font-size:22px;font-weight:700;margin:0 0 2px}
+.vs .flag{font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--soft)}
+.vs .nums{display:flex;gap:18px;margin:12px 0 10px}
+.vs .num b{display:block;font-family:var(--serif);font-size:26px;font-weight:800;line-height:1}
+.vs .num span{font-size:11.5px;color:var(--soft);text-transform:uppercase;letter-spacing:.1em}
+.vs p{font-size:14.5px;color:#3a4452;margin:8px 0 0}
+.pos{color:#2E7D5B}.neg{color:#B4472F}
+.panel{background:#fff;border:1px solid var(--line);border-radius:14px;padding:22px 22px 8px;margin:26px 0 0}
+.ctrls{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:0 0 14px}
+.ctrls input,.ctrls select{font-family:inherit;font-size:14px;padding:9px 12px;border:1px solid var(--line);border-radius:8px;background:var(--paper);color:var(--ink)}
+.ctrls input{flex:1;min-width:180px}
+.chips{display:flex;flex-wrap:wrap;gap:7px;margin:0 0 12px}
+.chip{font-size:12.5px;padding:6px 12px;border:1px solid var(--line);border-radius:20px;background:#fff;cursor:pointer;color:var(--mut)}
+.chip.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+.count{font-size:13px;color:var(--soft);margin:0 0 8px}
+table{width:100%;border-collapse:collapse;font-size:14px}
+th,td{text-align:left;padding:10px 10px;border-bottom:1px solid var(--line)}
+th{font-size:11.5px;text-transform:uppercase;letter-spacing:.08em;color:var(--soft);cursor:pointer;user-select:none;white-space:nowrap}
+th.num,td.num{text-align:right}
+th.on{color:var(--gold)}
+td.rank{color:var(--soft);width:38px}
+td.cty{font-weight:600;white-space:nowrap}
+td.reg{color:var(--mut);font-size:13px}
+.bar{position:relative;height:22px;background:var(--paper2);border-radius:5px;min-width:120px}
+.bar i{position:absolute;left:0;top:0;bottom:0;border-radius:5px}
+.bar b{position:absolute;right:7px;top:0;line-height:22px;font-size:12.5px;font-weight:700;color:var(--ink)}
+.gap{font-weight:600}
+.note{font-size:13.5px;color:var(--soft);max-width:74ch;margin:16px 0 0}
+.ctaband{background:var(--ink);color:var(--paper);border-radius:16px;padding:34px 30px;margin:40px 0 0;text-align:center}
+.ctaband h2{color:#fff}
+.ctaband p{color:#C9D2DE;max-width:60ch;margin:10px auto 0;font-size:16px}
+.btn{display:inline-block;background:#E7B85A;color:var(--ink);font-weight:700;padding:13px 24px;border-radius:8px;margin:18px 8px 0}
+.btn:hover{background:var(--gold);color:#fff;text-decoration:none}
+.btn.ghost{background:transparent;color:#E7B85A;border:1px solid #6b5836}
+footer{background:var(--ink);color:#9AA6B6;padding:44px 0 40px;font-size:13.5px;margin-top:48px}
+footer .frow{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap}
+footer .brand{color:#fff;font-size:18px;margin-bottom:6px}
+footer a{color:#C9D2DE}footer a:hover{color:var(--gold2)}
+footer .links{display:flex;gap:22px;flex-wrap:wrap}
+.fineprint{border-top:1px solid #25344b;margin-top:24px;padding-top:18px;color:var(--soft);max-width:88ch}
+</style>
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Sovereo Intelligence Research">
+<meta property="og:title" content="Capital &amp; Enterprise: Rank the World for Your Money">
+<meta property="og:description" content="Which countries let your capital in, put it to work, and let it back out? Scored across all countries on capital openness, repatriation, and the business climate.">
+<meta property="og:url" content="https://www.sovereo.com/capital-enterprise.html">
+<meta property="og:image" content="https://www.sovereo.com/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Capital &amp; Enterprise: Rank the World for Your Money">
+<meta name="twitter:description" content="Where can your capital get in, work, and get back out? The Sovereo Capital and Enterprise lens.">
+<meta name="twitter:image" content="https://www.sovereo.com/og-image.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","name":"Capital & Enterprise: Rank the World for Your Money","url":"https://www.sovereo.com/capital-enterprise.html","description":"The Sovereo Capital and Enterprise lens scores countries on how open they are to your capital coming in, working, and being repatriated, built from Chinn-Ito capital openness and Heritage Foundation financial and investment freedom.","publisher":{"@type":"Organization","name":"Sovereo Intelligence Research"},"isPartOf":{"@type":"WebSite","name":"Sovereo Intelligence Research","url":"https://www.sovereo.com"}}
+</script>
+</head>
+<body>
+<div class="mast"><div class="wrap row">
+  <a class="brand" href="index.html">SOVEREO<small>INTELLIGENCE RESEARCH</small></a>
+  <nav class="nav">
+    <a href="Sovereo_Index_Table.html">The Index</a>
+    <a href="atlas.html">World Map</a>
+    <a href="guides.html">Guides</a>
+    <a href="Sovereo_Scientific_Basis.html">Science</a>
+    <a class="cta" href="Sovereo_Relocation_Diagnostic.html">Take the Diagnostic</a>
+  </nav>
+</div></div>
+
+<header class="hero"><div class="wrap narrow">
+  <span class="eyebrow">The Capital &amp; Enterprise lens</span>
+  <h1>Rank the world for your money</h1>
+  <p>The relocation guides tell you where life is good. They rarely tell you whether your money can get in, go to work, and come back out when you want it. This lens does, for the pensioner protecting an income and the investor deploying capital alike, whether or not either ever moves.</p>
+</div></header>
+
+<main><div class="wrap narrow">
+
+  <h2>Four questions about your money</h2>
+  <p class="lead">Every cross-border money decision comes down to the same four questions. A country can pass one and fail another, so the honest answer is rarely a single grade.</p>
+  <div class="qgrid">
+    <div class="q"><div class="n">01</div><h3>Can it get in?</h3><p>How open the country is to foreign capital arriving: account access, currency purchase, and investment rules.</p></div>
+    <div class="q"><div class="n">02</div><h3>Can it work?</h3><p>Whether property rights, the business climate, and the financial system let capital actually grow once it is there.</p></div>
+    <div class="q"><div class="n">03</div><h3>Can it get out?</h3><p>The exit test: repatriation rights and capital controls that can trap money when you most want to move it.</p></div>
+    <div class="q"><div class="n">04</div><h3>Will it hold?</h3><p>Whether inflation and a sliding currency quietly erode purchasing power while the money sits still.</p></div>
+  </div>
+  <p class="note">The Capital &amp; Enterprise score below concentrates on the first three, capital openness, business climate, and repatriation. The fourth, holding value against inflation and currency, is read separately in each Country Report and the Legacy &amp; Sovereignty pillar of the Index.</p>
+
+  <h2 style="margin-top:44px">Good to live is not the same as good for your money</h2>
+  <p class="lead">The clearest way to see the gap is a country that scores well for living and badly for capital, set against one that scores well for both.</p>
+  <div class="vs">
+    <div class="side">
+      <div class="flag">Great to live, hard for capital</div>
+      <h3>Argentina</h3>
+      <div class="nums">
+        <div class="num"><b>69.9</b><span>Index</span></div>
+        <div class="num"><b class="neg">42.2</b><span>Capital</span></div>
+      </div>
+      <p>Cheap, beautiful, and welcoming, Argentina rewards a life. It punishes capital. Controls eased sharply from April 2025, but as of 2026 companies still cannot freely buy foreign currency for non-operational use, and export earnings must be brought home and converted to pesos. Money goes in far more easily than it comes out, and inflation keeps eroding whatever sits still.</p>
+    </div>
+    <div class="mid">versus</div>
+    <div class="side">
+      <div class="flag">Strong on both</div>
+      <h3>Singapore</h3>
+      <div class="nums">
+        <div class="num"><b>80.6</b><span>Index</span></div>
+        <div class="num"><b class="pos">94.0</b><span>Capital</span></div>
+      </div>
+      <p>An open capital account, a stable currency, deep and trusted banks, and no restriction on moving money in or out. Capital arrives, works, and leaves on your schedule. You pay for it in cost of living and a competitive residency bar, but the money question is answered cleanly.</p>
+    </div>
+  </div>
+  <p class="note">Most rankings will not tell you the difference. Sort the table below by the gap between Index and Capital to find every country where the two diverge.</p>
+
+  <h2 style="margin-top:44px">The world, ranked for your money</h2>
+  <div class="panel">
+    <div class="ctrls">
+      <input id="q" type="text" placeholder="Search a country">
+      <select id="rankby">
+        <option value="cap">Rank by: Capital &amp; Enterprise</option>
+        <option value="overall">Rank by: Sovereo Index</option>
+        <option value="gap">Rank by: Index minus Capital (biggest gap)</option>
+        <option value="name">Rank by: A to Z</option>
+      </select>
+    </div>
+    <div class="chips" id="chips">
+      <span class="chip on" data-r="All">All</span>
+      <span class="chip" data-r="Europe">Europe</span>
+      <span class="chip" data-r="North America">North &amp; Central America</span>
+      <span class="chip" data-r="South America">South America</span>
+      <span class="chip" data-r="Asia">Asia</span>
+      <span class="chip" data-r="Africa">Africa</span>
+      <span class="chip" data-r="Oceania">Oceania</span>
+    </div>
+    <div class="count" id="count"></div>
+    <table>
+      <thead><tr>
+        <th class="num">#</th>
+        <th data-k="name">Country</th>
+        <th data-k="region">Region</th>
+        <th data-k="cap" class="on">Capital &amp; Enterprise</th>
+        <th class="num" data-k="overall">Index</th>
+        <th class="num" data-k="gap">Gap</th>
+      </tr></thead>
+      <tbody id="tb"></tbody>
+    </table>
+  </div>
+  <p class="note">Capital &amp; Enterprise scores each country 0 to 100 from Chinn-Ito capital-account openness and the Heritage Foundation measures of financial and investment freedom, the same public sources used across the Sovereo Index. The Index column is the country's overall Sovereo score. Gap is Index minus Capital: a large positive number flags a place that is better to live in than to bank in. Scores are directional wayfinding built from public data, not personalized financial advice, and programmes change, so anything close to a decision belongs in a Country Report.</p>
+
+  <div class="ctaband">
+    <h2>Put the number against your own situation</h2>
+    <p>The lens ranks the world. Your best country is the top of your list, not the top of this one. Go deeper where it counts.</p>
+    <a class="btn" href="Sovereo_Relocation_Diagnostic.html">Take the free diagnostic &rarr;</a>
+    <a class="btn ghost" href="Sovereo_Country_Reports.html">Browse the Country Reports &rarr;</a>
+  </div>
+
+</div></main>
+
+<footer><div class="wrap">
+  <div class="frow"><div><div class="brand">SOVEREO</div>Intelligence Research</div>
+  <div class="links"><a href="index.html">Home</a><a href="Sovereo_Index_Table.html">The Index</a><a href="capital-enterprise.html">Capital</a><a href="guides.html">Guides</a><a href="Sovereo_Country_Reports.html">Reports</a><a href="terms.html">Terms</a><a href="privacy.html">Privacy</a></div></div>
+  <div class="fineprint">&copy; 2026 Sovereo Intelligence Research. Research and briefings are AI-assisted with human editorial oversight. The Capital &amp; Enterprise lens is an educational research instrument built from public datasets (Chinn-Ito capital openness, Heritage Foundation financial and investment freedom). It is not legal, tax, immigration or financial advice. Country programmes and capital rules change; figures are point in time.</div>
+</div></footer>
+
+<script>
+const D=[["Denmark","Europe",82.8,95.6],["Netherlands","Europe",83.4,94.2],["Ireland","Europe",83.3,94.0],["Luxembourg","Europe",82.8,94.0],["Singapore","Asia",80.6,94.0],["Estonia","Europe",80.4,93.5],["Finland","Europe",84.4,93.3],["Sweden","Europe",84.0,92.7],["Switzerland","Europe",82.7,92.6],["Belgium","Europe",80.7,91.5],["Norway","Europe",84.8,91.1],["Australia","Oceania",82.7,91.1],["United States","North America",75.6,91.0],["Latvia","Europe",75.0,89.4],["Iceland","Europe",84.5,88.2],["France","Europe",77.4,87.9],["Italy","Europe",75.8,87.9],["United Kingdom","Europe",82.3,87.6],["Bahrain","Asia",71.5,87.5],["Lithuania","Europe",75.4,87.4],["New Zealand","Oceania",81.3,87.2],["Portugal","Europe",78.2,86.8],["Cyprus","Asia",75.2,86.1],["Czechia","Europe",80.9,86.0],["Hungary","Europe",73.7,84.7],["Germany","Europe",82.6,84.3],["Austria","Europe",79.6,84.2],["Liechtenstein","Europe",86.0,84.1],["Japan","Asia",77.0,83.8],["South Korea","Asia",75.2,83.7],["Spain","Europe",77.8,83.6],["Canada","North America",81.5,83.5],["Malta","Europe",80.8,83.3],["Israel","Asia",69.8,82.8],["Uruguay","South America",70.9,80.7],["Cabo Verde","Africa",64.3,80.7],["Greece","Europe",76.6,79.9],["Armenia","Asia",63.4,79.2],["Jordan","Asia",61.6,78.2],["Qatar","Asia",69.3,78.1],["Georgia","Asia",67.1,77.4],["Panama","North America",66.6,77.4],["United Arab Emirates","Asia",74.1,77.1],["Costa Rica","North America",69.2,76.9],["Guatemala","North America",51.3,76.7],["Vanuatu","Oceania",65.4,76.4],["Peru","South America",63.4,75.5],["Botswana","Africa",62.1,75.0],["Romania","Europe",72.1,74.8],["Oman","Asia",68.5,74.8],["Poland","Europe",77.2,74.5],["Antigua and Barbuda","North America",72.8,74.4],["Slovenia","Europe",79.0,74.0],["Mauritius","Africa",70.9,73.9],["Seychelles","Africa",69.7,72.1],["Gambia","Africa",45.7,70.8],["Micronesia","Oceania",63.1,70.3],["San Marino","Europe",82.4,70.2],["Croatia","Europe",75.9,70.2],["Marshall Islands","Oceania",66.6,70.2],["Cambodia","Asia",51.3,69.8],["Nicaragua","North America",58.4,69.7],["Chile","South America",72.7,68.3],["Brunei","Asia",74.5,67.9],["Serbia","Europe",68.2,67.7],["Zambia","Africa",54.0,66.6],["Mexico","North America",56.6,66.3],["Mongolia","Asia",57.3,66.2],["Slovakia","Europe",76.1,65.8],["Rwanda","Africa",50.3,65.8],["El Salvador","North America",56.9,65.3],["Dominican Republic","North America",62.8,64.9],["Saudi Arabia","Asia",66.1,61.5],["Kenya","Africa",52.5,59.8],["Paraguay","South America",61.8,59.3],["Bulgaria","Europe",70.9,58.9],["Trinidad and Tobago","North America",54.6,58.5],["Kuwait","Asia",64.7,58.0],["Guyana","South America",57.5,58.0],["Montenegro","Europe",69.8,57.3],["Liberia","Africa",47.5,56.9],["North Macedonia","Europe",72.0,56.6],["Kiribati","Oceania",60.2,56.5],["Malaysia","Asia",67.5,56.1],["Philippines","Asia",58.9,56.1],["Azerbaijan","Asia",59.6,55.7],["Djibouti","Africa",41.8,55.6],["Sao Tome and Principe","Africa",61.3,55.5],["Jamaica","North America",55.5,55.0],["Albania","Europe",67.9,54.8],["Dominica","North America",59.0,54.5],["Saint Lucia","North America",57.5,53.3],["Uganda","Africa",49.3,52.6],["Vietnam","Asia",59.9,52.3],["Colombia","South America",59.9,51.9],["Ecuador","South America",56.9,51.7],["Kyrgyzstan","Asia",56.6,51.7],["Thailand","Asia",61.3,50.0],["Morocco","Africa",59.1,49.6],["Egypt","Africa",57.0,49.3],["Timor-Leste","Asia",62.5,49.1],["Indonesia","Asia",56.3,48.1],["Maldives","Asia",68.3,48.0],["Saint Vincent and the Grenadines","North America",57.7,47.3],["Barbados","North America",68.6,46.8],["Uzbekistan","Asia",59.5,43.3],["Bosnia and Herzegovina","Europe",69.3,42.8],["Fiji","Oceania",67.4,42.4],["Argentina","South America",69.9,42.2],["Turkey","Asia",61.7,42.2],["Kazakhstan","Asia",62.1,41.9],["Senegal","Africa",50.2,41.4],["Honduras","North America",52.0,40.2],["Haiti","North America",37.8,40.2],["Belize","North America",56.6,40.0],["Togo","Africa",42.5,40.0],["Samoa","Oceania",67.0,39.6],["Namibia","Africa",57.0,39.6],["Moldova","Europe",61.2,39.3],["Gabon","Africa",53.0,38.5],["Cote d'Ivoire","Africa",48.4,38.3],["Tonga","Oceania",70.4,38.0],["Tanzania","Africa",51.2,37.0],["Lesotho","Africa",42.3,36.8],["Pakistan","Asia",44.3,36.5],["Benin","Africa",45.7,36.4],["Belarus","Europe",63.5,36.2],["South Africa","Africa",55.7,36.0],["India","Asia",54.6,35.8],["Brazil","South America",61.0,35.7],["Eswatini","Africa",54.3,35.3],["Ghana","Africa",54.9,35.2],["Bahamas","North America",61.2,34.8],["Burkina Faso","Africa",44.3,34.3],["Lebanon","Asia",57.1,34.2],["Bangladesh","Asia",53.5,34.2],["Mali","Africa",31.8,34.2],["Malawi","Africa",48.8,34.0],["Bolivia","South America",57.8,33.4],["Bhutan","Asia",60.9,33.0],["Madagascar","Africa",42.3,33.0],["Nigeria","Africa",41.6,32.9],["Mauritania","Africa",49.3,32.2],["Comoros","Africa",46.8,32.1],["Papua New Guinea","Oceania",50.5,31.3],["Laos","Asia",47.3,31.3],["Chad","Africa",33.1,31.2],["Tajikistan","Asia",51.6,30.4],["Niger","Africa",41.8,30.3],["Tunisia","Africa",59.0,29.7],["Mozambique","Africa",45.6,29.0],["China","Asia",58.9,28.9],["Zimbabwe","Africa",49.2,28.9],["Sudan","Africa",40.1,28.7],["Algeria","Africa",58.7,28.5],["Solomon Islands","Oceania",59.2,27.2],["Suriname","South America",61.7,27.1],["Sierra Leone","Africa",47.2,27.1],["Cameroon","Africa",44.5,27.0],["Congo (DRC)","Africa",34.7,26.9],["Congo (Republic)","Africa",51.1,26.6],["Equatorial Guinea","Africa",50.1,26.4],["Russia","Europe",59.1,26.0],["Burundi","Africa",43.0,25.6],["Ethiopia","Africa",42.1,25.5],["Sri Lanka","Asia",60.6,25.1],["Guinea-Bissau","Africa",54.1,24.9],["Guinea","Africa",39.4,24.9],["Central African Republic","Africa",34.1,24.8],["Nepal","Asia",55.1,24.4],["Cuba","North America",62.5,22.2],["Myanmar","Asia",44.4,22.0],["Angola","Africa",48.8,20.9],["Turkmenistan","Asia",57.2,17.7],["Grenada","North America",67.0,16.2],["Saint Kitts and Nevis","North America",59.6,16.2],["Iran","Asia",56.6,10.1],["Eritrea","Africa",42.7,5.3],["North Korea","Asia",33.9,5.3],["Venezuela","South America",52.0,4.7]];
+const st={q:'',region:'All',rankby:'cap'};
+const tb=document.getElementById('tb'), countEl=document.getElementById('count');
+const esc=s=>s.replace(/&/g,'&amp;').replace(/</g,'&lt;');
+function capColor(v){ if(v>=75)return '#2E7D5B'; if(v>=55)return '#6FA03C'; if(v>=40)return '#C8A45C'; if(v>=25)return '#D98A3D'; return '#B4472F'; }
+function sortList(list){
+  const k=st.rankby;
+  if(k==='name') return list.slice().sort((a,b)=>a[0].localeCompare(b[0]));
+  if(k==='overall') return list.slice().sort((a,b)=>b[2]-a[2]);
+  if(k==='gap') return list.slice().sort((a,b)=>(b[2]-b[3])-(a[2]-a[3]));
+  return list.slice().sort((a,b)=>b[3]-a[3]);
+}
+function render(){
+  const q=st.q.trim().toLowerCase();
+  let list=D.filter(r=>(st.region==='All'||r[1]===st.region)&&r[0].toLowerCase().includes(q));
+  list=sortList(list);
+  tb.innerHTML=list.map((r,i)=>{
+    const [n,reg,ov,cap]=r; const gap=+(ov-cap).toFixed(1);
+    const gc=gap>=12?'neg':(gap<=-12?'pos':''); const gs=(gap>0?'+':'')+gap;
+    return '<tr><td class="num rank">'+(i+1)+'</td>'+
+      '<td class="cty">'+esc(n)+'</td>'+
+      '<td class="reg">'+esc(reg)+'</td>'+
+      '<td><div class="bar"><i style="width:'+cap+'%;background:'+capColor(cap)+'"></i><b>'+cap.toFixed(1)+'</b></div></td>'+
+      '<td class="num">'+ov.toFixed(1)+'</td>'+
+      '<td class="num gap '+gc+'">'+gs+'</td></tr>';
+  }).join('');
+  countEl.textContent='Showing '+list.length+' of '+D.length+' countries';
+  document.querySelectorAll('th[data-k]').forEach(th=>th.classList.toggle('on', th.dataset.k===st.rankby || (st.rankby==='cap'&&th.dataset.k==='cap')));
+}
+document.getElementById('q').addEventListener('input',e=>{st.q=e.target.value;render();});
+document.getElementById('rankby').addEventListener('change',e=>{st.rankby=e.target.value;render();});
+document.querySelectorAll('#chips .chip').forEach(ch=>ch.addEventListener('click',()=>{
+  document.querySelectorAll('#chips .chip').forEach(x=>x.classList.remove('on'));
+  ch.classList.add('on'); st.region=ch.dataset.r; render();
+}));
+document.querySelectorAll('th[data-k]').forEach(th=>th.addEventListener('click',()=>{
+  st.rankby=th.dataset.k; document.getElementById('rankby').value=(['cap','overall','gap','name'].includes(th.dataset.k)?th.dataset.k:'cap'); render();
+}));
+render();
+</script>
+</body>
+</html>
