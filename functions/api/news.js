@@ -17,7 +17,7 @@ export async function onRequestGet(context) {
   };
   if (!country) return new Response(JSON.stringify({ articles: [] }), { headers: cors });
 
-  const q = '"' + country.replace(/"/g, "") + '" ' + THEME + ' sourcelang:eng';
+  const q = '"' + country.replace(/"/g, "") + '" ' + THEME + ' sourcelang:english';
   const api = "https://api.gdeltproject.org/api/v2/doc/doc?query=" + encodeURIComponent(q) +
     "&mode=artlist&format=json&maxrecords=60&timespan=21d&sort=datedesc";
 
