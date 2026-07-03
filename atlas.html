@@ -127,7 +127,7 @@ function itemHTML(x){
 function loadSignals(c){
   var el=document.getElementById("sig");
   var ctrl=new AbortController();
-  var to=setTimeout(function(){ctrl.abort();},12000);
+  var to=setTimeout(function(){ctrl.abort();},18000);
   fetch(NEWS+encodeURIComponent(c.n),{signal:ctrl.signal}).then(function(r){return r.ok?r.json():Promise.reject();}).then(function(d){
     clearTimeout(to);
     var a=(d&&d.articles)||[];

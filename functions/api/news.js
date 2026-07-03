@@ -93,7 +93,7 @@ export async function onRequestGet(context) {
 async function fetchFeed(f) {
   try {
     const ctrl = new AbortController();
-    const to = setTimeout(function () { ctrl.abort(); }, 6000);
+    const to = setTimeout(function () { ctrl.abort(); }, 4000);
     const r = await fetch(f.u, {
       signal: ctrl.signal,
       headers: { "User-Agent": UA, "Accept": "application/rss+xml, application/atom+xml, application/xml, text/xml, */*" },
@@ -155,7 +155,10 @@ async function gdelt(country) {
   const q = '"' + country.replace(/"/g, "") + '" ' + THEME + ' sourcelang:english';
   const api = "https://api.gdeltproject.org/api/v2/doc/doc?query=" + encodeURIComponent(q) + "&mode=artlist&format=json&maxrecords=30&timespan=21d&sort=datedesc";
   try {
-    const r = await fetch(api, { headers: { "User-Agent": "SovereoAtlas/1.0" }, cf: { cacheTtl: 900, cacheEverything: true } });
+    const ctrl = new AbortController();
+    const to = setTimeout(function () { ctrl.abort(); }, 6000);
+    const r = await fetch(api, { signal: ctrl.signal, headers: { "User-Agent": "SovereoAtlas/1.0" }, cf: { cacheTtl: 900, cacheEverything: true } });
+    clearTimeout(to);
     if (!r.ok) return [];
     const d = await r.json();
     const cn = country.toLowerCase();
