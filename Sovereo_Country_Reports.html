@@ -233,7 +233,10 @@ document.getElementById('grid').addEventListener('change',e=>{
 document.getElementById('packclear').addEventListener('click',e=>{ e.preventDefault(); pack.clear(); refreshPack(); });
 document.getElementById('packbtn').addEventListener('click',()=>{
   if(pack.size!==3) return;
+  try{ window.Payhip && window.Payhip.Cart && window.Payhip.Cart.initiate && window.Payhip.Cart.initiate(); }catch(e){}
   try{ [...pack].forEach(k=>{ if(window.Payhip&&window.Payhip.Cart) window.Payhip.Cart.addItem({product:k}); }); }catch(err){}
+  const info=document.getElementById('packinfo');
+  if(info) info.innerHTML='<b>Three reports added to your cart.</b> Open the cart (top right) and enter code <b>THREE</b> for $149.';
   setTimeout(()=>{ try{ window.Payhip.Cart.displayLauncher(); }catch(e){} try{ window.Payhip.Cart.openCartIframe(); }catch(e){} }, 350);
 });
 render();
