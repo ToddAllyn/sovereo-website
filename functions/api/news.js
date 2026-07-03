@@ -10,12 +10,19 @@ export async function onRequestGet(context) {
   const { request } = context;
   const url = new URL(request.url);
   const country = (url.searchParams.get("country") || "").trim();
-  const cors = {
+  // Successful, non-empty results are cached at the edge for 15 min.
+  // Errors and empty results are never cached, so a hiccup self-heals on the next hit.
+  const okHeaders = {
     "Access-Control-Allow-Origin": "*",
     "Content-Type": "application/json",
     "Cache-Control": "public, max-age=300, s-maxage=900"
   };
-  if (!country) return new Response(JSON.stringify({ articles: [] }), { headers: cors });
+  const noCache = {
+    "Access-Control-Allow-Origin": "*",
+    "Content-Type": "application/json",
+    "Cache-Control": "no-store"
+  };
+  if (!country) return new Response(JSON.stringify({ articles: [] }), { headers: noCache });
 
   const q = '"' + country.replace(/"/g, "") + '" ' + THEME + ' sourcelang:english';
   const api = "https://api.gdeltproject.org/api/v2/doc/doc?query=" + encodeURIComponent(q) +
@@ -23,7 +30,7 @@ export async function onRequestGet(context) {
 
   try {
     const r = await fetch(api, { headers: { "User-Agent": "SovereoAtlas/1.0" }, cf: { cacheTtl: 900, cacheEverything: true } });
-    if (!r.ok) return new Response(JSON.stringify({ articles: [], error: "source " + r.status }), { headers: cors });
+    if (!r.ok) return new Response(JSON.stringify({ articles: [], error: "source " + r.status }), { headers: noCache });
     const data = await r.json();
     const cn = country.toLowerCase();
     const adj = ADJ[country] ? ADJ[country].toLowerCase() : null;
@@ -59,9 +66,10 @@ export async function onRequestGet(context) {
     });
 
     arts = arts.slice(0, 10).map(a => { delete a._rel; return a; });
-    return new Response(JSON.stringify({ country, articles: arts }), { headers: cors });
+    const headers = arts.length ? okHeaders : noCache;
+    return new Response(JSON.stringify({ country, articles: arts }), { headers });
   } catch (e) {
-    return new Response(JSON.stringify({ articles: [], error: "fetch failed" }), { headers: cors });
+    return new Response(JSON.stringify({ articles: [], error: "fetch failed" }), { headers: noCache });
   }
 }
 
