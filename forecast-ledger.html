@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Sovereo Forecast Ledger — every call, dated and scored in public</title>
+<meta name="description" content="The public, scored record of every Sovereo Brief forecast. Each call is dated, carries a numerical confidence, and is scored on its stated date. Hits and misses, nothing removed.">
+<style>
+:root{--ink:#12344E;--navy:#15547E;--paper:#FFFFFF;--paper2:#EEF4FA;--tint:#E9F2FA;--gold:#1C6EA4;--gold2:#2E86C1;--line:#E2E9F1;--mut:#43566A;--soft:#68788A;--red:#C0563A;--green:#1E8E6A;--amber:#B0791F;--serif:"Fraunces",Georgia,serif;--sans:"Inter","Segoe UI",Helvetica,Arial,sans-serif}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);line-height:1.6;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1000px;margin:0 auto;padding:0 24px}
+.mast{background:var(--ink);color:#fff;padding:14px 0}
+.mast .wrap{display:flex;justify-content:space-between;align-items:center}
+.mast .brand{font-family:var(--serif);font-weight:800;font-size:18px;letter-spacing:.02em}
+.mast .brand small{color:var(--gold2);font-weight:600}
+.mast .tag{font-size:12px;color:#C9D8E6}
+header.hero{padding:52px 0 22px}
+.eyebrow{font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--gold)}
+h1{font-family:var(--serif);font-weight:800;font-size:40px;line-height:1.1;margin:12px 0 10px}
+.lede{font-size:18px;color:var(--mut);max-width:70ch;margin:0}
+.stats{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin:30px 0 6px}
+.stat{background:var(--tint);border-radius:10px;padding:18px 16px;border-left:4px solid var(--gold2)}
+.stat .n{font-family:var(--serif);font-size:30px;font-weight:800;line-height:1}
+.stat .l{font-size:12px;color:var(--soft);margin-top:6px;letter-spacing:.02em}
+.caveat{font-size:13px;color:var(--soft);margin:14px 0 0}
+section{padding:34px 0 0}
+h2{font-family:var(--serif);font-size:24px;font-weight:800;border-top:2px solid var(--ink);padding-top:14px;margin:0 0 4px}
+table{width:100%;border-collapse:collapse;margin-top:16px;font-size:14px}
+th{text-align:left;font-size:11.5px;letter-spacing:.05em;text-transform:uppercase;color:var(--mut);border-bottom:1.5px solid var(--ink);padding:0 10px 8px}
+td{padding:14px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+td.id{font-weight:700;color:var(--gold);white-space:nowrap}
+td.meta{color:var(--soft);white-space:nowrap;font-size:13px}
+td.conf{font-weight:700;white-space:nowrap}
+.pill{display:inline-block;font-size:11.5px;font-weight:700;padding:3px 11px;border-radius:11px}
+.correct{background:#E4F3EC;color:var(--green)}
+.open{background:var(--tint);color:var(--gold)}
+.rev{color:var(--soft);font-weight:600;font-size:12px}
+.method{background:var(--paper2);border-radius:12px;padding:24px 26px;margin-top:18px}
+.method h3{margin:0 0 8px;font-size:15px}
+.method p{margin:0 0 10px;font-size:14px;color:var(--mut)}
+.method p:last-child{margin-bottom:0}
+.cta{background:var(--ink);color:#fff;border-radius:12px;padding:32px 30px;margin:40px 0;text-align:center}
+.cta h2{border:0;padding:0;color:#fff}
+.cta p{color:#C9D8E6;max-width:58ch;margin:8px auto 18px}
+.btn{display:inline-block;background:var(--gold2);color:#fff;text-decoration:none;font-weight:700;padding:13px 26px;border-radius:8px}
+footer{border-top:1px solid var(--line);margin-top:20px;padding:24px 0 50px;color:var(--soft);font-size:12.5px}
+@media(max-width:760px){.stats{grid-template-columns:repeat(2,1fr)}h1{font-size:31px}.hide-sm{display:none}}
+</style>
+</head>
+<body>
+<div class="mast"><div class="wrap"><div class="brand">SOVEREO <small>INTELLIGENCE</small></div><div class="tag">Think Clear · Decide Clean · Execute Under Pressure</div></div></div>
+
+<header class="hero"><div class="wrap">
+<div class="eyebrow">The Forecast Ledger</div>
+<h1>Every call, dated and scored in public</h1>
+<p class="lede">Most geopolitical commentary is unfalsifiable. The Sovereo Brief is not. Every forward call enters this ledger with a numerical confidence and a scoring date, and is marked correct or wrong on that date. Nothing is removed. This is the record you are paying for.</p>
+
+<div class="stats">
+  <div class="stat"><div class="n">9</div><div class="l">Forecasts logged</div></div>
+  <div class="stat"><div class="n">3</div><div class="l">Scored to date</div></div>
+  <div class="stat"><div class="n">3&thinsp;/&thinsp;3</div><div class="l">Resolved correct</div></div>
+  <div class="stat"><div class="n">0.077</div><div class="l">Brier score</div></div>
+  <div class="stat"><div class="n">73%</div><div class="l">Avg confidence, scored</div></div>
+</div>
+<p class="caveat">Honest framing: three calls have reached their scoring date, so the sample is still small and one miss will move these numbers. A Brier score of 0.077 compares to 0.25 for a coin flip at even odds; lower is better. The full calibration curve activates as the scored record grows past ten. Every forecast ever made is listed below, open and closed, with none withdrawn.</p>
+</div></header>
+
+<section><div class="wrap">
+<h2>The record</h2>
+<table>
+<thead><tr><th>ID</th><th class="hide-sm">Issue</th><th>Forecast</th><th>Confidence</th><th class="hide-sm">Scores</th><th>Result</th></tr></thead>
+<tbody>
+<tr><td class="id">001-1</td><td class="meta hide-sm">#001 · Apr 10</td><td>Mojtaba Khamenei does not appear in unmediated live public video before the April 22 ceasefire window closes.</td><td class="conf">82%</td><td class="meta hide-sm">Apr 22, 2026</td><td><span class="pill correct">Correct</span></td></tr>
+<tr><td class="id">002-1</td><td class="meta hide-sm">#002 · Apr 18</td><td>The ceasefire window is extended beyond April 22 without a signed agreement.</td><td class="conf">74%</td><td class="meta hide-sm">Apr 22, 2026</td><td><span class="pill correct">Correct</span></td></tr>
+<tr><td class="id">003-1</td><td class="meta hide-sm">#003 · Apr 24</td><td>Colombia's PL-238 foreign-farmland restriction does not become law before the August 7 presidential inauguration.</td><td class="conf">62%</td><td class="meta hide-sm">Aug 11, 2026</td><td><span class="pill open">Open</span></td></tr>
+<tr><td class="id">004-1</td><td class="meta hide-sm">#004 · May 1</td><td>CIPS yuan settlement exceeds an average 1 trillion yuan a day in at least one month by December 2026.</td><td class="conf">72% <span class="rev">→ 52%</span></td><td class="meta hide-sm">Jan 8, 2027</td><td><span class="pill open">Open</span></td></tr>
+<tr><td class="id">005-1</td><td class="meta hide-sm">#005 · May 29</td><td>The United States signs at least one new bilateral critical-minerals framework with a Latin American government by December 31.</td><td class="conf">70%</td><td class="meta hide-sm">Jan 8, 2027</td><td><span class="pill open">Open</span></td></tr>
+<tr><td class="id">006-1</td><td class="meta hide-sm">#006 · Jun 5</td><td>At least three of the 2026 minerals frameworks publish a named reference-pricing mechanism by December 31.</td><td class="conf">58%</td><td class="meta hide-sm">Jan 8, 2027</td><td><span class="pill open">Open</span></td></tr>
+<tr><td class="id">007-1</td><td class="meta hide-sm">#007 · Jun 12</td><td>The June 21 Colombian runoff is certified with the losing candidate conceding or accepting within seven days.</td><td class="conf">64%</td><td class="meta hide-sm">Jun 29, 2026</td><td><span class="pill correct">Correct</span></td></tr>
+<tr><td class="id">008-1</td><td class="meta hide-sm">#008 · Jun 19</td><td>The 60-day Hormuz reopening is formalized toward a final deal rather than lapsing at expiry.</td><td class="conf">60% <span class="rev">→ 72%</span></td><td class="meta hide-sm">Aug 20, 2026</td><td><span class="pill open">Open</span></td></tr>
+<tr><td class="id">009-1</td><td class="meta hide-sm">#009 · Jun 26</td><td>Absent a fresh shock, gold sets no new all-time high through Q3 2026.</td><td class="conf">68%</td><td class="meta hide-sm">Oct 2, 2026</td><td><span class="pill open">Open</span></td></tr>
+</tbody>
+</table>
+</div></section>
+
+<section><div class="wrap">
+<h2>How to read this ledger</h2>
+<div class="method">
+<h3>The scoring rule</h3>
+<p>A forecast is scored only on or after its stated date. An open forecast is live, not a failure. When the date arrives, the call is marked correct or wrong against its explicit falsification condition, and the result stays on the record permanently.</p>
+<h3>The confidence scale</h3>
+<p>Every call carries one probability word on a fixed yardstick: remote near 5 percent, unlikely 25 to 35, realistic possibility 40 to 50, likely 55 to 75, highly likely 80 to 90, almost certain 95 or more. Confidence is revised on the evidence between issues, and the revision is shown (for example 004-1 moving from 72 to 52, or 008-1 from 60 to 72). Both the original and the revised number are kept.</p>
+<h3>The Brier score</h3>
+<p>The Brier score is the standard measure of forecast accuracy: the average squared gap between the confidence stated and what happened, where lower is better. A perfect record is 0, guessing 50 percent every time on a coin flip is 0.25. Sovereo publishes the number even when it is unflattering, because a record you can check is the entire point.</p>
+<h3>No cherry-picking</h3>
+<p>Every forecast the Brief has ever issued appears here. None is withdrawn, softened, or deleted after the fact. The misses will be published beside the hits with the same prominence. That discipline, not any single call, is the product.</p>
+</div>
+</div></section>
+
+<div class="cta"><div class="wrap">
+<h2>Read the calls before they score</h2>
+<p>The ledger is the receipt. The Sovereo Brief is where each call is made, argued, and dated a week before the market or the headline catches up. One issue a week, decision-grade, with the reasoning shown.</p>
+<a class="btn" href="https://sovereobrief.substack.com">Subscribe to the Sovereo Brief &rarr;</a>
+</div></div>
+
+<footer><div class="wrap">Sovereo Intelligence Research. Forecasts are falsifiable, dated, and scored in public on their stated dates, graded against ICD 203 analytic standards. Article Three of the Sovereo Constitution: the practice provides decision analysis, not recommendations. This is educational decision analysis, not legal, tax, immigration, or financial advice. &copy; 2026 Sovereo Intelligence Research.</div></footer>
+</body>
+</html>

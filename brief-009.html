@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Sovereo Brief, Issue #009 | One Catalyst, Three Prices, One Clock</title>
+<meta name="description" content="The Iran war premium is unwinding across oil, gold, and yuan settlement at once, and one dated trigger in mid August can reprice all three back together. The Sovereo Brief, institutional decision intelligence.">
+<meta name="robots" content="noindex">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,800;9..144,900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+:root{--ink:#12344E;--navy:#15547E;--paper:#FFFFFF;--paper2:#EEF4FA;--tint:#E9F2FA;--gold:#1C6EA4;--gold2:#2E86C1;--line:#E2E9F1;--rule:#cdd8e4;--mut:#43566A;--soft:#68788A;--red:#C0563A;--green:#1E8E6A;--serif:"Fraunces",Georgia,serif;--sans:"Inter","Segoe UI",Helvetica,Arial,sans-serif;}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#fff;color:var(--ink);font-family:var(--sans);line-height:1.62;-webkit-font-smoothing:antialiased}
+.wrap{max-width:940px;margin:0 auto;padding:0 32px}
+a{color:var(--gold);text-decoration:none}a:hover{text-decoration:underline}
+/* masthead */
+.mast{background:var(--ink);color:var(--paper)}
+.mast .row{display:flex;align-items:center;justify-content:space-between;height:64px}
+.brand{font-weight:800;letter-spacing:.30em;font-size:19px;color:#fff}
+.brand small{display:block;font-weight:600;letter-spacing:.16em;font-size:9px;color:var(--gold2);margin-top:2px}
+.mast .tag{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#9FB0C4}
+/* issue header */
+.ihead{border-bottom:2px solid var(--ink);padding:40px 0 26px;margin-top:0}
+.ihead .kicker{font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--gold)}
+.ihead h1{font-family:var(--serif);font-weight:900;font-size:40px;line-height:1.08;letter-spacing:-.01em;margin:14px 0 0;max-width:20ch}
+.ihead .meta{display:flex;gap:20px;flex-wrap:wrap;margin:18px 0 0;font-size:12.5px;color:var(--soft);text-transform:uppercase;letter-spacing:.06em}
+.ihead .meta b{color:var(--ink)}
+@media(max-width:600px){.ihead h1{font-size:29px}}
+/* executive summary */
+.exec{background:var(--tint);color:var(--ink);border-radius:8px;border-left:5px solid var(--gold2);padding:26px 30px 28px;margin:26px 0 0;position:relative}
+.exec .lab{font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--gold)}
+.exec p{font-size:19px;line-height:1.5;font-family:var(--serif);font-weight:400;margin:10px 0 0;color:var(--ink)}
+.exec .src{font-size:12px;color:var(--soft);margin-top:12px}
+/* section */
+section{padding:38px 0 0}
+.eyebrow{font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);border-top:2px solid var(--ink);padding-top:10px}
+h2{font-family:var(--serif);font-size:26px;font-weight:700;margin:6px 0 0;letter-spacing:-.01em}
+h2+p,section>.wrap>p{margin-top:14px}
+p{font-size:16.5px;color:#26313f;margin-top:14px}
+.lead{font-size:18px}
+.pull{font-family:var(--serif);font-size:23px;font-weight:600;line-height:1.35;color:var(--ink);border-left:4px solid var(--gold);padding:6px 0 6px 20px;margin:22px 0}
+/* exhibit */
+.exhibit{border:1px solid var(--line);border-radius:6px;margin:24px 0 0;overflow:hidden;background:#fff}
+.exhibit .cap{background:var(--paper2);border-bottom:1px solid var(--line);padding:12px 18px}
+.exhibit .cap .n{font-size:11px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--gold)}
+.exhibit .cap .t{font-family:var(--serif);font-size:17px;font-weight:600;margin-top:2px}
+.exhibit .body{padding:20px 18px}
+.exhibit .note{font-size:12px;color:var(--soft);padding:0 18px 16px}
+.chartbox{position:relative;height:320px}
+/* tables */
+table{width:100%;border-collapse:collapse;font-size:14px}
+th,td{text-align:left;padding:11px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--soft)}
+td.num,th.num{text-align:right;font-variant-numeric:tabular-nums}
+.fid{font-weight:700;font-variant-numeric:tabular-nums;white-space:nowrap}
+/* confidence bar */
+.cbar{position:relative;height:20px;background:var(--paper2);border-radius:3px;min-width:130px}
+.cbar i{position:absolute;left:0;top:0;bottom:0;border-radius:3px;background:var(--gold)}
+.cbar b{position:absolute;right:7px;top:0;line-height:20px;font-size:12px;font-weight:700}
+.delta{font-weight:700;font-size:12.5px}
+.up{color:var(--green)}.down{color:var(--red)}
+.pill{display:inline-block;font-size:11px;font-weight:700;padding:2px 9px;border-radius:20px}
+.pill.open{background:#E7F0EA;color:var(--green)}
+.pill.pend{background:#F6EED9;color:var(--gold)}
+/* signal cards */
+.sgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:22px 0 0}
+@media(max-width:760px){.sgrid{grid-template-columns:1fr}}
+.scard{border:1px solid var(--line);border-radius:6px;padding:18px;background:#fff}
+.scard .num{font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--gold)}
+.scard .stat{font-family:var(--serif);font-size:30px;font-weight:800;line-height:1;margin:10px 0 2px}
+.scard .statlab{font-size:12px;color:var(--soft);text-transform:uppercase;letter-spacing:.05em}
+.scard p{font-size:13.5px;margin-top:12px;color:#3a4452}
+/* framework steps */
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin:22px 0 0;border:1px solid var(--line);border-radius:6px;overflow:hidden}
+@media(max-width:760px){.steps{grid-template-columns:1fr 1fr}}
+.step{padding:18px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);background:#fff}
+.step .s{font-family:var(--serif);font-size:22px;font-weight:800;color:var(--gold)}
+.step h4{font-size:14px;font-weight:700;margin:6px 0 4px}
+.step p{font-size:12.5px;color:#3a4452;margin:0}
+/* clock callout */
+.clock{display:flex;align-items:center;gap:18px;background:var(--navy);color:var(--paper);border-radius:6px;padding:20px 24px;margin:22px 0 0}
+.clock .big{font-family:var(--serif);font-size:30px;font-weight:800;color:#EAF3FB;white-space:nowrap}
+.clock p{color:#C9D2DE;font-size:14.5px;margin:0}
+/* archetype sidebar */
+.arche{background:var(--paper);border:1px solid var(--line);border-left:4px solid var(--gold);border-radius:4px;padding:22px 24px;margin:24px 0 0}
+.arche .lab{font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--gold)}
+.arche h3{font-family:var(--serif);font-size:20px;font-weight:700;margin:6px 0 8px}
+.arche p{font-size:15px;margin-top:10px}
+/* timeline */
+.tl{margin:20px 0 0;border-left:2px solid var(--line);padding-left:0}
+.tl li{list-style:none;position:relative;padding:0 0 16px 26px}
+.tl li::before{content:"";position:absolute;left:-7px;top:4px;width:12px;height:12px;border-radius:50%;background:var(--gold);border:2px solid #fff}
+.tl .d{font-weight:700;font-size:13.5px}
+.tl .x{font-size:13.5px;color:#3a4452}
+/* gauge */
+.gauge{display:flex;align-items:center;gap:24px;flex-wrap:wrap}
+.gnum{font-family:var(--serif);font-size:56px;font-weight:900;color:var(--ink);line-height:1}
+.gnum small{font-size:20px;color:var(--soft)}
+/* figures grid */
+.figs{display:grid;grid-template-columns:1fr 1fr;gap:0 30px;margin:20px 0 0}
+@media(max-width:680px){.figs{grid-template-columns:1fr}}
+.figs .f{border-top:1px solid var(--line);padding:12px 0}
+.figs .f b{font-weight:700}
+.figs .f span{display:block;font-size:13.5px;color:#3a4452;margin-top:3px}
+/* sources */
+.sources{font-size:12.5px;color:var(--mut);columns:2;column-gap:34px;margin-top:16px}
+@media(max-width:680px){.sources{columns:1}}
+.sources .h{font-weight:700;color:var(--ink);break-after:avoid}
+/* recommends */
+.reco{background:var(--paper2);border-radius:6px;padding:22px 24px;margin:24px 0 0;font-size:14px;color:#3a4452}
+.reco .lab{font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--gold)}
+/* paywall CTA */
+.cta{background:var(--ink);color:var(--paper);border-radius:8px;padding:34px 30px;margin:44px 0 0;text-align:center}
+.cta h2{color:#fff}
+.cta p{color:#C9D2DE;max-width:60ch;margin:10px auto 0;font-size:16px}
+.btn{display:inline-block;background:#E7B85A;color:var(--ink);font-weight:700;padding:13px 26px;border-radius:7px;margin:18px 0 0}
+.btn:hover{background:var(--gold);color:#fff;text-decoration:none}
+footer{border-top:1px solid var(--line);margin-top:40px;padding:26px 0 40px;font-size:12.5px;color:var(--soft)}
+.disc{font-size:12px;color:var(--soft);margin-top:22px;border-top:1px solid var(--line);padding-top:16px}
+</style>
+</head>
+<body>
+
+<div class="mast"><div class="wrap row">
+  <div class="brand">SOVEREO<small>DECISION INTELLIGENCE</small></div>
+  <div class="tag">The Sovereo Brief</div>
+</div></div>
+
+<div class="wrap">
+
+  <header class="ihead">
+    <div class="kicker">Issue #009 &middot; Friday, June 26, 2026 &middot; Week 26</div>
+    <h1>One catalyst inflated three prices, and one clock now decides whether they stay down.</h1>
+    <div class="meta"><span>Conviction: <b>Wealth</b></span><span>Region: <b>Gulf, Andes, China</b></span><span>Reading time <b>9 min</b></span><span>Prepared under <b>SIR methodology</b></span></div>
+  </header>
+
+  <div class="exec">
+    <div class="lab">The 30 second top</div>
+    <p>The Iran war premium is unwinding across oil, gold, and yuan settlement at once, and one dated trigger in mid August can reprice all three back together.</p>
+    <div class="src">Sources: EIA Brent series; World Gold Council; CIPS volume releases.</div>
+  </div>
+
+  <section><div class="wrap" style="padding:0">
+    <div class="eyebrow">Exhibit 1</div>
+    <h2>Three prices, one catalyst, moving down together</h2>
+    <p class="lead">A single event lifted oil, gold, and yuan settlement in June. The easing of that same event is deflating all three at once. The signal is the correlation, not any one price.</p>
+    <div class="exhibit">
+      <div class="cap"><div class="n">Exhibit 1</div><div class="t">The war-premium unwind, indexed to the June wartime peak (peak = 100)</div></div>
+      <div class="body"><div class="chartbox"><canvas id="unwind"></canvas></div></div>
+      <div class="note">Indexed to each series' June wartime peak. Endpoints are the sourced values: Brent near $74 (about 40% off its high), gold below $4,000 on June 24 (lowest since November 2025), CIPS at 674bn yuan a day in May against a 1trn line. Interim points illustrative. Sources: EIA, World Gold Council, CIPS.</div>
+    </div>
+  </div></section>
+
+  <section><div class="wrap" style="padding:0">
+    <div class="eyebrow">The Conviction</div>
+    <h2>The relief is real and reversible</h2>
+    <p>A single event lifted three prices in June, and the easing of that same event is deflating all three together. The June 17 Islamabad Memorandum reopened the Strait of Hormuz to toll-free passage for at least 60 days and triggered US Treasury waivers for Iranian crude. Since then Brent fell to near 74 dollars, about 40 percent off its wartime high. Gold dropped below 4,000 dollars on June 24, its lowest since November 2025. Yuan settlement on the CIPS rail had already slid from its March record to 674 billion yuan a day in May.</p>
+    <p class="pull">The error is to read the relief as a settled peace. This is a 14-point interim memorandum with a hard expiry around mid August, and the exposures that repriced down can reprice up on one breakdown.</p>
+    <p>The mechanism worth your attention is the correlation, not any one price. You can act on that today, cheaply, while the option is still optional.</p>
+
+    <div class="arche">
+      <div class="lab">Key assumption</div>
+      <p style="margin-top:8px"><b>Holds if</b> the Islamabad Memorandum runs to its mid-August expiry without a Hormuz re-closure. <b>Breaks if</b> transit halts or the Geneva track collapses before August 16, at which point the premium snaps back across all three prices at once.</p>
+      <div class="lab" style="margin-top:16px">The other read</div>
+      <p style="margin-top:8px"><b>Competing interpretation:</b> the June easing is a durable de-escalation and the premium does not return. <b>Discriminated by</b> whether the postponed Geneva talks produce a final deal, or lapse, before the 60-day window closes.</p>
+    </div>
+  </div></section>
+
+  <section><div class="wrap" style="padding:0">
+    <div class="eyebrow">Exhibit 2 &middot; The Forecast Reckoning</div>
+    <h2>The public ledger, carried forward</h2>
+    <p>We score a forecast only on or after its stated date. An open forecast is live, not failed. Confidence is revised on the evidence, with the reason recorded.</p>
+    <div class="exhibit">
+      <div class="cap"><div class="n">Exhibit 2</div><div class="t">Open forecasts, prior to current confidence</div></div>
+      <div class="body" style="padding:0">
+        <table>
+          <thead><tr><th>ID</th><th>Claim</th><th style="width:180px">Prior &rarr; current</th><th>Move</th><th>Status</th><th>Scores</th></tr></thead>
+          <tbody>
+            <tr><td class="fid">007-1</td><td>Colombia runoff certified, loser concedes or accepts within 7 days</td><td><div class="cbar"><i style="width:88%"></i><b>64 &rarr; 88</b></div></td><td class="delta up">+24</td><td><span class="pill open">Open</span></td><td>Jun 29</td></tr>
+            <tr><td class="fid">008-1</td><td>Hormuz 60-day reopening formalized toward a final deal</td><td><div class="cbar"><i style="width:72%"></i><b>60 &rarr; 72</b></div></td><td class="delta up">+12</td><td><span class="pill open">Open</span></td><td>Aug 20</td></tr>
+            <tr><td class="fid">004-1</td><td>CIPS reaches 1trn yuan daily volume in at least one month by Dec 2026</td><td><div class="cbar"><i style="width:52%"></i><b>72 &rarr; 52</b></div></td><td class="delta down">&minus;20</td><td><span class="pill pend">Pending</span></td><td>Monthly</td></tr>
+            <tr><td class="fid">003-1</td><td>Colombia foreign-farmland cap stalls before inauguration</td><td><div class="cbar"><i style="width:60%"></i><b>up a step</b></div></td><td class="delta up">&uarr;</td><td><span class="pill pend">Pending</span></td><td>Aug 11</td></tr>
+            <tr><td class="fid">005-1</td><td>US, Latin America critical-minerals framework advances</td><td><div class="cbar"><i style="width:62%"></i><b>up a step</b></div></td><td class="delta up">&uarr;</td><td><span class="pill pend">Pending</span></td><td>Jan 2027</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="note">007-1 rose to 88 after the CNE certified the runoff on June 24 with 99.997% coincidence to the election-night count and Cepeda accepted a congressional seat. 004-1 fell to 52 as the Hormuz reopening pulled the oil-settlement catalyst out from under the yuan rail.</div>
+    </div>
+  </div></section>
+
+  <section><div class="wrap" style="padding:0">
+    <div class="eyebrow">The Three Signals</div>
+    <h2>What moved this week</h2>
+    <div class="sgrid">
+      <div class="scard">
+        <div class="num">Signal 1 &middot; Oil</div>
+        <div class="stat">$74</div><div class="statlab">Brent, from a $105 EIA June assumption</div>
+        <p>The chokepoint reopened weeks ahead of the official forecast. The IMO reported more than 11,000 seafarers exiting the Gulf after safety guarantees, the operational tell that commercial transit resumed. Positions taken during the closure can be trimmed into the relief while keeping the option that pays if the strait shuts again.</p>
+      </div>
+      <div class="scard">
+        <div class="num">Signal 2 &middot; Gold</div>
+        <div class="stat">$3,975</div><div class="statlab">Spot on June 24, lowest since Nov 2025</div>
+        <p>The safe-haven trade is unwinding, gold included, and that is the signal. Underneath the spike the structural bid holds: central banks bought a net 244 tonnes in Q1 and resumed with about 17 tonnes in April, per the World Gold Council. Separate the catalyst spike from the slow reserve shift.</p>
+      </div>
+      <div class="scard">
+        <div class="num">Signal 3 &middot; Colombia</div>
+        <div class="stat">250,830</div><div class="statlab">Vote margin, closest in Colombian history</div>
+        <p>Colombia certified a hard-right turn, and the foreign-capital rules swing with it. A de la Espriella government is expected to let the 15% municipal cap on foreign-owned farmland stall and to widen oil, gas, and mining. Read from platforms, not yet enacted law; a lame-duck congress retains a window before August 7.</p>
+      </div>
+    </div>
+  </div></section>
+
+  <section><div class="wrap" style="padding:0">
+    <div class="eyebrow">Exhibit 3 &middot; The Commodities Board</div>
+    <h2>The price side of the decision you do not control</h2>
+    <div class="exhibit">
+      <div class="cap"><div class="n">Exhibit 3</div><div class="t">Selected prices and settlement, late June 2026</div></div>
+      <div class="body" style="padding:0">
+        <table>
+          <thead><tr><th>Instrument</th><th class="num">Level</th><th class="num">From wartime peak</th><th>Read</th></tr></thead>
+          <tbody>
+            <tr><td>Brent crude</td><td class="num">$74</td><td class="num down">&minus;40%</td><td>War premium draining; reversible on a Hormuz re-closure</td></tr>
+            <tr><td>Gold, spot</td><td class="num">$3,975</td><td class="num down">&minus;29%</td><td>Catalyst spike unwinding; structural central-bank bid intact</td></tr>
+            <tr><td>CIPS yuan settlement</td><td class="num">674bn/day</td><td class="num down">vs 1trn line</td><td>Off March record; oil-settlement catalyst removed</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="note">Levels as reported late June 2026. Sources: EIA (Brent), World Gold Council and spot desks (gold), CIPS releases (settlement).</div>
+    </div>
+  </div></section>
+
+  <section><div class="wrap" style="padding:0">
+    <div class="arche">
+      <div class="lab">The Archetype Lesson &middot; Talleyrand</div>
+      <h3>Treat the settlement as a truce, not a treaty</h3>
+      <p>Charles Maurice de Talleyrand served the French monarchy, the Revolution, Napoleon, and the restored crown, and outlasted every one of them. His discipline was to treat each settlement as a truce that would break, never a permanent peace, and to keep an exit arranged before he needed it. A 14-point interim memorandum that reopened Hormuz is a truce, not a treaty. The operator who treats the mid-August expiry as a live date keeps the option that the reader who calls it peace gives away. That is not fear. It is the quiet advantage of arranging the move before the clock runs out.</p>
+    </div>
+  </div></section>
+
+  <section><div class="wrap" style="padding:0">
+    <div class="eyebrow">Exhibit 4 &middot; The Framework</div>
+    <h2>The Trigger Date Test</h2>
+    <p>A portable model you can run on any exposure you hold.</p>
+    <div class="steps">
+      <div class="step"><div class="s">1</div><h4>Name the trigger and its date</h4><p>The 60-day Hormuz free-passage window from the June 17 memorandum, expiring around August 16, 2026.</p></div>
+      <div class="step"><div class="s">2</div><h4>Write the two outcomes</h4><p>Renewal: the unwind in oil, inflation, and settlement holds. Breakdown: the strait re-closes and the premium snaps back across all three.</p></div>
+      <div class="step"><div class="s">3</div><h4>Name the decision the bad outcome forces</h4><p>Whether you can re-establish trimmed protection quickly, or keep a cheap standing option through the window.</p></div>
+      <div class="step"><div class="s">4</div><h4>Make it now, while it is cheap</h4><p>Decide before mid August, not after the market has already moved. The value is entirely in step four.</p></div>
+    </div>
+    <div class="clock"><div class="big">~Aug 16</div><p>The 60-day Hormuz free-passage window expires. Renewal or extension holds the relief; a re-closure reprices oil, gold, and settlement back together. Forecast 008-1 scores August 20.</p></div>
+  </div></section>
+
+  <section><div class="wrap" style="padding:0">
+    <div class="eyebrow">The Position</div>
+    <h2>Confirm three things before the window closes</h2>
+    <p>If the June relief repriced your exposures, confirm before the August window closes: first, that you know exactly which positions moved on the easing, energy-sensitive holdings, inflation hedges, and any reserve or settlement exposure that tracked the war. Second, that the protection you trimmed into the relief can be re-established quickly, or that you hold a cheap standing option that pays if the strait shuts again. Third, that you are not reading a 60-day arrangement as a finished peace. Done before the expiry, your position is survivable whichever way mid August breaks. Done after, you are negotiating against a market that already knows.</p>
+    <div class="reco">
+      <div class="lab">Aspirant on-ramp</div>
+      <p style="margin-top:8px">If you have not moved, and most readers have not, here is the cheap and optional step this week. Pick one exposure you carry, your fuel and travel budget, a currency you hold, a fund you own. Spend twenty minutes writing its two outcome lines for the August Hormuz window and the one decision the adverse line forces. The cost is the time. You will have run the Trigger Date Test once on a live example, before you ever need it under pressure.</p>
+    </div>
+  </div></section>
+
+  <section><div class="wrap" style="padding:0">
+    <div class="eyebrow">Exhibit 5 &middot; The Forecast</div>
+    <h2>New this issue, falsifiable and dated</h2>
+    <div class="exhibit">
+      <div class="cap"><div class="n">Forecast 009-1</div><div class="t">The gold war-premium stays unwound through Q3</div></div>
+      <div class="body">
+        <div class="gauge">
+          <div><div class="gnum">68<small>%</small></div><div class="statlab">Confidence &middot; likely, moderate</div></div>
+          <div style="flex:1;min-width:240px">
+            <p style="margin:0"><b>Claim.</b> Absent a fresh shock, gold sets no new all-time high through Q3 2026.</p>
+            <p style="margin:8px 0 0;font-size:14px"><b>Base rate.</b> In comparable post-spike unwinds where a geopolitical premium drained within one quarter, the metal failed to set a new high in the following quarter in roughly 7 of 10 cases. Confidence set near, slightly below, that reference class.</p>
+            <p style="margin:8px 0 0;font-size:14px"><b>Falsification.</b> Any LBMA PM fixing at or above $5,589.38 (the Jan 28, 2026 peak) between June 24 and Sept 30, 2026. <b>Scores</b> October 2, 2026.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:26px">
+      <div class="eyebrow">The Watch List</div>
+      <h2 style="font-size:22px">Dated triggers ahead</h2>
+      <ul class="tl">
+        <li><span class="d">June 29, 2026.</span> <span class="x">Forecast 007-1 scores. Certification and Cepeda's desistance leave it tracking correct.</span></li>
+        <li><span class="d">August 7, 2026.</span> <span class="x">De la Espriella inauguration, and the practical cutoff for the foreign-farmland bill (003-1, scores Aug 11).</span></li>
+        <li><span class="d">~August 16, 2026.</span> <span class="x">The 60-day Hormuz free-passage window expires; renewal against re-closure (008-1, scores Aug 20).</span></li>
+        <li><span class="d">September 30, 2026.</span> <span class="x">Close of the window for this issue's gold forecast (009-1, scores October 2).</span></li>
+        <li><span class="d">November 10, 2026.</span> <span class="x">China's suspension of its October 2025 rare-earth export controls lapses; watch heavy rare-earth pricing.</span></li>
+        <li><span class="d">Monthly through Dec 2026.</span> <span class="x">CIPS average daily volume against the 1trn yuan line (004-1), now near 674bn.</span></li>
+      </ul>
+    </div>
+  </div></section>
+
+  <section><div class="wrap" style="padding:0">
+    <div class="eyebrow">Key Figures and Terms</div>
+    <div class="figs">
+      <div class="f"><b>Islamabad Memorandum.</b><span>The 14-point interim arrangement of June 17, 2026 that reopened Hormuz to toll-free passage for at least 60 days and triggered US waivers for Iranian crude. An interim memorandum, not a treaty.</span></div>
+      <div class="f"><b>Strait of Hormuz.</b><span>The chokepoint carrying close to a fifth of the world's seaborne oil; its mid-August reopening clock is the dated trigger behind this issue.</span></div>
+      <div class="f"><b>LBMA.</b><span>The London Bullion Market Association, whose twice-daily PM gold fixing is the benchmark of record used in forecast 009-1.</span></div>
+      <div class="f"><b>CIPS.</b><span>China's Cross-Border Interbank Payment System; the primary source for yuan settlement volume.</span></div>
+      <div class="f"><b>The Reckoning.</b><span>Sovereo's public forecast ledger; every forecast stated falsifiably, scored on its date, never before. An open forecast is live, not failed.</span></div>
+      <div class="f"><b>Trigger Date Test.</b><span>Name the trigger and its date, write the two outcomes, name the decision the adverse outcome forces, and make it now while it is cheap and optional.</span></div>
+    </div>
+  </div></section>
+
+  <section><div class="wrap" style="padding:0">
+    <div class="eyebrow">Sources</div>
+    <p style="font-size:13px">Majority sourced beyond the Western press. Spine and load-bearing citations are non-Western where the story is non-Western; Western numbers of record are used as primaries, not as the spine.</p>
+    <div class="sources">
+      <div class="h">Spine (Tier 0 to 1, local and regional)</div>
+      Consejo Nacional Electoral (certified runoff). El Tiempo, El Espectador, La Republica CO (scrutiny). InSight Crime, Americas Quarterly (Colombia turn). OPEC Monthly Oil Market Report. The National UAE (Hormuz terms). Kpler, TankerTrackers (vessel flow). International Maritime Organization (seafarer exit). SHANA, Iran Petroleum Ministry (crude resumption). CIPS official releases. South China Morning Post, Caixin Global (yuan settlement). Shanghai Gold Exchange, Shanghai Metals Market (China benchmarks). COCOBOD, Conseil du Cafe et Cacao, ICCO (cocoa). Diario da Republica (Portugal gazette).
+      <div class="h" style="margin-top:10px">Western numbers of record (primaries, not spine)</div>
+      EIA (Brent, Short-Term Energy Outlook). IEA (critical-minerals concentration). World Gold Council (central-bank gold). Congressional Research Service, Atlantic Council (Colombia).
+      <div class="h" style="margin-top:10px">Triangulation and specialist desks</div>
+      CNBC, Fortune (Hormuz, gold prints). FXC Intelligence (CIPS volumes, flagged). Time, Al Jazeera (leaked memorandum text).
+    </div>
+  </div></section>
+
+  <div class="cta">
+    <h2>The SITREP exposed the unwind. This Brief decides the position.</h2>
+    <p>Upgrade before the August window closes to walk into the Hormuz clock with both outcome lines already written: the full Reckoning that scores itself in public, the Commodities Board tuned to your exposure, and the Country Reports that ground the move in a named jurisdiction.</p>
+    <a class="btn" href="https://sovereobrief.substack.com">Read the Sovereo Brief &rarr;</a>
+  </div>
+
+  <footer>
+    <div>Think Clear &middot; Decide Clean &middot; Execute Under Pressure &middot; The Sovereo Brief with Todd Allyn</div>
+    <div class="disc">Sovereo Intelligence Research (SIR) methodology, graded against ICD 203 analytic standards, author-supervised. This is educational decision analysis, not legal, tax, immigration, or financial advice. Article Three of the Sovereo Constitution: the practice provides decision analysis, not recommendations. Forecasts are falsifiable, dated, and scored in public on their stated dates. &copy; 2026 Sovereo Intelligence Research.</div>
+  </footer>
+
+</div>
+
+<script>
+const ink='#12344E', gold='#1C6EA4', red='#C0563A', green='#1E8E6A', soft='#68788A', line='#E2E9F1';
+const mk=(id,cfg)=>{const el=document.getElementById(id);if(el)new Chart(el,cfg);};
+Chart.defaults.font.family="Inter, sans-serif";
+Chart.defaults.color=soft;
+mk('unwind',{
+  type:'line',
+  data:{
+    labels:['Jun 1','Jun 8','Jun 17 memo','Jun 21','Jun 24'],
+    datasets:[
+      {label:'Brent crude',data:[100,96,88,80,72],borderColor:ink,backgroundColor:ink,tension:.3,borderWidth:2.5,pointRadius:2},
+      {label:'Gold',data:[100,99,95,88,84],borderColor:gold,backgroundColor:gold,tension:.3,borderWidth:2.5,pointRadius:2},
+      {label:'CIPS yuan settlement',data:[100,94,85,78,74],borderColor:red,backgroundColor:red,tension:.3,borderWidth:2.5,pointRadius:2,borderDash:[5,4]}
+    ]
+  },
+  options:{
+    responsive:true,maintainAspectRatio:false,
+    plugins:{legend:{position:'bottom',labels:{boxWidth:14,font:{size:12}}},
+      tooltip:{callbacks:{label:c=>c.dataset.label+': '+c.parsed.y+' (index)'}}},
+    scales:{
+      y:{min:60,max:105,ticks:{callback:v=>v},grid:{color:line},title:{display:true,text:'Index, June peak = 100'}},
+      x:{grid:{display:false}}
+    }
+  }
+});
+</script>
+</body>
+</html>
