@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>The Sovereo Relocation Diagnostic | Find Your Three Countries</title>
-<meta name="description" content="A nine-module diagnostic that scores all 195 countries for your life and returns the three that fit you best. No data stored, scored in your browser.">
+<meta name="description" content="A five-step diagnostic that scores all 195 countries for your life and returns the three that fit you best. No data stored, scored in your browser.">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="favicon.svg">
 <meta name="theme-color" content="#0E1A2B">
@@ -12,12 +12,12 @@
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Sovereo Intelligence Research">
 <meta property="og:title" content="The Sovereo Relocation Diagnostic | Find Your Three Countries">
-<meta property="og:description" content="A nine-module diagnostic that scores all 195 countries for your life and returns the three that fit you best. No data stored, scored in your browser.">
+<meta property="og:description" content="A five-step diagnostic that scores all 195 countries for your life and returns the three that fit you best. No data stored, scored in your browser.">
 <meta property="og:image" content="https://www.sovereo.com/og-image.png">
 <meta property="og:url" content="https://www.sovereo.com/Sovereo_Relocation_Diagnostic.html">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="The Sovereo Relocation Diagnostic | Find Your Three Countries">
-<meta name="twitter:description" content="A nine-module diagnostic that scores all 195 countries for your life and returns the three that fit you best. No data stored, scored in your browser.">
+<meta name="twitter:description" content="A five-step diagnostic that scores all 195 countries for your life and returns the three that fit you best. No data stored, scored in your browser.">
 <meta name="twitter:image" content="https://www.sovereo.com/og-image.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -177,11 +177,11 @@ footer .links{display:flex;gap:24px;flex-wrap:wrap}
 <header class="hero" id="hero"><div class="wrap narrow">
   <span class="eyebrow">The Sovereo Relocation Diagnostic &middot; SRDI v1.0</span>
   <h1>Three countries, chosen for the life you are actually trying to build.</h1>
-  <p>Nine short modules. A directional model grounded in the social determinants of health, value-fit science, and the wellbeing evidence on migration. Not a quiz that flatters you, an instrument that tells you where you fit, and where you do not. No account, no personal data stored, scored entirely on your device.</p>
+  <p>Five short steps. A directional model grounded in the social determinants of health, value-fit science, and the wellbeing evidence on migration. Not a quiz that flatters you, an instrument that tells you where you fit, and where you do not. No account, no personal data stored, scored entirely on your device.</p>
 </div></header>
 
 <div class="prog" id="prog"><div class="wrap inner">
-  <span class="lab" id="proglab">Module A of I</span>
+  <span class="lab" id="proglab">Step 1 of 5</span>
   <div class="bar"><i id="progbar"></i></div>
   <span class="lab" id="progpct">0%</span>
 </div></div>
@@ -209,101 +209,46 @@ const DATA={"countries":[{"name":"Algeria","iso":"DZA","region":"Africa","overal
 const C=DATA.countries;
 // ---------- QUESTION SET: nine modules A through I ----------
 const MODULES=[
-{id:"A",name:"Why, and who is moving",sub:"This sets the dominant driver of your result and the realistic pathways open to you.",q:[
+{id:"1",name:"Your move",sub:"Why you are moving, who you are, and who is coming with you.",q:[
  {id:"driver",t:"What is the single biggest reason you would move?",h:"Sets your primary weighting.",opts:[
   ["tax","Lower my tax"],["cost","Stretch my money further (cost and currency)"],["safety","Safety and a stable Plan B"],
   ["lifestyle","Lifestyle, climate and culture"],["family","Family: schools, healthcare, community"],
   ["retire","Retire well"],["career","Better career and income"]]},
- {id:"pushpull",t:"Are you moving toward something, or away from something?",h:"The wellbeing evidence finds pull movers fare better; push movers get an honest expectations note.",opts:[
-  ["toward","Mostly toward a better life"],["mix","A mix"],["away","Mostly away from a situation at home"]]},
  {id:"life",t:"Which best describes you right now?",h:"Choose any that apply.",multi:true,opts:[
   ["remote","Remote earner or digital nomad"],["entrepreneur","Business owner or entrepreneur"],
   ["professional","Employed professional"],["family","Family with children"],
-  ["retiree","Pre-retiree or retiree"],["investor","Living mainly off investments or a pension"]]}
+  ["retiree","Pre-retiree or retiree"],["investor","Living mainly off investments or a pension"]]},
+ {id:"household",t:"Who is moving with you?",opts:[
+  ["solo","Just me"],["couple","A spouse or partner"],["family","Partner and children"],["single_parent","Children, I am a single parent"]]}
 ]},
-{id:"B",name:"Financial position, inferred",sub:"We never ask your net worth. Capital and arbitrage potential are triangulated from how your money behaves, not how much it is.",q:[
+{id:"2",name:"Money and tax",sub:"How your money behaves and what you want from tax. We never ask your net worth.",q:[
  {id:"incomeSource",t:"Where does most of your money come from?",opts:[
   ["salary","A salary or wages"],["business","A business I own"],["remote","Remote or freelance work"],
   ["investments","Investments, dividends or rent"],["pension","A pension or retirement income"],["savings","Savings I am living on"]]},
  {id:"portable",t:"If you moved, would that income keep coming in from abroad?",h:"Portable income is the engine of currency arbitrage.",opts:[
   ["yes","Yes, it is fully portable"],["partly","Partly"],["no","No, I would need to earn locally"]]},
- {id:"currency",t:"What currency are your income and savings mostly in?",h:"Strong currency plus portable income plus a low-price destination equals real purchasing power.",opts:[
-  ["usd","US dollars"],["eur","Euros"],["gbp","British pounds"],["strong","Another strong currency"],["weak","A weaker or local currency"]]},
- {id:"spend",t:"Roughly, what could you comfortably live on each month abroad, all in?",h:"In your currency. Frames capacity, not income.",opts:[
-  ["0","Under 2,000"],["1","2,000 to 3,500"],["2","3,500 to 6,000"],["3","6,000 to 12,000"],["4","More than 12,000"]]},
- {id:"invest",t:"If a country offered residency for an investment, what could you commit without strain?",h:"There is no wrong answer. The first option routes you to income-based pathways.",opts:[
-  ["0","I would rather use income-based or low-cost routes"],["1","Up to about 100k"],["2","About 100k to 350k"],
-  ["3","About 350k to 1m"],["4","Over 1m"]]},
- {id:"liquidity",t:"How much of your wealth could you actually move if you decided to?",h:"Liquidity, not size, determines real optionality.",opts:[
-  ["most","Most of it is liquid and movable"],["half","About half"],["tied","Most is tied up in property, a business or a pension"]]}
+ {id:"taxGoal",t:"What is your tax goal?",opts:[
+  ["aggressive","Aggressively minimise, zero or territorial"],["moderate","Lower than now, but I value services"],["none","Not a priority, I care more about life quality"]]}
 ]},
-{id:"C",name:"Mobility and legal standing",sub:"Your current mobility, your appetite for a second passport, and how fast and how hard you are willing to move.",q:[
- {id:"passports",t:"What passports or residencies do you already hold?",opts:[
-  ["one","One ordinary passport"],["two","Two or more"],["eustrong","An EU or other strong passport"],["weak","A weaker passport I want to upgrade"]]},
+{id:"3",name:"Mobility and legal",sub:"The passport you hold, your appetite for a second one, and your timeline.",q:[
  {id:"passport",t:"How important is a clear path to a second citizenship?",opts:[
   ["critical","Critical, it is part of why I am moving"],["nice","Useful but not essential"],["no","Not needed"]]},
- {id:"resTol",t:"How do you feel about the paperwork of getting legal residency?",opts:[
-  ["simple","I want the simplest possible route"],["moderate","I will do moderate paperwork for a better fit"],["hard","I will navigate a hard process for the right place"]]},
  {id:"timeline",t:"When do you want to be living abroad?",h:"A feasibility input.",opts:[
-  ["6m","Within 6 months"],["18m","6 to 18 months"],["3y","1 to 3 years"],["explore","Just exploring"]]},
- {id:"docs",t:"How ready are your documents (valid passport, documented funds, apostilled records)?",opts:[
-  ["ready","Ready now"],["partly","Partly"],["notstarted","Not started"]]}
+  ["6m","Within 6 months"],["18m","6 to 18 months"],["3y","1 to 3 years"],["explore","Just exploring"]]}
 ]},
-{id:"D",name:"Household and partnership",sub:"Who moves with you, and whether your relationship needs to be legally recognised and protected. One of the strongest predictors of whether a move succeeds.",q:[
- {id:"household",t:"Who is moving with you?",opts:[
-  ["solo","Just me"],["couple","A spouse or partner"],["family","Partner and children"],["single_parent","Children, I am a single parent"]]},
- {id:"recognition",t:"Do you need your marriage or partnership legally recognised and protected where you move?",h:"We steer you away from places that would not recognise or protect your relationship, whatever its form.",opts:[
-  ["yes","Yes, it must be recognised and protected"],["prefer","Preferable, but not essential"],["no","Not applicable, I am single"]]},
- {id:"spouse",t:"If you have a partner, how do they feel about moving?",h:"A reluctant partner is the top adjustment risk.",opts:[
-  ["onboard","Fully on board and adaptable"],["cautious","Willing but cautious"],["reluctant","Reluctant"],["na","Not applicable"]]},
- {id:"assets",t:"Is protecting assets in the event of a relationship breakdown a concern?",opts:[
-  ["matters","Yes, it matters"],["somewhat","Somewhat"],["no","No"]]},
- {id:"custody",t:"If you have children and share custody, can you relocate them freely?",opts:[
-  ["yes","Yes"],["complicated","No, or it is complicated"],["na","Not applicable"]]}
-]},
-{id:"E",name:"Tax and residency goals",sub:"Tax exposure goal and how far you are willing to restructure to reach it.",q:[
- {id:"taxGoal",t:"What is your tax goal?",opts:[
-  ["aggressive","Aggressively minimise, zero or territorial"],["moderate","Lower than now, but I value services"],["none","Not a priority, I care more about life quality"]]},
- {id:"taxTies",t:"Are you willing to truly cut tax ties with your home country if needed?",opts:[
-  ["yes","Yes"],["unsure","Unsure"],["no","No, I will keep a home base"]]}
-]},
-{id:"F",name:"Values and culture",sub:"A short forced-choice module locates you on the World Values Survey and Hofstede axes, then matches you to each country's cultural profile. No competitor does this.",q:[
+{id:"4",name:"Values and wellbeing",sub:"A values forced-choice locates you on the World Values Survey, and your honest wellbeing baseline calibrates expectations.",q:[
  {id:"valueMost",t:"Which statement is closest to you?",opts:[
   ["tradition","Tradition, faith and family continuity anchor a good life"],["freedom","Freedom to choose my own path matters most"],
   ["achievement","Achievement and getting ahead drive me"],["caring","Caring for others and fairness come first"]]},
- {id:"community",t:"The community you want around you is...",opts:[
-  ["closeknit","Close-knit and familiar, where everyone knows everyone"],["open","Open and diverse, where reinvention is normal"],
-  ["ambitious","Ambitious and fast-moving"],["quiet","Quiet and private, leave me be"]]},
- {id:"order",t:"A society fits me better when it is...",opts:[
-  ["orderly","Orderly and predictable, with clear rules"],["relaxed","Relaxed about rules, flexible"]]}
+ {id:"cantril",t:"On a ladder from 0 (worst possible life) to 10 (best), where do you stand today?",h:"The Gallup Cantril ladder.",slider:true}
 ]},
-{id:"G",name:"Wellbeing and honest expectations",sub:"Your baseline on the Cantril ladder, the global standard, calibrated honestly against where you are going.",q:[
- {id:"cantril",t:"On a ladder from 0 (worst possible life) to 10 (best), where do you stand today?",h:"The Gallup Cantril ladder.",slider:true},
- {id:"success",t:"What would make this move a success two years in?",opts:[
-  ["money","More money in my pocket"],["settled","Feeling settled and connected"],["safety","Safety and peace of mind"],
-  ["freedom","Freedom and control over my life"],["children","A better future for my children"]]}
-]},
-{id:"H",name:"Lifestyle and hard constraints",sub:"The non-negotiables. These can exclude a country regardless of how well it scores elsewhere.",q:[
+{id:"5",name:"Your must-haves",sub:"The non-negotiables. These can exclude a country regardless of how well it scores elsewhere.",q:[
  {id:"climate",t:"Climate you want.",opts:[["Warm","Warm"],["Temperate","Temperate"],["Cool","Cool"],["Any","No preference"]]},
  {id:"english",t:"Language.",opts:[["need","I need to function in English"],["adapt","I will learn the local language"]]},
- {id:"racial",t:"How important is a racially open and equal society to you?",h:"Scored from real data: Gallup migrant acceptance, World Values Survey racial tolerance, and legal anti-discrimination protection.",opts:[
-  ["high","Very important, I want a welcoming and equal society"],["some","Somewhat important"],["low","Not a priority for me"]]},
  {id:"stability",t:"Stability you require.",opts:[
   ["high","Rock-solid rule of law and safety"],["moderate","Moderate"],["frontier","I am comfortable with frontier and emerging"]]},
- {id:"region",t:"Any region you are drawn to?",opts:[
-  ["any","Open to anywhere"],["Europe","Prefer Europe"],["Americas","Prefer the Americas"],["AsiaPac","Prefer Asia-Pacific"],["MEAfrica","Prefer Middle East or Africa"]]},
- {id:"needs",t:"Healthcare and schools.",multi:true,h:"Choose any that are priorities.",opts:[
-  ["health","I need top-tier healthcare"],["schools","I need quality international schools"],["neither","Neither is a priority"]]}
-]},
-{id:"I",name:"Individual differences",sub:"The adjustment predictors. Cultural intelligence, resilience, openness and risk tolerance refine your match and your caveats.",q:[
- {id:"cq",t:"Dropped into an unfamiliar culture, you...",h:"Cultural intelligence.",opts:[
-  ["high","Read the room fast and adapt easily"],["mid","Adjust with some effort"],["low","Find it draining and prefer the familiar"]]},
- {id:"resilience",t:"When a move throws hard setbacks at you, you...",h:"Resilience.",opts:[
-  ["high","Bounce back quickly"],["mid","Recover, but it takes time"],["low","Find setbacks knock me off course"]]},
- {id:"openness",t:"New food, language, ways of doing things...",h:"Openness.",opts:[
-  ["high","Energise me, I seek them out"],["mid","Fine in moderation"],["low","I prefer what I know"]]},
- {id:"risk",t:"On money and the unknown, you are...",h:"Risk tolerance.",opts:[
-  ["high","Comfortable with risk for a bigger upside"],["mid","Balanced"],["low","I want security and predictability"]]}
+ {id:"racial",t:"How important is a racially open and equal society to you?",h:"Scored from real data: Gallup migrant acceptance, World Values Survey racial tolerance, and legal anti-discrimination protection.",opts:[
+  ["high","Very important, I want a welcoming and equal society"],["some","Somewhat important"],["low","Not a priority for me"]]}
 ]}
 ];
 // ---------- STATE + RENDER ----------
@@ -313,7 +258,7 @@ const stage=document.getElementById('stage');
 const esc=s=>s.replace(/&/g,'&amp;').replace(/</g,'&lt;');
 function renderModule(){
  const m=MODULES[mi];
- let h='<div class="modhead"><div class="k">Module '+m.id+'</div><h2>'+m.name+'</h2><p class="sub">'+m.sub+'</p></div>';
+ let h='<div class="modhead"><div class="k">Step '+(mi+1)+' of '+MODULES.length+'</div><h2>'+m.name+'</h2><p class="sub">'+m.sub+'</p></div>';
  m.q.forEach(q=>{
   h+='<div class="q" data-q="'+q.id+'"><div class="qt">'+q.t+'</div>';
   if(q.h)h+='<div class="qh">'+q.h+'</div>';
@@ -376,7 +321,7 @@ function validate(){
 function updateProgress(){
  const pct=Math.round((mi)/MODULES.length*100);
  document.getElementById('progbar').style.width=pct+'%';
- document.getElementById('proglab').textContent='Module '+MODULES[mi].id+' of I';
+ document.getElementById('proglab').textContent='Step '+(mi+1)+' of '+MODULES.length;
  document.getElementById('progpct').textContent=pct+'%';
 }
 function nextMod(){
@@ -532,7 +477,8 @@ function score(){
  return arr.sort((a,z)=>z.composite-a.composite);
 }
 // ---------- RESULTS ----------
-function showResults(){
+function applyDefaults(){var D={pushpull:"mix",currency:"usd",spend:"2",invest:"0",liquidity:"half",passports:"one",resTol:"moderate",docs:"partly",recognition:"no",spouse:"na",assets:"no",custody:"na",taxTies:"unsure",community:"open",order:"orderly",success:"settled",region:"any",cq:"mid",resilience:"mid",openness:"mid",risk:"mid"};for(var k in D){if(ST[k]===undefined)ST[k]=D[k];}if(ST.needs===undefined)ST.needs=[];}
+function showResults(){applyDefaults();
  const ranked=score();
  const top=ranked.slice(0,3),also=ranked.slice(3,7);
  const spread=top[0].rank-top[2].rank;
