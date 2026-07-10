@@ -342,11 +342,10 @@ document.getElementById('grid').addEventListener('change',e=>{
 document.getElementById('packclear').addEventListener('click',e=>{ e.preventDefault(); pack.clear(); refreshPack(); });
 document.getElementById('packbtn').addEventListener('click',()=>{
   if(pack.size!==3) return;
-  try{ window.Payhip && window.Payhip.Cart && window.Payhip.Cart.initiate && window.Payhip.Cart.initiate(); }catch(e){}
-  try{ [...pack].forEach(k=>{ if(window.Payhip&&window.Payhip.Cart) window.Payhip.Cart.addItem({product:k}); }); }catch(err){}
-  const info=document.getElementById('packinfo');
-  if(info) info.innerHTML='<b>Three reports added to your cart.</b> Open the cart (top right) and enter code <b>THREE</b> for $149.';
-  setTimeout(()=>{ try{ window.Payhip.Cart.displayLauncher(); }catch(e){} try{ window.Payhip.Cart.openCartIframe(); }catch(e){} }, 350);
+  var url='https://payhip.com/buy?'+[...pack].map(k=>'cart_links[]='+encodeURIComponent(k)).join('&');
+  var info=document.getElementById('packinfo');
+  if(info) info.innerHTML='<b>Opening checkout with your three reports.</b> Enter code <b>THREE</b> at checkout for the $149 bundle price.';
+  window.location.href=url;
 });
 render();
 </script>
