@@ -228,7 +228,8 @@ const MODULES=[
  {id:"portable",t:"If you moved, would that income keep coming in from abroad?",h:"Portable income is the engine of currency arbitrage.",opts:[
   ["yes","Yes, it is fully portable"],["partly","Partly"],["no","No, I would need to earn locally"]]},
  {id:"taxGoal",t:"What is your tax goal?",opts:[
-  ["aggressive","Aggressively minimise, zero or territorial"],["moderate","Lower than now, but I value services"],["none","Not a priority, I care more about life quality"]]}
+  ["aggressive","Aggressively minimise, zero or territorial"],["moderate","Lower than now, but I value services"],["none","Not a priority, I care more about life quality"]]},
+ {id:"spend",t:"Roughly, what could you comfortably live on each month?",opts:[["0","Under $1,500"],["1","$1,500 to $3,000"],["2","$3,000 to $6,000"],["3","$6,000 to $12,000"],["4","Over $12,000"]]}
 ]},
 {id:"3",name:"Mobility and legal",sub:"The passport you hold, your appetite for a second one, and your timeline.",q:[
  {id:"passport",t:"How important is a clear path to a second citizenship?",opts:[
@@ -248,7 +249,8 @@ const MODULES=[
  {id:"stability",t:"Stability you require.",opts:[
   ["high","Rock-solid rule of law and safety"],["moderate","Moderate"],["frontier","I am comfortable with frontier and emerging"]]},
  {id:"racial",t:"How important is a racially open and equal society to you?",h:"Scored from real data: Gallup migrant acceptance, World Values Survey racial tolerance, and legal anti-discrimination protection.",opts:[
-  ["high","Very important, I want a welcoming and equal society"],["some","Somewhat important"],["low","Not a priority for me"]]}
+  ["high","Very important, I want a welcoming and equal society"],["some","Somewhat important"],["low","Not a priority for me"]]},
+ {id:"region",t:"Any region you are especially drawn to?",opts:[["any","No preference, score the whole world"],["Europe","Europe"],["Americas","The Americas"],["AsiaPac","Asia Pacific"],["MEAfrica","Middle East and Africa"]]}
 ]}
 ];
 // ---------- STATE + RENDER ----------
@@ -462,7 +464,7 @@ function score(){
   if(ST.custody==='complicated')feas-=15;
   if(ST.passport==='critical'&&c.cit>=78)feas+=6;
   if(ST.recognition==='yes'&&c.ssm==='hostile')feas-=40;
-  if(!c.deep)feas-=4;
+  
   feas=Math.max(2,Math.min(99,Math.round(feas)));
   const fit=Math.max(0,Math.round((base+b)*10)/10);
   const rank=fit-Math.max(0,42-feas)*0.45;
