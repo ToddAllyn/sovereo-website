@@ -212,7 +212,7 @@ footer .links{display:flex;gap:24px;flex-wrap:wrap}
       <a href="index.html">Home</a>
       <a href="Sovereo_Index_Table.html">The Index</a>
       <a href="Sovereo_Scientific_Basis.html">Scientific Basis</a>
-      <a href="Sovereo_Country_Reports.html">Reports</a>
+      <a href="Sovereo_Country_Reports.html">Dossiers</a>
       <a href="terms.html">Terms</a>
       <a href="privacy.html">Privacy</a>
     </div>
@@ -570,16 +570,16 @@ function showResults(){applyDefaults();
  const names=top.map(r=>r.name), c1=names[0], have=AVAIL.has(c1);
  const three=names.slice(0,3), list=three.length===3?(three[0]+', '+three[1]+', and '+three[2]):three.join(' and ');
  if(have){
-  h+='<div class="ctaband"><div><h3>Go deep on your three: the Sovereo Country Reports.</h3>'+
-     '<p>The tool narrows the world to three. The reports tell you how to actually move into each one: the residency and tax routes, the costs, the timeline, the capital picture, and the on-the-ground reality. Most people compare their finalists, so the three-pack covers '+list+'. Prefer to start with one? Take your number one alone.</p></div>'+
+  h+='<div class="ctaband"><div><h3>Go deep on your three: the Sovereo Intelligence Dossiers.</h3>'+
+     '<p>The tool narrows the world to three. The dossiers tell you how to actually move into each one: the residency and tax routes, the costs, the timeline, the capital picture, and the on-the-ground reality. Most people compare their finalists, so the three-pack covers '+list+'. Prefer to start with one? Take your number one alone.</p></div>'+
      '<div style="display:flex;flex-direction:column;gap:12px;align-items:flex-start">'+
-     '<a class="btn gold" href="Sovereo_Country_Reports.html">Get all three reports &middot; $149 &rarr;</a>'+
+     '<a class="btn gold" href="Sovereo_Country_Reports.html">Get all three dossiers &middot; $149 &rarr;</a>'+
      '<a href="Sovereo_Country_Reports.html" style="font-size:14.5px;color:var(--gold);font-weight:600;text-decoration:underline">Or just '+c1+', $59</a>'+
      '</div></div>';
  } else {
-  h+='<div class="ctaband"><div><h3>Go deep: a Sovereo Country Report.</h3>'+
-     '<p>The tool narrows the world to three. A Sovereo Country Report tells you how to actually move: routes, tax, costs, timeline, and the on-the-ground reality. '+c1+' is not in the published set yet, so request it and we will prioritize it.</p></div>'+
-     '<a class="btn gold" href="mailto:sovereo@proton.me?subject='+encodeURIComponent('Country Report request: '+c1)+'">Request the '+c1+' report &rarr;</a></div>';
+  h+='<div class="ctaband"><div><h3>Go deep: a Sovereo Intelligence Dossier.</h3>'+
+     '<p>The tool narrows the world to three. A Sovereo Intelligence Dossier tells you how to actually move: routes, tax, costs, timeline, and the on-the-ground reality. '+c1+' is not in the published set yet, so request it and we will prioritize it.</p></div>'+
+     '<a class="btn gold" href="mailto:sovereo@proton.me?subject='+encodeURIComponent('Intelligence Dossier request: '+c1)+'">Request the '+c1+' dossier &rarr;</a></div>';
  }
  h+='<div class="alsoran" style="background:#fff"><h4>Method and sources</h4>';
  h+='<p style="font-size:14px;color:var(--mut);margin-bottom:10px">All 195 countries in the Sovereo Index are scored and eligible. '+

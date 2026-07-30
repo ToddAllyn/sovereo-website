@@ -5,7 +5,7 @@
     {t:'The Index',h:'Sovereo_Index_Table.html'},
     {t:'World Map',h:'atlas.html'},
     {t:'Guides',h:'guides.html'},
-    {t:'Reports',h:'Sovereo_Country_Reports.html'},
+    {t:'Dossiers',h:'Sovereo_Country_Reports.html'},
     {t:'The Reckoning',h:'forecast-ledger.html'},
     {t:'The Brief',h:'https://sovereobrief.substack.com',ext:true}
   ];
@@ -20,7 +20,7 @@
     {t:'Shortlist',h:'Sovereo_Index_Builder.html'},
     {t:'World Map',h:'atlas.html'},
     {t:'Guides',h:'guides.html'},
-    {t:'Reports',h:'Sovereo_Country_Reports.html'},
+    {t:'Dossiers',h:'Sovereo_Country_Reports.html'},
     {t:'The Reckoning',h:'forecast-ledger.html'},
     {t:'Science',h:'Sovereo_Scientific_Basis.html'},
     {t:'Best-Fit Countries',h:'Sovereo_Relocation_Diagnostic.html'},
