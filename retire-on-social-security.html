@@ -3,21 +3,21 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Where a Social Security Check Clears the Door | Sovereo</title>
-<meta name="description" content="For 40-plus retirement destinations, does an average US Social Security check meet the visa income minimum? A sourced, dated map of where a fixed dollar retirement income qualifies, and where it falls short.">
+<title>How Many Countries Can the Average Social Security Check Get You Into? | Sovereo</title>
+<meta name="description" content="Measured against the SSA average retired-worker benefit of $2,085.98 (July 2026) and each country's statutory residency-income requirement, with a coverage-ratio classification. Primary-sourced and dated.">
 <link rel="canonical" href="https://www.sovereo.com/retire-on-social-security.html">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="favicon.svg">
 <meta name="theme-color" content="#0E1A2B">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Sovereo Intelligence Research">
-<meta property="og:title" content="Where a Social Security check clears the door">
-<meta property="og:description" content="A sourced, dated map of where an average US Social Security check meets a country's retirement-visa income minimum, and where it falls short.">
+<meta property="og:title" content="How many countries can the average Social Security check get you into?">
+<meta property="og:description" content="A coverage-ratio read of each country's statutory residency-income requirement against the SSA average retired-worker benefit. Primary-sourced and dated.">
 <meta property="og:image" content="https://www.sovereo.com/og-image.png">
 <meta property="og:url" content="https://www.sovereo.com/retire-on-social-security.html">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Where a Social Security check clears the door">
-<meta name="twitter:description" content="A sourced, dated map of where an average US Social Security check meets a country's retirement-visa income minimum, and where it falls short.">
+<meta name="twitter:title" content="How many countries can the average Social Security check get you into?">
+<meta name="twitter:description" content="A coverage-ratio read of each country's statutory residency-income requirement against the SSA average retired-worker benefit. Primary-sourced and dated.">
 <meta name="twitter:image" content="https://www.sovereo.com/og-image.png">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -34,15 +34,23 @@ a{color:inherit;text-decoration:none}
 .mast .nav a{font-size:14px;color:#CBD5E1;margin-left:20px}
 header.hero{padding:52px 0 18px}
 .eyebrow{font-size:12px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--gold)}
-h1{font-family:var(--serif);font-weight:800;font-size:42px;line-height:1.08;margin:12px 0 12px}
-.lede{font-size:18px;color:var(--mut);max-width:74ch;margin:0}
+h1{font-family:var(--serif);font-weight:800;font-size:40px;line-height:1.09;margin:12px 0 12px;max-width:20ch}
+.lede{font-size:18px;color:var(--mut);max-width:76ch;margin:0}
 .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:30px 0 6px}
 .stat{background:#fff;border:1px solid var(--line);border-radius:10px;padding:18px 16px;border-top:3px solid var(--gold2)}
-.stat .n{font-family:var(--serif);font-size:28px;font-weight:800;line-height:1;font-variant-numeric:tabular-nums}
+.stat .n{font-family:var(--serif);font-size:26px;font-weight:800;line-height:1;font-variant-numeric:tabular-nums}
 .stat .l{font-size:12px;color:var(--soft);margin-top:6px}
-.caveat{font-size:13px;color:var(--soft);margin:14px 0 0;max-width:88ch}
+.caveat{font-size:13px;color:var(--soft);margin:14px 0 0;max-width:92ch}
 section{padding:30px 0 0}
 h2{font-family:var(--serif);font-size:25px;font-weight:700;border-top:2px solid var(--ink);padding-top:14px;margin:0 0 6px}
+.rcr-box{background:var(--navy);color:#EAF0F6;border-radius:12px;padding:22px 24px;margin:20px 0 2px}
+.rcr-box .t{font-family:var(--serif);font-size:18px;font-weight:600;margin:0 0 6px;color:#fff}
+.rcr-box code{background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.16);border-radius:6px;padding:2px 8px;font-size:13.5px;color:#F0D9A6}
+.rcr-box p{margin:10px 0 0;font-size:14px;color:#C9D5E2}
+.rcr-tiers{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:16px 0 0}
+@media(max-width:640px){.rcr-tiers{grid-template-columns:1fr}}
+.rcr-tiers div{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);border-radius:9px;padding:12px 14px}
+.rcr-tiers b{font-size:13px;letter-spacing:.03em}.rcr-tiers small{display:block;color:#AEBBCB;font-size:12.5px;margin-top:4px}
 .legend{display:flex;flex-wrap:wrap;gap:9px 20px;align-items:center;margin:24px 0 2px}
 .legend .lgt{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--soft);margin-right:2px}
 .legend .lg{display:inline-flex;align-items:center;gap:8px;font-size:12.5px;color:var(--mut)}
@@ -52,20 +60,23 @@ h2{font-family:var(--serif);font-size:25px;font-weight:700;border-top:2px solid 
 .card-head .ico{width:30px;height:30px;flex:none;display:flex;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,.28);border-radius:8px;color:var(--gold2)}
 .card-head h3{margin:0;font-family:var(--serif);font-size:19px;font-weight:600;border:0;padding:0;color:#fff}
 .card-head .ct{margin-left:auto;font-size:11.5px;letter-spacing:.09em;text-transform:uppercase;color:#9FB0C4;font-weight:700}
+.banner{background:#FBF3E0;border-bottom:1px solid #EAD9AE;color:#7A5B1E;font-size:13px;padding:12px 22px}
 .tw{overflow-x:auto;-webkit-overflow-scrolling:touch}
 table{width:100%;border-collapse:collapse;font-size:14px;font-variant-numeric:tabular-nums;margin:0}
-th{text-align:left;font-size:11.5px;letter-spacing:.05em;text-transform:uppercase;color:var(--mut);background:var(--paper2);border-bottom:1px solid var(--line);padding:13px 16px}
+th{text-align:left;font-size:11.5px;letter-spacing:.05em;text-transform:uppercase;color:var(--mut);background:var(--paper2);border-bottom:1px solid var(--line);padding:13px 16px;white-space:nowrap}
 td{padding:15px 16px;border-bottom:1px solid var(--line);vertical-align:top}
 tbody tr:last-child td{border-bottom:0}
 tbody tr:hover{background:#FAF7EF}
 td.cty{font-weight:700;color:var(--ink);white-space:nowrap}
-td.cty small{display:block;font-weight:500;color:var(--soft);font-size:12px;letter-spacing:.02em}
-td.amt{white-space:nowrap;font-weight:600}
-td.note{color:var(--mut);font-size:13px;line-height:1.5;min-width:200px}
-.v{display:inline-block;min-width:82px;text-align:center;padding:5px 11px;border-radius:8px;font-weight:700;font-size:12.5px;color:#fff;white-space:nowrap}
-.v-clear{background:var(--green)}.v-line{background:var(--gold)}.v-short{background:#B23B2E}.v-none{background:#5C6675}
-.src{font-size:11px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;white-space:nowrap}
-.src-p{color:var(--green)}.src-a{color:var(--soft)}
+td.basis{color:var(--mut);font-size:13px;line-height:1.5;min-width:190px}
+td.basis b{color:var(--ink);font-weight:600}
+td.amt{white-space:nowrap;font-weight:600;font-size:13.5px}
+td.amt small{display:block;color:var(--soft);font-weight:500;font-size:12px}
+td.rcr{font-family:var(--serif);font-weight:700;font-size:16px;font-variant-numeric:tabular-nums;white-space:nowrap}
+td.src{color:var(--mut);font-size:12.5px;line-height:1.5;min-width:150px}
+.st{display:inline-block;text-align:center;padding:5px 11px;border-radius:8px;font-weight:700;font-size:12px;color:#fff;white-space:nowrap;letter-spacing:.02em}
+.st-clear{background:var(--green)}.st-marg{background:var(--gold)}.st-fail{background:#B23B2E}.st-pend{background:#5C6675}
+.tag{font-size:10.5px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--green)}
 .grp{padding:18px 22px;border-bottom:1px solid var(--line)}
 .grp:last-child{border-bottom:0}
 .grp b{font-size:14.5px}.grp p{margin:5px 0 0;font-size:13.5px;color:var(--mut)}
@@ -73,108 +84,108 @@ td.note{color:var(--mut);font-size:13px;line-height:1.5;min-width:200px}
 .method h3{margin:0 0 6px;font-size:15px}
 .method p{margin:0 0 12px;font-size:13.5px;color:var(--mut)}
 .method p:last-child{margin-bottom:0}
-.method a{color:var(--gold);font-weight:600}
+.method code{background:#fff;border:1px solid var(--line);border-radius:5px;padding:1px 7px;font-size:12.5px;color:var(--ink)}
 .cta{background:var(--ink);color:#fff;border-radius:12px;padding:32px 30px;margin:40px 0;text-align:center}
 .cta h2{border:0;padding:0;color:#fff}
 .cta p{color:#CBD5E1;max-width:62ch;margin:8px auto 18px}
 .btn{display:inline-block;background:var(--gold2);color:var(--ink);font-weight:800;padding:13px 26px;border-radius:8px}
 footer{border-top:1px solid var(--line);margin-top:20px;padding:24px 0 50px;color:var(--soft);font-size:12.5px}
-@media(max-width:760px){.stats{grid-template-columns:repeat(2,1fr)}h1{font-size:31px}table{min-width:620px}.legend{gap:7px 14px}}
+@media(max-width:760px){.stats{grid-template-columns:repeat(2,1fr)}h1{font-size:30px}table{min-width:660px}.legend{gap:7px 14px}}
 </style>
 </head>
 <body>
 <div class="mast"><div class="wrap"><a class="brand" href="index.html">SOVEREO</a><div class="nav"><a href="Sovereo_Relocation_Diagnostic.html">Best-Fit Countries</a><a href="Sovereo_Index_Table.html">The Index</a><a href="forecast-ledger.html">The Reckoning</a></div></div></div>
 
 <header class="hero"><div class="wrap">
-<div class="eyebrow">Retirement Intelligence</div>
-<h1>Where a Social Security check clears the door</h1>
-<p class="lede">A fixed dollar retirement income does not open every door. For each destination below, the question is simple: does an average US Social Security payment meet the country's retirement-visa income minimum? The answer sorts the world into three groups, and the sourced, dated table shows exactly where your check lands.</p>
+<div class="eyebrow">Residency Threshold Tracker</div>
+<h1>How many countries can the average Social Security check still get you into?</h1>
+<p class="lede">A fixed dollar retirement income does not open every door. Each country's retirement-visa income minimum is measured against the average US Social Security retired-worker benefit, and a country earns a CLEAR only when the check carries at least ten percent of headroom over the requirement. The table below publishes the destinations verified against primary sources, with the exact coverage ratio for each.</p>
 
 <div class="stats">
-  <div class="stat"><div class="n">40+</div><div class="l">Visa routes assessed</div></div>
-  <div class="stat"><div class="n">16</div><div class="l">Where the check clears</div></div>
-  <div class="stat"><div class="n">5</div><div class="l">Right on the line</div></div>
-  <div class="stat"><div class="n">$2,020</div><div class="l">Average monthly SS check</div></div>
+  <div class="stat"><div class="n">$2,085.98</div><div class="l">SSA average retired-worker benefit, July 2026</div></div>
+  <div class="stat"><div class="n">&ge; 1.10</div><div class="l">Coverage ratio required for a CLEAR</div></div>
+  <div class="stat"><div class="n">10</div><div class="l">Countries primary-verified so far</div></div>
+  <div class="stat"><div class="n">Held</div><div class="l">Full country count, pending verification</div></div>
 </div>
-<p class="caveat">The benchmark is the US Social Security Administration's average retired-worker benefit for January 2026, about 2,020 dollars a month. The Administration does not publish a monthly median, which runs lower, near 1,900 dollars, because the benefit distribution is right-skewed. So a threshold under about 1,700 dollars clears on either measure; 1,900 to 2,100 dollars is the knife-edge where average versus median, and the exchange rate, decide it.</p>
+<p class="caveat">The benchmark is the SSA average retired-worker benefit, which reached $2,085.98 by July 2026 (the January 2026 estimate after the 2.8 percent cost-of-living adjustment was $2,071). This is an average, not a median, and the metric is stated as such so the index stays reproducible. A single retiree's own benefit, and the exchange rate on the day, move the result, which is why the classification uses a headroom band rather than a bare pass or fail.</p>
 </div></header>
 
 <section><div class="wrap">
-<h2>The income gate, by destination</h2>
+<h2>How the classification works</h2>
+<div class="rcr-box">
+  <div class="t">Residency Coverage Ratio</div>
+  <code>RCR = average retired-worker SS benefit &divide; required monthly income</code>
+  <div class="rcr-tiers">
+    <div><b style="color:#7FD3AB">Tier 1 &middot; CLEAR</b><small>RCR at or above 1.10. At least ten percent of income headroom over the requirement.</small></div>
+    <div><b style="color:#F0C56E">Tier 2 &middot; MARGINAL</b><small>RCR 0.90 to 1.099. Exchange-rate moves, annual indexation, or a below-average benefit can change qualification.</small></div>
+    <div><b style="color:#F0A89A">Tier 3 &middot; DOES NOT CLEAR</b><small>RCR below 0.90. The requirement sits clearly above the average check.</small></div>
+  </div>
+  <p>Colombia at a roughly $1,635 threshold gives an RCR of about 1.28, so the average benefit carries about 28 percent headroom: comfortably Tier 1, not merely qualifying. Spain at about $2,772 gives 0.75, and Mexico at roughly $4,400 gives about 0.47: both clearly Tier 3, nowhere near the line.</p>
+</div>
+</div></section>
 
-<div class="legend"><span class="lgt">Verdict</span>
-  <span class="lg"><span class="sw" style="background:#2E7D5B"></span>Clears, minimum at or below the check</span>
-  <span class="lg"><span class="sw" style="background:#B0863C"></span>On the line, 1,900 to 2,100 dollars</span>
-  <span class="lg"><span class="sw" style="background:#B23B2E"></span>Falls short, minimum above the check</span>
-  <span class="lg"><span class="sw" style="background:#5C6675"></span>Not an income test</span>
+<section><div class="wrap">
+<h2>Verified against primary sources</h2>
+<div class="legend"><span class="lgt">Status</span>
+  <span class="lg"><span class="sw" style="background:#2E7D5B"></span>CLEAR (RCR &ge; 1.10)</span>
+  <span class="lg"><span class="sw" style="background:#B0863C"></span>MARGINAL (0.90 to 1.099)</span>
+  <span class="lg"><span class="sw" style="background:#B23B2E"></span>DOES NOT CLEAR (&lt; 0.90)</span>
 </div>
 
 <div class="card">
-<div class="card-head"><span class="ico"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 12l5 5L20 6"/></svg></span><h3>The check clears</h3><span class="ct">16 routes</span></div>
+<div class="card-head"><span class="ico"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 12l5 5L20 6"/></svg></span><h3>Primary-verified destinations</h3><span class="ct">10 verified</span></div>
 <div class="tw">
 <table>
-<thead><tr><th>Country</th><th>Visa</th><th>Minimum income</th><th>Verdict</th><th>Notes and sourcing</th></tr></thead>
+<thead><tr><th>Country</th><th>Permit and basis</th><th>Threshold</th><th>RCR</th><th>Status</th><th>Source and verification</th></tr></thead>
 <tbody>
-<tr><td class="cty">Turkey</td><td>Retiree residence permit</td><td class="amt">~$590/mo</td><td><span class="v v-clear">Clears</span></td><td class="note">Set at the net minimum wage; reprices yearly and erodes in dollars under high inflation. <span class="src src-a">Advisory</span></td></tr>
-<tr><td class="cty">Nicaragua</td><td>Pensionado (Ley 694)</td><td class="amt">$600/mo</td><td><span class="v v-clear">Clears</span></td><td class="note">Fixed in USD; some sources cite a raised $1,000. <span class="src src-a">Advisory</span></td></tr>
-<tr><td class="cty">Philippines</td><td>SRRV Classic</td><td class="amt">$800/mo</td><td><span class="v v-clear">Clears</span></td><td class="note">Pension floor, but also requires a $15,000 deposit. Age 50+. <span class="src src-a">Advisory</span></td></tr>
-<tr><td class="cty">Cyprus</td><td>Category F residence</td><td class="amt">~$920/mo</td><td><span class="v v-clear">Clears</span></td><td class="note">Statutory floor; examiners in practice expect more. <span class="src src-a">Advisory</span></td></tr>
-<tr><td class="cty">Panama</td><td>Pensionado</td><td class="amt">$1,000/mo</td><td><span class="v v-clear">Clears</span></td><td class="note">Fixed USD; Panama uses the dollar, so no currency risk. <span class="src src-a">Advisory</span></td></tr>
-<tr><td class="cty">Costa Rica</td><td>Pensionado</td><td class="amt">$1,000/mo</td><td><span class="v v-clear">Clears</span></td><td class="note">Fixed USD; covers the family unit. <span class="src src-a">Advisory</span></td></tr>
-<tr><td class="cty">Peru</td><td>Rentista</td><td class="amt">$1,000/mo</td><td><span class="v v-clear">Clears</span></td><td class="note">Fixed USD; plus $500 per dependent. <span class="src src-a">Advisory</span></td></tr>
-<tr><td class="cty">Portugal</td><td>D7 passive income</td><td class="amt">~$1,062/mo</td><td><span class="v v-clear">Clears</span></td><td class="note">Equals the national minimum wage of 920 euros; reprices every January. <span class="src src-p">Primary</span></td></tr>
-<tr><td class="cty">Chile</td><td>Rentista</td><td class="amt">~$1,000 to $1,500/mo</td><td><span class="v v-clear">Clears</span></td><td class="note">Discretionary, judged against basic-needs parameters. <span class="src src-a">Advisory</span></td></tr>
-<tr><td class="cty">Colombia</td><td>Migrant M pensioner</td><td class="amt">~$1,315 to $1,635/mo</td><td><span class="v v-clear">Clears</span></td><td class="note">Three times the minimum wage; reprices every January, and the dollar value swings with the peso. <span class="src src-p">Primary</span></td></tr>
-<tr><td class="cty">Paraguay</td><td>Independent means</td><td class="amt">~$1,300 to $1,500/mo</td><td><span class="v v-clear">Clears</span></td><td class="note">Discretionary; territorial tax leaves foreign pensions untaxed. <span class="src src-a">Advisory</span></td></tr>
-<tr><td class="cty">Ecuador</td><td>Pensioner or Rentista</td><td class="amt">~$1,450/mo</td><td><span class="v v-clear">Clears</span></td><td class="note">Three times the unified basic salary; reprices every January. USD-official. <span class="src src-a">Advisory</span></td></tr>
-<tr><td class="cty">Dominican Republic</td><td>Pensionado</td><td class="amt">$1,500/mo</td><td><span class="v v-clear">Clears</span></td><td class="note">Fixed USD; fast track to permanent residency. <span class="src src-a">Advisory</span></td></tr>
-<tr><td class="cty">Uruguay</td><td>Rentista or Pensionista</td><td class="amt">~$1,500/mo</td><td><span class="v v-clear">Clears</span></td><td class="note">No published statute; a discretionary sufficient-means test. <span class="src src-a">Advisory</span></td></tr>
-<tr><td class="cty">Nepal</td><td>Retiree residence</td><td class="amt">~$1,667/mo</td><td><span class="v v-clear">Clears</span></td><td class="note">Age 60+; a bank deposit is the alternative to income. <span class="src src-a">Advisory</span></td></tr>
-<tr><td class="cty">France</td><td>Long-stay visitor</td><td class="amt">~$1,706/mo</td><td><span class="v v-clear">Clears</span></td><td class="note">Benchmarked to the SMIC, but no legal floor, so consulates often expect more. <span class="src src-a">Advisory</span></td></tr>
+<tr><td class="cty">Nicaragua</td><td class="basis"><b>Pensionado</b> (Ley 694). Fixed foreign pension.</td><td class="amt">$600 to $1,000<small>USD, sources vary</small></td><td class="rcr">2.1 to 3.5</td><td><span class="st st-clear">Clear</span></td><td class="src">Ley 694 (INTUR). Established Sovereo research; confirm the current figure with INTUR.</td></tr>
+<tr><td class="cty">Philippines</td><td class="basis"><b>SRRV Classic</b>. Lifetime pension floor, plus a $15,000 deposit.</td><td class="amt">$800/mo<small>+ $15,000 deposit</small></td><td class="rcr">2.61</td><td><span class="st st-clear">Clear</span></td><td class="src">PRA program rules. Established Sovereo research. Age 50+.</td></tr>
+<tr><td class="cty">Panama</td><td class="basis"><b>Pensionado</b>. Fixed lifetime pension.</td><td class="amt">$1,000/mo<small>USD, fixed</small></td><td class="rcr">2.09</td><td><span class="st st-clear">Clear</span></td><td class="src">Decreto-Ley base. USD-official, no FX risk. Established research.</td></tr>
+<tr><td class="cty">Costa Rica</td><td class="basis"><b>Pensionado</b>. Fixed lifetime pension.</td><td class="amt">$1,000/mo<small>USD, fixed</small></td><td class="rcr">2.09</td><td><span class="st st-clear">Clear</span></td><td class="src">Ley de Migracion 8764. Established research.</td></tr>
+<tr><td class="cty">Portugal</td><td class="basis"><b>D7 passive income</b>. Driver: 2026 national minimum wage.</td><td class="amt">&euro;920/mo<small>&asymp; $1,063 at &euro;1 = $1.155</small></td><td class="rcr">1.96</td><td><span class="st st-clear">Clear</span></td><td class="src">MNE Vistos means-of-subsistence + minimum-wage decree. Verified Aug 2026. Reprices January.</td></tr>
+<tr><td class="cty">Ecuador</td><td class="basis"><b>Pensioner (Jubilado)</b>. Driver: 3&times; SBU (2026 SBU $482).</td><td class="amt">$1,446/mo<small>USD-official, + $250/dependent</small></td><td class="rcr">1.44</td><td><span class="st st-clear">Clear</span></td><td class="src">gob.ec (MREMH); SBU per MDT-2025-195. Verified Aug 2026. Reprices January.</td></tr>
+<tr><td class="cty">Uruguay</td><td class="basis"><b>Rentista / Pensionista</b>. Discretionary sufficient-means test.</td><td class="amt">~$1,500/mo<small>practice, no fixed statute</small></td><td class="rcr">1.39</td><td><span class="st st-clear">Clear</span></td><td class="src">Established research; discretionary, so treat the figure as directional within a verified pass.</td></tr>
+<tr><td class="cty">Colombia</td><td class="basis"><b>Migrant (M) pensioner</b>. Driver: 3&times; statutory minimum wage (2026 SMLMV 1,750,905 COP).</td><td class="amt">~$1,635/mo<small>at 3,213 COP per USD, Aug 2026</small></td><td class="rcr">1.28</td><td><span class="st st-clear">Clear</span></td><td class="src">Cancilleria (Foreign Ministry) visa rules. Verified Aug 2026. Reprices January; FX-sensitive.</td></tr>
+<tr><td class="cty">Spain</td><td class="basis"><b>Non-lucrative visa</b>. Driver: 400% of IPREM.</td><td class="amt">&euro;2,400/mo<small>&asymp; $2,772 at &euro;1 = $1.155</small></td><td class="rcr">0.75</td><td><span class="st st-fail">Does not clear</span></td><td class="src">BOE (Real Decreto 1155/2024) and consular material. Verified Aug 2026.</td></tr>
+<tr><td class="cty">Mexico</td><td class="basis"><b>Temporary residency</b> (economic solvency). Driver: ~680&times; daily UMA.</td><td class="amt">~$4,400/mo<small>consulate variation applies</small></td><td class="rcr">~0.47</td><td><span class="st st-fail">Does not clear</span></td><td class="src">SRE consular pages; each post publishes its own converted figure. Verified direction Aug 2026. Reprices February.</td></tr>
 </tbody>
 </table>
 </div>
 </div>
 
 <div class="card">
-<div class="card-head"><span class="ico"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 12h16"/><path d="M12 4v16"/></svg></span><h3>Right on the line</h3><span class="ct">5 routes</span></div>
+<div class="card-head"><span class="ico"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v4l3 2"/></svg></span><h3>In verification</h3><span class="ct">not yet certified</span></div>
+<div class="banner">Reported figures shown for orientation only. These rows are not yet anchored to a confirmed primary source, carry no coverage-ratio classification, and are excluded from any published country count until verified.</div>
 <div class="tw">
 <table>
-<thead><tr><th>Country</th><th>Visa</th><th>Minimum income</th><th>Verdict</th><th>Notes and sourcing</th></tr></thead>
+<thead><tr><th>Country</th><th>Permit</th><th>Reported requirement</th><th>Status</th></tr></thead>
 <tbody>
-<tr><td class="cty">Thailand</td><td>Retirement O-A</td><td class="amt">~$2,000/mo</td><td><span class="v v-line">On the line</span></td><td class="note">65,000 baht a month, or an 800,000 baht deposit that avoids the income test entirely. Age 50+. <span class="src src-a">Advisory</span></td></tr>
-<tr><td class="cty">Mauritius</td><td>Retired Non-Citizen permit</td><td class="amt">$2,000/mo</td><td><span class="v v-line">On the line</span></td><td class="note">Clears an average check by about $20, fails the median. The older $1,500 permit is discontinued. <span class="src src-a">Advisory</span></td></tr>
-<tr><td class="cty">Belize</td><td>Qualified Retirement Program</td><td class="amt">$2,000/mo</td><td><span class="v v-line">On the line</span></td><td class="note">A single Social Security check sits right at the line with no cushion. Age 40+. <span class="src src-p">Primary</span></td></tr>
-<tr><td class="cty">Dominican Republic</td><td>Rentista</td><td class="amt">$2,000/mo</td><td><span class="v v-line">On the line</span></td><td class="note">The Pensionado route at $1,500 clears comfortably; the Rentista route is the tight one. <span class="src src-a">Advisory</span></td></tr>
-<tr><td class="cty">South Africa</td><td>Retired Person visa</td><td class="amt">~$2,055/mo</td><td><span class="v v-line">On the line</span></td><td class="note">37,000 rand a month. FX-sensitive: it flips to a fail if the rand strengthens past about 18.3 per dollar. <span class="src src-a">Advisory</span></td></tr>
+<tr><td class="cty">Turkey</td><td class="basis">Retiree residence permit</td><td class="amt">~$590/mo (net minimum wage)</td><td><span class="st st-pend">In verification</span></td></tr>
+<tr><td class="cty">Cyprus</td><td class="basis">Category F residence</td><td class="amt">~$920/mo statutory floor</td><td><span class="st st-pend">In verification</span></td></tr>
+<tr><td class="cty">Chile</td><td class="basis">Rentista</td><td class="amt">~$1,000 to $1,500/mo (discretionary)</td><td><span class="st st-pend">In verification</span></td></tr>
+<tr><td class="cty">Paraguay</td><td class="basis">Independent means</td><td class="amt">~$1,300 to $1,500/mo</td><td><span class="st st-pend">In verification</span></td></tr>
+<tr><td class="cty">Dominican Republic</td><td class="basis">Pensionado / Rentista</td><td class="amt">$1,500 / $2,000/mo</td><td><span class="st st-pend">In verification</span></td></tr>
+<tr><td class="cty">Nepal</td><td class="basis">Retiree residence</td><td class="amt">~$1,667/mo (or deposit)</td><td><span class="st st-pend">In verification</span></td></tr>
+<tr><td class="cty">France</td><td class="basis">Long-stay visitor</td><td class="amt">~$1,706/mo (SMIC benchmark, discretionary)</td><td><span class="st st-pend">In verification</span></td></tr>
+<tr><td class="cty">Thailand</td><td class="basis">Retirement O-A</td><td class="amt">~$2,000/mo, or an 800,000 THB deposit</td><td><span class="st st-pend">In verification</span></td></tr>
+<tr><td class="cty">Mauritius</td><td class="basis">Retired Non-Citizen permit</td><td class="amt">$2,000/mo</td><td><span class="st st-pend">In verification</span></td></tr>
+<tr><td class="cty">Belize</td><td class="basis">Qualified Retirement Program</td><td class="amt">$2,000/mo</td><td><span class="st st-pend">In verification</span></td></tr>
+<tr><td class="cty">South Africa</td><td class="basis">Retired Person visa</td><td class="amt">~$2,055/mo (37,000 ZAR)</td><td><span class="st st-pend">In verification</span></td></tr>
+<tr><td class="cty">Costa Rica</td><td class="basis">Rentista</td><td class="amt">$2,500/mo</td><td><span class="st st-pend">In verification</span></td></tr>
+<tr><td class="cty">Italy</td><td class="basis">Elective residence</td><td class="amt">~$2,600 to $3,000/mo</td><td><span class="st st-pend">In verification</span></td></tr>
+<tr><td class="cty">Namibia</td><td class="basis">Retirement permit</td><td class="amt">~$2,778/mo (50,000 NAD)</td><td><span class="st st-pend">In verification</span></td></tr>
+<tr><td class="cty">Indonesia</td><td class="basis">Retirement KITAS</td><td class="amt">$3,000/mo (or $50,000 deposit)</td><td><span class="st st-pend">In verification</span></td></tr>
+<tr><td class="cty">Greece</td><td class="basis">Financially Independent Person</td><td class="amt">~$4,041/mo (&euro;3,500)</td><td><span class="st st-pend">In verification</span></td></tr>
+<tr><td class="cty">Croatia</td><td class="basis">Digital nomad (no retiree visa; excludes pensions)</td><td class="amt">~$4,183/mo</td><td><span class="st st-pend">In verification</span></td></tr>
+<tr><td class="cty">Thailand</td><td class="basis">LTR Wealthy Pensioner</td><td class="amt">~$6,667/mo ($80,000/yr passive)</td><td><span class="st st-pend">In verification</span></td></tr>
+<tr><td class="cty">New Zealand</td><td class="basis">Temporary Retirement</td><td class="amt">~$3,000/mo income + NZD 750,000 investment</td><td><span class="st st-pend">In verification</span></td></tr>
 </tbody>
 </table>
 </div>
 </div>
 
 <div class="card">
-<div class="card-head"><span class="ico"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6L6 18"/><path d="M6 6l12 12"/></svg></span><h3>The check falls short</h3><span class="ct">10 routes</span></div>
-<div class="tw">
-<table>
-<thead><tr><th>Country</th><th>Visa</th><th>Minimum income</th><th>Verdict</th><th>Notes and sourcing</th></tr></thead>
-<tbody>
-<tr><td class="cty">Costa Rica</td><td>Rentista</td><td class="amt">$2,500/mo</td><td><span class="v v-short">Falls short</span></td><td class="note">The Pensionado route at $1,000 is the one a retiree uses. <span class="src src-a">Advisory</span></td></tr>
-<tr><td class="cty">Spain</td><td>Non-lucrative visa</td><td class="amt">~$2,771/mo</td><td><span class="v v-short">Falls short</span></td><td class="note">400 percent of the IPREM index; about $750 a month more than the check. <span class="src src-a">Advisory</span></td></tr>
-<tr><td class="cty">Namibia</td><td>Retirement permit</td><td class="amt">~$2,778/mo</td><td><span class="v v-short">Falls short</span></td><td class="note">50,000 Namibian dollars a month; permanent residency adds a large asset test. <span class="src src-a">Advisory</span></td></tr>
-<tr><td class="cty">Italy</td><td>Elective residence</td><td class="amt">~$2,600 to $3,000/mo</td><td><span class="v v-short">Falls short</span></td><td class="note">Passive income only; consular discretion often sets the bar higher. <span class="src src-a">Advisory</span></td></tr>
-<tr><td class="cty">Indonesia</td><td>Retirement KITAS</td><td class="amt">$3,000/mo</td><td><span class="v v-short">Falls short</span></td><td class="note">Official figure; agents report $1,500 to $3,000 in practice. A $50,000 deposit is the alternative. <span class="src src-a">Advisory</span></td></tr>
-<tr><td class="cty">Greece</td><td>Financially Independent Person</td><td class="amt">~$4,041/mo</td><td><span class="v v-short">Falls short</span></td><td class="note">3,500 euros a month, raised 75 percent by decree in 2023. <span class="src src-a">Advisory</span></td></tr>
-<tr><td class="cty">Croatia</td><td>Digital nomad permit</td><td class="amt">~$4,183/mo</td><td><span class="v v-short">Falls short</span></td><td class="note">No dedicated retiree visa exists, and this permit generally excludes pension income. <span class="src src-a">Advisory</span></td></tr>
-<tr><td class="cty">Mexico</td><td>Temporary residency</td><td class="amt">~$4,360 to $4,565/mo</td><td><span class="v v-short">Falls short</span></td><td class="note">680 times the daily UMA; reprices every February, and each consulate converts independently. <span class="src src-a">Advisory</span></td></tr>
-<tr><td class="cty">Thailand</td><td>LTR Wealthy Pensioner</td><td class="amt">~$6,667/mo</td><td><span class="v v-short">Falls short</span></td><td class="note">80,000 dollars a year in passive income; salaries and consulting are excluded. <span class="src src-a">Advisory</span></td></tr>
-<tr><td class="cty">New Zealand</td><td>Temporary Retirement</td><td class="amt">~$3,000/mo income</td><td><span class="v v-short">Falls short</span></td><td class="note">Plus a 750,000 New Zealand dollar investment, which is the real barrier. Age 66+. <span class="src src-a">Advisory</span></td></tr>
-</tbody>
-</table>
-</div>
-</div>
-
-<div class="card">
-<div class="card-head"><span class="ico"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3c2.5 2.7 2.5 15.3 0 18M12 3c-2.5 2.7 -2.5 15.3 0 18"/></svg></span><h3>Not an income test, or no retirement visa</h3><span class="ct">11 destinations</span></div>
+<div class="card-head"><span class="ico"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3c2.5 2.7 2.5 15.3 0 18M12 3c-2.5 2.7 -2.5 15.3 0 18"/></svg></span><h3>Not an income test, or no retirement visa</h3><span class="ct">structural</span></div>
 <div class="grp"><b>Gated by a deposit or investment, not monthly income.</b><p>Malaysia MM2H (a fixed deposit of $150,000 to $1,000,000 plus a property purchase), Indonesia Second Home (a deposit near $130,000), Seychelles (deposit or asset based), and Malta's Retirement Programme (no income floor; gated by a 7,500 euro minimum tax and a property outlay). A Social Security check is not the relevant test for any of these.</p></div>
 <div class="grp"><b>No retirement-income visa exists in 2026.</b><p>Georgia (a 365-day visa-free stay for US citizens; residence otherwise needs a $150,000 property purchase), Vietnam, and Australia, where the investor-retirement subclasses 405 and 410 are both repealed to new applicants. A retiree has no income-based route to any of these.</p></div>
 <div class="grp"><b>No published income figure.</b><p>Morocco, Egypt, Botswana, and Montenegro assess a discretionary sufficient-means test with no gazetted monthly minimum located. Treat any circulating number as unverified until the mission confirms it.</p></div>
@@ -185,11 +196,13 @@ footer{border-top:1px solid var(--line);margin-top:20px;padding:24px 0 50px;colo
 <h2>Method, sourcing, and the second leg</h2>
 <div class="method">
 <h3>The benchmark</h3>
-<p>The check is the US Social Security Administration's average retired-worker benefit for January 2026, about 2,020 dollars a month, with a median near 1,900 dollars. Figures for each country are the retirement, pensioner, rentista, or independent-means route's stated income minimum, converted to US dollars at spot exchange rates as of August 2026. Where a threshold is a range or is set by consular discretion, that is noted in the row.</p>
-<h3>How solid each figure is</h3>
-<p>Rows marked <span class="src src-p">Primary</span> are anchored to a statute or an official program: Portugal's minimum-wage decree, Colombia's minimum-wage decree, and Belize's Qualified Retirement Program, run by the Belize Tourism Board. Rows marked <span class="src src-a">Advisory</span> are compiled from immigration-advisory and consular sources and cross-checked, but are not anchored to a single published statute. Several official government pages could not be verified from source at compile time; those figures rest on corroboration and should be confirmed directly.</p>
+<p>The check is the US Social Security Administration's average retired-worker benefit, <code>$2,085.98</code> as of July 2026. This is an average and is labelled as such; SSA does not publish a monthly median. Each country's figure is its retirement, pensioner, rentista, or independent-means route's stated income minimum. Indexed thresholds are stored as a formula and a driver (for example, Colombia as three times the statutory minimum wage, Ecuador as three times the SBU, Portugal as the national minimum wage) so the number recomputes when the driver reprices, rather than sitting as a stale dollar value.</p>
+<h3>The Residency Coverage Ratio</h3>
+<p>Each verified row carries <code>RCR = 2,085.98 &divide; required monthly income</code>. A country is published CLEAR only at an RCR of 1.10 or higher, so classification depends on a real ten-percent margin rather than on which side of the benchmark the figure happens to land after a currency wobble. MARGINAL (0.90 to 1.099) flags the rows where exchange rates, annual indexation, or a below-average individual benefit could change the answer.</p>
+<h3>What "verified" means here, and what is held</h3>
+<p>Only the ten rows in the first table are anchored to a statute or an official program and carry a coverage ratio. The complete country table is not yet reproducible from confirmed primary sources, so no total count (for instance "sixteen clear") is published. An indexed row is published only when both its statutory formula and its current driver are verified; everything else sits in the in-verification list, uncounted, until it clears that bar. Foreign-exchange conversions use spot rates as of August 12, 2026 (euro at $1.155, Colombian peso at 3,213 per dollar) and are dated for that reason.</p>
 <h3>Clearing the gate once is not the same as keeping it clear</h3>
-<p>Thresholds tied to a local wage floor, Portugal, Colombia, Ecuador, and Turkey among them, reprice every January, so a check that clears today can slip below next year with nothing else changing. Thresholds in a floating currency, Colombia, Argentina, South Africa, and Turkey, move with the exchange rate week to week. And even where the check clears, local inflation erodes what it buys. The income gate is the first question, not the whole one.</p>
+<p>Thresholds tied to a local wage floor, Portugal, Colombia, and Ecuador among the verified set, reprice every January, so a check that clears today can slip below next year with nothing else changing. Thresholds in a floating currency, Colombia most of all here, move with the exchange rate week to week. And even where the check clears, local inflation erodes what it buys. The income gate is the first question, not the whole one.</p>
 <h3>Not immigration advice</h3>
 <p>This is educational decision analysis compiled August 2026, not legal, tax, or immigration advice, and not a substitute for the consulate's own determination. Verify the current minimum with the official mission before you act on it.</p>
 </div>
@@ -201,7 +214,7 @@ footer{border-top:1px solid var(--line);margin-top:20px;padding:24px 0 50px;colo
 <a class="btn" href="index.html#sitrep">Get the free daily SITREP &rarr;</a>
 </div></div>
 
-<footer><div class="wrap">Sovereo Intelligence Research. Retirement-visa income minimums compiled August 2026 from official and immigration-advisory sources and converted at spot exchange rates; figures change and are not a substitute for a consulate's determination. This is educational decision analysis, not legal, tax, immigration, or financial advice. &copy; 2026 Sovereo Intelligence Research.</div></footer>
+<footer><div class="wrap">Sovereo Intelligence Research. Residency-income requirements are measured against the SSA average retired-worker benefit ($2,085.98, July 2026); only primary-verified rows carry a coverage-ratio classification, and figures are converted at spot exchange rates dated August 2026. This is educational decision analysis, not legal, tax, immigration, or financial advice, and not a substitute for a consulate's determination. &copy; 2026 Sovereo Intelligence Research.</div></footer>
 <script src="assets/site-nav.js" defer></script>
 </body>
 </html>
