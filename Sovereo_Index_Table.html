@@ -43,24 +43,28 @@ a{color:inherit;text-decoration:none}
 .ctl input:focus,.ctl select:focus{outline:none;border-color:var(--gold)}
 .ctl.grow{flex:1}
 .count{margin-left:auto;font-size:13.5px;color:var(--soft);padding-bottom:11px}
-.tbl-wrap{overflow-x:auto;margin-top:4px}
-table{width:100%;border-collapse:collapse;font-size:15px}
-thead th{position:static;background:#14233B;z-index:5}
-th{font-size:12.5px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:#F3EDE0;
- text-align:center;padding:15px 10px;border-bottom:3px solid #B0863C;cursor:pointer;white-space:nowrap;user-select:none}
+.tbl-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;margin-top:16px;background:#fff;border:1px solid var(--line);border-radius:14px;box-shadow:0 1px 2px rgba(14,26,43,.04),0 14px 34px rgba(14,26,43,.055)}
+table{width:100%;border-collapse:collapse;font-size:15px;font-variant-numeric:tabular-nums}
+thead th{position:static;background:var(--ink);z-index:5}
+th{font-size:12px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:#EAD9AE;
+ text-align:center;padding:16px 12px;border-bottom:2px solid var(--gold2);cursor:pointer;white-space:nowrap;user-select:none;transition:color .12s}
 th.l{text-align:left}
-th:hover{color:#fff} th.on{color:#E0C385} th .ar{color:#E0C385;font-size:10px}
-td{padding:13px 10px;border-bottom:1px solid var(--line);text-align:center;vertical-align:middle}
+th:hover{color:#fff} th.on{color:#fff} th .ar{color:var(--gold2);font-size:10px}
+td{padding:14px 12px;border-bottom:1px solid var(--line);text-align:center;vertical-align:middle}
 td.rk{font-family:var(--serif);font-size:16px;color:var(--soft);width:46px}
 td.cty{text-align:left;font-weight:600;font-size:16px;white-space:nowrap}
 td.cty .iso{color:var(--soft);font-weight:500;font-size:12px;margin-left:7px;letter-spacing:.05em}
 td.rg{text-align:left;color:var(--mut);font-size:13.5px;white-space:nowrap}
-td.idx{font-family:var(--serif);font-size:19px;font-weight:600;color:var(--gold)}
+td.idx{font-family:var(--serif);font-size:15px;font-weight:600}
+td.idx .idxchip{display:inline-block;min-width:52px;padding:5px 10px;border-radius:8px;background:rgba(176,134,60,.12);border:1px solid rgba(176,134,60,.30);color:var(--gold);font-size:16px;font-variant-numeric:tabular-nums}
+tr.top td.idx .idxchip{background:var(--gold);border-color:var(--gold);color:#fff}
 tr.top td.rk{color:var(--gold)}
-tr:hover td{background:#fff}
+tr.top td{background:rgba(200,164,92,.05)}
+tr:hover td{background:#FAF7EF}
+tr.top:hover td{background:rgba(200,164,92,.09)}
 .cell{min-width:78px}
-.cellnum{font-weight:600;font-size:14px}
-.track{height:6px;border-radius:4px;background:var(--paper2);margin-top:5px;overflow:hidden}
+.cellnum{font-weight:600;font-size:14px;font-variant-numeric:tabular-nums}
+.track{height:5px;border-radius:4px;background:var(--paper2);margin-top:6px;overflow:hidden}
 .track>i{display:block;height:100%;border-radius:4px;background:var(--gold2)}
 th.colon, td.colon .track>i{}
 .colon-bg{background:rgba(176,134,60,.07)}
@@ -113,7 +117,7 @@ footer .links{display:flex;gap:24px;flex-wrap:wrap}
 <header class="hero"><div class="wrap">
   <span class="eyebrow">The Sovereo Index &middot; 2026 Edition</span>
   <h1>The full ranking</h1>
-  <p>195 nations scored 0&ndash;100 on the six social determinants of wealth and health. Choose what to rank by, or click any column header to re-sort. The overall Index is the balance of all six pillars.</p>
+  <p>195 nations scored 0 to 100 on the six social determinants of wealth and health. Choose what to rank by, or click any column header to re-sort. The overall Index is the balance of all six pillars.</p>
 </div></header>
 
 <div class="wrap">
@@ -128,7 +132,7 @@ footer .links{display:flex;gap:24px;flex-wrap:wrap}
     <span class="bb-go">Open the shortlist builder &rarr;</span>
   </a>
   <div class="tbl-wrap"><table id="tbl"><thead id="thead"></thead><tbody id="tbody"></tbody></table></div>
-  <div class="foot"><b>Method.</b> Each pillar is scored 0&ndash;100 from public datasets (UNDP, World Bank, WHO, Yale EPI, Heritage Foundation, EF, Williams Institute); the Sovereo Index is their equal-weighted mean. Countries with fewer than three available pillars are excluded. An educational research instrument, not legal, tax, immigration or financial advice. &copy; 2026 Sovereo Intelligence Research. Research and briefings are AI-assisted with human editorial oversight.</div>
+  <div class="foot"><b>Method.</b> Each pillar is scored 0 to 100 from public datasets (UNDP, World Bank, WHO, Yale EPI, Heritage Foundation, EF, Williams Institute); the Sovereo Index is their equal-weighted mean. Countries with fewer than three available pillars are excluded. An educational research instrument, not legal, tax, immigration or financial advice. &copy; 2026 Sovereo Intelligence Research. Research and briefings are AI-assisted with human editorial oversight.</div>
 </div>
 
 <footer><div class="wrap row">
@@ -164,13 +168,13 @@ function draw(){
  head();
  const tb=d.map((r,i)=>{
    const cells=PN.map(p=>{const v=r.pillars[p];const hot=p===sortKey?'colon-bg':'';
-     if(v==null||isNaN(v))return `<td class="cell ${hot}"><span class="cellnum" style="color:#9aa1ac">&mdash;</span></td>`;
+     if(v==null||isNaN(v))return `<td class="cell ${hot}"><span class="cellnum" style="color:#9aa1ac">n/a</span></td>`;
      return `<td class="cell ${hot}"><span class="cellnum">${v.toFixed(1)}</span><div class="track"><i style="width:${v}%"></i></div></td>`;}).join("");
    const idxHot=sortKey==="overall"?'colon-bg':'';
    return `<tr class="${i<3?'top':''}"><td class="rk">${i+1}</td>`
      +`<td class="cty">${r.name}<span class="iso">${r.iso}</span></td>`
      +`<td class="rg">${r.region}</td>`
-     +`<td class="idx ${idxHot}">${r.overall.toFixed(1)}</td>${cells}</tr>`;}).join("");
+     +`<td class="idx ${idxHot}"><span class="idxchip">${r.overall.toFixed(1)}</span></td>${cells}</tr>`;}).join("");
  document.getElementById('tbody').innerHTML=tb;
  document.getElementById('count').textContent=d.length+" nations";var _slm=document.getElementById('slmatch');if(_slm)_slm.textContent=anyFilterActive()?(d.length+" countries match your ranges"):"";
 }
