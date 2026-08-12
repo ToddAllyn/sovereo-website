@@ -22,6 +22,7 @@
     {t:'Guides',h:'guides.html'},
     {t:'Dossiers',h:'Sovereo_Country_Reports.html'},
     {t:'The Reckoning',h:'forecast-ledger.html'},
+    {t:'Retire on Social Security',h:'retire-on-social-security.html'},
     {t:'Science',h:'Sovereo_Scientific_Basis.html'},
     {t:'Best-Fit Countries',h:'Sovereo_Relocation_Diagnostic.html'},
     {t:'The Brief',h:'https://sovereobrief.substack.com',ext:true},
