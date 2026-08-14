@@ -11,6 +11,7 @@
   ];
   var MOBILE_EXTRA=[
     {t:'Shortlist',h:'Sovereo_Index_Builder.html'},
+    {t:'The Exit Path',h:'exit-path.html'},
     {t:'Science',h:'Sovereo_Scientific_Basis.html'}
   ];
   var CTA={t:'Find your best-fit countries',h:'Sovereo_Relocation_Diagnostic.html'};
@@ -22,6 +23,8 @@
     {t:'Guides',h:'guides.html'},
     {t:'Dossiers',h:'Sovereo_Country_Reports.html'},
     {t:'The Reckoning',h:'forecast-ledger.html'},
+    {t:'Capital',h:'capital-enterprise.html'},
+    {t:'The Exit Path',h:'exit-path.html'},
     {t:'Retire on Social Security',h:'retire-on-social-security.html'},
     {t:'Science',h:'Sovereo_Scientific_Basis.html'},
     {t:'Best-Fit Countries',h:'Sovereo_Relocation_Diagnostic.html'},
