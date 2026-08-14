@@ -1,0 +1,21 @@
+/* Sovereo shared design tokens.
+   Single source of truth for the canonical navy-and-gold palette.
+   Change a brand colour here and every page that links this file updates.
+
+   Scope: tokens only, on purpose. Component CSS stays inline per page so
+   this refactor cannot change any layout. Pages with a deliberately
+   different palette (brief-009 trust-blue, atlas dark map) keep their own
+   :root inline and do not link this file. */
+:root{
+  --ink:#0E1A2B;
+  --navy:#14233B;
+  --paper:#FBF8F1;
+  --paper2:#F3EDE0;
+  --gold:#B0863C;
+  --gold2:#C8A45C;
+  --line:#E3DBCB;
+  --mut:#5C6675;
+  --soft:#7B8494;
+  --serif:"Fraunces",Georgia,serif;
+  --sans:"Inter","Segoe UI",Helvetica,Arial,sans-serif;
+}
