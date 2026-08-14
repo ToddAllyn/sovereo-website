@@ -178,6 +178,7 @@ footer .links{display:flex;gap:24px;flex-wrap:wrap}
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"WebApplication","name":"Sovereo Best-Fit Countries","applicationCategory":"BusinessApplication","operatingSystem":"Web","url":"https://www.sovereo.com/Sovereo_Relocation_Diagnostic.html","description":"A free tool that scores where you would live, invest and thrive best across 195 countries, matched to your profile and priorities.","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"Sovereo Intelligence Research","url":"https://www.sovereo.com"}}
 </script>
+<script defer src="assets/analytics.js"></script>
 </head>
 <body>
 <div class="mast"><div class="wrap row">
@@ -618,7 +619,7 @@ function wireResultsForm(){
    return;
   }
   btn.disabled=true; var old=btn.innerHTML; btn.innerHTML='Sending&hellip;'; if(msg)msg.textContent='';
-  fetch('/api/subscribe',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:email})})
+  fetch('/api/subscribe',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:email,source:'diagnostic'})})
    .then(function(r){return r.json();}).then(function(d){
     if(d&&d.ok){ input.style.display='none'; btn.style.display='none';
      if(msg){msg.textContent=d.message||'Check your inbox to confirm your free subscription.';msg.style.color='#9FE1CB';}

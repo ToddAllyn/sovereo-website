@@ -1,4 +1,5 @@
 # Friendly short paths
+/brief        /brief.html                           301
 /diagnostic   /Sovereo_Relocation_Diagnostic.html   301
 /index-table  /Sovereo_Index_Table.html             301
 /map          /Sovereo_Index_Map.html               301

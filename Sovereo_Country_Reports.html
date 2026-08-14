@@ -115,6 +115,7 @@ footer .links{display:flex;gap:24px;flex-wrap:wrap}
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"Product","name":"Sovereo Intelligence Dossier","description":"A commissioned relocation dossier for a single country: residency and tax routes, costs, timelines, matrimonial and succession rules, and the on-the-ground reality.","brand":{"@type":"Brand","name":"Sovereo"},"category":"Relocation intelligence dossier","offers":{"@type":"Offer","price":"59","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://www.sovereo.com/Sovereo_Country_Reports.html"}}
 </script>
+<script defer src="assets/analytics.js"></script>
 </head>
 <body>
 <div class="mast"><div class="wrap row">
@@ -342,9 +343,11 @@ document.getElementById('grid').addEventListener('change',e=>{
 document.getElementById('packclear').addEventListener('click',e=>{ e.preventDefault(); pack.clear(); refreshPack(); });
 document.getElementById('packbtn').addEventListener('click',()=>{
   if(pack.size!==3) return;
-  var url='https://payhip.com/buy?'+[...pack].map(k=>'cart_links[]='+encodeURIComponent(k)).join('&');
+  // Pre-apply the bundle discount in the URL so the $149 price is set automatically.
+  // The code is still shown as a fallback in case checkout does not carry it through.
+  var url='https://payhip.com/buy?'+[...pack].map(k=>'cart_links[]='+encodeURIComponent(k)).join('&')+'&coupon=THREE&discount=THREE';
   var info=document.getElementById('packinfo');
-  if(info) info.innerHTML='<b>Opening checkout with your three dossiers.</b> Enter code <b>THREE</b> at checkout for the $149 bundle price.';
+  if(info) info.innerHTML='<b>Opening checkout with your three dossiers, bundle price applied.</b> If the total still shows $177, enter code <b>THREE</b> for $149.';
   window.location.href=url;
 });
 render();
