@@ -13,7 +13,7 @@
     {t:'Shortlist',h:'Sovereo_Index_Builder.html'},
     {t:'Science',h:'Sovereo_Scientific_Basis.html'}
   ];
-  var CTA={t:'Find your best-fit countries',h:'Sovereo_Relocation_Diagnostic.html'};
+  var CTA={t:'Get the free SITREP',h:'index.html#sitrep'};
   var FOOTER=[
     {t:'Home',h:'index.html'},
     {t:'The Index',h:'Sovereo_Index_Table.html'},
