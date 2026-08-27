@@ -17,6 +17,7 @@
   var FOOTER=[
     {t:'Home',h:'index.html'},
     {t:'SITREP Archive',h:'/sitrep/'},
+    {t:'Research Standard',h:'research-standard.html'},
     {t:'The Index',h:'Sovereo_Index_Table.html'},
     {t:'Shortlist',h:'Sovereo_Index_Builder.html'},
     {t:'World Map',h:'atlas.html'},
