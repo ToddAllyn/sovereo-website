@@ -2,8 +2,8 @@
    Progressive enhancement. Static links remain if JS is disabled. */
 (function(){
   var DESKTOP=[
+    {t:'Research',h:'index.html#latest-research'},
     {t:'The Index',h:'Sovereo_Index_Table.html'},
-    {t:'World Map',h:'atlas.html'},
     {t:'Guides',h:'guides.html'},
     {t:'Dossiers',h:'Sovereo_Country_Reports.html'},
     {t:'The Reckoning',h:'forecast-ledger.html'},
@@ -16,6 +16,7 @@
   var CTA={t:'Get the free SITREP',h:'index.html#sitrep'};
   var FOOTER=[
     {t:'Home',h:'index.html'},
+    {t:'SITREP Archive',h:'/sitrep/'},
     {t:'The Index',h:'Sovereo_Index_Table.html'},
     {t:'Shortlist',h:'Sovereo_Index_Builder.html'},
     {t:'World Map',h:'atlas.html'},

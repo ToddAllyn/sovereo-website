@@ -204,14 +204,16 @@ footer .links{display:flex;gap:26px;flex-wrap:wrap}
 .ctaband h2{font-family:var(--serif);font-size:34px;font-weight:600;line-height:1.1;margin:14px 0 0}
 .ctaband p{font-size:17px;color:#C9D2DE;margin:16px 0 26px}
 .ctaband .cta-note{font-size:13px;color:var(--soft);margin-top:16px}
-/* exit popup */
-.exit-overlay{position:fixed;inset:0;background:rgba(14,26,43,.62);backdrop-filter:blur(3px);z-index:200;display:none;align-items:center;justify-content:center;padding:24px}
-.exit-overlay.show{display:flex}
-.exit-card{position:relative;background:var(--paper);border:1px solid var(--line);border-radius:18px;max-width:460px;padding:42px 36px;box-shadow:0 24px 70px rgba(14,26,43,.3)}
-.exit-card .eyebrow{color:var(--gold)}
-.exit-card h3{font-family:var(--serif);font-size:28px;font-weight:600;margin:12px 0 10px}
-.exit-card p{font-size:15.5px;color:var(--mut);margin-bottom:22px}
-.exit-card .exit-sub{font-size:12.5px;color:var(--soft);margin-top:14px}
+.research-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.research-card{display:flex;flex-direction:column;background:#fff;border:1px solid var(--line);border-radius:14px;padding:24px;min-height:230px;transition:.16s}
+.research-card:hover{border-color:var(--gold);transform:translateY(-2px);box-shadow:0 10px 30px rgba(14,26,43,.07)}
+.research-card .k{font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--gold)}
+.research-card h3{font-family:var(--serif);font-size:21px;line-height:1.22;margin:10px 0 9px}
+.research-card p{font-size:14.5px;color:var(--mut);margin:0 0 18px}
+.research-card .go{font-size:14px;font-weight:700;color:var(--ink);margin-top:auto}
+.research-note{font-size:14px;color:var(--mut);max-width:72ch;margin:-14px 0 28px}
+@media(max-width:960px){.research-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.research-grid{grid-template-columns:1fr}.research-card{min-height:0}}
 .exit-x{position:absolute;top:14px;right:16px;background:none;border:none;font-size:26px;line-height:1;color:var(--soft);cursor:pointer}
 .exit-x:hover{color:var(--ink)}
 </style>
@@ -273,7 +275,10 @@ footer .links{display:flex;gap:26px;flex-wrap:wrap}
         <li style="display:grid;grid-template-columns:24px 1fr;gap:10px;font-size:15.5px;color:#26303E"><span style="color:var(--gold);font-weight:700">2</span><span><b>Consequences before novelty.</b> Continuing disruptions compete directly with new announcements, and omitted regions receive an internal evidence review.</span></li>
         <li style="display:grid;grid-template-columns:24px 1fr;gap:10px;font-size:15.5px;color:#26303E"><span style="color:var(--gold);font-weight:700">3</span><span><b>Global evidence by design.</b> Primary, regional, and local sources carry the analysis beyond familiar Western wires.</span></li>
       </ul>
-      <a class="sitrep-cta" href="#sitrep">Get the free daily SITREP &rarr;</a>
+      <div style="display:flex;gap:18px;align-items:center;flex-wrap:wrap">
+        <a class="sitrep-cta" href="#sitrep">Get the free daily SITREP &rarr;</a>
+        <a href="/sitrep/" style="font-size:14.5px;color:var(--gold);font-weight:700">Read the public archive &rarr;</a>
+      </div>
     </div>
     <aside style="background:var(--ink);color:var(--paper);border-radius:14px;padding:24px 24px 22px">
       <div style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#9FE1CB;font-weight:700;margin:0 0 4px">Sample &middot; Executive dashboard</div>
@@ -290,6 +295,17 @@ footer .links{display:flex;gap:26px;flex-wrap:wrap}
       </div>
       <div style="font-size:11.5px;color:var(--soft);margin:14px 0 0">Illustrative archive example from the August 10 issue. Every claim was sourced and dated at publication.</div>
     </aside>
+  </div>
+</div></section>
+
+<section id="latest-research" style="padding:54px 0;background:var(--paper2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)"><div class="wrap">
+  <div class="section-head"><div><span class="eyebrow" style="display:block;margin-bottom:8px">Latest research</span><h2>The public intelligence record</h2></div><a href="forecast-ledger.html">View the scored record &rarr;</a></div>
+  <p class="research-note">Current conditions, deeper analysis, falsifiable judgments, and applied research are published as separate products inside one intelligence system.</p>
+  <div class="research-grid">
+    <a class="research-card" href="/sitrep/"><span class="k">Daily &middot; Free</span><h3>Executive SITREP</h3><p>The latest verified movement, present consequences, geographic exposure, and next observable event.</p><span class="go">Open the SITREP archive &rarr;</span></a>
+    <a class="research-card" href="brief-009.html"><span class="k">Weekly &middot; Analysis</span><h3>The Sovereo Brief</h3><p>One consequential question tested through contrary evidence, competing scenarios, and explicit uncertainty.</p><span class="go">Read a sample Brief &rarr;</span></a>
+    <a class="research-card" href="forecast-ledger.html"><span class="k">Public accountability</span><h3>The Reckoning</h3><p>Dated forward judgments scored correct or wrong, with misses retained beside the hits.</p><span class="go">Inspect the forecast ledger &rarr;</span></a>
+    <a class="research-card" href="Sovereo_Scientific_Basis.html"><span class="k">Methods &middot; Corrections</span><h3>Research standard</h3><p>How evidence is compared, uncertainty is calibrated, and claims remain open to correction.</p><span class="go">Examine the methodology &rarr;</span></a>
   </div>
 </div></section>
 
@@ -347,8 +363,8 @@ footer .links{display:flex;gap:26px;flex-wrap:wrap}
 </div></section>
 
 <section style="padding:48px 0 6px"><div class="wrap">
-  <div class="section-head"><div><span class="eyebrow" style="display:block;margin-bottom:8px">Put the intelligence to work</span><h2>Narrow 195 countries to your three</h2></div></div>
-  <p style="font-size:16px;color:var(--mut);max-width:72ch;margin:0 0 24px">The same discipline, turned on your own life. The Best-Fit Countries tool scores all 195 countries for your exact situation and returns your three, each with its reasons and its one honest caveat. This example is a remote-earning couple in their forties, US dollar income, who want lower tax, safety, and an open culture.</p>
+  <div class="section-head"><div><span class="eyebrow" style="display:block;margin-bottom:8px">Applied intelligence &middot; Country fit</span><h2>One application, when location becomes the live decision</h2></div></div>
+  <p style="font-size:16px;color:var(--mut);max-width:72ch;margin:0 0 24px">Relocation is not Sovereo's organizing subject. It is one possible response when evidence makes location material. The Best-Fit Countries tool applies the broader intelligence system to that specific decision.</p>
   <div style="background:#fff;border:1px solid var(--line);border-radius:16px;padding:28px 30px;max-width:800px">
     <div style="display:flex;align-items:flex-start;gap:18px;flex-wrap:wrap">
       <div style="font-family:var(--serif);font-size:34px;font-weight:700;color:var(--gold)">1</div>
@@ -436,11 +452,10 @@ footer .links{display:flex;gap:26px;flex-wrap:wrap}
   <div style="background:var(--navy);color:var(--paper);border-radius:14px;padding:26px 28px;margin:28px 0 0">
     <div style="font-family:var(--serif);font-size:23px;font-weight:600;margin:0 0 6px">Do not meet a consequential decision with headlines alone.</div>
     <p style="color:#C9D2DE;font-size:15px;margin:0 0 16px;max-width:62ch">Start with the daily position report: what changed, what is already different, how it reaches you, and which decision may now require attention.</p>
-    <form class="sub-form" id="subShift" novalidate style="justify-content:flex-start;margin:0;max-width:520px">
-      <input type="email" name="email" placeholder="Your email address" required autocomplete="email" aria-label="Email address">
-      <button type="submit" class="sitrep-cta">Get the free daily SITREP &rarr;</button>
-    </form>
-    <div class="sub-msg" id="subShiftMsg" role="status" aria-live="polite" style="text-align:left"></div>
+    <div style="display:flex;gap:20px;flex-wrap:wrap;align-items:center">
+      <a href="#sitrep" style="color:var(--gold2);font-weight:700">Get the free daily SITREP &rarr;</a>
+      <a href="/sitrep/" style="color:#C9D2DE;font-weight:600">Read published editions</a>
+    </div>
   </div>
 </div></section>
 
@@ -462,7 +477,7 @@ footer .links{display:flex;gap:26px;flex-wrap:wrap}
 
 <section><div class="wrap">
   <div class="section-head">
-    <h2>The 2026 ranking</h2>
+    <h2>Applied research: the 2026 country index</h2>
     <a href="Sovereo_Index_Table.html">View all 195 nations &rarr;</a>
   </div>
   <div class="rank-grid">
@@ -490,9 +505,9 @@ footer .links{display:flex;gap:26px;flex-wrap:wrap}
 </div></section>
 
 <div class="band"><div class="wrap inner">
-  <span class="eyebrow">The thesis</span>
-  <blockquote>Where you live is a <b>social determinant</b> of how long, how healthy, and how wealthy your life will be.</blockquote>
-  <cite>Grounded in the Whitehall studies and the WHO Commission on Social Determinants of Health.</cite>
+  <span class="eyebrow">The application principle</span>
+  <blockquote>Location is one of several systems that can change how long, how healthy, and how economically secure a life becomes.</blockquote>
+  <cite>It becomes a recommendation only when the evidence and the reader's constraints make it the relevant decision.</cite>
 </div></div>
 
 <section class="diff"><div class="wrap">
@@ -505,7 +520,7 @@ footer .links{display:flex;gap:26px;flex-wrap:wrap}
 </div></section>
 
 <section class="invest" style="background:var(--paper2);border-top:1px solid var(--line)"><div class="wrap">
-  <div class="section-head"><span class="eyebrow">The Capital and Enterprise lens</span><h2>For your money, whether or not you move</h2></div>
+  <div class="section-head"><span class="eyebrow">Applied research &middot; Capital and enterprise</span><h2>For your money, whether or not you move</h2></div>
   <p style="font-size:18px;color:var(--mut);max-width:64ch;margin:6px 0 28px">One lens, two questions about your money. Will it hold its value where you are headed, against inflation, a sliding currency, and capital controls? And can it work where it will actually grow, then come back to you when you want it? Those questions reach the pensioner stretching an income and the executive deploying capital alike, whether or not either ever moves. Sovereo scores all 195 countries on the part the relocation and offshore guides skip: whether you can get money in, put it to work, and get it back out.</p>
   <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:22px">
     <div style="background:#fff;border:1px solid var(--line);border-radius:14px;padding:24px 26px">
@@ -573,7 +588,6 @@ footer .links{display:flex;gap:26px;flex-wrap:wrap}
 .sub-form input:focus{outline:none;border-color:#E7B85A;box-shadow:0 0 0 3px rgba(231,184,90,.35)}
 .sub-form button{white-space:nowrap;cursor:pointer;border:none}
 .sub-msg{max-width:530px;margin:12px auto 0;font-size:14.5px;font-weight:600;min-height:1px}
-.exit-card .sub-form{margin-top:14px}
 </style>
 <section class="ctaband" id="sitrep"><div class="wrap inner">
   <span class="eyebrow">Free, every morning</span>
@@ -617,45 +631,6 @@ footer .links{display:flex;gap:26px;flex-wrap:wrap}
   </div>
 </div></footer>
 
-<div id="stickybar" style="position:fixed;left:0;right:0;bottom:0;z-index:70;display:none;background:#0E1A2B;color:#FBF8F1;box-shadow:0 -4px 20px rgba(0,0,0,.28)">
-  <div class="wrap" style="display:flex;align-items:center;gap:16px;padding:12px 24px;flex-wrap:wrap">
-    <div style="flex:1;min-width:210px;font-size:14.5px"><b>Free Executive SITREP.</b> Global change, present consequence, and the next decision to examine.</div>
-    <form class="sub-form" id="subSticky" novalidate style="justify-content:flex-end;margin:0;flex:1 1 300px;max-width:420px">
-      <input type="email" name="email" placeholder="Your email" required autocomplete="email" aria-label="Email address" style="padding:10px 12px;font-size:14.5px">
-      <button type="submit" class="sitrep-cta" style="padding:10px 16px;font-size:14px">Subscribe &rarr;</button>
-    </form>
-    <button id="stickyClose" aria-label="Dismiss" style="background:none;border:none;color:#9FB0C4;font-size:22px;cursor:pointer;line-height:1">&times;</button>
-  </div>
-  <div class="sub-msg" id="subStickyMsg" role="status" aria-live="polite" style="text-align:center;padding:0 24px 8px"></div>
-</div>
-
-<div class="exit-overlay" id="exitPop">
-  <div class="exit-card">
-    <button class="exit-x" id="exitClose" aria-label="Close">&times;</button>
-    <span class="eyebrow">Before you go</span>
-    <h3>Start with the free daily SITREP.</h3>
-    <p>Verified global movement traced into the conditions affecting income, education, health, lifestyle, business, and legacy. Free.</p>
-    <form class="sub-form" id="subPop" novalidate>
-      <input type="email" name="email" placeholder="Your email address" required autocomplete="email" aria-label="Email address">
-      <button type="submit" class="sitrep-cta">Get the free daily SITREP &rarr;</button>
-    </form>
-    <div class="sub-msg" id="subPopMsg" role="status" aria-live="polite"></div>
-    <div class="exit-sub">Free. Unsubscribe anytime.</div>
-  </div>
-</div>
-<script>
-(function(){
-  var pop=document.getElementById('exitPop'), x=document.getElementById('exitClose');
-  var KEY='sov_exit_shown';
-  function shown(){try{return sessionStorage.getItem(KEY)==='1';}catch(e){return false;}}
-  function mark(){try{sessionStorage.setItem(KEY,'1');}catch(e){}}
-  function show(){ if(shown())return; pop.classList.add('show'); mark(); }
-  function hide(){ pop.classList.remove('show'); }
-  document.addEventListener('mouseout',function(e){ if(!e.relatedTarget && e.clientY<=0) show(); });
-  x.addEventListener('click',hide);
-  pop.addEventListener('click',function(e){ if(e.target===pop) hide(); });
-})();
-</script>
 <script>
 (function(){
   var forms=document.querySelectorAll('.sub-form');
@@ -665,9 +640,8 @@ footer .links{display:flex;gap:26px;flex-wrap:wrap}
       var input=f.querySelector('input[type=email]');
       var btn=f.querySelector('button');
       var msg=document.getElementById(f.id+'Msg');
-      var onLight=(f.id==='subPop');
-      var okColor=onLight?'#0F6E56':'#9FE1CB';
-      var errColor=onLight?'#B4231B':'#F0C56E';
+      var okColor='#9FE1CB';
+      var errColor='#F0C56E';
       var email=(input.value||'').trim();
       if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)){
         if(msg){msg.textContent='Please enter a valid email address.';msg.style.color=errColor;}
@@ -694,25 +668,6 @@ footer .links{display:flex;gap:26px;flex-wrap:wrap}
       });
     });
   });
-})();
-</script>
-<script>
-(function(){
-  var bar=document.getElementById('stickybar'); if(!bar) return;
-  var dismissed=false;
-  var closeBtn=document.getElementById('stickyClose');
-  if(closeBtn) closeBtn.addEventListener('click',function(){dismissed=true;bar.style.display='none';});
-  var band=document.getElementById('sitrep');
-  function onScroll(){
-    if(dismissed) return;
-    var past=window.scrollY>window.innerHeight*1.1;
-    var atBand=band && band.getBoundingClientRect().top < window.innerHeight;
-    bar.style.display=(past && !atBand)?'block':'none';
-  }
-  window.addEventListener('scroll',onScroll,{passive:true});
-  onScroll();
-  var f=document.getElementById('subSticky');
-  if(f) f.addEventListener('submit',function(){ setTimeout(function(){ if(f.style.display==='none'){ dismissed=true; bar.style.display='none'; } },1400); });
 })();
 </script>
 <script src="assets/site-nav.js" defer></script>
