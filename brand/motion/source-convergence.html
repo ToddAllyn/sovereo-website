@@ -1,0 +1,159 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>Sovereo · Source Convergence</title>
+<style>
+  html,body{margin:0;height:100%;background:#000;overflow:hidden}
+  #stage{position:absolute;top:50%;left:50%;width:3840px;height:2160px;
+         transform-origin:0 0;background:#0E1A2B}
+  text{font-family:"Inter","Helvetica Neue",Arial,sans-serif;font-weight:600}
+  .lbl{letter-spacing:.26em;font-size:30px}
+  .cap{letter-spacing:.20em;font-size:54px}
+  .node{letter-spacing:.20em;font-size:36px}
+</style>
+<div id="stage">
+  <svg id="svg" width="3840" height="2160" viewBox="0 0 3840 2160">
+    <defs>
+      <clipPath id="capclip"><rect id="capwipe" x="620" y="1700" width="0" height="120"/></clipPath>
+      <mask id="maskC"><path id="revealC" fill="none" stroke="#fff" stroke-width="24"/></mask>
+    </defs>
+    <g id="grid" opacity="0"></g>
+    <circle id="limb" cx="2180" cy="1080" r="880" fill="none" stroke="#1E3050" stroke-width="2" opacity="0"/>
+
+    <path id="pathC" fill="none" stroke="#5C6675" stroke-width="4" stroke-dasharray="18 22" opacity="0" mask="url(#maskC)"/>
+    <path id="pathA" fill="none" stroke="#C8A45C" stroke-width="5"/>
+    <path id="pathB" fill="none" stroke="#C8A45C" stroke-width="5"/>
+
+    <g id="nodeC" opacity="0">
+      <circle cx="1180" cy="330" r="11" fill="#5C6675"/>
+      <circle cx="1180" cy="330" r="30" fill="none" stroke="#5C6675" stroke-width="2"/>
+      <text id="lblC" class="lbl" x="1240" y="342" fill="#5C6675">SINGLE SOURCE</text>
+      <line id="strikeC" x1="1240" y1="330" x2="1240" y2="330" stroke="#5C6675" stroke-width="3"/>
+    </g>
+
+    <g id="nodeA" opacity="0">
+      <circle cx="700" cy="640" r="13" fill="#FBF8F1"/>
+      <circle id="ringA" cx="700" cy="640" r="34" fill="none" stroke="#7B8494" stroke-width="2"/>
+      <text id="lblA" class="lbl" x="760" y="652" fill="#7B8494">SOURCE 01</text>
+    </g>
+
+    <g id="nodeB" opacity="0">
+      <circle cx="840" cy="1660" r="13" fill="#FBF8F1"/>
+      <circle id="ringB" cx="840" cy="1660" r="34" fill="none" stroke="#7B8494" stroke-width="2"/>
+      <text id="lblB" class="lbl" x="900" y="1672" fill="#7B8494">SOURCE 02</text>
+    </g>
+
+    <g id="nodeK" opacity="0">
+      <g id="bracket" stroke="#7B8494" stroke-width="4" fill="none">
+        <path d="M2400 990 L2400 950 L2440 950"/><path d="M2600 950 L2640 950 L2640 990"/>
+        <path d="M2640 1170 L2640 1210 L2600 1210"/><path d="M2440 1210 L2400 1210 L2400 1170"/>
+      </g>
+      <circle id="lock" cx="2520" cy="1080" r="0" fill="none" stroke="#C8A45C" stroke-width="4" opacity="0"/>
+      <circle id="dotK" cx="2520" cy="1080" r="15" fill="#7B8494"/>
+      <text id="lblK" class="node" x="2520" y="1350" fill="#7B8494" text-anchor="middle">CLAIM</text>
+    </g>
+
+    <g clip-path="url(#capclip)">
+      <text class="cap" x="620" y="1790" fill="#FBF8F1">TWO SOURCES OR IT DOES NOT PRINT</text>
+    </g>
+    <rect id="caprule" x="620" y="1836" width="0" height="4" fill="#C8A45C"/>
+  </svg>
+</div>
+<script>
+const DUR = 6000, INTRO_CUT = 4000;
+const $ = id => document.getElementById(id);
+const q = new URLSearchParams(location.search);
+
+// ---- stage fit -------------------------------------------------------------
+function fit(){
+  const s = Math.min(innerWidth/3840, innerHeight/2160);
+  $('stage').style.transform = `translate(${-3840*s/2}px,${-2160*s/2}px) scale(${s})`;
+}
+addEventListener('resize', fit); fit();
+
+// ---- static grid -----------------------------------------------------------
+const grid = $('grid');
+for (let x = 0; x <= 3840; x += 160) grid.insertAdjacentHTML('beforeend',
+  `<line x1="${x}" y1="0" x2="${x}" y2="2160" stroke="#2A3D5C" stroke-width="1"/>`);
+for (let y = 0; y <= 2160; y += 160) grid.insertAdjacentHTML('beforeend',
+  `<line x1="0" y1="${y}" x2="3840" y2="${y}" stroke="#2A3D5C" stroke-width="1"/>`);
+
+// ---- geometry: shallow arcs, not travel-template swoops ---------------------
+function arc(x1, y1, x2, y2, bow){
+  const mx = (x1+x2)/2, my = (y1+y2)/2;
+  const dx = x2-x1, dy = y2-y1, L = Math.hypot(dx, dy);
+  return `M${x1} ${y1} Q${mx - dy/L*bow} ${my + dx/L*bow} ${x2} ${y2}`;
+}
+$('pathA').setAttribute('d', arc(700, 640, 2420, 1060, 90));
+$('pathB').setAttribute('d', arc(840, 1660, 2440, 1110, -90));
+$('pathC').setAttribute('d', arc(1180, 330, 2470, 1010, 70));
+$('revealC').setAttribute('d', arc(1180, 330, 2470, 1010, 70));
+const LEN = {};
+for (const id of ['pathA','pathB','revealC']) LEN[id] = $(id).getTotalLength();
+
+// ---- timing helpers --------------------------------------------------------
+const clamp = v => v < 0 ? 0 : v > 1 ? 1 : v;
+const span = (t, a, b) => clamp((t - a) / (b - a));
+const ease = p => p < .5 ? 4*p*p*p : 1 - Math.pow(-2*p + 2, 3)/2;
+const seg = (t, a, b) => ease(span(t, a, b));
+function draw(id, p){
+  const L = LEN[id];
+  $(id).setAttribute('stroke-dasharray', L);
+  $(id).setAttribute('stroke-dashoffset', L * (1 - p));
+}
+
+// ---- the timeline ----------------------------------------------------------
+function render(t){
+  $('grid').setAttribute('opacity', 0.5 * seg(t, 0, 600));
+  $('limb').setAttribute('opacity', 0.9 * seg(t, 100, 900));
+
+  $('nodeA').setAttribute('opacity', seg(t, 300, 800));
+  $('nodeB').setAttribute('opacity', seg(t, 420, 920));
+  $('nodeK').setAttribute('opacity', seg(t, 700, 1200));
+
+  const a = seg(t, 900, 2250), b = seg(t, 1050, 2400);
+  draw('pathA', a); draw('pathB', b);
+  $('lblA').setAttribute('fill', a > 0 ? '#C8A45C' : '#7B8494');
+  $('lblB').setAttribute('fill', b > 0 ? '#C8A45C' : '#7B8494');
+  $('ringA').setAttribute('stroke', a > 0 ? '#C8A45C' : '#7B8494');
+  $('ringB').setAttribute('stroke', b > 0 ? '#C8A45C' : '#7B8494');
+
+  // lock: both lines have landed
+  const k = seg(t, 2400, 2750);
+  $('lock').setAttribute('opacity', k > 0 ? 0.85 - 0.5*k : 0);
+  $('lock').setAttribute('r', 40 + 130 * k);
+  $('bracket').setAttribute('stroke', k > .5 ? '#C8A45C' : '#7B8494');
+  $('dotK').setAttribute('fill', k > .5 ? '#C8A45C' : '#7B8494');
+  $('lblK').textContent = k > .5 ? 'CORROBORATED' : 'CLAIM';
+  $('lblK').setAttribute('fill', k > .5 ? '#C8A45C' : '#7B8494');
+
+  const cap = seg(t, 2600, 3200);
+  $('capwipe').setAttribute('width', 2700 * cap);
+  $('caprule').setAttribute('width', 1180 * seg(t, 2900, 3500));
+
+  // withheld beat, entirely after the 4 second intro cut
+  const c = seg(t, 4200, 4600);
+  $('nodeC').setAttribute('opacity', c);
+  $('pathC').setAttribute('opacity', c);
+  draw('revealC', 0.62 * seg(t, 4400, 5100));
+  const w = seg(t, 5150, 5500);
+  $('strikeC').setAttribute('x2', 1240 + 420 * w);
+  $('strikeC').setAttribute('y2', 330);
+  $('lblC').textContent = w > .6 ? 'UNCONFIRMED. WITHHELD.' : 'SINGLE SOURCE';
+}
+
+// ---- playback, or a single deterministic frame for the renderer ------------
+if (q.has('t')) {
+  render(Number(q.get('t')));
+  document.fonts.ready.then(() => { window.__frameReady = true; });
+} else {
+  let t0 = null;
+  const loop = ts => {
+    if (t0 === null) t0 = ts;
+    const t = (ts - t0) % (DUR + 900);
+    render(Math.min(t, DUR));
+    requestAnimationFrame(loop);
+  };
+  requestAnimationFrame(loop);
+}
+window.SOVEREO = { DUR, INTRO_CUT, render };
+</script>

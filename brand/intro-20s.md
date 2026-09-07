@@ -103,3 +103,50 @@ If the read runs long, cut "right or wrong" before cutting anything else.
 
 - Money door: "Your money buys a different life in every country."
 - Accountability door: "Anyone can make a call. Almost nobody scores it."
+
+---
+
+## Visual assets
+
+### Beat 0:05 to 0:09, built in house
+
+`brand/motion/source-convergence.html` renders this beat as a real animation in
+the house palette. Two sources draw toward one claim node, the node locks and
+relabels from CLAIM to CORROBORATED, then a third dashed line from a single
+source stalls short and is struck out to UNCONFIRMED. WITHHELD.
+
+Timeline is 6.0 seconds. The first 4.0 seconds is the intro cut and ends on a
+clean hold. The withheld beat runs 4.2 to 6.0 and is there for longer edits,
+the country reports, and standalone social cuts.
+
+Open the file in a browser to watch it loop. To get a clip for Final Cut:
+
+    cd brand/motion
+    npm i playwright && npx playwright install chromium
+    node render.mjs --dur 4000
+    ffmpeg -framerate 30 -i frames/f%04d.png -c:v prores_ks -profile:v 4444 \
+           -pix_fmt yuva444p10le source-convergence.mov
+
+Background is house ink, so no key is needed. Fonts fall back to the system
+sans; install Inter locally before the final render if you want it exact.
+
+### On the Motion Array route generator
+
+Point To Point Route Generator (Motion Array 429934) is a travel vlog asset. At
+defaults, plane icon and camera follow and depth of field, it reads as a trip
+recap and costs the institution tone in the first five seconds. If it gets used
+anyway, change these first: icon to a plain dot, camera follow off, depth of
+field off, no arc bounce, map recolored to ink and navy with a gold route, and
+two routes converging on one point rather than one route travelling to a
+destination. Its better home is a chapter marker inside a country report, where
+the viewer has already accepted the frame.
+
+Retiming note for any Motion based template: use the template's own duration or
+speed parameter rather than blading and retiming the clip, which tends to break
+published behaviors.
+
+### Beats this asset does not cover
+
+- 0:13 to 0:16, the ledger. Needs real forecast ledger rows, hits and misses
+  both visible. Screen record `forecast-ledger.html`.
+- 0:16 to 0:18, neutrality. Needs a full world map lighting evenly, no route.
