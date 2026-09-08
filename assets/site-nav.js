@@ -6,6 +6,7 @@
     {t:'The Index',h:'Sovereo_Index_Table.html'},
     {t:'Guides',h:'guides.html'},
     {t:'Dossiers',h:'Sovereo_Country_Reports.html'},
+    {t:'Advisory',h:'advisory.html'},
     {t:'The Reckoning',h:'forecast-ledger.html'},
     {t:'SITREP Archive',h:'/sitrep/'}
   ];
@@ -23,6 +24,7 @@
     {t:'World Map',h:'atlas.html'},
     {t:'Guides',h:'guides.html'},
     {t:'Dossiers',h:'Sovereo_Country_Reports.html'},
+    {t:'Advisory',h:'advisory.html'},
     {t:'The Reckoning',h:'forecast-ledger.html'},
     {t:'Retire on Social Security',h:'retire-on-social-security.html'},
     {t:'Science',h:'Sovereo_Scientific_Basis.html'},
