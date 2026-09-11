@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Where Do You Rank? Global Income Percentile | Sovereo Intelligence Research</title>
+<meta name="description" content="Enter your income in your own currency and see where it places you against the whole world. A purchasing-power-adjusted global income percentile from World Bank data.">
+<link rel="canonical" href="https://www.sovereo.com/income-rank.html">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#0E1A2B">
+<meta property="og:title" content="Where Do You Rank in the World? | Sovereo">
+<meta property="og:description" content="Enter your income in your own currency and see your global income percentile, adjusted for purchasing power and household size.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.sovereo.com/income-rank.html">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--paper);color:var(--ink);font-family:var(--sans);line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:920px;margin:0 auto;padding:0 28px}
+.eyebrow{font-size:12.5px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--gold2)}
+.mast{position:sticky;top:0;z-index:50;background:rgba(251,248,241,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.mast .row{display:flex;align-items:center;justify-content:space-between;height:72px}
+.brand{font-weight:800;letter-spacing:.30em;font-size:19px;color:var(--ink)}
+.brand small{display:block;font-weight:600;letter-spacing:.16em;font-size:9.5px;color:var(--soft);margin-top:2px}
+.nav{display:flex;gap:22px;align-items:center}
+.nav a{font-size:14px;font-weight:500;color:var(--ink)}
+.hero{background:var(--ink);color:var(--paper);padding:52px 0 44px}
+.hero .eyebrow{color:var(--gold2)}
+.hero h1{font-family:var(--serif);font-weight:800;font-size:40px;line-height:1.08;margin:12px 0 0;max-width:20ch}
+.hero p{font-size:18px;color:#C9D2DE;margin:16px 0 0;max-width:64ch}
+.panel{background:#fff;border:1px solid var(--line);border-radius:16px;padding:30px 32px;margin:34px 0 0}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.f label{display:block;font-size:13px;font-weight:600;color:#40505F;margin:0 0 6px;letter-spacing:.01em}
+.f input,.f select{width:100%;font-family:inherit;font-size:16px;padding:12px 13px;border:1px solid var(--line);border-radius:9px;background:#fff;color:var(--ink)}
+.f input:focus,.f select:focus{outline:none;border-color:var(--gold)}
+.inrow{display:flex;gap:0}
+.inrow .cur{display:flex;align-items:center;padding:0 13px;border:1px solid var(--line);border-right:none;border-radius:9px 0 0 9px;background:var(--paper2,#f3efe6);font-weight:700;font-size:16px;color:#40505F;min-width:44px;justify-content:center}
+.inrow input{border-radius:0 9px 9px 0}
+.small{grid-template-columns:1fr 1fr}
+.go{display:inline-block;background:#E7B85A;color:#0E1A2B;font-weight:700;font-size:17px;padding:15px 34px;border-radius:8px;margin:22px 0 0;border:none;cursor:pointer;transition:.15s}
+.go:hover{background:var(--ink);color:#fff}
+.result{display:none;margin:26px 0 0}
+.result.on{display:block}
+.big{font-family:var(--serif);font-weight:800;font-size:46px;line-height:1.05;color:var(--ink)}
+.big span{color:var(--gold)}
+.sub{font-size:18px;color:#40505F;margin:8px 0 0}
+.bar{position:relative;height:16px;border-radius:9px;margin:26px 0 8px;background:linear-gradient(90deg,#dfe7ef,#b9c6d6 55%,#0E1A2B)}
+.pin{position:absolute;top:-8px;width:3px;height:32px;background:var(--gold);border-radius:2px;box-shadow:0 0 0 3px rgba(231,184,90,.25)}
+.pinlab{position:absolute;top:-34px;transform:translateX(-50%);font-size:12px;font-weight:700;color:var(--ink);white-space:nowrap;background:#fff;border:1px solid var(--line);border-radius:6px;padding:2px 7px}
+.scale{display:flex;justify-content:space-between;font-size:11.5px;color:var(--soft);letter-spacing:.02em}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:24px 0 0}
+.stat{background:var(--paper2,#f6f2ea);border:1px solid var(--line);border-radius:12px;padding:16px}
+.stat b{display:block;font-family:var(--serif);font-size:22px;color:var(--ink)}
+.stat span{font-size:13px;color:var(--soft)}
+.usd{font-size:14px;color:var(--soft);margin:16px 0 0}
+.cta{background:var(--ink);color:var(--paper);border-radius:16px;padding:28px 32px;margin:26px 0 0}
+.cta h3{font-family:var(--serif);font-size:22px;font-weight:600;margin:0 0 8px;color:#fff}
+.cta p{color:#C9D2DE;font-size:15.5px;margin:0 0 16px}
+.cta .b{display:inline-block;background:#E7B85A;color:#0E1A2B;font-weight:700;font-size:15px;padding:13px 24px;border-radius:8px}
+.cta .b.ghost{background:transparent;color:#E7B85A;border:1px solid #E7B85A;margin-left:10px}
+.method{font-size:13px;color:var(--soft);margin:28px 0 0;max-width:80ch}
+.method b{color:#40505F}
+footer{background:var(--ink);color:#9AA6B6;padding:34px 0;font-size:13px;margin-top:48px}
+footer .wrap{display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap}
+footer a{color:#C9D2DE}
+@media(max-width:640px){.grid{grid-template-columns:1fr}.hero h1{font-size:31px}.big{font-size:36px}.stats{grid-template-columns:1fr}}
+</style>
+<script defer src="assets/analytics.js"></script>
+</head>
+<body>
+<div class="mast"><div class="wrap row">
+  <a class="brand" href="index.html">SOVEREO<small>CROSS-BORDER DECISION INTELLIGENCE</small></a>
+  <nav class="nav">
+    <a href="Sovereo_Index_Table.html">The Index</a>
+    <a href="Sovereo_Country_Reports.html">Dossiers</a>
+    <a href="Sovereo_Relocation_Diagnostic.html">Best-Fit Countries</a>
+  </nav>
+</div></div>
+
+<header class="hero"><div class="wrap">
+  <div class="eyebrow">Global Income Rank</div>
+  <h1>Where does your income place you in the world?</h1>
+  <p>Enter what your household earns, in your own currency, and see where it sits against the whole planet. Adjusted for purchasing power and household size, using World Bank data. Most people are far higher than they think.</p>
+</div></header>
+
+<div class="wrap">
+  <div class="panel">
+    <div class="grid">
+      <div class="f">
+        <label for="country">Your country</label>
+        <select id="country"></select>
+      </div>
+      <div class="f">
+        <label for="income">Total annual household income (after tax)</label>
+        <div class="inrow"><span class="cur" id="cursym">$</span><input id="income" type="text" inputmode="numeric" placeholder="e.g. 60,000"></div>
+      </div>
+    </div>
+    <div class="grid small" style="margin-top:18px">
+      <div class="f">
+        <label for="adults">Adults in household</label>
+        <select id="adults"></select>
+      </div>
+      <div class="f">
+        <label for="children">Children in household</label>
+        <select id="children"></select>
+      </div>
+    </div>
+    <button class="go" id="calc">See where I rank &rarr;</button>
+
+    <div class="result" id="result">
+      <div class="big" id="headline"></div>
+      <div class="sub" id="subline"></div>
+      <div class="bar"><div class="pin" id="pin"><div class="pinlab" id="pinlab"></div></div></div>
+      <div class="scale"><span>World's poorest</span><span>Global middle</span><span>World's richest</span></div>
+      <div class="stats" id="stats"></div>
+      <div class="usd" id="usd"></div>
+    </div>
+  </div>
+
+  <div class="cta" id="cta" style="display:none">
+    <h3>You know your rank. Now find where it goes furthest.</h3>
+    <p>The same income buys a completely different life depending on where you hold it. See which countries actually fit your income, your tax situation, and your priorities.</p>
+    <a class="b" href="Sovereo_Relocation_Diagnostic.html">Find your best-fit countries &rarr;</a>
+    <a class="b ghost" href="Sovereo_Country_Reports.html">Browse the dossiers</a>
+  </div>
+
+  <p class="method">
+    <b>How this is calculated.</b> Your household income is adjusted for household size using the OECD square-root scale (income divided by the square root of the number of people), then converted into 2021 international dollars using World Bank purchasing-power-parity factors, so it reflects what your money actually buys, not just an exchange rate. That figure is placed on the global income distribution from the World Bank Poverty and Inequality Platform (2024, via Our World in Data), which covers about 97 percent of the world's population. The "at today's exchange rate" line uses live market rates and is shown for reference only; the ranking itself uses purchasing power. All figures are best estimates, not exact facts. World population taken as 8.2 billion.
+  </p>
+</div>
+
+<footer><div class="wrap"><div>&copy; 2026 Sovereo Intelligence Research</div><div><a href="terms.html">Terms</a> &middot; <a href="privacy.html">Privacy</a></div></div></footer>
+
+<script>
+// Global income distribution: daily income threshold (2021 international $) at each percentile 1..99.
+// Source: World Bank PIP 2024 via Our World in Data (Giving What We Can methodology dataset).
+var THR=[0.92,1.28,1.56,1.81,2.04,2.24,2.44,2.62,2.78,2.94,3.1,3.26,3.4,3.54,3.68,3.82,3.96,4.08,4.22,4.34,4.46,4.58,4.7,4.84,4.96,5.1,5.2,5.35,5.45,5.6,5.7,5.85,6.0,6.15,6.3,6.45,6.6,6.75,6.9,7.1,7.25,7.45,7.65,7.85,8.05,8.25,8.45,8.7,8.95,9.2,9.45,9.75,10.0,10.3,10.6,11.0,11.3,11.7,12.1,12.5,12.9,13.4,13.8,14.3,14.9,15.4,16.0,16.6,17.3,18.0,18.7,19.6,20.4,21.3,22.3,23.4,24.6,25.9,27.3,28.8,30.4,32.2,34.2,36.3,38.7,41.2,44.0,47.0,50.3,54.1,58.2,62.9,68.3,74.7,82.4,92.3,105.1,124.7,162.6];
+var WORLD_POP=8.2e9;
+var MEDIAN_ANNUAL=THR[49]*365; // p50 threshold, annualised
+
+// Country: name, currency code (for live FX), symbol, PPP factor (local currency per 2021 int$, current-year adjusted).
+// PPP factors: World Bank WDI (PA.NUS.PRVT.PP) inflation-adjusted to 2024, per the GWWC/OWID dataset.
+var C=[
+["United States","USD","$",1.1577],["United Kingdom","GBP","£",0.8755],["Canada","CAD","C$",1.4129],
+["Australia","AUD","A$",1.7468],["New Zealand","NZD","NZ$",1.8163],["Ireland","EUR","€",1.1218],
+["Germany","EUR","€",0.8599],["France","EUR","€",0.8917],["Italy","EUR","€",0.8078],
+["Spain","EUR","€",0.7549],["Netherlands","EUR","€",0.9445],["Portugal","EUR","€",0.7056],
+["Greece","EUR","€",0.7047],["Austria","EUR","€",0.9056],["Belgium","EUR","€",0.9409],
+["Finland","EUR","€",1.0079],["Slovenia","EUR","€",0.7199],["Slovakia","EUR","€",0.7312],
+["Estonia","EUR","€",0.8511],["Latvia","EUR","€",0.6739],["Lithuania","EUR","€",0.6525],
+["Luxembourg","EUR","€",1.0816],["Malta","EUR","€",0.7199],["Cyprus","EUR","€",0.7330],
+["Croatia","EUR","€",0.5918],["Switzerland","CHF","CHF",1.3212],["Norway","NOK","kr",11.4618],
+["Sweden","SEK","kr",10.9434],["Denmark","DKK","kr",8.1832],["Poland","PLN","zł",2.5335],
+["Czechia","CZK","Kč",19.3128],["Hungary","HUF","Ft",235.738],["Romania","RON","lei",2.5348],
+["Bulgaria","BGN","лв",0.9732],["Serbia","RSD","дин",63.935],["Georgia","GEL","₾",1.2447],
+["Armenia","AMD","֏",182.441],["Turkey","TRY","₺",12.928],["Kazakhstan","KZT","₸",204.474],
+["Ukraine","UAH","₴",12.513],["Mexico","MXN","$",13.365],["Brazil","BRL","R$",2.9225],
+["Colombia","COP","$",2029.9],["Chile","CLP","$",602.713],["Peru","PEN","S/",2.2565],
+["Costa Rica","CRC","₡",393.828],["Panama","USD","$",0.5916],["Uruguay","UYU","$U",33.917],
+["Paraguay","PYG","₲",3284.89],["Ecuador","USD","$",0.5212],["United Arab Emirates","AED","AED",2.9672],
+["Saudi Arabia","SAR","SAR",2.1791],["Qatar","QAR","QAR",3.1899],["Bahrain","BHD","BHD",0.2184],
+["Oman","OMR","OMR",0.2141],["Kuwait","KWD","KWD",0.2128],["Israel","ILS","₪",4.5407],
+["India","INR","₹",23.034],["China","CNY","¥",4.1106],["Japan","JPY","¥",119.017],
+["South Korea","KRW","₩",1070.52],["Singapore","SGD","S$",1.2063],["Hong Kong","HKD","HK$",6.7599],
+["Thailand","THB","฿",12.671],["Malaysia","MYR","RM",1.6777],["Indonesia","IDR","Rp",5909.8],
+["Philippines","PHP","₱",24.014],["Vietnam","VND","₫",8289.62],["South Africa","ZAR","R",8.9161],
+["Mauritius","MUR","₨",23.056],["Morocco","MAD","DH",4.6748],["Egypt","EGP","E£",8.0478],
+["Kenya","KES","KSh",51.390],["Nigeria","NGN","₦",307.404],["Ghana","GHS","₵",5.4653]
+];
+
+var sel=document.getElementById('country'), cursym=document.getElementById('cursym');
+C.sort(function(a,b){return a[0]<b[0]?-1:1});
+C.forEach(function(c,i){var o=document.createElement('option');o.value=i;o.textContent=c[0]+" ("+c[1]+")";sel.appendChild(o);});
+// default to United States
+for(var i=0;i<C.length;i++){if(C[i][0]==='United States'){sel.value=i;break;}}
+function curName(){return C[sel.value][1];}
+function setSym(){cursym.textContent=C[sel.value][2];}
+setSym(); sel.addEventListener('change',setSym);
+
+var ad=document.getElementById('adults'), ch=document.getElementById('children');
+for(var a=1;a<=8;a++){var o=document.createElement('option');o.value=a;o.textContent=a;ad.appendChild(o);}
+for(var k=0;k<=10;k++){var o2=document.createElement('option');o2.value=k;o2.textContent=k;ch.appendChild(o2);}
+
+var inc=document.getElementById('income');
+inc.addEventListener('input',function(){
+  var v=inc.value.replace(/[^0-9]/g,'');
+  inc.value=v?Number(v).toLocaleString('en-US'):'';
+});
+
+// Live FX (broad coverage, no key). Rates are units of currency per 1 USD.
+var FX=null;
+fetch('https://open.er-api.com/v6/latest/USD').then(function(r){return r.json();}).then(function(d){
+  if(d&&d.result==='success'&&d.rates)FX=d.rates;
+}).catch(function(){FX=null;});
+
+function pctFor(daily){
+  if(daily<=THR[0]) return 0.5;
+  for(var i=0;i<THR.length-1;i++){
+    if(daily>=THR[i]&&daily<THR[i+1]){
+      var frac=(Math.log(daily)-Math.log(THR[i]))/(Math.log(THR[i+1])-Math.log(THR[i]));
+      return (i+1)+frac;
+    }
+  }
+  var slope=Math.log(THR[98])-Math.log(THR[97]);
+  var extra=(Math.log(daily)-Math.log(THR[98]))/slope;
+  return Math.min(99.99, 99+extra);
+}
+function fmtTop(t){
+  if(t<0.1) return t.toFixed(2);
+  if(t<1) return t.toFixed(1);
+  return Math.round(t).toString();
+}
+function human(n){
+  if(n>=1e9) return (n/1e9).toFixed(n>=1e10?0:1)+" billion";
+  if(n>=1e6) return (Math.round(n/1e6))+" million";
+  return Math.round(n).toLocaleString('en-US');
+}
+
+document.getElementById('calc').addEventListener('click',function(){
+  var c=C[sel.value];
+  var localAnnual=Number((inc.value||'').replace(/[^0-9.]/g,''));
+  if(!localAnnual||localAnnual<=0){inc.focus();return;}
+  var adults=Number(ad.value), children=Number(ch.value);
+  var size=Math.max(1,adults+children);
+  var equiv=localAnnual/Math.sqrt(size);
+  var intlAnnual=equiv/c[3];
+  var daily=intlAnnual/365;
+  var pctile=pctFor(daily);            // richer than this % of the world
+  var top=Math.max(0.01,100-pctile);   // top X%
+  var richer=pctile;                   // %
+  var peoplePoorer=richer/100*WORLD_POP;
+  var peopleRicher=WORLD_POP-peoplePoorer;
+  var medMult=intlAnnual/MEDIAN_ANNUAL;
+
+  document.getElementById('headline').innerHTML='You are in the richest <span>'+fmtTop(top)+'%</span> of people on Earth.';
+  document.getElementById('subline').textContent='Your household out-earns about '+richer.toFixed(richer>99?2:0)+' percent of the world, on a purchasing-power basis.';
+
+  var pos=Math.min(99.4,Math.max(0.6,richer));
+  var pin=document.getElementById('pin'); pin.style.left=pos+'%';
+  document.getElementById('pinlab').textContent='You, top '+fmtTop(top)+'%';
+
+  var stats=document.getElementById('stats');
+  stats.innerHTML=
+    '<div class="stat"><b>'+human(peoplePoorer)+'</b><span>people worldwide earn less than you</span></div>'+
+    '<div class="stat"><b>'+medMult.toFixed(medMult>=10?0:1)+'×</b><span>the global median income</span></div>'+
+    '<div class="stat"><b>'+human(peopleRicher)+'</b><span>people out-earn you</span></div>';
+
+  var usd=document.getElementById('usd');
+  var ccy=c[1];
+  if(FX && (ccy==='USD' || FX[ccy])){
+    var rate = ccy==='USD'?1:FX[ccy];
+    var usdVal=localAnnual/rate;
+    usd.textContent='At today’s exchange rate, that household income is about US$'+Math.round(usdVal).toLocaleString('en-US')+' per year. Your rank above is adjusted for local purchasing power, which is why it can differ from a simple dollar conversion.';
+  } else {
+    usd.textContent='';
+  }
+
+  document.getElementById('result').classList.add('on');
+  document.getElementById('cta').style.display='block';
+  document.getElementById('result').scrollIntoView({behavior:'smooth',block:'nearest'});
+});
+</script>
+<script src="assets/site-nav.js" defer></script>
+</body>
+</html>

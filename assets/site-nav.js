@@ -4,6 +4,8 @@
   var DESKTOP=[
     {t:'Research',h:'index.html#latest-research'},
     {t:'The Index',h:'Sovereo_Index_Table.html'},
+    {t:'Best-Fit Countries',h:'Sovereo_Relocation_Diagnostic.html'},
+    {t:'Income Rank',h:'income-rank.html'},
     {t:'Guides',h:'guides.html'},
     {t:'Dossiers',h:'Sovereo_Country_Reports.html'},
     {t:'Advisory',h:'advisory.html'},
@@ -29,6 +31,7 @@
     {t:'Retire on Social Security',h:'retire-on-social-security.html'},
     {t:'Science',h:'Sovereo_Scientific_Basis.html'},
     {t:'Best-Fit Countries',h:'Sovereo_Relocation_Diagnostic.html'},
+    {t:'Global Income Rank',h:'income-rank.html'},
     {t:'Terms',h:'terms.html'},
     {t:'Privacy',h:'privacy.html'}
   ];
