@@ -13,6 +13,7 @@
     {t:'SITREP Archive',h:'/sitrep/'}
   ];
   var MOBILE_EXTRA=[
+    {t:'Cost Compare',h:'cost-compare.html'},
     {t:'Shortlist',h:'Sovereo_Index_Builder.html'},
     {t:'Science',h:'Sovereo_Scientific_Basis.html'}
   ];
@@ -32,6 +33,7 @@
     {t:'Science',h:'Sovereo_Scientific_Basis.html'},
     {t:'Best-Fit Countries',h:'Sovereo_Relocation_Diagnostic.html'},
     {t:'Global Income Rank',h:'income-rank.html'},
+    {t:'Cost of Living Compare',h:'cost-compare.html'},
     {t:'Terms',h:'terms.html'},
     {t:'Privacy',h:'privacy.html'}
   ];

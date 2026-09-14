@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cost of Living Compare | Sovereo Intelligence Research</title>
+<meta name="description" content="Compare the cost of living between any two countries, adjusted for purchasing power, and see what your monthly budget is really worth abroad. Built on World Bank data.">
+<link rel="canonical" href="https://www.sovereo.com/cost-compare.html">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#0E1A2B">
+<meta property="og:title" content="Cost of Living Compare | Sovereo">
+<meta property="og:description" content="Compare the real cost of living between any two countries and see what your budget is worth abroad.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.sovereo.com/cost-compare.html">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--paper);color:var(--ink);font-family:var(--sans);line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:920px;margin:0 auto;padding:0 28px}
+.eyebrow{font-size:12.5px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--gold2)}
+.mast{position:sticky;top:0;z-index:50;background:rgba(251,248,241,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.mast .row{display:flex;align-items:center;justify-content:space-between;height:72px}
+.brand{font-weight:800;letter-spacing:.30em;font-size:19px;color:var(--ink)}
+.brand small{display:block;font-weight:600;letter-spacing:.16em;font-size:9.5px;color:var(--soft);margin-top:2px}
+.nav{display:flex;gap:22px;align-items:center}
+.nav a{font-size:14px;font-weight:500;color:var(--ink)}
+.hero{background:var(--ink);color:var(--paper);padding:52px 0 44px}
+.hero .eyebrow{color:var(--gold2)}
+.hero h1{font-family:var(--serif);font-weight:800;font-size:40px;line-height:1.08;margin:12px 0 0;max-width:20ch}
+.hero p{font-size:18px;color:#C9D2DE;margin:16px 0 0;max-width:64ch}
+.panel{background:#fff;border:1px solid var(--line);border-radius:16px;padding:30px 32px;margin:34px 0 0}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.f label{display:block;font-size:13px;font-weight:600;color:#40505F;margin:0 0 6px}
+.f select,.f input{width:100%;font-family:inherit;font-size:16px;padding:12px 13px;border:1px solid var(--line);border-radius:9px;background:#fff;color:var(--ink)}
+.f select:focus,.f input:focus{outline:none;border-color:var(--gold)}
+.inrow{display:flex}
+.inrow .cur{display:flex;align-items:center;padding:0 13px;border:1px solid var(--line);border-right:none;border-radius:9px 0 0 9px;background:#f3efe6;font-weight:700;font-size:15px;color:#40505F;min-width:44px;justify-content:center}
+.inrow input{border-radius:0 9px 9px 0}
+.go{display:inline-block;background:#E7B85A;color:#0E1A2B;font-weight:700;font-size:17px;padding:15px 34px;border-radius:8px;margin:22px 0 0;border:none;cursor:pointer;transition:.15s}
+.go:hover{background:var(--ink);color:#fff}
+.result{display:none;margin:26px 0 0}
+.result.on{display:block}
+.big{font-family:var(--serif);font-weight:800;font-size:40px;line-height:1.08;color:var(--ink)}
+.big span{color:var(--gold)}
+.sub{font-size:18px;color:#40505F;margin:10px 0 0}
+.bars{margin:26px 0 0}
+.barrow{display:flex;align-items:center;gap:12px;margin:0 0 12px}
+.barrow .lab{width:150px;font-size:14px;font-weight:600;color:#26303E;text-align:right}
+.barrow .track{flex:1;height:22px;background:#eef2f6;border-radius:6px;overflow:hidden}
+.barrow .fill{height:100%;border-radius:6px}
+.barrow .val{width:70px;font-size:13.5px;color:var(--soft)}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:22px 0 0}
+.stat{background:#f6f2ea;border:1px solid var(--line);border-radius:12px;padding:16px}
+.stat b{display:block;font-family:var(--serif);font-size:20px;color:var(--ink)}
+.stat span{font-size:13px;color:var(--soft)}
+.err{color:#A32D2D;font-size:14px;margin:14px 0 0}
+.cta{background:var(--ink);color:var(--paper);border-radius:16px;padding:28px 32px;margin:26px 0 0}
+.cta h3{font-family:var(--serif);font-size:22px;font-weight:600;margin:0 0 8px;color:#fff}
+.cta p{color:#C9D2DE;font-size:15.5px;margin:0 0 16px}
+.cta .b{display:inline-block;background:#E7B85A;color:#0E1A2B;font-weight:700;font-size:15px;padding:13px 24px;border-radius:8px}
+.cta .b.ghost{background:transparent;color:#E7B85A;border:1px solid #E7B85A;margin-left:10px}
+.method{font-size:13px;color:var(--soft);margin:28px 0 0;max-width:82ch}
+.method b{color:#40505F}
+footer{background:var(--ink);color:#9AA6B6;padding:34px 0;font-size:13px;margin-top:48px}
+footer .wrap{display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap}
+footer a{color:#C9D2DE}
+@media(max-width:640px){.grid{grid-template-columns:1fr}.hero h1{font-size:31px}.big{font-size:30px}.stats{grid-template-columns:1fr}.barrow .lab{width:110px}}
+</style>
+<script defer src="assets/analytics.js"></script>
+</head>
+<body>
+<div class="mast"><div class="wrap row">
+  <a class="brand" href="index.html">SOVEREO<small>CROSS-BORDER DECISION INTELLIGENCE</small></a>
+  <nav class="nav">
+    <a href="Sovereo_Index_Table.html">The Index</a>
+    <a href="Sovereo_Country_Reports.html">Dossiers</a>
+    <a href="Sovereo_Relocation_Diagnostic.html">Best-Fit Countries</a>
+    <a href="income-rank.html">Income Rank</a>
+  </nav>
+</div></div>
+
+<header class="hero"><div class="wrap">
+  <div class="eyebrow">Cost of Living Compare</div>
+  <h1>What does your money really buy in another country?</h1>
+  <p>Compare the real cost of living between any two countries, adjusted for purchasing power, and see what a monthly budget in one place is worth in another. Built on World Bank purchasing-power data and live exchange rates.</p>
+</div></header>
+
+<div class="wrap">
+  <div class="panel">
+    <div class="grid">
+      <div class="f">
+        <label for="from">You live in</label>
+        <select id="from"></select>
+      </div>
+      <div class="f">
+        <label for="to">Compare with</label>
+        <select id="to"></select>
+      </div>
+    </div>
+    <div class="grid" style="margin-top:18px">
+      <div class="f">
+        <label for="budget">Your monthly budget there (optional)</label>
+        <div class="inrow"><span class="cur" id="cursym">$</span><input id="budget" type="text" inputmode="numeric" placeholder="e.g. 3,000"></div>
+      </div>
+      <div class="f" style="display:flex;align-items:flex-end">
+        <button class="go" id="calc" style="margin:0;width:100%">Compare &rarr;</button>
+      </div>
+    </div>
+
+    <div class="result" id="result">
+      <div class="big" id="headline"></div>
+      <div class="sub" id="subline"></div>
+      <div class="bars" id="bars"></div>
+      <div class="stats" id="stats"></div>
+    </div>
+    <div class="err" id="err"></div>
+  </div>
+
+  <div class="cta" id="cta" style="display:none">
+    <h3>Cheaper is only half the decision.</h3>
+    <p>A low cost of living means nothing if the tax, the visa, or the safety picture is wrong for you. See which countries actually fit your whole situation, then read the sourced file on the ones that make your shortlist.</p>
+    <a class="b" href="Sovereo_Relocation_Diagnostic.html">Find your best-fit countries &rarr;</a>
+    <a class="b ghost" href="Sovereo_Country_Reports.html">Browse the dossiers</a>
+  </div>
+
+  <p class="method">
+    <b>How this is calculated.</b> Each country's cost of living is measured by its price level, the World Bank purchasing-power-parity conversion factor divided by the current market exchange rate, which shows how expensive a comparable basket of goods and services is relative to the United States. Comparing two countries gives the relative cost of the same lifestyle in each, and applying that ratio to your budget shows what you would need to maintain it. Purchasing-power factors are from the World Bank (2021 base, inflation-adjusted); exchange rates are fetched live. These are country-level estimates for orientation, not city-level prices or a personal budget, and all figures are best estimates rather than exact facts.
+  </p>
+</div>
+
+<footer><div class="wrap"><div>&copy; 2026 Sovereo Intelligence Research</div><div><a href="terms.html">Terms</a> &middot; <a href="privacy.html">Privacy</a></div></div></footer>
+
+<script>
+// name, currency code, symbol, PPP factor (local currency per 2021 international $, inflation-adjusted to 2024).
+// PPP factors: World Bank WDI (PA.NUS.PRVT.PP) via the OWID/Giving What We Can dataset.
+var C=[
+["United States","USD","$",1.1577],["United Kingdom","GBP","£",0.8755],["Canada","CAD","C$",1.4129],
+["Australia","AUD","A$",1.7468],["New Zealand","NZD","NZ$",1.8163],["Ireland","EUR","€",1.1218],
+["Germany","EUR","€",0.8599],["France","EUR","€",0.8917],["Italy","EUR","€",0.8078],
+["Spain","EUR","€",0.7549],["Netherlands","EUR","€",0.9445],["Portugal","EUR","€",0.7056],
+["Greece","EUR","€",0.7047],["Austria","EUR","€",0.9056],["Belgium","EUR","€",0.9409],
+["Finland","EUR","€",1.0079],["Slovenia","EUR","€",0.7199],["Slovakia","EUR","€",0.7312],
+["Estonia","EUR","€",0.8511],["Latvia","EUR","€",0.6739],["Lithuania","EUR","€",0.6525],
+["Luxembourg","EUR","€",1.0816],["Malta","EUR","€",0.7199],["Cyprus","EUR","€",0.7330],
+["Croatia","EUR","€",0.5918],["Switzerland","CHF","CHF",1.3212],["Norway","NOK","kr",11.4618],
+["Sweden","SEK","kr",10.9434],["Denmark","DKK","kr",8.1832],["Poland","PLN","zł",2.5335],
+["Czechia","CZK","Kč",19.3128],["Hungary","HUF","Ft",235.738],["Romania","RON","lei",2.5348],
+["Bulgaria","BGN","лв",0.9732],["Serbia","RSD","дин",63.935],["Georgia","GEL","₾",1.2447],
+["Armenia","AMD","֏",182.441],["Turkey","TRY","₺",12.928],["Kazakhstan","KZT","₸",204.474],
+["Ukraine","UAH","₴",12.513],["Mexico","MXN","$",13.365],["Brazil","BRL","R$",2.9225],
+["Colombia","COP","$",2029.9],["Chile","CLP","$",602.713],["Peru","PEN","S/",2.2565],
+["Costa Rica","CRC","₡",393.828],["Panama","USD","$",0.5916],["Uruguay","UYU","$U",33.917],
+["Paraguay","PYG","₲",3284.89],["Ecuador","USD","$",0.5212],["United Arab Emirates","AED","AED",2.9672],
+["Saudi Arabia","SAR","SAR",2.1791],["Qatar","QAR","QAR",3.1899],["Bahrain","BHD","BHD",0.2184],
+["Oman","OMR","OMR",0.2141],["Kuwait","KWD","KWD",0.2128],["Israel","ILS","₪",4.5407],
+["India","INR","₹",23.034],["China","CNY","¥",4.1106],["Japan","JPY","¥",119.017],
+["South Korea","KRW","₩",1070.52],["Singapore","SGD","S$",1.2063],["Hong Kong","HKD","HK$",6.7599],
+["Thailand","THB","฿",12.671],["Malaysia","MYR","RM",1.6777],["Indonesia","IDR","Rp",5909.8],
+["Philippines","PHP","₱",24.014],["Vietnam","VND","₫",8289.62],["South Africa","ZAR","R",8.9161],
+["Mauritius","MUR","₨",23.056],["Morocco","MAD","DH",4.6748],["Egypt","EGP","E£",8.0478],
+["Kenya","KES","KSh",51.390],["Nigeria","NGN","₦",307.404],["Ghana","GHS","₵",5.4653]
+];
+var US_PPP=1.1577;
+C.sort(function(a,b){return a[0]<b[0]?-1:1});
+var from=document.getElementById('from'),to=document.getElementById('to'),cursym=document.getElementById('cursym');
+C.forEach(function(c,i){
+  var o=document.createElement('option');o.value=i;o.textContent=c[0]+" ("+c[1]+")";from.appendChild(o);
+  var o2=o.cloneNode(true);to.appendChild(o2);
+});
+function pick(sel,name){for(var i=0;i<C.length;i++){if(C[i][0]===name){sel.value=i;return;}}}
+pick(from,'United States'); pick(to,'Portugal');
+function setSym(){cursym.textContent=C[from.value][2];}
+setSym(); from.addEventListener('change',setSym);
+var bud=document.getElementById('budget');
+bud.addEventListener('input',function(){var v=bud.value.replace(/[^0-9]/g,'');bud.value=v?Number(v).toLocaleString('en-US'):'';});
+
+var FX=null,FXok=false;
+function loadFX(){
+  return fetch('https://open.er-api.com/v6/latest/USD').then(function(r){return r.json();}).then(function(d){
+    if(d&&d.rates){FX=d.rates;FXok=true;}
+  }).catch(function(){FXok=false;});
+}
+loadFX();
+
+function rateOf(ccy){ if(ccy==='USD')return 1; return FX?FX[ccy]:null; }
+function priceLevel(c){ // c = country row; PL relative to US = (ppp/marketFX)/US_PPP
+  var r=rateOf(c[1]); if(!r)return null; return (c[3]/r)/US_PPP;
+}
+function money(n){ return Math.round(n).toLocaleString('en-US'); }
+
+function run(){
+  var a=C[from.value], b=C[to.value];
+  document.getElementById('err').textContent='';
+  if(from.value===to.value){document.getElementById('err').textContent='Pick two different countries to compare.';return;}
+  var go=function(){
+    var plA=priceLevel(a), plB=priceLevel(b);
+    if(plA===null||plB===null){document.getElementById('err').textContent='Could not load live exchange rates for one of these currencies right now. Please try again in a moment.';return;}
+    var ratio=plB/plA; // cost in B relative to A
+    var pct=Math.round(Math.abs(ratio-1)*100);
+    var dir= ratio<1 ? 'less' : 'more';
+    var cheaper = ratio<1;
+    document.getElementById('headline').innerHTML='Living in '+b[0]+' costs about <span>'+pct+'% '+dir+'</span> than living in '+a[0]+'.';
+    var line='A comparable lifestyle in '+b[0]+' costs roughly '+(ratio*100).toFixed(0)+' cents for every dollar it costs in '+a[0]+'.';
+    document.getElementById('subline').textContent=line;
+
+    // bars scaled to the larger of the two price levels
+    var mx=Math.max(plA,plB);
+    function bar(name,pl,color){
+      var w=Math.max(4,Math.round(pl/mx*100));
+      return '<div class="barrow"><div class="lab">'+name+'</div><div class="track"><div class="fill" style="width:'+w+'%;background:'+color+'"></div></div><div class="val">'+pl.toFixed(2)+'</div></div>';
+    }
+    document.getElementById('bars').innerHTML=
+      bar(a[0],plA,'#0E1A2B')+bar(b[0],plB,'#E7B85A')+
+      '<div style="font-size:12px;color:var(--soft);margin-top:2px">Price level, United States = 1.00. Higher means more expensive.</div>';
+
+    // budget
+    var raw=Number((bud.value||'').replace(/[^0-9.]/g,''));
+    var stats=document.getElementById('stats');
+    if(raw>0){
+      var rA=rateOf(a[1]), rB=rateOf(b[1]);
+      var budUSD=raw/rA;
+      var equivUSD=budUSD*ratio;
+      var equivLocalB=equivUSD*rB;
+      stats.innerHTML=
+        '<div class="stat"><b>'+a[2]+money(raw)+'</b><span>your monthly budget in '+a[0]+'</span></div>'+
+        '<div class="stat"><b>'+b[2]+money(equivLocalB)+'</b><span>to match it in '+b[0]+' ('+b[1]+')</span></div>'+
+        '<div class="stat"><b>US$'+money(equivUSD)+'</b><span>the same lifestyle, in US dollars</span></div>';
+    } else {
+      stats.innerHTML=
+        '<div class="stat"><b>'+plA.toFixed(2)+'</b><span>'+a[0]+' price level (US = 1.00)</span></div>'+
+        '<div class="stat"><b>'+plB.toFixed(2)+'</b><span>'+b[0]+' price level (US = 1.00)</span></div>'+
+        '<div class="stat"><b>'+(cheaper?'-':'+')+pct+'%</b><span>cost difference vs '+a[0]+'</span></div>';
+    }
+    document.getElementById('result').classList.add('on');
+    document.getElementById('cta').style.display='block';
+    document.getElementById('result').scrollIntoView({behavior:'smooth',block:'nearest'});
+  };
+  if(FXok||FX){ go(); } else { loadFX().then(go); }
+}
+document.getElementById('calc').addEventListener('click',run);
+</script>
+<script src="assets/site-nav.js" defer></script>
+</body>
+</html>
