@@ -51,6 +51,16 @@ a{color:inherit;text-decoration:none}
 .section{padding:48px 0 6px}
 .section h2{font-family:var(--serif);font-size:28px;font-weight:700;margin:0 0 8px;max-width:24ch}
 .section .lead{font-size:16.5px;color:#40505F;max-width:70ch;margin:0 0 4px}
+.globe-wrap{display:none;position:relative;margin:22px auto 6px;max-width:480px}
+.globe-wrap.on{display:block}
+#globe{width:100%;height:auto;display:block;cursor:grab;touch-action:none}
+#globe:active{cursor:grabbing}
+.globe-tip{position:absolute;pointer-events:none;background:var(--ink);color:#fff;font-size:12.5px;font-weight:600;padding:6px 9px;border-radius:7px;white-space:nowrap;opacity:0;transform:translate(-50%,-130%);transition:opacity .1s;z-index:5}
+.globe-tip b{color:var(--gold2)}
+.globe-legend{display:flex;flex-wrap:wrap;justify-content:center;gap:14px;margin:6px 0 0;font-size:12px;color:var(--soft)}
+.globe-legend span{display:inline-flex;align-items:center;gap:6px}
+.globe-legend i{width:12px;height:12px;border-radius:3px;display:inline-block}
+.globe-hint{text-align:center;font-size:12.5px;color:var(--soft);margin:2px 0 0}
 .controls{display:flex;flex-wrap:wrap;gap:8px;margin:22px 0 14px}
 .chip{font-size:13px;font-weight:600;color:#40505F;background:#fff;border:1px solid var(--line);border-radius:20px;padding:7px 15px;cursor:pointer}
 .chip.on{background:var(--ink);color:#fff;border-color:var(--ink)}
@@ -127,6 +137,18 @@ footer a{color:#C9D2DE}
   <section class="section">
     <h2>How the US compares: government debt as a share of the economy</h2>
     <p class="lead">A raw debt total is hard to judge. The number that lets you compare countries fairly is <b>debt-to-GDP</b>: the government's total debt measured against everything the country produces in a year. A country making a lot can safely carry more debt than a country making a little, just as a high earner can carry a larger mortgage. Higher on this list means more strain.</p>
+    <div class="globe-wrap" id="globeWrap">
+      <canvas id="globe" width="480" height="480" role="img" aria-label="Rotating globe of government debt to GDP by country"></canvas>
+      <div class="globe-tip" id="globeTip"></div>
+      <div class="globe-legend">
+        <span><i style="background:#C0554C"></i>100%+ (heavy)</span>
+        <span><i style="background:#D6A83C"></i>60&ndash;100% (elevated)</span>
+        <span><i style="background:#5E86AE"></i>30&ndash;60% (moderate)</span>
+        <span><i style="background:#3F9C7C"></i>under 30% (low)</span>
+        <span><i style="background:#d7dbe2"></i>no data</span>
+      </div>
+      <div class="globe-hint">Drag to spin the globe. Hover a country for its figure.</div>
+    </div>
     <div class="controls" id="controls">
       <span class="chip on" data-r="all">All regions</span>
       <span class="chip" data-r="Europe">Europe</span>
@@ -281,8 +303,18 @@ function build(fromLive){
   rows.sort(function(a,b){return b.pct-a.pct;});
   var us=rows.filter(function(r){return r.iso==='USA';})[0];
   if(us)usGdpRatio=us.pct;
+  PCTBYNUM={};
+  rows.forEach(function(r){var n=ISO3NUM[r.iso]; if(n!=null)PCTBYNUM[n]=r.pct;});
+  if(window.__paintGlobe)window.__paintGlobe();
   render();
 }
+var PCTBYNUM={};
+var ISO3NUM={JPN:392,GRC:300,SGP:702,BHR:48,ITA:380,USA:840,FRA:250,CAN:124,BEL:56,GBR:826,ESP:724,
+UKR:804,CHN:156,PRT:620,BRA:76,EGY:818,FIN:246,IND:356,AUT:40,MUS:480,GHA:288,ZAF:710,HUN:348,
+MAR:504,ISR:376,MYS:458,KEN:404,THA:764,PAN:591,URY:858,DEU:276,CRI:188,POL:616,MEX:484,COL:170,
+PHL:608,ECU:218,KOR:410,ROU:642,AUS:36,ARM:51,SRB:688,NGA:566,NZL:554,QAT:634,NOR:578,CZE:203,
+NLD:528,CHL:152,PRY:600,GEO:268,IDN:360,CHE:756,OMN:512,VNM:704,SWE:752,PER:604,IRL:372,DNK:208,
+ARE:784,SAU:682,TUR:792,BGR:100,KAZ:398,KWT:414,HKG:344};
 function render(){
   var max=rows[0]?rows[0].pct:250;
   var host=document.getElementById('tbl');
@@ -316,6 +348,87 @@ fetch("https://www.imf.org/external/datamapper/api/v1/GGXWDG_NGDP").then(functio
   var v=d&&d.values&&d.values.GGXWDG_NGDP?d.values.GGXWDG_NGDP:null;
   if(!v)throw 0; imfData=v; build(true);
 }).catch(function(){ build(false); });
+
+/* ============================ 3D rotating globe ============================ */
+(function(){
+  function loadScript(src){return new Promise(function(res,rej){var s=document.createElement('script');s.src=src;s.onload=res;s.onerror=rej;document.head.appendChild(s);});}
+  function colorFor(pct){
+    if(pct==null||isNaN(pct))return'#d7dbe2';
+    if(pct>=100)return'#C0554C';if(pct>=60)return'#D6A83C';if(pct>=30)return'#5E86AE';return'#3F9C7C';
+  }
+  Promise.all([
+    loadScript('https://cdn.jsdelivr.net/npm/d3@7/dist/d3.min.js'),
+    loadScript('https://cdn.jsdelivr.net/npm/topojson-client@3/dist/topojson-client.min.js')
+  ]).then(function(){
+    return fetch('https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json').then(function(r){return r.json();});
+  }).then(function(world){
+    if(!window.d3||!window.topojson)throw 0;
+    var feats=topojson.feature(world,world.objects.countries).features;
+    var canvas=document.getElementById('globe'), tip=document.getElementById('globeTip'), wrap=document.getElementById('globeWrap');
+    var ctx=canvas.getContext('2d');
+    var size=480, dpr=Math.max(1,Math.min(2,window.devicePixelRatio||1));
+    function resize(){
+      var w=Math.min(wrap.clientWidth||480,480); size=w>0?w:480;
+      canvas.style.width=size+'px'; canvas.style.height=size+'px';
+      canvas.width=Math.round(size*dpr); canvas.height=Math.round(size*dpr);
+    }
+    wrap.classList.add('on'); resize();
+    var proj=d3.geoOrthographic().translate([size/2,size/2]).scale(size/2-2).rotate([-10,-18]).clipAngle(90);
+    var path=d3.geoPath(proj,ctx);
+    var graticule=d3.geoGraticule10();
+    var dragging=false, hovering=false, lastT=0;
+
+    function draw(){
+      proj.translate([size/2,size/2]).scale(size/2-2);
+      ctx.setTransform(dpr,0,0,dpr,0,0);
+      ctx.clearRect(0,0,size,size);
+      // ocean
+      ctx.beginPath(); path({type:'Sphere'}); ctx.fillStyle='#0b1636'; ctx.fill();
+      // graticule
+      ctx.beginPath(); path(graticule); ctx.strokeStyle='rgba(255,255,255,.06)'; ctx.lineWidth=.6; ctx.stroke();
+      // countries
+      feats.forEach(function(f){
+        ctx.beginPath(); path(f);
+        ctx.fillStyle=colorFor(PCTBYNUM[+f.id]);
+        ctx.fill();
+        ctx.strokeStyle='rgba(11,22,54,.55)'; ctx.lineWidth=.4; ctx.stroke();
+      });
+      // rim
+      ctx.beginPath(); path({type:'Sphere'}); ctx.strokeStyle='rgba(212,175,55,.55)'; ctx.lineWidth=1; ctx.stroke();
+    }
+    function frame(t){
+      if(!dragging&&!hovering){var r=proj.rotate(); r[0]+=(t-lastT)*0.006; proj.rotate(r);}
+      lastT=t; draw(); requestAnimationFrame(frame);
+    }
+    // Drag to spin
+    var sx,sy,r0;
+    canvas.addEventListener('pointerdown',function(e){dragging=true;sx=e.offsetX;sy=e.offsetY;r0=proj.rotate();canvas.setPointerCapture(e.pointerId);});
+    canvas.addEventListener('pointerup',function(e){dragging=false;});
+    canvas.addEventListener('pointerleave',function(){hovering=false;tip.style.opacity=0;});
+    canvas.addEventListener('pointermove',function(e){
+      var x=e.offsetX,y=e.offsetY;
+      if(dragging){
+        var k=0.28*(480/size)*(480/proj.scale());
+        var r=[r0[0]+(x-sx)*k, Math.max(-89,Math.min(89,r0[1]-(y-sy)*k)), r0[2]||0];
+        proj.rotate(r); tip.style.opacity=0; return;
+      }
+      var ll=proj.invert&&proj.invert([x,y]);
+      if(!ll||isNaN(ll[0])){hovering=false;tip.style.opacity=0;return;}
+      var hit=null;
+      for(var i=0;i<feats.length;i++){ if(d3.geoContains(feats[i],ll)){hit=feats[i];break;} }
+      if(hit){
+        hovering=true;
+        var pct=PCTBYNUM[+hit.id];
+        var nm=(hit.properties&&hit.properties.name)||'';
+        tip.innerHTML=nm+': <b>'+(pct!=null&&!isNaN(pct)?(pct>=100?Math.round(pct):pct.toFixed(1))+'% of GDP':'no data')+'</b>';
+        tip.style.left=x+'px'; tip.style.top=y+'px'; tip.style.opacity=1;
+      } else { hovering=false; tip.style.opacity=0; }
+    });
+    window.addEventListener('resize',function(){resize();});
+    window.__paintGlobe=function(){};
+    requestAnimationFrame(function(t){lastT=t;requestAnimationFrame(frame);});
+  }).catch(function(){ /* globe optional; ranked table remains */ });
+})();
 </script>
 <script src="assets/site-nav.js" defer></script>
 </body>
