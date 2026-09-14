@@ -9,8 +9,7 @@
     {t:'Guides',h:'guides.html'},
     {t:'Dossiers',h:'Sovereo_Country_Reports.html'},
     {t:'Advisory',h:'advisory.html'},
-    {t:'The Reckoning',h:'forecast-ledger.html'},
-    {t:'SITREP Archive',h:'/sitrep/'}
+    {t:'The Reckoning',h:'forecast-ledger.html'}
   ];
   var MOBILE_EXTRA=[
     {t:'Research',h:'index.html#latest-research'},
