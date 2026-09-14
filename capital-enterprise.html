@@ -8,7 +8,7 @@
 <meta name="robots" content="all">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="favicon.svg">
-<meta name="theme-color" content="#0E1A2B">
+<meta name="theme-color" content="#12266B">
 <link rel="canonical" href="https://www.sovereo.com/capital-enterprise.html">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -26,7 +26,7 @@ a{color:var(--gold);text-decoration:none}a:hover{text-decoration:underline}
 .brand small{display:block;font-weight:600;letter-spacing:.16em;font-size:10px;color:var(--soft);margin-top:2px}
 .nav{display:flex;gap:26px;align-items:center}
 .nav a{font-size:14.5px;font-weight:500;color:var(--ink)}.nav a:hover,.nav a.on{color:var(--gold);text-decoration:none}
-.nav .cta{background:#E7B85A;color:var(--ink);font-weight:700;padding:10px 18px;border-radius:6px}
+.nav .cta{background:#D4AF37;color:var(--ink);font-weight:700;padding:10px 18px;border-radius:6px}
 .nav .cta:hover{background:var(--gold);color:#fff}
 @media(max-width:880px){.nav a:not(.cta){display:none}}
 .hero{background:var(--ink);color:var(--paper);padding:54px 0 46px}
@@ -84,9 +84,9 @@ td.reg{color:var(--mut);font-size:12.5px;white-space:nowrap}
 .ctaband{background:var(--ink);color:var(--paper);border-radius:16px;padding:34px 30px;margin:40px 0 0;text-align:center}
 .ctaband h2{color:#fff}
 .ctaband p{color:#C9D2DE;max-width:60ch;margin:10px auto 0;font-size:16px}
-.btn{display:inline-block;background:#E7B85A;color:var(--ink);font-weight:700;padding:13px 24px;border-radius:8px;margin:18px 8px 0}
+.btn{display:inline-block;background:#D4AF37;color:var(--ink);font-weight:700;padding:13px 24px;border-radius:8px;margin:18px 8px 0}
 .btn:hover{background:var(--gold);color:#fff;text-decoration:none}
-.btn.ghost{background:transparent;color:#E7B85A;border:1px solid #6b5836}
+.btn.ghost{background:transparent;color:#D4AF37;border:1px solid #6b5836}
 footer{background:var(--ink);color:#9AA6B6;padding:44px 0 40px;font-size:13.5px;margin-top:48px}
 footer .frow{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap}
 footer .brand{color:#fff;font-size:18px;margin-bottom:6px}
@@ -227,11 +227,11 @@ const D=[["Denmark", "Europe", 83.5, 95.6, 90, 95.2, 100], ["Netherlands", "Euro
 const st={q:'',region:'All',rankby:'cap'};
 const tb=document.getElementById('tb'), countEl=document.getElementById('count');
 const esc=s=>s.replace(/&/g,'&amp;').replace(/</g,'&lt;');
-function capColor(v){ if(v>=75)return '#2E7D5B'; if(v>=55)return '#6FA03C'; if(v>=40)return '#C8A45C'; if(v>=25)return '#D98A3D'; return '#B4472F'; }
+function capColor(v){ if(v>=75)return '#2E7D5B'; if(v>=55)return '#6FA03C'; if(v>=40)return '#E7C765'; if(v>=25)return '#D98A3D'; return '#B4472F'; }
 function ccell(v){
   if(v===null||v===undefined) return '<span style="color:var(--soft)">&mdash;</span>';
   const c=capColor(v);
-  const bg={'#2E7D5B':'#E4F0E9','#6FA03C':'#EDF3E3','#C8A45C':'#F6EED9','#D98A3D':'#F7E7D3','#B4472F':'#F6E0DA'}[c];
+  const bg={'#2E7D5B':'#E4F0E9','#6FA03C':'#EDF3E3','#E7C765':'#F6EED9','#D98A3D':'#F7E7D3','#B4472F':'#F6E0DA'}[c];
   return '<span class="cc" style="color:'+c+';background:'+bg+'">'+(Number.isInteger(v)?v:v.toFixed(1))+'</span>';
 }
 const IDX={cap:3,FI:4,BE:5,CR:6,overall:2};
