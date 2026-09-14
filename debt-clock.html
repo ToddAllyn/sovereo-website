@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sovereign Debt: The Live US Clock & the Global Ranking | Sovereo Intelligence Research</title>
+<meta name="description" content="The live US national debt from the US Treasury, set against government debt as a share of the economy for countries worldwide, from the IMF. What it means for currencies, taxes, and where your money holds its value.">
+<link rel="canonical" href="https://www.sovereo.com/debt-clock.html">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#12266B">
+<meta property="og:title" content="Sovereign Debt, Live: the US Clock and the Global Ranking | Sovereo">
+<meta property="og:description" content="The live US debt clock, plus government debt as a share of GDP across the world, explained for anyone.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.sovereo.com/debt-clock.html">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--paper);color:var(--ink);font-family:var(--sans);line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:960px;margin:0 auto;padding:0 28px}
+.eyebrow{font-size:12.5px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--gold2)}
+.mast{position:sticky;top:0;z-index:50;background:rgba(251,248,241,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.mast .row{display:flex;align-items:center;justify-content:space-between;height:72px}
+.brand{font-weight:800;letter-spacing:.30em;font-size:19px;color:var(--ink)}
+.brand small{display:block;font-weight:600;letter-spacing:.16em;font-size:9.5px;color:var(--soft);margin-top:2px}
+.nav{display:flex;gap:22px;align-items:center}
+.nav a{font-size:14px;font-weight:500;color:var(--ink)}
+.hero{background:var(--ink);color:var(--paper);padding:52px 0 40px}
+.hero .eyebrow{color:var(--gold2)}
+.hero h1{font-family:var(--serif);font-weight:800;font-size:40px;line-height:1.08;margin:12px 0 0;max-width:22ch}
+.hero p{font-size:18px;color:#C9D2DE;margin:16px 0 0;max-width:66ch}
+/* Ticker */
+.clockwrap{background:var(--ink);color:var(--paper);padding:0 0 46px}
+.clock{background:#0b1636;border:1px solid #24356e;border-radius:18px;padding:34px 28px 30px;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,.35)}
+.clock .lab{font-size:12.5px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--gold2)}
+.digits{font-family:var(--serif);font-weight:800;letter-spacing:.01em;color:#fff;font-size:clamp(32px,7.5vw,68px);line-height:1.02;margin:10px 0 4px;font-variant-numeric:tabular-nums}
+.digits .cur{color:var(--gold2)}
+.persec{font-size:15px;color:#9FB0D6;margin:6px 0 0}
+.persec b{color:#fff;font-variant-numeric:tabular-nums}
+.since{font-size:14px;color:#8595bd;margin:10px 0 0}
+.since b{color:var(--gold2);font-variant-numeric:tabular-nums}
+.asof{font-size:12.5px;color:#6f7fa8;margin:14px 0 0}
+.asof.warn{color:#E7C765}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:22px 0 0}
+.stat{background:#0b1636;border:1px solid #24356e;border-radius:12px;padding:16px;color:#fff}
+.stat b{display:block;font-family:var(--serif);font-size:21px;color:#fff;font-variant-numeric:tabular-nums}
+.stat span{font-size:12px;color:#9FB0D6;display:block;margin-top:3px;line-height:1.35}
+/* Comparative section */
+.section{padding:48px 0 6px}
+.section h2{font-family:var(--serif);font-size:28px;font-weight:700;margin:0 0 8px;max-width:24ch}
+.section .lead{font-size:16.5px;color:#40505F;max-width:70ch;margin:0 0 4px}
+.controls{display:flex;flex-wrap:wrap;gap:8px;margin:22px 0 14px}
+.chip{font-size:13px;font-weight:600;color:#40505F;background:#fff;border:1px solid var(--line);border-radius:20px;padding:7px 15px;cursor:pointer}
+.chip.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+.tbl{background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.trow{display:grid;grid-template-columns:38px 1.6fr 78px 1fr 92px;align-items:center;gap:12px;padding:12px 18px;border-top:1px solid var(--line);font-size:14.5px}
+.trow:first-child{border-top:none}
+.trow.head{background:var(--paper2,#f3efe6);font-size:12px;font-weight:700;letter-spacing:.04em;color:var(--soft);text-transform:uppercase}
+.trow.us{background:rgba(212,175,55,.10);box-shadow:inset 3px 0 0 var(--gold)}
+.trow .rk{color:var(--soft);font-variant-numeric:tabular-nums}
+.trow .nm{font-weight:600;color:var(--ink)}
+.trow .nm small{display:block;font-weight:500;color:var(--soft);font-size:12px}
+.trow .pct{font-family:var(--serif);font-weight:700;font-size:17px;color:var(--ink);text-align:right;font-variant-numeric:tabular-nums}
+.trow .barwrap{background:#eef1f5;border-radius:6px;height:10px;overflow:hidden}
+.trow .barwrap i{display:block;height:100%;border-radius:6px}
+.tag{font-size:11.5px;font-weight:700;text-align:center;border-radius:6px;padding:4px 6px}
+.t-heavy{background:#F6E0DE;color:#9A2A22}.t-elev{background:#F7EAD3;color:#8A6A15}
+.t-mod{background:#E2ECF5;color:#2C5480}.t-low{background:#DFF0E9;color:#1E6B52}
+.note{font-size:13px;color:var(--soft);margin:12px 2px 0}
+.note.warn{color:#8A6A15}
+.panel{background:#fff;border:1px solid var(--line);border-radius:16px;padding:30px 32px;margin:26px 0 0}
+.panel h2{font-family:var(--serif);font-size:22px;font-weight:600;margin:0 0 6px}
+.panel h4{font-size:15px;font-weight:700;color:#26303E;margin:16px 0 4px}
+.panel p{font-size:15px;color:#40505F;margin:0 0 6px}
+.cta{background:var(--ink);color:var(--paper);border-radius:16px;padding:28px 32px;margin:26px 0 0}
+.cta h3{font-family:var(--serif);font-size:22px;font-weight:600;margin:0 0 8px;color:#fff}
+.cta p{color:#C9D2DE;font-size:15.5px;margin:0 0 16px}
+.cta .b{display:inline-block;background:#D4AF37;color:#12266B;font-weight:700;font-size:15px;padding:13px 24px;border-radius:8px;margin-top:6px}
+.cta .b.ghost{background:transparent;color:#D4AF37;border:1px solid #D4AF37;margin-left:10px}
+.method{font-size:13px;color:var(--soft);margin:28px 0 0;max-width:84ch}
+.method b{color:#40505F}
+footer{background:var(--ink);color:#9AA6B6;padding:34px 0;font-size:13px;margin-top:48px}
+footer .wrap{display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap}
+footer a{color:#C9D2DE}
+@media(max-width:660px){.hero h1{font-size:30px}.stats{grid-template-columns:1fr 1fr}
+.trow{grid-template-columns:26px 1.4fr 60px 74px;gap:9px;padding:11px 13px}
+.trow .barwrap,.trow.head span:nth-child(4){display:none}.cta .b.ghost{margin-left:0;margin-top:10px}}
+</style>
+<script defer src="assets/analytics.js"></script>
+</head>
+<body>
+<div class="mast"><div class="wrap row">
+  <a class="brand" href="index.html">SOVEREO<small>CROSS-BORDER DECISION INTELLIGENCE</small></a>
+  <nav class="nav">
+    <a href="Sovereo_Index_Table.html">The Index</a>
+    <a href="Sovereo_Country_Reports.html">Dossiers</a>
+    <a href="Sovereo_Relocation_Diagnostic.html">Best-Fit Countries</a>
+  </nav>
+</div></div>
+
+<header class="hero"><div class="wrap">
+  <div class="eyebrow">Sovereign Debt, Live</div>
+  <h1>What the world owes, and what it means for your money.</h1>
+  <p>Start with the US national debt, live from the US Treasury and climbing every second. Then see how heavily every major country is borrowing against the size of its own economy, because that pressure is one of the quiet forces behind a currency, a tax rate, and where a dollar keeps its value.</p>
+</div></header>
+
+<div class="clockwrap"><div class="wrap">
+  <div class="clock">
+    <div class="lab">Total US National Debt</div>
+    <div class="digits" id="digits"><span class="cur">$</span><span id="num">40,046,178,322,792</span></div>
+    <div class="persec">Growing by roughly <b id="persec">--</b> every second</div>
+    <div class="since">Up <b id="since">$0</b> since you opened this page</div>
+    <div class="asof" id="asof">Loading the latest figure from the US Treasury&hellip;</div>
+  </div>
+
+  <div class="stats" id="stats">
+    <div class="stat"><b id="s_pub">--</b><span>owed to the public (investors, funds, foreign governments)</span></div>
+    <div class="stat"><b id="s_intra">--</b><span>the government owes itself (Social Security and other trust funds)</span></div>
+    <div class="stat"><b id="s_cit">--</b><span>per US citizen, if the debt were split evenly</span></div>
+    <div class="stat"><b id="s_gdp">--</b><span>the US debt as a share of its whole economy (debt-to-GDP)</span></div>
+  </div>
+</div></div>
+
+<div class="wrap">
+  <section class="section">
+    <h2>How the US compares: government debt as a share of the economy</h2>
+    <p class="lead">A raw debt total is hard to judge. The number that lets you compare countries fairly is <b>debt-to-GDP</b>: the government's total debt measured against everything the country produces in a year. A country making a lot can safely carry more debt than a country making a little, just as a high earner can carry a larger mortgage. Higher on this list means more strain.</p>
+    <div class="controls" id="controls">
+      <span class="chip on" data-r="all">All regions</span>
+      <span class="chip" data-r="Europe">Europe</span>
+      <span class="chip" data-r="Americas">Americas</span>
+      <span class="chip" data-r="Asia-Pacific">Asia-Pacific</span>
+      <span class="chip" data-r="Middle East">Middle East</span>
+      <span class="chip" data-r="Africa">Africa</span>
+    </div>
+    <div class="tbl" id="tbl">
+      <div class="trow head"><span>#</span><span>Country</span><span style="text-align:right">Debt/GDP</span><span>Relative</span><span style="text-align:center">Strain</span></div>
+      <div class="trow"><span></span><span class="nm">Loading the latest IMF figures&hellip;</span><span></span><span></span><span></span></div>
+    </div>
+    <p class="note" id="tblnote">Source: International Monetary Fund, general government gross debt, percent of GDP.</p>
+  </section>
+
+  <div class="cta">
+    <h3>The number is not the story. What it does to your money is.</h3>
+    <p>Heavy government borrowing is one of the pressures behind a weakening currency, higher taxes, and a rising cost of living. The free daily Sovereo SITREP traces the day's cross-border signals, like these, to what they mean for your money, in about a minute a morning.</p>
+    <a class="b" href="index.html#sitrep">Get the free daily SITREP &rarr;</a>
+    <a class="b ghost" href="brief.html">See the weekly Brief</a>
+  </div>
+
+  <div class="panel">
+    <h2>How to read all of this, in plain English</h2>
+    <p>You do not need any background in finance. Here is the whole page, simply.</p>
+    <h4>What is the "national debt"?</h4>
+    <p>It is the total a government has borrowed and not yet repaid. Most years a government spends more than it collects in taxes and borrows to cover the gap. Those gaps pile up over the years, and the pile is the national debt. The US clock at the top is that pile for the United States, updated to the second.</p>
+    <h4>What does "debt-to-GDP" mean, and why use it?</h4>
+    <p>GDP is the value of everything a country produces in a year, its income. Debt-to-GDP compares what the government owes to what the country earns. A ratio of 100% means the debt equals one full year of the whole economy's output. It lets you compare a giant economy and a small one on the same footing, which a raw dollar total cannot.</p>
+    <h4>Is a high ratio automatically a crisis?</h4>
+    <p>No. Japan sits above 200% and remains stable because it borrows in its own currency at low rates from its own savers. What matters is whether a country borrows in money it controls, how much the interest costs each year, and whether lenders stay willing to lend. A high and rising ratio in a country that borrows in someone else's currency is the real warning sign.</p>
+    <h4>One honest caveat about the ranking</h4>
+    <p>This is "gross" debt, which counts what a government owes without subtracting what it owns. A few countries look far more indebted than they are because they also hold huge offsetting assets. Singapore is the clearest case: it is legally barred from spending its borrowing and invests it instead, so its real net position is strong despite a high gross number. Norway and Hong Kong are similar. Treat the ranking as a first read, not a verdict.</p>
+    <h4>Why an intelligence site about moving abroad tracks this</h4>
+    <p>Because government debt is one of the forces behind a weakening currency, higher taxes, and a rising cost of living. People who think across borders watch it not to panic, but to understand where their money is likely to hold its value, and that is exactly what the Sovereo Index, the Best-Fit tool, and the dossiers are built to answer.</p>
+  </div>
+
+  <p class="method">
+    <b>Where these numbers come from.</b> The live US total, its public and intragovernmental split, and the per-second growth rate are pulled from the US Treasury's official "Debt to the Penny" dataset (Fiscal Data API), updated each business day; between updates the clock extends the recent real pace of borrowing forward. The country comparison is general government gross debt as a percent of GDP from the International Monetary Fund's World Economic Outlook, fetched live from the IMF DataMapper and labelled with the data year; if that feed cannot be reached, the page shows the last confirmed IMF World Economic Outlook (October 2025) figures as a dated reference. The per-US-citizen figure divides the live total by an estimated US population of about 342 million (a 2026 estimate) and is illustrative, since the debt is not actually assigned to individuals. Gross debt does not net out government assets, which overstates the burden for a few asset-rich states as noted above. All figures are point in time and provided for general education, not financial advice.
+  </p>
+</div>
+
+<footer><div class="wrap"><div>&copy; 2026 Sovereo Intelligence Research</div><div><a href="terms.html">Terms</a> &middot; <a href="privacy.html">Privacy</a></div></div></footer>
+
+<script>
+/* ============================ US live clock ============================ */
+var REF_TOTAL=40046178322792.78, REF_PUBLIC=32357573654300.31, REF_INTRA=7688604668492.47;
+var REF_DATE="2026-09-11", REF_RATE=73000;
+var US_POP=342000000;
+
+var DEBT_API="https://api.fiscaldata.treasury.gov/services/api/fiscal_service/v2/accounting/od/debt_to_penny"
+  +"?sort=-record_date&page%5Bsize%5D=260&fields=record_date,tot_pub_debt_out_amt,debt_held_public_amt,intragov_hold_amt";
+
+var st={base:REF_TOTAL,baseTime:Date.parse(REF_DATE+"T00:00:00Z"),rate:REF_RATE,
+        pubShare:REF_PUBLIC/REF_TOTAL,intraShare:REF_INTRA/REF_TOTAL,live:false,recordDate:REF_DATE};
+var openTotal=null, usGdpRatio=null;
+
+function commas(n){return Math.floor(n).toLocaleString('en-US');}
+function usdShort(n){if(n>=1e12)return "$"+(n/1e12).toFixed(2)+" trillion";if(n>=1e9)return "$"+(n/1e9).toFixed(1)+" billion";return "$"+commas(n);}
+function currentTotal(){return st.base+st.rate*((Date.now()-st.baseTime)/1000);}
+
+fetch(DEBT_API).then(function(r){return r.json();}).then(function(d){
+  var rows=d&&d.data?d.data:null; if(!rows||!rows.length)throw 0;
+  var L=rows[0], total=parseFloat(L.tot_pub_debt_out_amt), pub=parseFloat(L.debt_held_public_amt),
+      intra=parseFloat(L.intragov_hold_amt), lt=Date.parse(L.record_date+"T00:00:00Z");
+  if(!(total>0)||!lt)throw 0;
+  var rate=REF_RATE, O=rows[rows.length-1], oldTot=parseFloat(O.tot_pub_debt_out_amt), oldT=Date.parse(O.record_date+"T00:00:00Z");
+  if(oldTot>0&&oldT&&lt>oldT){var r=(total-oldTot)/((lt-oldT)/1000);if(r>10000&&r<400000)rate=r;}
+  st.base=total;st.baseTime=lt;st.rate=rate;st.recordDate=L.record_date;
+  if(pub>0&&intra>0){st.pubShare=pub/total;st.intraShare=intra/total;}
+  st.live=true;
+}).catch(function(){st.live=false;}).finally(function(){
+  var a=document.getElementById('asof');
+  var dt=new Date(st.recordDate+"T00:00:00Z").toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric'});
+  if(st.live){a.className='asof';a.textContent="Live from the US Treasury. Last official figure dated "+dt+", ticking forward at the recent pace of borrowing.";}
+  else{a.className='asof warn';a.textContent="Live Treasury feed unavailable right now, showing the last confirmed figure (dated "+dt+") as a reference.";}
+  openTotal=currentTotal();
+});
+
+function tick(){
+  var t=currentTotal();
+  document.getElementById('num').textContent=commas(t);
+  document.getElementById('persec').textContent="$"+commas(st.rate);
+  if(openTotal!==null)document.getElementById('since').textContent="$"+commas(Math.max(0,t-openTotal));
+  document.getElementById('s_pub').textContent=usdShort(t*st.pubShare);
+  document.getElementById('s_intra').textContent=usdShort(t*st.intraShare);
+  document.getElementById('s_cit').textContent="$"+commas(t/US_POP);
+  document.getElementById('s_gdp').textContent=(usGdpRatio!=null)?Math.round(usGdpRatio)+"%":"--";
+  requestAnimationFrame(tick);
+}
+requestAnimationFrame(tick);
+
+/* ==================== Global debt-to-GDP comparison ==================== */
+/* [ISO3, name, region, fallback debt/GDP %]. Fallback = IMF WEO Oct 2025, used only if the live IMF feed fails. */
+var MAP=[
+["JPN","Japan","Asia-Pacific",229.6],["GRC","Greece","Europe",146.7],["SGP","Singapore","Asia-Pacific",175.0],
+["BHR","Bahrain","Middle East",142.5],["ITA","Italy","Europe",137.6],["USA","United States","Americas",121.0],
+["FRA","France","Europe",116.0],["CAN","Canada","Americas",113.5],["BEL","Belgium","Europe",106.2],
+["GBR","United Kingdom","Europe",103.0],["ESP","Spain","Europe",100.7],["UKR","Ukraine","Europe",100.0],
+["CHN","China","Asia-Pacific",99.2],["PRT","Portugal","Europe",96.8],["BRA","Brazil","Americas",93.3],
+["EGY","Egypt","Africa",88.0],["FIN","Finland","Europe",89.0],["IND","India","Asia-Pacific",81.0],
+["AUT","Austria","Europe",82.3],["MUS","Mauritius","Africa",80.0],["GHA","Ghana","Africa",78.0],
+["ZAF","South Africa","Africa",75.0],["HUN","Hungary","Europe",74.0],["MAR","Morocco","Africa",69.0],
+["ISR","Israel","Middle East",69.0],["MYS","Malaysia","Asia-Pacific",66.0],["KEN","Kenya","Africa",66.0],
+["THA","Thailand","Asia-Pacific",64.0],["PAN","Panama","Americas",64.0],["URY","Uruguay","Americas",63.0],
+["DEU","Germany","Europe",62.7],["CRI","Costa Rica","Americas",61.0],["POL","Poland","Europe",59.0],
+["MEX","Mexico","Americas",58.0],["COL","Colombia","Americas",57.0],["PHL","Philippines","Asia-Pacific",57.0],
+["ECU","Ecuador","Americas",57.0],["KOR","South Korea","Asia-Pacific",55.0],["ROU","Romania","Europe",55.0],
+["AUS","Australia","Asia-Pacific",50.0],["ARM","Armenia","Europe",49.0],["SRB","Serbia","Europe",47.0],
+["NGA","Nigeria","Africa",47.0],["NZL","New Zealand","Asia-Pacific",46.0],["QAT","Qatar","Middle East",45.0],
+["NOR","Norway","Europe",45.0],["CZE","Czechia","Europe",45.0],["NLD","Netherlands","Europe",43.0],
+["CHL","Chile","Americas",42.0],["PRY","Paraguay","Americas",41.0],["GEO","Georgia","Europe",39.0],
+["IDN","Indonesia","Asia-Pacific",39.0],["CHE","Switzerland","Europe",37.0],["OMN","Oman","Middle East",36.0],
+["VNM","Vietnam","Asia-Pacific",35.0],["SWE","Sweden","Europe",34.8],["PER","Peru","Americas",34.0],
+["IRL","Ireland","Europe",32.9],["DNK","Denmark","Europe",31.5],["ARE","United Arab Emirates","Middle East",30.0],
+["SAU","Saudi Arabia","Middle East",30.0],["TUR","Turkey","Europe",26.0],["BGR","Bulgaria","Europe",26.0],
+["KAZ","Kazakhstan","Asia-Pacific",24.0],["KWT","Kuwait","Middle East",12.0],["HKG","Hong Kong SAR","Asia-Pacific",10.0]
+];
+var ASSET_RICH={SGP:1,NOR:1,HKG:1}; // gross overstates burden; net position far stronger
+
+var curYear=new Date().getUTCFullYear();
+var rows=null, dataYear=null, imfLive=false, activeRegion='all';
+
+function pickLatest(series){
+  // series: {"1990":x,...,"2026":y}. Take the newest numeric year that is <= current year.
+  var best=null,bv=null;
+  for(var y in series){var yr=parseInt(y,10);var v=parseFloat(series[y]);
+    if(!isNaN(yr)&&!isNaN(v)&&yr<=curYear){if(best===null||yr>best){best=yr;bv=v;}}}
+  return best!==null?{year:best,val:bv}:null;
+}
+function bandTag(p){
+  if(p>=100)return['t-heavy','Heavy'];
+  if(p>=60)return['t-elev','Elevated'];
+  if(p>=30)return['t-mod','Moderate'];
+  return['t-low','Low'];
+}
+function barColor(p){
+  if(p>=100)return'#C0554C';if(p>=60)return'#D6A83C';if(p>=30)return'#5E86AE';return'#3F9C7C';
+}
+function build(fromLive){
+  rows=MAP.map(function(m){return {iso:m[0],name:m[1],region:m[2],pct:m[3]};});
+  if(fromLive){
+    var gg=imfData; var yrs={};
+    rows.forEach(function(r){
+      var s=gg[r.iso];
+      if(s){var p=pickLatest(s); if(p){r.pct=p.val; yrs[p.year]=(yrs[p.year]||0)+1;}}
+    });
+    // most common data year across countries, for the label
+    var top=null;for(var y in yrs){if(top===null||yrs[y]>yrs[top])top=y;} dataYear=top;
+    imfLive=true;
+  }
+  rows.sort(function(a,b){return b.pct-a.pct;});
+  var us=rows.filter(function(r){return r.iso==='USA';})[0];
+  if(us)usGdpRatio=us.pct;
+  render();
+}
+function render(){
+  var max=rows[0]?rows[0].pct:250;
+  var host=document.getElementById('tbl');
+  var h='<div class="trow head"><span>#</span><span>Country</span><span style="text-align:right">Debt/GDP</span><span>Relative</span><span style="text-align:center">Strain</span></div>';
+  var shown=rows.filter(function(r){return activeRegion==='all'||r.region===activeRegion;});
+  shown.forEach(function(r,i){
+    var tg=bandTag(r.pct), w=Math.max(4,Math.min(100,r.pct/max*100));
+    var star=ASSET_RICH[r.iso]?'<small>gross figure; strong net position</small>':'';
+    h+='<div class="trow'+(r.iso==='USA'?' us':'')+'">'
+      +'<span class="rk">'+(i+1)+'</span>'
+      +'<span class="nm">'+r.name+'<small>'+r.region+'</small>'+(star?' '+star:'')+'</span>'
+      +'<span class="pct">'+(r.pct>=100?Math.round(r.pct):r.pct.toFixed(1))+'%</span>'
+      +'<span class="barwrap"><i style="width:'+w+'%;background:'+barColor(r.pct)+'"></i></span>'
+      +'<span class="tag '+tg[0]+'">'+tg[1]+'</span>'
+      +'</div>';
+  });
+  host.innerHTML=h;
+  var note=document.getElementById('tblnote');
+  if(imfLive){note.className='note';note.innerHTML='Source: International Monetary Fund, general government gross debt, percent of GDP'+(dataYear?', '+dataYear+' figures':'')+'. Fetched live from the IMF DataMapper.';}
+  else{note.className='note warn';note.textContent='Live IMF feed unavailable right now; showing IMF World Economic Outlook (October 2025) figures as a dated reference.';}
+}
+document.getElementById('controls').addEventListener('click',function(e){
+  var c=e.target.closest('.chip'); if(!c)return;
+  activeRegion=c.getAttribute('data-r');
+  [].forEach.call(this.querySelectorAll('.chip'),function(x){x.classList.toggle('on',x===c);});
+  if(rows)render();
+});
+
+var imfData=null;
+fetch("https://www.imf.org/external/datamapper/api/v1/GGXWDG_NGDP").then(function(r){return r.json();}).then(function(d){
+  var v=d&&d.values&&d.values.GGXWDG_NGDP?d.values.GGXWDG_NGDP:null;
+  if(!v)throw 0; imfData=v; build(true);
+}).catch(function(){ build(false); });
+</script>
+<script src="assets/site-nav.js" defer></script>
+</body>
+</html>
