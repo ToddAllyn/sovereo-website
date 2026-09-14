@@ -2,10 +2,10 @@
    Progressive enhancement. Static links remain if JS is disabled. */
 (function(){
   var DESKTOP=[
-    {t:'Research',h:'index.html#latest-research'},
     {t:'The Index',h:'Sovereo_Index_Table.html'},
     {t:'Best-Fit Countries',h:'Sovereo_Relocation_Diagnostic.html'},
     {t:'Income Rank',h:'income-rank.html'},
+    {t:'Cost Compare',h:'cost-compare.html'},
     {t:'Guides',h:'guides.html'},
     {t:'Dossiers',h:'Sovereo_Country_Reports.html'},
     {t:'Advisory',h:'advisory.html'},
@@ -13,7 +13,7 @@
     {t:'SITREP Archive',h:'/sitrep/'}
   ];
   var MOBILE_EXTRA=[
-    {t:'Cost Compare',h:'cost-compare.html'},
+    {t:'Research',h:'index.html#latest-research'},
     {t:'Shortlist',h:'Sovereo_Index_Builder.html'},
     {t:'Science',h:'Sovereo_Scientific_Basis.html'}
   ];
