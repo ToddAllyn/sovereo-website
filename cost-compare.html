@@ -124,6 +124,7 @@ footer a{color:#C9D2DE}
       <div class="sub" id="subline"></div>
       <div class="bars" id="bars"></div>
       <div class="stats" id="stats"></div>
+      <div id="usdbox" style="margin:14px 0 0"></div>
       <div class="rate" id="rate"></div>
     </div>
     <div class="err" id="err"></div>
@@ -254,14 +255,18 @@ function run(){
 
   var raw=Number((bud.value||'').replace(/[^0-9.]/g,''));
   var stats=document.getElementById('stats');
+  var usdbox=document.getElementById('usdbox');
+  usdbox.innerHTML='';
   if(raw>0){
-    var budUSD=raw/rA.rate;
-    var equivUSD=budUSD*ratio;
-    var equivLocalB=raw*(b[3]/a[3]); // purchasing-power cost in B's currency (does not depend on exchange rate)
+    var equivUSD=(raw/rA.rate)*ratio; // reference conversion only
+    var equivLocalB=raw*(b[3]/a[3]);  // purchasing-power cost in B's currency, does NOT use the exchange rate
     stats.innerHTML=
-      '<div class="stat"><b>'+a[2]+money(raw)+'</b><span>what you spend now, in '+a[0]+'</span></div>'+
-      '<div class="stat"><b>'+b[2]+money(equivLocalB)+'</b><span>to live the same way in '+b[0]+'</span><small>in local money ('+b[1]+')</small></div>'+
-      '<div class="stat"><b>US$'+money(equivUSD)+'</b><span>the same lifestyle, in US dollars</span></div>';
+      '<div class="stat"><b>'+a[2]+money(raw)+'</b><span>what you spend a month now, in '+a[0]+'</span></div>'+
+      '<div class="stat"><b>'+b[2]+money(equivLocalB)+'</b><span>to live the same way in '+b[0]+', in its own money ('+b[1]+')</span></div>';
+    usdbox.innerHTML='<a href="#" id="usdToggle" style="color:var(--gold);font-weight:600;text-decoration:underline;font-size:14px">Show me that in US dollars</a>'+
+      '<div id="usdVal" style="display:none;margin-top:10px;font-size:15px;color:#40505F">That is roughly <b>US$'+money(equivUSD)+' a month</b>, converted at the exchange rate shown below. This dollar figure is only a rough conversion for a familiar reference; the comparison above is based on what money actually buys (purchasing power), which is the more reliable number.</div>';
+    var t=document.getElementById('usdToggle');
+    t.addEventListener('click',function(e){e.preventDefault();var v=document.getElementById('usdVal');var show=(v.style.display==='none');v.style.display=show?'block':'none';t.textContent=show?'Hide the US dollar figure':'Show me that in US dollars';});
   } else {
     stats.innerHTML=
       '<div class="stat"><b>'+plA.toFixed(2)+'</b><span>'+a[0]+' price level (US = 1.00)</span></div>'+
