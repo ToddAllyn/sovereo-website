@@ -128,6 +128,19 @@ footer a{color:#C9D2DE}
     <a class="b ghost" href="Sovereo_Country_Reports.html">Browse the dossiers</a>
   </div>
 
+  <div class="panel" style="margin-top:26px">
+    <h2 style="font-family:var(--serif);font-size:22px;font-weight:600;margin:0 0 6px">How to read this, in plain English</h2>
+    <p style="font-size:15px;color:#40505F;margin:0 0 6px">You do not need any financial knowledge to use this. Here is what it means.</p>
+    <h4 style="font-size:15px;font-weight:700;color:#26303E;margin:16px 0 4px">"The richest X% in the world"</h4>
+    <p style="font-size:15px;color:#40505F;margin:0 0 6px">Imagine everyone on Earth lined up from the lowest earner to the highest. This tells you where you stand in that line. "Top 3%" means only 3 out of every 100 people worldwide earn more than you. Most people are surprised how high they rank, because incomes in much of the world are very low.</p>
+    <h4 style="font-size:15px;font-weight:700;color:#26303E;margin:16px 0 4px">Why we ask your household and family size</h4>
+    <p style="font-size:15px;color:#40505F;margin:0 0 6px">A given income supports one person far more comfortably than a family of five. So we take your whole household's income and adjust it for how many people it has to cover, which gives a fairer picture of each person's standard of living.</p>
+    <h4 style="font-size:15px;font-weight:700;color:#26303E;margin:16px 0 4px">Why it is not just about the exchange rate</h4>
+    <p style="font-size:15px;color:#40505F;margin:0 0 6px">Money buys different amounts in different places, a modest income can afford a comfortable life where prices are low. We use World Bank "purchasing power" data, which measures what money actually buys on the ground, so your rank reflects real living standards worldwide, not just currency conversion. The "in US dollars" line is a simple conversion shown for reference, and we tell you the exact rate used.</p>
+    <h4 style="font-size:15px;font-weight:700;color:#26303E;margin:16px 0 4px">Treat it as a guide</h4>
+    <p style="font-size:15px;color:#40505F;margin:0">These are careful estimates built from global data, meant to give you perspective, not an exact accounting of your finances.</p>
+  </div>
+
   <p class="method">
     <b>How this is calculated.</b> Your household income is adjusted for household size using the OECD square-root scale (income divided by the square root of the number of people), then converted into 2021 international dollars using World Bank purchasing-power-parity factors, so it reflects what your money actually buys, not just an exchange rate. That figure is placed on the global income distribution from the World Bank Poverty and Inequality Platform (2024, via Our World in Data), which covers about 97 percent of the world's population. The "at today's exchange rate" line uses live market rates and is shown for reference only; the ranking itself uses purchasing power. All figures are best estimates, not exact facts. World population taken as 8.2 billion.
   </p>
@@ -191,11 +204,26 @@ inc.addEventListener('input',function(){
   inc.value=v?Number(v).toLocaleString('en-US'):'';
 });
 
-// Live FX (broad coverage, no key). Rates are units of currency per 1 USD.
+// Live FX (broad coverage, no key), with a dated reference fallback.
 var FX=null;
+var FX_DATE="September 2026";
+var FX_REF={USD:1,EUR:0.92,GBP:0.79,CAD:1.38,AUD:1.52,NZD:1.67,CHF:0.88,NOK:10.6,SEK:10.5,DKK:6.86,
+PLN:3.95,CZK:23.0,HUF:355,RON:4.6,BGN:1.80,RSD:108,GEL:2.72,AMD:385,TRY:44,KZT:530,UAH:42,
+MXN:18.5,BRL:5.4,COP:4100,CLP:950,PEN:3.7,CRC:505,UYU:40,PYG:7300,AED:3.673,SAR:3.75,QAR:3.64,
+BHD:0.376,OMR:0.385,KWD:0.307,ILS:3.6,INR:87,CNY:7.1,JPY:150,KRW:1370,SGD:1.34,HKD:7.8,
+THB:33,MYR:4.3,IDR:16300,PHP:57,VND:26000,ZAR:18.2,MUR:46,MAD:9.6,EGP:49,KES:129,NGN:1550,GHS:12.5};
 fetch('https://open.er-api.com/v6/latest/USD').then(function(r){return r.json();}).then(function(d){
-  if(d&&d.result==='success'&&d.rates)FX=d.rates;
+  if(d&&d.rates)FX=d.rates;
 }).catch(function(){FX=null;});
+// Prefer live rate; fall back to reference if missing or wildly off. Returns {rate, src}.
+function resolveRate(ccy){
+  if(ccy==='USD')return {rate:1,src:'live'};
+  var ref=FX_REF[ccy];
+  var live=(FX&&FX[ccy])?FX[ccy]:null;
+  if(live){ if(!ref||(live>ref*0.5&&live<ref*2)) return {rate:live,src:'live'}; return {rate:ref,src:'reference'}; }
+  if(ref) return {rate:ref,src:'reference'};
+  return {rate:null,src:null};
+}
 
 function pctFor(daily){
   if(daily<=THR[0]) return 0.5;
@@ -251,10 +279,10 @@ document.getElementById('calc').addEventListener('click',function(){
 
   var usd=document.getElementById('usd');
   var ccy=c[1];
-  if(FX && (ccy==='USD' || FX[ccy])){
-    var rate = ccy==='USD'?1:FX[ccy];
-    var usdVal=localAnnual/rate;
-    usd.textContent='At today’s exchange rate, that household income is about US$'+Math.round(usdVal).toLocaleString('en-US')+' per year. Your rank above is adjusted for local purchasing power, which is why it can differ from a simple dollar conversion.';
+  var rr=resolveRate(ccy);
+  if(rr.rate){
+    var usdVal=localAnnual/rr.rate;
+    usd.textContent='At the exchange rate we used ('+(ccy==='USD'?'US dollars':'1 US$ = '+rr.rate.toLocaleString('en-US')+' '+ccy)+', '+(rr.src==='live'?'live today':'reference rate '+FX_DATE)+'), that household income is about US$'+Math.round(usdVal).toLocaleString('en-US')+' per year. Your rank above is adjusted for local purchasing power, which is why it can differ from a simple dollar conversion.';
   } else {
     usd.textContent='';
   }

@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Cost of Living Compare | Sovereo Intelligence Research</title>
-<meta name="description" content="Compare the cost of living between any two countries, adjusted for purchasing power, and see what your monthly budget is really worth abroad. Built on World Bank data.">
+<meta name="description" content="Compare the cost of living between any two countries in plain language, adjusted for purchasing power, and see what your monthly budget is really worth abroad. Built on World Bank data.">
 <link rel="canonical" href="https://www.sovereo.com/cost-compare.html">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <meta name="theme-color" content="#0E1A2B">
@@ -43,10 +43,12 @@ a{color:inherit;text-decoration:none}
 .go:hover{background:var(--ink);color:#fff}
 .result{display:none;margin:26px 0 0}
 .result.on{display:block}
-.big{font-family:var(--serif);font-weight:800;font-size:40px;line-height:1.08;color:var(--ink)}
+.plain{background:#eef4f0;border:1px solid #cfe0d6;border-radius:10px;padding:16px 18px;margin:0 0 22px;font-size:15.5px;color:#1f3a2e}
+.plain b{color:#0e2e1f}
+.big{font-family:var(--serif);font-weight:800;font-size:38px;line-height:1.1;color:var(--ink)}
 .big span{color:var(--gold)}
-.sub{font-size:18px;color:#40505F;margin:10px 0 0}
-.bars{margin:26px 0 0}
+.sub{font-size:17px;color:#40505F;margin:10px 0 0}
+.bars{margin:24px 0 0}
 .barrow{display:flex;align-items:center;gap:12px;margin:0 0 12px}
 .barrow .lab{width:150px;font-size:14px;font-weight:600;color:#26303E;text-align:right}
 .barrow .track{flex:1;height:22px;background:#eef2f6;border-radius:6px;overflow:hidden}
@@ -56,18 +58,24 @@ a{color:inherit;text-decoration:none}
 .stat{background:#f6f2ea;border:1px solid var(--line);border-radius:12px;padding:16px}
 .stat b{display:block;font-family:var(--serif);font-size:20px;color:var(--ink)}
 .stat span{font-size:13px;color:var(--soft)}
+.stat small{display:block;font-size:11.5px;color:#93a1b0;margin-top:4px}
+.rate{font-size:13px;color:var(--soft);margin:16px 0 0}
 .err{color:#A32D2D;font-size:14px;margin:14px 0 0}
 .cta{background:var(--ink);color:var(--paper);border-radius:16px;padding:28px 32px;margin:26px 0 0}
 .cta h3{font-family:var(--serif);font-size:22px;font-weight:600;margin:0 0 8px;color:#fff}
 .cta p{color:#C9D2DE;font-size:15.5px;margin:0 0 16px}
 .cta .b{display:inline-block;background:#E7B85A;color:#0E1A2B;font-weight:700;font-size:15px;padding:13px 24px;border-radius:8px}
 .cta .b.ghost{background:transparent;color:#E7B85A;border:1px solid #E7B85A;margin-left:10px}
-.method{font-size:13px;color:var(--soft);margin:28px 0 0;max-width:82ch}
+.explain{background:#fff;border:1px solid var(--line);border-radius:16px;padding:28px 32px;margin:26px 0 0}
+.explain h2{font-family:var(--serif);font-size:22px;font-weight:600;margin:0 0 6px}
+.explain h4{font-size:15px;font-weight:700;color:#26303E;margin:18px 0 4px}
+.explain p{font-size:15px;color:#40505F;margin:0 0 6px}
+.method{font-size:13px;color:var(--soft);margin:24px 0 0;max-width:82ch}
 .method b{color:#40505F}
 footer{background:var(--ink);color:#9AA6B6;padding:34px 0;font-size:13px;margin-top:48px}
 footer .wrap{display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap}
 footer a{color:#C9D2DE}
-@media(max-width:640px){.grid{grid-template-columns:1fr}.hero h1{font-size:31px}.big{font-size:30px}.stats{grid-template-columns:1fr}.barrow .lab{width:110px}}
+@media(max-width:640px){.grid{grid-template-columns:1fr}.hero h1{font-size:31px}.big{font-size:28px}.stats{grid-template-columns:1fr}.barrow .lab{width:110px}}
 </style>
 <script defer src="assets/analytics.js"></script>
 </head>
@@ -85,7 +93,7 @@ footer a{color:#C9D2DE}
 <header class="hero"><div class="wrap">
   <div class="eyebrow">Cost of Living Compare</div>
   <h1>What does your money really buy in another country?</h1>
-  <p>Compare the real cost of living between any two countries, adjusted for purchasing power, and see what a monthly budget in one place is worth in another. Built on World Bank purchasing-power data and live exchange rates.</p>
+  <p>Pick where you live now and a country you are curious about. We show you, in plain language, whether daily life there is cheaper or more expensive, and what your monthly budget would need to be to live the same way.</p>
 </div></header>
 
 <div class="wrap">
@@ -102,7 +110,7 @@ footer a{color:#C9D2DE}
     </div>
     <div class="grid" style="margin-top:18px">
       <div class="f">
-        <label for="budget">Your monthly budget there (optional)</label>
+        <label for="budget">What you spend a month now (optional)</label>
         <div class="inrow"><span class="cur" id="cursym">$</span><input id="budget" type="text" inputmode="numeric" placeholder="e.g. 3,000"></div>
       </div>
       <div class="f" style="display:flex;align-items:flex-end">
@@ -111,23 +119,40 @@ footer a{color:#C9D2DE}
     </div>
 
     <div class="result" id="result">
+      <div class="plain" id="plain"></div>
       <div class="big" id="headline"></div>
       <div class="sub" id="subline"></div>
       <div class="bars" id="bars"></div>
       <div class="stats" id="stats"></div>
+      <div class="rate" id="rate"></div>
     </div>
     <div class="err" id="err"></div>
   </div>
 
   <div class="cta" id="cta" style="display:none">
     <h3>Cheaper is only half the decision.</h3>
-    <p>A low cost of living means nothing if the tax, the visa, or the safety picture is wrong for you. See which countries actually fit your whole situation, then read the sourced file on the ones that make your shortlist.</p>
+    <p>A low cost of living means nothing if the tax, the visa, or the safety picture is wrong for you. See which countries actually fit your whole situation, then read the full file on the ones that make your shortlist.</p>
     <a class="b" href="Sovereo_Relocation_Diagnostic.html">Find your best-fit countries &rarr;</a>
     <a class="b ghost" href="Sovereo_Country_Reports.html">Browse the dossiers</a>
   </div>
 
+  <div class="explain">
+    <h2>How to read this, in plain English</h2>
+    <p>You do not need to know anything about finance to use this. Here is what the numbers mean.</p>
+    <h4>The percentage: cheaper or more expensive</h4>
+    <p>This is the main answer. If it says a country is "40% cheaper," it means a normal month of life there, rent, food, transport, the usual, costs roughly 40 percent less than where you live now. "More expensive" means the opposite.</p>
+    <h4>The two bars</h4>
+    <p>Each bar shows how pricey a country is compared to the United States, which we set at 1.00 as a fixed yardstick. A bar below 1.00 means cheaper than the US; above 1.00 means pricier. Longer bar, more expensive.</p>
+    <h4>Your budget, matched abroad</h4>
+    <p>If you enter what you spend in a month, we show the amount you would need to live the same way in the other country, first in that country's own money, then in US dollars so it is easy to picture. If the other country is cheaper, that number is smaller than what you spend now.</p>
+    <h4>Why "purchasing power," not just the exchange rate</h4>
+    <p>An exchange rate only tells you how many units of foreign money you get for a dollar. It does not tell you that a haircut, a bus ride, or a week of groceries is far cheaper in some places. We use World Bank "purchasing power" data, which measures what money actually buys on the ground, so the comparison reflects real daily life, not just currency math. The exchange rate is used only for the final "in US dollars" figure, and we show you the exact rate we used.</p>
+    <h4>Treat it as a guide, not a quote</h4>
+    <p>These are country-wide averages for orientation. A big capital city costs more than a small town, and your own lifestyle matters. Use this to see the shape of the difference, then dig into the details before you decide.</p>
+  </div>
+
   <p class="method">
-    <b>How this is calculated.</b> Each country's cost of living is measured by its price level, the World Bank purchasing-power-parity conversion factor divided by the current market exchange rate, which shows how expensive a comparable basket of goods and services is relative to the United States. Comparing two countries gives the relative cost of the same lifestyle in each, and applying that ratio to your budget shows what you would need to maintain it. Purchasing-power factors are from the World Bank (2021 base, inflation-adjusted); exchange rates are fetched live. These are country-level estimates for orientation, not city-level prices or a personal budget, and all figures are best estimates rather than exact facts.
+    <b>The data.</b> Cost of living is measured as each country's price level: the World Bank purchasing-power-parity conversion factor divided by the market exchange rate, relative to the United States. World Bank purchasing-power figures are 2021 base, inflation-adjusted. Exchange rates are fetched live where available and otherwise fall back to a stored reference set dated September 2026; the tool shows which was used. Figures are country-level estimates, not city-level prices, and are best estimates rather than exact facts.
   </p>
 </div>
 
@@ -135,7 +160,6 @@ footer a{color:#C9D2DE}
 
 <script>
 // name, currency code, symbol, PPP factor (local currency per 2021 international $, inflation-adjusted to 2024).
-// PPP factors: World Bank WDI (PA.NUS.PRVT.PP) via the OWID/Giving What We Can dataset.
 var C=[
 ["United States","USD","$",1.1577],["United Kingdom","GBP","£",0.8755],["Canada","CAD","C$",1.4129],
 ["Australia","AUD","A$",1.7468],["New Zealand","NZD","NZ$",1.8163],["Ireland","EUR","€",1.1218],
@@ -164,11 +188,21 @@ var C=[
 ["Kenya","KES","KSh",51.390],["Nigeria","NGN","₦",307.404],["Ghana","GHS","₵",5.4653]
 ];
 var US_PPP=1.1577;
+
+// Reference exchange rates (units of local currency per 1 US dollar), approximate, dated Sep 2026.
+// Used as a fallback when the live rate is unavailable, and as a sanity anchor.
+var FX_DATE="September 2026";
+var FX_REF={USD:1,EUR:0.92,GBP:0.79,CAD:1.38,AUD:1.52,NZD:1.67,CHF:0.88,NOK:10.6,SEK:10.5,DKK:6.86,
+PLN:3.95,CZK:23.0,HUF:355,RON:4.6,BGN:1.80,RSD:108,GEL:2.72,AMD:385,TRY:44,KZT:530,UAH:42,
+MXN:18.5,BRL:5.4,COP:4100,CLP:950,PEN:3.7,CRC:505,UYU:40,PYG:7300,AED:3.673,SAR:3.75,QAR:3.64,
+BHD:0.376,OMR:0.385,KWD:0.307,ILS:3.6,INR:87,CNY:7.1,JPY:150,KRW:1370,SGD:1.34,HKD:7.8,
+THB:33,MYR:4.3,IDR:16300,PHP:57,VND:26000,ZAR:18.2,MUR:46,MAD:9.6,EGP:49,KES:129,NGN:1550,GHS:12.5};
+
 C.sort(function(a,b){return a[0]<b[0]?-1:1});
 var from=document.getElementById('from'),to=document.getElementById('to'),cursym=document.getElementById('cursym');
 C.forEach(function(c,i){
   var o=document.createElement('option');o.value=i;o.textContent=c[0]+" ("+c[1]+")";from.appendChild(o);
-  var o2=o.cloneNode(true);to.appendChild(o2);
+  to.appendChild(o.cloneNode(true));
 });
 function pick(sel,name){for(var i=0;i<C.length;i++){if(C[i][0]===name){sel.value=i;return;}}}
 pick(from,'United States'); pick(to,'Portugal');
@@ -177,68 +211,73 @@ setSym(); from.addEventListener('change',setSym);
 var bud=document.getElementById('budget');
 bud.addEventListener('input',function(){var v=bud.value.replace(/[^0-9]/g,'');bud.value=v?Number(v).toLocaleString('en-US'):'';});
 
-var FX=null,FXok=false;
-function loadFX(){
-  return fetch('https://open.er-api.com/v6/latest/USD').then(function(r){return r.json();}).then(function(d){
-    if(d&&d.rates){FX=d.rates;FXok=true;}
-  }).catch(function(){FXok=false;});
-}
-loadFX();
+var FX_LIVE=null, LIVE_OK=false;
+fetch('https://open.er-api.com/v6/latest/USD').then(function(r){return r.json();}).then(function(d){
+  if(d&&d.rates){FX_LIVE=d.rates;LIVE_OK=true;}
+}).catch(function(){LIVE_OK=false;});
 
-function rateOf(ccy){ if(ccy==='USD')return 1; return FX?FX[ccy]:null; }
-function priceLevel(c){ // c = country row; PL relative to US = (ppp/marketFX)/US_PPP
-  var r=rateOf(c[1]); if(!r)return null; return (c[3]/r)/US_PPP;
+// Resolve a rate. Prefer live if present and within a sane band of the reference; else use reference.
+function resolveRate(ccy){
+  var ref=FX_REF[ccy];
+  var live=(FX_LIVE&&FX_LIVE[ccy])?FX_LIVE[ccy]:null;
+  if(ccy==='USD')return {rate:1,src:'live'};
+  if(live){
+    if(!ref || (live>ref*0.5 && live<ref*2)) return {rate:live,src:'live'};
+    return {rate:ref,src:'reference'}; // live looks wrong vs reference; use reference
+  }
+  if(ref) return {rate:ref,src:'reference'};
+  return {rate:null,src:null};
 }
-function money(n){ return Math.round(n).toLocaleString('en-US'); }
+function money(n){return Math.round(n).toLocaleString('en-US');}
 
 function run(){
-  var a=C[from.value], b=C[to.value];
   document.getElementById('err').textContent='';
+  var a=C[from.value], b=C[to.value];
   if(from.value===to.value){document.getElementById('err').textContent='Pick two different countries to compare.';return;}
-  var go=function(){
-    var plA=priceLevel(a), plB=priceLevel(b);
-    if(plA===null||plB===null){document.getElementById('err').textContent='Could not load live exchange rates for one of these currencies right now. Please try again in a moment.';return;}
-    var ratio=plB/plA; // cost in B relative to A
-    var pct=Math.round(Math.abs(ratio-1)*100);
-    var dir= ratio<1 ? 'less' : 'more';
-    var cheaper = ratio<1;
-    document.getElementById('headline').innerHTML='Living in '+b[0]+' costs about <span>'+pct+'% '+dir+'</span> than living in '+a[0]+'.';
-    var line='A comparable lifestyle in '+b[0]+' costs roughly '+(ratio*100).toFixed(0)+' cents for every dollar it costs in '+a[0]+'.';
-    document.getElementById('subline').textContent=line;
+  var rA=resolveRate(a[1]), rB=resolveRate(b[1]);
+  if(rA.rate===null||rB.rate===null){document.getElementById('err').textContent='We could not find an exchange rate for one of these currencies right now. Please try again in a moment.';return;}
 
-    // bars scaled to the larger of the two price levels
-    var mx=Math.max(plA,plB);
-    function bar(name,pl,color){
-      var w=Math.max(4,Math.round(pl/mx*100));
-      return '<div class="barrow"><div class="lab">'+name+'</div><div class="track"><div class="fill" style="width:'+w+'%;background:'+color+'"></div></div><div class="val">'+pl.toFixed(2)+'</div></div>';
-    }
-    document.getElementById('bars').innerHTML=
-      bar(a[0],plA,'#0E1A2B')+bar(b[0],plB,'#E7B85A')+
-      '<div style="font-size:12px;color:var(--soft);margin-top:2px">Price level, United States = 1.00. Higher means more expensive.</div>';
+  // Price level relative to US (=1.00), from purchasing power divided by exchange rate.
+  var plA=(a[3]/rA.rate)/US_PPP, plB=(b[3]/rB.rate)/US_PPP;
+  var ratio=plB/plA;
+  var pct=Math.round(Math.abs(ratio-1)*100);
+  var cheaper=ratio<1;
+  var dir=cheaper?'cheaper':'more expensive';
 
-    // budget
-    var raw=Number((bud.value||'').replace(/[^0-9.]/g,''));
-    var stats=document.getElementById('stats');
-    if(raw>0){
-      var rA=rateOf(a[1]), rB=rateOf(b[1]);
-      var budUSD=raw/rA;
-      var equivUSD=budUSD*ratio;
-      var equivLocalB=equivUSD*rB;
-      stats.innerHTML=
-        '<div class="stat"><b>'+a[2]+money(raw)+'</b><span>your monthly budget in '+a[0]+'</span></div>'+
-        '<div class="stat"><b>'+b[2]+money(equivLocalB)+'</b><span>to match it in '+b[0]+' ('+b[1]+')</span></div>'+
-        '<div class="stat"><b>US$'+money(equivUSD)+'</b><span>the same lifestyle, in US dollars</span></div>';
-    } else {
-      stats.innerHTML=
-        '<div class="stat"><b>'+plA.toFixed(2)+'</b><span>'+a[0]+' price level (US = 1.00)</span></div>'+
-        '<div class="stat"><b>'+plB.toFixed(2)+'</b><span>'+b[0]+' price level (US = 1.00)</span></div>'+
-        '<div class="stat"><b>'+(cheaper?'-':'+')+pct+'%</b><span>cost difference vs '+a[0]+'</span></div>';
-    }
-    document.getElementById('result').classList.add('on');
-    document.getElementById('cta').style.display='block';
-    document.getElementById('result').scrollIntoView({behavior:'smooth',block:'nearest'});
-  };
-  if(FXok||FX){ go(); } else { loadFX().then(go); }
+  document.getElementById('plain').innerHTML='In plain terms: everyday life in <b>'+b[0]+'</b> is about <b>'+pct+'% '+dir+'</b> than in '+a[0]+'. '+(cheaper?'Your money goes further there.':'You would need more money to live the same way there.');
+  document.getElementById('headline').innerHTML=b[0]+' is <span>'+pct+'% '+dir+'</span> than '+a[0]+'.';
+  document.getElementById('subline').textContent='A lifestyle that costs 100 dollars in '+a[0]+' costs about '+Math.round(ratio*100)+' dollars in '+b[0]+'.';
+
+  var mx=Math.max(plA,plB);
+  function bar(name,pl,color){var w=Math.max(4,Math.round(pl/mx*100));return '<div class="barrow"><div class="lab">'+name+'</div><div class="track"><div class="fill" style="width:'+w+'%;background:'+color+'"></div></div><div class="val">'+pl.toFixed(2)+'</div></div>';}
+  document.getElementById('bars').innerHTML=bar(a[0],plA,'#0E1A2B')+bar(b[0],plB,'#E7B85A')+'<div style="font-size:12px;color:var(--soft);margin-top:2px">How expensive each country is, with the United States set at 1.00. Higher means pricier.</div>';
+
+  var raw=Number((bud.value||'').replace(/[^0-9.]/g,''));
+  var stats=document.getElementById('stats');
+  if(raw>0){
+    var budUSD=raw/rA.rate;
+    var equivUSD=budUSD*ratio;
+    var equivLocalB=raw*(b[3]/a[3]); // purchasing-power cost in B's currency (does not depend on exchange rate)
+    stats.innerHTML=
+      '<div class="stat"><b>'+a[2]+money(raw)+'</b><span>what you spend now, in '+a[0]+'</span></div>'+
+      '<div class="stat"><b>'+b[2]+money(equivLocalB)+'</b><span>to live the same way in '+b[0]+'</span><small>in local money ('+b[1]+')</small></div>'+
+      '<div class="stat"><b>US$'+money(equivUSD)+'</b><span>the same lifestyle, in US dollars</span></div>';
+  } else {
+    stats.innerHTML=
+      '<div class="stat"><b>'+plA.toFixed(2)+'</b><span>'+a[0]+' price level (US = 1.00)</span></div>'+
+      '<div class="stat"><b>'+plB.toFixed(2)+'</b><span>'+b[0]+' price level (US = 1.00)</span></div>'+
+      '<div class="stat"><b>'+(cheaper?'-':'+')+pct+'%</b><span>cost difference vs '+a[0]+'</span></div>';
+  }
+
+  var rlabel=[];
+  if(a[1]!=='USD')rlabel.push('1 US$ = '+rA.rate.toLocaleString('en-US')+' '+a[1]);
+  if(b[1]!=='USD'&&b[1]!==a[1])rlabel.push('1 US$ = '+rB.rate.toLocaleString('en-US')+' '+b[1]);
+  var srcLive=(rA.src==='live'&&rB.src==='live');
+  document.getElementById('rate').textContent='Exchange rate used: '+(rlabel.join('  ·  ')||'US dollars, no conversion')+'  ('+(srcLive?'live rate today':'reference rate, '+FX_DATE)+').';
+
+  document.getElementById('result').classList.add('on');
+  document.getElementById('cta').style.display='block';
+  document.getElementById('result').scrollIntoView({behavior:'smooth',block:'nearest'});
 }
 document.getElementById('calc').addEventListener('click',run);
 </script>
