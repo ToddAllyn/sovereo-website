@@ -2,10 +2,15 @@
 
 Source: SITREP, 15 September 2026, Day 258, Week 38.
 
-Every cold message pairs one profile fact with one live number from here. That
-pairing is what makes a message impossible to mistake for a template, and it is
-the reason this desk can write to a stranger at all. A hook with no number is an
-opinion. A hook with a number, a source and a date is the product.
+**Not for the opening note.** The connection note and the first DM are general
+and carry no dates or figures, so they hold up for months without a rewrite. Use
+the evergreen fill bank in `notes.md` for those.
+
+This file is for message two onward, once someone has replied. That is where a
+dated, sourced number does its real work: it proves the desk is actually running
+rather than recycling a pitch. A hook with no number is an opinion. A hook with a
+number, a source and a date is the product. Spending that proof on a stranger who
+has not agreed to listen wastes it.
 
 **Refresh this file on every issue.** A three week old number reads worse than no
 number, because it tells the reader the desk is not actually running.

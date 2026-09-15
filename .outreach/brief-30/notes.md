@@ -36,28 +36,63 @@ in the message you send the day they accept.
 
 Never send the same fill twice. Match it to what the profile actually shows.
 
-| Recipient | Fill |
-|---|---|
-| Sector marked HIGH in this week's issue | `[hook from hooks-current.md, cut to one clause]` |
-| Holds cross-border exposure by role | `you run [region] for [company], so you see this earlier than most` |
-| Posted about a decision in their world | `saw your post on [their exact situation]` |
-| Pre-retiree with assets | `[number] years at [company] puts the income question in range` |
-| Engaged one of your posts | `your note on the [topic] post was a sharper read than most` |
+### The note carries no dates and no numbers
 
-The first row is the strongest and it is available every single day, because the
-SITREP publishes a scored Sector Impact table in every issue. That table is a
-prospecting brief. Whoever it marks HIGH is today's list.
+This is a general note. It goes out for months without a rewrite, so nothing in
+it can go stale. No figures, no "as of Tuesday", no reference to a specific
+event. A note built on a live number is wrong within the week and worse than
+wrong if he sends it late.
+
+Currency enters at message two, not message one. That is the right order anyway.
+The note earns the accept. The dated, sourced number in the next message proves
+the desk is actually running. Leading with the number spends the proof before
+anyone has agreed to listen.
+
+### The fill bank for [specific thing]
+
+Standing conditions, not events. Each one is true this month and next month.
+Match to whatever the profile shows and never send the same fill twice.
+
+| If their profile says | Fill |
+|---|---|
+| Shipping, freight, logistics | `you run freight, so chokepoint risk shows up in your quotes now rather than in a risk register` |
+| Procurement, supply chain | `your supplier map and your political risk map are the same map now` |
+| Agriculture, agribusiness, co-op | `you are in agriculture, where diesel moves the margin faster than anything decided on the farm` |
+| Trucking, fleet, distribution | `fuel is the one line you cannot hedge away and cannot pass through fast enough` |
+| Energy, refining, commodities | `you already track this, so you know how fast a routing change becomes a price` |
+| Treasury, CFO, finance | `you sit in treasury, where energy and rates stopped being independent variables` |
+| Mortgage, real estate, lending | `your rate outlook now depends on events several borders away` |
+| Manufacturing, importers | `your input costs get set by routing decisions made somewhere you have never operated` |
+| Emerging markets, FX | `central bank intervention keeps getting overwritten by things outside the bank's control` |
+| Defense, aerospace, govtech | `industrial base capacity is a strategic constraint now, not a procurement detail` |
+| Investor, family office, allocator | `sovereign risk reprices faster than most allocation models refresh` |
+| Cross-border revenue or operations | `you run [region] for [company], so you see this earlier than most` |
+| Pre-retiree, retiree | `[number] years at [company] puts the income question in range` |
+| Living outside their passport country | `your cost base and your income sit in different economies` |
+| Engaged one of your posts | `your note on the [topic] post was a sharper read than most` |
+| Posted about a decision in their world | `saw your post on [their exact situation]` |
+
+Every line clears the 300 character cap when dropped into the note. The longest
+tested fill lands at 271 with a long first name.
+
+Two of these rows are not evergreen and expire on their own: the post references
+at the bottom. Use them while the post is recent, then fall back up the table.
 
 ### Filled
 
-> Ana, tanker rates topped $1 million a day on the 14th and you run freight, so
-> you saw it before I did. I run an intelligence desk covering cross-border
-> capital, energy and policy risk. What moved and what it means, daily, sourced
-> and dated. Free, no pitch.
+> Ana, you run freight, so chokepoint risk shows up in your quotes now rather
+> than in a risk register. I run an intelligence desk covering cross-border
+> capital, energy and policy risk. We publish what moved and what it means,
+> daily, sourced and dated. Free, no pitch.
 
 > David, 22 years at Raytheon puts the income question in range. I run an
-> intelligence desk covering cross-border capital, currency and policy risk. We
+> intelligence desk covering cross-border capital, energy and policy risk. We
 > publish what moved and what it means, daily, sourced and dated. Free, no pitch.
+
+> Katherine, your supplier map and your political risk map are the same map now.
+> I run an intelligence desk covering cross-border capital, energy and policy
+> risk. We publish what moved and what it means, daily, sourced and dated. Free,
+> no pitch.
 
 ### The day they accept
 
@@ -190,6 +225,8 @@ tells the other four rows the desk is not for them.
 
 - Does it name an intelligence research desk, or does it sound like a relocation
   service? If the second, rewrite it.
+- Is it free of dates and figures? The note is general and must still read
+  correctly in three months. Numbers belong in message two.
 - One specific detail that could only be about this person.
 - Under 300 characters if it is an invitation note, counted, not estimated.
 - No link in an invitation note.
