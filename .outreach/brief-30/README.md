@@ -141,6 +141,7 @@ Post once. One strong post a day, never two. Two posts split reach.
 | File | What it is |
 |---|---|
 | `qualify.md` | The scoring rubric. Who goes on which list. |
+| `notes.md` | Connection request notes, under the 300 character cap. |
 | `messages.md` | Every message frame, by track and step. |
 | `posts.md` | The eight offer posts and their hooks. |
 | `objections.md` | Replies to the five objections that will come. |
