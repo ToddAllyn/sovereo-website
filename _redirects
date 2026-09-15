@@ -9,3 +9,7 @@
 /shortlist    /Sovereo_Index_Builder.html           301
 /build        /Sovereo_Index_Builder.html           301
 
+
+# Internal, never served (the .outreach dir is not deployed by Pages either)
+/outreach/*   /404.html   404
+/.outreach/*  /404.html   404

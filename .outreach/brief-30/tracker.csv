@@ -1,0 +1,2 @@
+name,profile_url,track,score,signal,connected,msg1_date,msg1_variant,replied,msg2_date,sample_sent,msg3_date,offer_made,status,plan,close_date,notes
+EXAMPLE Jane Doe,https://linkedin.com/in/example,A,9,"Commented on Georgia post; VP Finance; moved to Lisbon 2024",2026-09-10,2026-09-15,A1-v2,yes,2026-09-16,yes,2026-09-18,yes,WON,annual,2026-09-19,Delete this row before you start
