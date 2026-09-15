@@ -65,7 +65,7 @@ a{color:inherit;text-decoration:none}
 .chip{font-size:13px;font-weight:600;color:#40505F;background:#fff;border:1px solid var(--line);border-radius:20px;padding:7px 15px;cursor:pointer}
 .chip.on{background:var(--ink);color:#fff;border-color:var(--ink)}
 .tbl{background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden}
-.trow{display:grid;grid-template-columns:38px 1.6fr 78px 1fr 92px;align-items:center;gap:12px;padding:12px 18px;border-top:1px solid var(--line);font-size:14.5px}
+.trow{display:grid;grid-template-columns:38px 1.5fr 74px 0.9fr 108px;align-items:center;gap:11px;padding:12px 18px;border-top:1px solid var(--line);font-size:14.5px}
 .trow:first-child{border-top:none}
 .trow.head{background:var(--paper2,#f3efe6);font-size:12px;font-weight:700;letter-spacing:.04em;color:var(--soft);text-transform:uppercase}
 .trow.us{background:rgba(212,175,55,.10);box-shadow:inset 3px 0 0 var(--gold)}
@@ -95,7 +95,8 @@ footer{background:var(--ink);color:#9AA6B6;padding:34px 0;font-size:13px;margin-
 footer .wrap{display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap}
 footer a{color:#C9D2DE}
 @media(max-width:660px){.hero h1{font-size:30px}.stats{grid-template-columns:1fr 1fr}
-.trow{grid-template-columns:26px 1.4fr 60px 74px;gap:9px;padding:11px 13px}
+.trow{grid-template-columns:24px 1.25fr 52px 92px;gap:8px;padding:11px 12px;font-size:13.5px}
+.trow .tag{font-size:10.5px;padding:4px 5px}
 .trow .barwrap,.trow.head span:nth-child(4){display:none}.cta .b.ghost{margin-left:0;margin-top:10px}}
 </style>
 <script defer src="assets/analytics.js"></script>
@@ -158,7 +159,7 @@ footer a{color:#C9D2DE}
       <span class="chip" data-r="Africa">Africa</span>
     </div>
     <div class="tbl" id="tbl">
-      <div class="trow head"><span>#</span><span>Country</span><span style="text-align:right">Debt/GDP</span><span>Relative</span><span style="text-align:center">Strain</span></div>
+      <div class="trow head"><span>#</span><span>Country</span><span style="text-align:right">Debt/GDP</span><span>Relative</span><span style="text-align:center">Borrows in</span></div>
       <div class="trow"><span></span><span class="nm">Loading the latest IMF figures&hellip;</span><span></span><span></span><span></span></div>
     </div>
     <p class="note" id="tblnote">Source: International Monetary Fund, general government gross debt, percent of GDP.</p>
@@ -180,6 +181,8 @@ footer a{color:#C9D2DE}
     <p>GDP is the value of everything a country produces in a year, its income. Debt-to-GDP compares what the government owes to what the country earns. A ratio of 100% means the debt equals one full year of the whole economy's output. It lets you compare a giant economy and a small one on the same footing, which a raw dollar total cannot.</p>
     <h4>Is a high ratio automatically a crisis?</h4>
     <p>No. Japan sits above 200% and remains stable because it borrows in its own currency at low rates from its own savers. What matters is whether a country borrows in money it controls, how much the interest costs each year, and whether lenders stay willing to lend. A high and rising ratio in a country that borrows in someone else's currency is the real warning sign.</p>
+    <h4>The "Borrows in" column, and why it may matter more than the ranking</h4>
+    <p>Next to each country we mark what currency its debt is in, because that decides whether a big number is dangerous. <b>Own currency</b> means the government borrows in money it can print, so it can always repay; the risk shows up as inflation or a weaker currency, not a default. That is why Japan carries more than double the US ratio without a crisis. <b>Euro (shared)</b> means a eurozone country that owes in euros but cannot print them alone, so its debt behaves partly like foreign debt, which is what made Greece's crisis possible. <b>Mixed</b> means a meaningful slice is in foreign currency. <b>Foreign-heavy</b> means the country leans on dollars or euros it cannot issue, or uses the US dollar outright (Panama, Ecuador); these are the ones that actually default when the dollar strengthens. Read the "Borrows in" tag together with the ratio: a high ratio in an own-currency country is a very different thing from a moderate ratio that is foreign-heavy.</p>
     <h4>One honest caveat about the ranking</h4>
     <p>This is "gross" debt, which counts what a government owes without subtracting what it owns. A few countries look far more indebted than they are because they also hold huge offsetting assets. Singapore is the clearest case: it is legally barred from spending its borrowing and invests it instead, so its real net position is strong despite a high gross number. Norway and Hong Kong are similar. Treat the ranking as a first read, not a verdict.</p>
     <h4>Why an intelligence site about moving abroad tracks this</h4>
@@ -187,7 +190,7 @@ footer a{color:#C9D2DE}
   </div>
 
   <p class="method">
-    <b>Where these numbers come from.</b> The live US total, its public and intragovernmental split, and the per-second growth rate are pulled from the US Treasury's official "Debt to the Penny" dataset (Fiscal Data API), updated each business day; between updates the clock extends the recent real pace of borrowing forward. The country comparison is general government gross debt as a percent of GDP from the International Monetary Fund's World Economic Outlook, fetched live from the IMF DataMapper and labelled with the data year; if that feed cannot be reached, the page shows the last confirmed IMF World Economic Outlook (October 2025) figures as a dated reference. The per-US-citizen figure divides the live total by an estimated US population of about 342 million (a 2026 estimate) and is illustrative, since the debt is not actually assigned to individuals. Gross debt does not net out government assets, which overstates the burden for a few asset-rich states as noted above. All figures are point in time and provided for general education, not financial advice.
+    <b>Where these numbers come from.</b> The live US total, its public and intragovernmental split, and the per-second growth rate are pulled from the US Treasury's official "Debt to the Penny" dataset (Fiscal Data API), updated each business day; between updates the clock extends the recent real pace of borrowing forward. The country comparison is general government gross debt as a percent of GDP from the International Monetary Fund's World Economic Outlook, fetched live from the IMF DataMapper and labelled with the data year; if that feed cannot be reached, the page shows the last confirmed IMF World Economic Outlook (October 2025) figures as a dated reference. The per-US-citizen figure divides the live total by an estimated US population of about 342 million (a 2026 estimate) and is illustrative, since the debt is not actually assigned to individuals. Gross debt does not net out government assets, which overstates the burden for a few asset-rich states as noted above. The "Borrows in" classification (own currency, euro, mixed, or foreign-heavy) is a dated editorial judgment for the countries shown, drawn from Bank for International Settlements and International Monetary Fund work on the currency composition of sovereign debt (2025); currency shares shift over time, so treat it as a directional guide, not a precise share. All figures are point in time and provided for general education, not financial advice.
   </p>
 </div>
 
@@ -242,31 +245,35 @@ function tick(){
 requestAnimationFrame(tick);
 
 /* ==================== Global debt-to-GDP comparison ==================== */
-/* [ISO3, name, region, fallback debt/GDP %]. Fallback = IMF WEO Oct 2025, used only if the live IMF feed fails. */
+/* [ISO3, name, region, fallback debt/GDP %, currency-of-debt code].
+   Fallback pct = IMF WEO Oct 2025, used only if the live IMF feed fails.
+   Currency code: own = borrows in its own printable currency; euro = eurozone (shares a currency it cannot print alone);
+   mix = meaningful foreign-currency share; for = heavy foreign-currency reliance or dollarized. Sources: BIS/IMF, 2025. */
 var MAP=[
-["JPN","Japan","Asia-Pacific",229.6],["GRC","Greece","Europe",146.7],["SGP","Singapore","Asia-Pacific",175.0],
-["BHR","Bahrain","Middle East",142.5],["ITA","Italy","Europe",137.6],["USA","United States","Americas",121.0],
-["FRA","France","Europe",116.0],["CAN","Canada","Americas",113.5],["BEL","Belgium","Europe",106.2],
-["GBR","United Kingdom","Europe",103.0],["ESP","Spain","Europe",100.7],["UKR","Ukraine","Europe",100.0],
-["CHN","China","Asia-Pacific",99.2],["PRT","Portugal","Europe",96.8],["BRA","Brazil","Americas",93.3],
-["EGY","Egypt","Africa",88.0],["FIN","Finland","Europe",89.0],["IND","India","Asia-Pacific",81.0],
-["AUT","Austria","Europe",82.3],["MUS","Mauritius","Africa",80.0],["GHA","Ghana","Africa",78.0],
-["ZAF","South Africa","Africa",75.0],["HUN","Hungary","Europe",74.0],["MAR","Morocco","Africa",69.0],
-["ISR","Israel","Middle East",69.0],["MYS","Malaysia","Asia-Pacific",66.0],["KEN","Kenya","Africa",66.0],
-["THA","Thailand","Asia-Pacific",64.0],["PAN","Panama","Americas",64.0],["URY","Uruguay","Americas",63.0],
-["DEU","Germany","Europe",62.7],["CRI","Costa Rica","Americas",61.0],["POL","Poland","Europe",59.0],
-["MEX","Mexico","Americas",58.0],["COL","Colombia","Americas",57.0],["PHL","Philippines","Asia-Pacific",57.0],
-["ECU","Ecuador","Americas",57.0],["KOR","South Korea","Asia-Pacific",55.0],["ROU","Romania","Europe",55.0],
-["AUS","Australia","Asia-Pacific",50.0],["ARM","Armenia","Europe",49.0],["SRB","Serbia","Europe",47.0],
-["NGA","Nigeria","Africa",47.0],["NZL","New Zealand","Asia-Pacific",46.0],["QAT","Qatar","Middle East",45.0],
-["NOR","Norway","Europe",45.0],["CZE","Czechia","Europe",45.0],["NLD","Netherlands","Europe",43.0],
-["CHL","Chile","Americas",42.0],["PRY","Paraguay","Americas",41.0],["GEO","Georgia","Europe",39.0],
-["IDN","Indonesia","Asia-Pacific",39.0],["CHE","Switzerland","Europe",37.0],["OMN","Oman","Middle East",36.0],
-["VNM","Vietnam","Asia-Pacific",35.0],["SWE","Sweden","Europe",34.8],["PER","Peru","Americas",34.0],
-["IRL","Ireland","Europe",32.9],["DNK","Denmark","Europe",31.5],["ARE","United Arab Emirates","Middle East",30.0],
-["SAU","Saudi Arabia","Middle East",30.0],["TUR","Turkey","Europe",26.0],["BGR","Bulgaria","Europe",26.0],
-["KAZ","Kazakhstan","Asia-Pacific",24.0],["KWT","Kuwait","Middle East",12.0],["HKG","Hong Kong SAR","Asia-Pacific",10.0]
+["JPN","Japan","Asia-Pacific",229.6,"own"],["GRC","Greece","Europe",146.7,"euro"],["SGP","Singapore","Asia-Pacific",175.0,"own"],
+["BHR","Bahrain","Middle East",142.5,"for"],["ITA","Italy","Europe",137.6,"euro"],["USA","United States","Americas",121.0,"own"],
+["FRA","France","Europe",116.0,"euro"],["CAN","Canada","Americas",113.5,"own"],["BEL","Belgium","Europe",106.2,"euro"],
+["GBR","United Kingdom","Europe",103.0,"own"],["ESP","Spain","Europe",100.7,"euro"],["UKR","Ukraine","Europe",100.0,"for"],
+["CHN","China","Asia-Pacific",99.2,"own"],["PRT","Portugal","Europe",96.8,"euro"],["BRA","Brazil","Americas",93.3,"own"],
+["EGY","Egypt","Africa",88.0,"for"],["FIN","Finland","Europe",89.0,"euro"],["IND","India","Asia-Pacific",81.0,"own"],
+["AUT","Austria","Europe",82.3,"euro"],["MUS","Mauritius","Africa",80.0,"own"],["GHA","Ghana","Africa",78.0,"for"],
+["ZAF","South Africa","Africa",75.0,"own"],["HUN","Hungary","Europe",74.0,"mix"],["MAR","Morocco","Africa",69.0,"mix"],
+["ISR","Israel","Middle East",69.0,"own"],["MYS","Malaysia","Asia-Pacific",66.0,"own"],["KEN","Kenya","Africa",66.0,"for"],
+["THA","Thailand","Asia-Pacific",64.0,"own"],["PAN","Panama","Americas",64.0,"for"],["URY","Uruguay","Americas",63.0,"mix"],
+["DEU","Germany","Europe",62.7,"euro"],["CRI","Costa Rica","Americas",61.0,"mix"],["POL","Poland","Europe",59.0,"mix"],
+["MEX","Mexico","Americas",58.0,"own"],["COL","Colombia","Americas",57.0,"mix"],["PHL","Philippines","Asia-Pacific",57.0,"mix"],
+["ECU","Ecuador","Americas",57.0,"for"],["KOR","South Korea","Asia-Pacific",55.0,"own"],["ROU","Romania","Europe",55.0,"mix"],
+["AUS","Australia","Asia-Pacific",50.0,"own"],["ARM","Armenia","Europe",49.0,"for"],["SRB","Serbia","Europe",47.0,"for"],
+["NGA","Nigeria","Africa",47.0,"mix"],["NZL","New Zealand","Asia-Pacific",46.0,"own"],["QAT","Qatar","Middle East",45.0,"mix"],
+["NOR","Norway","Europe",45.0,"own"],["CZE","Czechia","Europe",45.0,"own"],["NLD","Netherlands","Europe",43.0,"euro"],
+["CHL","Chile","Americas",42.0,"own"],["PRY","Paraguay","Americas",41.0,"mix"],["GEO","Georgia","Europe",39.0,"for"],
+["IDN","Indonesia","Asia-Pacific",39.0,"mix"],["CHE","Switzerland","Europe",37.0,"own"],["OMN","Oman","Middle East",36.0,"mix"],
+["VNM","Vietnam","Asia-Pacific",35.0,"mix"],["SWE","Sweden","Europe",34.8,"own"],["PER","Peru","Americas",34.0,"mix"],
+["IRL","Ireland","Europe",32.9,"euro"],["DNK","Denmark","Europe",31.5,"own"],["ARE","United Arab Emirates","Middle East",30.0,"mix"],
+["SAU","Saudi Arabia","Middle East",30.0,"mix"],["TUR","Turkey","Europe",26.0,"for"],["BGR","Bulgaria","Europe",26.0,"mix"],
+["KAZ","Kazakhstan","Asia-Pacific",24.0,"mix"],["KWT","Kuwait","Middle East",12.0,"own"],["HKG","Hong Kong SAR","Asia-Pacific",10.0,"own"]
 ];
+var CCLABEL={own:['t-low','Own currency'],euro:['t-mod','Euro (shared)'],mix:['t-elev','Mixed'],for:['t-heavy','Foreign-heavy']};
 var ASSET_RICH={SGP:1,NOR:1,HKG:1}; // gross overstates burden; net position far stronger
 
 var curYear=new Date().getUTCFullYear();
@@ -289,7 +296,7 @@ function barColor(p){
   if(p>=100)return'#C0554C';if(p>=60)return'#D6A83C';if(p>=30)return'#5E86AE';return'#3F9C7C';
 }
 function build(fromLive){
-  rows=MAP.map(function(m){return {iso:m[0],name:m[1],region:m[2],pct:m[3]};});
+  rows=MAP.map(function(m){return {iso:m[0],name:m[1],region:m[2],pct:m[3],cc:m[4]};});
   if(fromLive){
     var gg=imfData; var yrs={};
     rows.forEach(function(r){
@@ -318,17 +325,17 @@ ARE:784,SAU:682,TUR:792,BGR:100,KAZ:398,KWT:414,HKG:344};
 function render(){
   var max=rows[0]?rows[0].pct:250;
   var host=document.getElementById('tbl');
-  var h='<div class="trow head"><span>#</span><span>Country</span><span style="text-align:right">Debt/GDP</span><span>Relative</span><span style="text-align:center">Strain</span></div>';
+  var h='<div class="trow head"><span>#</span><span>Country</span><span style="text-align:right">Debt/GDP</span><span>Relative</span><span style="text-align:center">Borrows in</span></div>';
   var shown=rows.filter(function(r){return activeRegion==='all'||r.region===activeRegion;});
   shown.forEach(function(r,i){
-    var tg=bandTag(r.pct), w=Math.max(4,Math.min(100,r.pct/max*100));
+    var cc=CCLABEL[r.cc]||CCLABEL.mix, w=Math.max(4,Math.min(100,r.pct/max*100));
     var star=ASSET_RICH[r.iso]?'<small>gross figure; strong net position</small>':'';
     h+='<div class="trow'+(r.iso==='USA'?' us':'')+'">'
       +'<span class="rk">'+(i+1)+'</span>'
       +'<span class="nm">'+r.name+'<small>'+r.region+'</small>'+(star?' '+star:'')+'</span>'
       +'<span class="pct">'+(r.pct>=100?Math.round(r.pct):r.pct.toFixed(1))+'%</span>'
       +'<span class="barwrap"><i style="width:'+w+'%;background:'+barColor(r.pct)+'"></i></span>'
-      +'<span class="tag '+tg[0]+'">'+tg[1]+'</span>'
+      +'<span class="tag '+cc[0]+'">'+cc[1]+'</span>'
       +'</div>';
   });
   host.innerHTML=h;
