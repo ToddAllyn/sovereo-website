@@ -12,12 +12,17 @@ Score them. Only 6 and above gets a message. Everything below stays on content.
 - 1: early career, student, job seeking
 - 0: no signal in the profile at all
 
-**Intent, 0 to 4**
-- 4: posted in the last 90 days about leaving, retiring abroad, a visa, a specific country, or asked a relocation question
-- 3: already living outside their passport country, or moved in the last three years
-- 2: cross-border role, LATAM or EMEA or APAC desk, remote-first, nomad in the bio
-- 1: follows the space, engages with relocation or macro content generally
+**Exposure, 0 to 4.** Score against the current issue's Sector Impact table, not
+against a fixed list. Whoever this week's issue marks HIGH scores highest.
+- 4: sits in a sector the current issue marks HIGH, or posted in the last 90 days about a decision the issue speaks to directly
+- 3: sector marked MEDIUM, or holds cross-border revenue, supply, or assets across jurisdictions
+- 2: cross-border role, regional desk, importer or exporter, or living outside their passport country
+- 1: follows the space, engages with macro or policy content generally
 - 0: no signal
+
+For the 15 September issue that means agriculture, shipping and logistics, and
+refining and fuel retail score 4. Consumer goods and retail score 3. Re-read the
+table every week, because the 4s change with the news.
 
 **Warmth, 0 to 3**
 - 3: already on the free SITREP list, or has DMed before
@@ -48,7 +53,10 @@ Do not message, whatever the score:
 
 ## The signal that beats every score
 
-Someone who asked a public question about a specific country in the last 30 days
-is worth more than a fund partner with no intent. Intent outranks means. A person
-weighing a real move will pay $470 to stop guessing. A wealthy person who is not
-moving will not pay $47.
+Live exposure outranks means. Someone whose margin is being squeezed this week by
+something in this week's issue is worth more than a fund partner with nothing
+moving. A trucking operator watching diesel at $5.94 will pay $470 to stop
+guessing at the window. A wealthy person with nothing exposed will not pay $47.
+
+This is why the Sector Impact table is the prospecting brief. The desk publishes,
+every single day, a scored list of exactly who is hurting and why. Work that list.

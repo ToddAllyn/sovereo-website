@@ -19,26 +19,31 @@ read as one message sent twenty times.
 
 ## The insight bank
 
-Message two has to carry one specific, checkable thing they did not know. Pull
-this week's from the current Brief. Rotate so the same line is not reused across
-a cohort. Examples of the right shape and specificity:
+Message two has to carry one specific, checkable thing they did not know. It does
+not come from this file. It comes from `hooks-current.md`, which is rebuilt from
+the current issue, and it is matched to the sector the reader sits in.
 
-- The income bar on most residency visas is indexed and reset annually, so the
-  number you qualified against in your research is not the number you will apply
-  against next year.
-- Portugal's IFICI is not NHR renamed. The eligibility gate moved, and pension
-  income is treated differently under it.
-- A pension paid in dollars into a euro cost base is a currency position you did
-  not choose to open. Most people model the cost of living and never model that.
-- Brent about 40 percent off the wartime high, gold under $4,000, and yuan
-  settlement sliding on the CIPS rail were one event, not three. The correlation
-  is the signal.
-- The cheapest month to move is set by the lease cycle in the destination city,
-  not by the flight price.
+The shape is always the same: **the event, the number with its date, then the
+lens it lands on.** Income, Health, Lifestyle or Legacy. A message that stops at
+the event is news. A message that takes the second step is intelligence.
 
-Swap in the current week's. A stale insight reads like a template.
+Worked example, for a logistics operator:
 
----
+> Tanker rates on benchmark routes topped $1 million a day for the first time on
+> record on September 14, because fewer ships will cross Hormuz. That lands on
+> anyone quoting freight on contracts written before the pipeline went down.
+
+Worked example, for someone at a co-op:
+
+> US diesel hit an all-time high of $5.94 a gallon on September 10, right as
+> harvest started. Farm Policy News flagged the margin squeeze the same week.
+
+Never round a number up, never drop its date, never attribute it to a source that
+did not publish it. The whole proposition is that this desk is auditable. One
+inflated figure in a cold DM undoes the Reckoning ledger.
+
+If you are not certain of a number, use the mechanism instead. "Both Saudi export
+routes are disrupted at the same time" needs no decimal place.
 
 ## Track A, warm direct. Three messages.
 
@@ -48,19 +53,18 @@ For people who already commented, reacted, viewed the profile, or read the SITRE
 
 Variant 1, they engaged a post
 > [First], you left a note on the [specific topic] post last week and it was a
-> sharper read than most. Quick one since you are closer to this than the average
-> reader: are you weighing a move yourself, or watching the money side of it from
-> where you already are?
+> sharper read than most. Quick one since you sit closer to this than the average
+> reader: where does it actually land for you, the cost side or the exposure side?
 
-Variant 2, they already live abroad
-> [First], noticed you have been in [city] since [year]. Most of what gets written
-> about that move is written by people who never made it. Curious what caught you
-> out that the research did not warn you about.
+Variant 2, their sector is marked HIGH this week
+> [First], [hook from hooks-current.md, matched to their sector]. You are closer
+> to that than most people in my feed. Is it showing up in your numbers yet, or
+> still upstream of you?
 
 Variant 3, they are on the free SITREP list
 > [First], thanks for reading the SITREP. You are in the group that actually opens
 > it, which is rarer than you would think. Quick question so I write it better:
-> what are you trying to decide right now, the country, the money, or the timing?
+> what decision are you closest to right now, and which part of it is unresolved?
 
 ### A2, value first. Still no pitch.
 

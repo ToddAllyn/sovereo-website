@@ -6,6 +6,7 @@ Usage: python3 pipeline.py [path/to/tracker.csv]
 """
 import csv
 import os
+import signal
 import sys
 from collections import Counter
 from datetime import date, datetime
@@ -153,4 +154,9 @@ def main():
 
 
 if __name__ == "__main__":
+    # Do not traceback when piped into head or less.
+    try:
+        signal.signal(signal.SIGPIPE, signal.SIG_DFL)
+    except (AttributeError, ValueError):
+        pass
     main()

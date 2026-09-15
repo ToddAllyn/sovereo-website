@@ -49,7 +49,7 @@ already read the free SITREP, and who qualify on the rubric.
 - **Expect 3 to 4 sales**
 
 **Track B, qualified followers, two step.** Followers whose title or bio
-signals means or relocation intent, no engagement yet.
+sit in a sector the current issue marks HIGH or MEDIUM, no engagement yet.
 - List size: about 350, messaged at 20 a day across four weeks
 - Reply rate: 12 percent, so 42 replies
 - Take the sample issue: 60 percent of repliers, so 25
@@ -140,6 +140,8 @@ Post once. One strong post a day, never two. Two posts split reach.
 
 | File | What it is |
 |---|---|
+| `positioning.md` | What Sovereo is. Read first. Every other file defers to it. |
+| `hooks-current.md` | Live hooks by sector, rebuilt every issue. |
 | `qualify.md` | The scoring rubric. Who goes on which list. |
 | `notes.md` | Connection request notes, under the 300 character cap. |
 | `messages.md` | Every message frame, by track and step. |
