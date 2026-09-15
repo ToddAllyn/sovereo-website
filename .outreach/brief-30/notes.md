@@ -1,5 +1,67 @@
 # The connection request note
 
+## The note
+
+> [First], [specific thing]. I made that move with my family, and now publish a
+> free daily on the money and border side of it, sourced and dated. Every
+> morning, no cost, no pitch.
+
+177 characters empty. Worst realistic fill lands at 236, so every version of it
+clears the 300 cap with room left.
+
+Three things are doing the work:
+
+- **[specific thing]** is the whole note. It is the only proof you read their
+  profile, and it is what gets the accept. Never send this without it.
+- **"I made that move with my family"** is the line nobody else in this space
+  can write. Brokers and listicle publishers sell a move they never made. Keep
+  it, even when you are cutting for length.
+- **"no cost, no pitch"** removes the only reason to decline. An invitation that
+  smells like a sales sequence gets declined by exactly the senior people you
+  want. Saying the quiet part kills the objection before it forms.
+
+### The five swap lines for [specific thing]
+
+Never send the same fill twice. Match it to what the profile actually shows.
+
+| Recipient | Fill |
+|---|---|
+| Posted about leaving or moving | `saw your post on [their exact situation]` |
+| Already living abroad | `you have been in [city] since [year]` |
+| Pre-retiree with assets | `[number] years at [company] puts retirement in calculation range` |
+| Cross-border role or investor | `you run [region] for [company], so you see this earlier than most` |
+| Engaged one of your posts | `your note on the [topic] post was a sharper read than most` |
+
+### Filled, so the shape is clear
+
+> Maria, saw your post on selling the house in Austin before the visa is
+> approved. I made that move with my family, and now publish a free daily on the
+> money and border side of it, sourced and dated. Every morning, no cost, no
+> pitch.
+
+> David, 22 years at Raytheon puts retirement in calculation range. I made that
+> move with my family, and now publish a free daily on the money and border side
+> of it, sourced and dated. Every morning, no cost, no pitch.
+
+### When they accept
+
+The note does not include a link, on purpose. Links in invitations suppress
+acceptance. Send this the same day they accept, and not before:
+
+> Thanks [First]. Here it is: mail.sovereo.com
+>
+> What are you closest to deciding right now, the country, the money, or the
+> timing?
+
+That question is the handoff into the Track A opener in `messages.md`. The note
+gets the connect. This gets the conversation. The conversation is what converts
+to the Brief.
+
+---
+
+## Variants, if you want to rotate wider than the five fills
+
+
 LinkedIn caps the invitation note at 300 characters. That cap is the whole design
 problem. You get one specific line about them, one line that earns the read, and
 one door. Nothing else fits, and nothing else is needed.
@@ -32,7 +94,7 @@ than trusting the template count. LinkedIn truncates silently, it does not warn.
 
 ---
 
-## SITREP door, five variants
+## SITREP door, longer variants
 
 Rotate them. Fill every bracket with something real or do not send.
 
