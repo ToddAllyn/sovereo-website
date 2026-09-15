@@ -1,0 +1,88 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1440" viewBox="0 0 1080 1440" font-family="'Segoe UI',Helvetica,Arial,sans-serif">
+  <rect width="1080" height="1440" fill="#12266B"/>
+  <rect x="0" y="0" width="1080" height="8" fill="#D4AF37"/>
+
+  <text x="60" y="72" fill="#E7C765" font-size="19" font-weight="700" letter-spacing="4">SOVEREO INTELLIGENCE RESEARCH</text>
+  <text x="60" y="132" fill="#FFFFFF" font-family="Georgia,'Times New Roman',serif" font-size="52" font-weight="700">What the world owes</text>
+  <text x="60" y="176" fill="#C9D2DE" font-size="24">Government debt against the size of the economy, and the money it is owed in.</text>
+  <text x="60" y="222" fill="#9FB0D6" font-size="18">Bar length = debt as a share of GDP.&#160;&#160;Color = the currency the debt is owed in.</text>
+
+  <!-- Chart rows: x label right-anchored at 310, bar starts at 330 -->
+  <!-- Japan 230 own -->
+  <text x="312" y="324" fill="#FFFFFF" font-size="20" text-anchor="end">Japan</text>
+  <rect x="330" y="300" width="619" height="34" rx="4" fill="#3F9C7C"/>
+  <text x="963" y="324" fill="#FFFFFF" font-size="19" font-weight="700">230%</text>
+  <!-- Singapore 175 own -->
+  <text x="312" y="382" fill="#FFFFFF" font-size="20" text-anchor="end">Singapore*</text>
+  <rect x="330" y="358" width="472" height="34" rx="4" fill="#3F9C7C"/>
+  <text x="816" y="382" fill="#FFFFFF" font-size="19" font-weight="700">175%</text>
+  <!-- Greece 147 euro -->
+  <text x="312" y="440" fill="#FFFFFF" font-size="20" text-anchor="end">Greece</text>
+  <rect x="330" y="416" width="396" height="34" rx="4" fill="#5E86AE"/>
+  <text x="740" y="440" fill="#FFFFFF" font-size="19" font-weight="700">147%</text>
+  <!-- Italy 138 euro -->
+  <text x="312" y="498" fill="#FFFFFF" font-size="20" text-anchor="end">Italy</text>
+  <rect x="330" y="474" width="371" height="34" rx="4" fill="#5E86AE"/>
+  <text x="715" y="498" fill="#FFFFFF" font-size="19" font-weight="700">138%</text>
+  <!-- USA 121 own (highlight) -->
+  <text x="312" y="556" fill="#E7C765" font-size="20" font-weight="700" text-anchor="end">United States</text>
+  <rect x="330" y="532" width="326" height="34" rx="4" fill="#3F9C7C" stroke="#E7C765" stroke-width="2"/>
+  <text x="670" y="556" fill="#E7C765" font-size="19" font-weight="700">121%</text>
+  <!-- France 116 euro -->
+  <text x="312" y="614" fill="#FFFFFF" font-size="20" text-anchor="end">France</text>
+  <rect x="330" y="590" width="313" height="34" rx="4" fill="#5E86AE"/>
+  <text x="657" y="614" fill="#FFFFFF" font-size="19" font-weight="700">116%</text>
+  <!-- Canada 114 own -->
+  <text x="312" y="672" fill="#FFFFFF" font-size="20" text-anchor="end">Canada</text>
+  <rect x="330" y="648" width="306" height="34" rx="4" fill="#3F9C7C"/>
+  <text x="650" y="672" fill="#FFFFFF" font-size="19" font-weight="700">114%</text>
+  <!-- UK 103 own -->
+  <text x="312" y="730" fill="#FFFFFF" font-size="20" text-anchor="end">United Kingdom</text>
+  <rect x="330" y="706" width="278" height="34" rx="4" fill="#3F9C7C"/>
+  <text x="622" y="730" fill="#FFFFFF" font-size="19" font-weight="700">103%</text>
+  <!-- China 99 own -->
+  <text x="312" y="788" fill="#FFFFFF" font-size="20" text-anchor="end">China</text>
+  <rect x="330" y="764" width="267" height="34" rx="4" fill="#3F9C7C"/>
+  <text x="611" y="788" fill="#FFFFFF" font-size="19" font-weight="700">99%</text>
+  <!-- Brazil 93 own -->
+  <text x="312" y="846" fill="#FFFFFF" font-size="20" text-anchor="end">Brazil</text>
+  <rect x="330" y="822" width="252" height="34" rx="4" fill="#3F9C7C"/>
+  <text x="596" y="846" fill="#FFFFFF" font-size="19" font-weight="700">93%</text>
+  <!-- Egypt 88 foreign -->
+  <text x="312" y="904" fill="#FFFFFF" font-size="20" text-anchor="end">Egypt</text>
+  <rect x="330" y="880" width="237" height="34" rx="4" fill="#C0554C"/>
+  <text x="581" y="904" fill="#FFFFFF" font-size="19" font-weight="700">88%</text>
+  <!-- India 81 own -->
+  <text x="312" y="962" fill="#FFFFFF" font-size="20" text-anchor="end">India</text>
+  <rect x="330" y="938" width="218" height="34" rx="4" fill="#3F9C7C"/>
+  <text x="562" y="962" fill="#FFFFFF" font-size="19" font-weight="700">81%</text>
+  <!-- Ghana 78 foreign -->
+  <text x="312" y="1020" fill="#FFFFFF" font-size="20" text-anchor="end">Ghana</text>
+  <rect x="330" y="996" width="210" height="34" rx="4" fill="#C0554C"/>
+  <text x="554" y="1020" fill="#FFFFFF" font-size="19" font-weight="700">78%</text>
+  <!-- Ecuador 57 foreign -->
+  <text x="312" y="1078" fill="#FFFFFF" font-size="20" text-anchor="end">Ecuador**</text>
+  <rect x="330" y="1054" width="154" height="34" rx="4" fill="#C0554C"/>
+  <text x="498" y="1078" fill="#FFFFFF" font-size="19" font-weight="700">57%</text>
+  <!-- Turkey 26 foreign -->
+  <text x="312" y="1136" fill="#FFFFFF" font-size="20" text-anchor="end">Turkey</text>
+  <rect x="330" y="1112" width="70" height="34" rx="4" fill="#C0554C"/>
+  <text x="414" y="1136" fill="#FFFFFF" font-size="19" font-weight="700">26%</text>
+
+  <!-- divider -->
+  <rect x="60" y="1180" width="960" height="1" fill="#24356E"/>
+
+  <!-- legend -->
+  <rect x="60" y="1200" width="22" height="22" rx="4" fill="#3F9C7C"/>
+  <text x="92" y="1217" fill="#E6ECF3" font-size="18">Own currency, the government can print what it owes (default is near-impossible; risk is inflation)</text>
+  <rect x="60" y="1234" width="22" height="22" rx="4" fill="#5E86AE"/>
+  <text x="92" y="1251" fill="#E6ECF3" font-size="18">Euro, a shared currency no single member can print alone</text>
+  <rect x="60" y="1268" width="22" height="22" rx="4" fill="#D6A83C"/>
+  <text x="92" y="1285" fill="#E6ECF3" font-size="18">Mixed, a meaningful share is in foreign currency</text>
+  <rect x="60" y="1302" width="22" height="22" rx="4" fill="#C0554C"/>
+  <text x="92" y="1319" fill="#E6ECF3" font-size="18">Foreign-heavy or dollarized, it cannot print what it owes (real default risk)</text>
+
+  <text x="60" y="1360" fill="#8595BD" font-size="15">* Singapore's gross debt is offset by large state assets. ** Ecuador uses the US dollar as its currency.</text>
+  <text x="60" y="1388" fill="#8595BD" font-size="15">Sources: IMF World Economic Outlook, October 2025 (debt-to-GDP); BIS and IMF, 2025 (currency of debt).</text>
+  <text x="60" y="1420" fill="#E7C765" font-size="18" font-weight="700">sovereo.com&#160;&#160;·&#160;&#160;Global intelligence. Personal consequence.&#160;&#160;·&#160;&#160;Free daily SITREP</text>
+</svg>
