@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Currency Erosion: What Your Money Lost Against the Dollar | Sovereo</title>
+<meta name="description" content="See how much a currency has lost against the US dollar over the last 1, 5, and 10 years. Live exchange-rate data. A free Sovereo tool on where your money holds its value.">
+<link rel="canonical" href="https://www.sovereo.com/currency-erosion.html">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#12266B">
+<meta property="og:title" content="Currency Erosion: what your money lost against the dollar | Sovereo">
+<meta property="og:description" content="How much a currency has lost against the US dollar over 1, 5, and 10 years. Live data.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.sovereo.com/currency-erosion.html">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--paper);color:var(--ink);font-family:var(--sans);line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:920px;margin:0 auto;padding:0 28px}
+.eyebrow{font-size:12.5px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--gold2)}
+.mast{position:sticky;top:0;z-index:50;background:rgba(251,248,241,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.mast .row{display:flex;align-items:center;justify-content:space-between;height:72px}
+.brand{font-weight:800;letter-spacing:.30em;font-size:19px;color:var(--ink)}
+.brand small{display:block;font-weight:600;letter-spacing:.16em;font-size:9.5px;color:var(--soft);margin-top:2px}
+.nav{display:flex;gap:22px;align-items:center}
+.nav a{font-size:14px;font-weight:500;color:var(--ink)}
+.hero{background:var(--ink);color:var(--paper);padding:52px 0 40px}
+.hero .eyebrow{color:var(--gold2)}
+.hero h1{font-family:var(--serif);font-weight:800;font-size:40px;line-height:1.08;margin:12px 0 0;max-width:20ch}
+.hero p{font-size:18px;color:#C9D2DE;margin:16px 0 0;max-width:64ch}
+.panel{background:#fff;border:1px solid var(--line);border-radius:16px;padding:26px 28px;margin:30px 0 0}
+.f label{display:block;font-size:12.5px;font-weight:700;margin:0 0 6px;color:#40505F}
+.f select{font-family:inherit;font-size:16px;padding:12px 13px;border:1px solid var(--line);border-radius:9px;background:#fff;color:var(--ink);min-width:260px}
+.f select:focus{outline:none;border-color:var(--gold)}
+.headline{font-family:var(--serif);font-size:26px;font-weight:700;color:var(--ink);margin:22px 0 0;line-height:1.3}
+.headline b{color:#C0554C}
+.headline.up b{color:#1E6B52}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:20px 0 0}
+@media(max-width:640px){.cards{grid-template-columns:1fr}}
+.c{background:var(--paper2,#f6f2ea);border:1px solid var(--line);border-radius:12px;padding:16px 18px}
+.c .k{font-size:12px;font-weight:700;letter-spacing:.04em;color:var(--soft);text-transform:uppercase}
+.c .v{font-family:var(--serif);font-size:26px;font-weight:700;margin-top:4px}
+.c .v.dn{color:#C0554C}.c .v.up{color:#1E6B52}
+.c .s{font-size:13px;color:var(--mut);margin-top:3px}
+.chartwrap{margin:22px 0 0}
+#chart{width:100%;height:auto;display:block;background:#0b1636;border:1px solid #24356e;border-radius:12px}
+.chart-cap{font-size:12.5px;color:var(--soft);margin:8px 2px 0}
+.held{background:var(--ink);color:var(--paper);border-radius:12px;padding:16px 20px;margin:18px 0 0;font-size:15.5px}
+.held b{color:var(--gold2)}
+.cta{background:var(--ink);color:var(--paper);border-radius:16px;padding:28px 32px;margin:26px 0 0}
+.cta h3{font-family:var(--serif);font-size:22px;font-weight:600;margin:0 0 8px;color:#fff}
+.cta p{color:#C9D2DE;font-size:15.5px;margin:0 0 16px}
+.cta .b{display:inline-block;background:#D4AF37;color:#12266B;font-weight:700;font-size:15px;padding:13px 24px;border-radius:8px;margin-top:6px}
+.cta .b.ghost{background:transparent;color:#D4AF37;border:1px solid #D4AF37;margin-left:10px}
+.pnl{background:#fff;border:1px solid var(--line);border-radius:16px;padding:30px 32px;margin:26px 0 0}
+.pnl h2{font-family:var(--serif);font-size:22px;font-weight:600;margin:0 0 6px}
+.pnl h4{font-size:15px;font-weight:700;color:#26303E;margin:16px 0 4px}
+.pnl p{font-size:15px;color:#40505F;margin:0 0 6px}
+.method{font-size:13px;color:var(--soft);margin:28px 0 0;max-width:82ch}
+.method b{color:#40505F}
+footer{background:var(--ink);color:#9AA6B6;padding:34px 0;font-size:13px;margin-top:48px}
+footer .wrap{display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap}
+footer a{color:#C9D2DE}
+@media(max-width:640px){.hero h1{font-size:31px}.cta .b.ghost{margin-left:0;margin-top:10px}}
+</style>
+<script defer src="assets/analytics.js"></script>
+</head>
+<body>
+<div class="mast"><div class="wrap row">
+  <a class="brand" href="index.html">SOVEREO<small>GLOBAL INTELLIGENCE &middot; PERSONAL CONSEQUENCE</small></a>
+  <nav class="nav">
+    <a href="Sovereo_Index_Table.html">The Index</a>
+    <a href="Sovereo_Country_Reports.html">Dossiers</a>
+    <a href="free-tools.html">Free Tools</a>
+  </nav>
+</div></div>
+
+<header class="hero"><div class="wrap">
+  <div class="eyebrow">Free Tools &middot; Currency Erosion</div>
+  <h1>How much has your money lost against the dollar?</h1>
+  <p>A currency can quietly lose a third, a half, or almost all of its value in a decade. Pick a currency and see what it has lost, or gained, against the US dollar over the last one, five, and ten years, from live exchange-rate data.</p>
+</div></header>
+
+<div class="wrap">
+  <div class="panel">
+    <div class="f"><label for="sel">Currency</label><select id="sel"></select></div>
+    <div class="headline" id="headline">Loading live exchange rates&hellip;</div>
+    <div class="cards" id="cards"></div>
+    <div class="chartwrap">
+      <canvas id="chart" width="860" height="300" role="img" aria-label="Value against the US dollar over ten years"></canvas>
+      <div class="chart-cap" id="cap">Value of the currency against the US dollar, last ten years.</div>
+    </div>
+    <div class="held" id="held"></div>
+  </div>
+
+  <div class="cta">
+    <h3>A weakening currency is a tax you never voted for.</h3>
+    <p>Where you hold your income and savings decides how much of this erosion reaches you. Sovereo tracks the forces behind it every day and shows you where money holds its value.</p>
+    <a class="b" href="index.html#sitrep">Get the free daily SITREP &rarr;</a>
+    <a class="b ghost" href="free-tools.html">See all free tools</a>
+  </div>
+
+  <div class="pnl">
+    <h2>How to read this, in plain English</h2>
+    <p>You do not need any finance background. Here is the whole thing, simply.</p>
+    <h4>What does "lost against the dollar" mean?</h4>
+    <p>It means one unit of the currency buys fewer US dollars than it used to. If a currency has lost 50 percent against the dollar, money kept in it now converts to half as many dollars as it did then. For anyone who earns, saves, or spends across borders, that is a real cut in buying power.</p>
+    <h4>Why currencies lose value</h4>
+    <p>Mostly heavy money printing, large government deficits, high inflation, or a loss of confidence from investors and savers. Strong, stable economies tend to hold their value; economies under strain tend to erode, sometimes slowly, sometimes in a sudden break.</p>
+    <h4>Why it matters for your life</h4>
+    <p>If your income and savings sit in a currency that is eroding, you get poorer in global terms even if the local number on your paycheck rises. This is one of the quiet reasons people move income, savings, or themselves toward more stable ground.</p>
+  </div>
+
+  <p class="method">
+    <b>Where this comes from.</b> Exchange rates are pulled live from the Frankfurter service, which publishes European Central Bank reference rates, with no key required. Change is measured from the reference rate on or just before the same calendar date one, five, and ten years ago to the latest published rate, expressed as the change in the currency's value in US dollars. The service covers around thirty widely traded currencies; some highly volatile or restricted currencies are not included. Rates are indicative reference values, not the price at any particular bank or exchange. For general education, not financial advice.
+  </p>
+</div>
+
+<footer><div class="wrap"><div>&copy; 2026 Sovereo Intelligence Research</div><div><a href="terms.html">Terms</a> &middot; <a href="privacy.html">Privacy</a></div></div></footer>
+
+<script>
+var API="https://api.frankfurter.app";
+var NAMES={AUD:"Australian Dollar",BRL:"Brazilian Real",CAD:"Canadian Dollar",CHF:"Swiss Franc",CNY:"Chinese Yuan",CZK:"Czech Koruna",DKK:"Danish Krone",EUR:"Euro",GBP:"British Pound",HKD:"Hong Kong Dollar",HUF:"Hungarian Forint",IDR:"Indonesian Rupiah",ILS:"Israeli Shekel",INR:"Indian Rupee",ISK:"Icelandic Krona",JPY:"Japanese Yen",KRW:"South Korean Won",MXN:"Mexican Peso",MYR:"Malaysian Ringgit",NOK:"Norwegian Krone",NZD:"New Zealand Dollar",PHP:"Philippine Peso",PLN:"Polish Zloty",RON:"Romanian Leu",SEK:"Swedish Krona",SGD:"Singapore Dollar",THB:"Thai Baht",TRY:"Turkish Lira",ZAR:"South African Rand"};
+var ORDER=["TRY","BRL","MXN","ZAR","JPY","INR","GBP","EUR","CAD","AUD","NZD","CNY","KRW","IDR","PHP","THB","MYR","SGD","HKD","CHF","NOK","SEK","DKK","PLN","HUF","CZK","RON","ILS","ISK"];
+
+var sel=document.getElementById('sel');
+ORDER.forEach(function(c){ if(NAMES[c]){ var o=document.createElement('option'); o.value=c; o.textContent=NAMES[c]+" ("+c+")"; sel.appendChild(o); } });
+sel.value="TRY";
+
+function iso(d){return d.toISOString().slice(0,10);}
+function yearsAgo(y){var d=new Date(); d.setFullYear(d.getFullYear()-y); return iso(d);}
+function pct(now,then){return (now/then-1)*100;}
+function fmtPct(p){var s=(p>=0?"+":"")+p.toFixed(p>=100||p<=-100?0:1)+"%"; return s;}
+
+function rateToValue(r){ return 1/r; } // USD per 1 unit of currency (currency's value in USD)
+
+function load(){
+  var c=sel.value;
+  document.getElementById('headline').textContent='Loading live exchange rates…';
+  document.getElementById('cards').innerHTML=''; document.getElementById('held').textContent='';
+  var d1=yearsAgo(1), d5=yearsAgo(5), d10=yearsAgo(10);
+  Promise.all([
+    fetch(API+'/latest?base=USD&symbols='+c).then(r=>r.json()),
+    fetch(API+'/'+d1+'?base=USD&symbols='+c).then(r=>r.json()),
+    fetch(API+'/'+d5+'?base=USD&symbols='+c).then(r=>r.json()),
+    fetch(API+'/'+d10+'?base=USD&symbols='+c).then(r=>r.json())
+  ]).then(function(res){
+    var vNow=rateToValue(res[0].rates[c]);
+    var v1=rateToValue(res[1].rates[c]);
+    var v5=rateToValue(res[2].rates[c]);
+    var v10=rateToValue(res[3].rates[c]);
+    var p1=pct(vNow,v1), p5=pct(vNow,v5), p10=pct(vNow,v10);
+    var nm=NAMES[c];
+    var h=document.getElementById('headline');
+    var lead = p10<=0
+      ? 'The '+nm+' has lost <b>'+Math.abs(p10).toFixed(0)+'%</b> of its value against the US dollar in ten years.'
+      : 'The '+nm+' has gained <b>'+p10.toFixed(0)+'%</b> against the US dollar in ten years.';
+    h.className='headline'+(p10>0?' up':''); h.innerHTML=lead;
+
+    function card(k,p){var dn=p<0; return '<div class="c"><div class="k">'+k+'</div><div class="v '+(dn?'dn':'up')+'">'+fmtPct(p)+'</div><div class="s">vs US dollar</div></div>';}
+    document.getElementById('cards').innerHTML=card('1 year',p1)+card('5 years',p5)+card('10 years',p10);
+
+    var held=document.getElementById('held');
+    var worth=1000*(vNow/v10);
+    held.innerHTML='If you had held <b>the equivalent of US$1,000</b> in '+nm+' cash ten years ago, it would be worth about <b>US$'+Math.round(worth).toLocaleString('en-US')+'</b> today, purely from the currency move.';
+
+    drawChart(c, d10);
+  }).catch(function(){
+    document.getElementById('headline').textContent='Live rates are unavailable right now. Please refresh in a moment.';
+  });
+}
+
+function drawChart(c, start){
+  var end=iso(new Date());
+  fetch(API+'/'+start+'..'+end+'?base=USD&symbols='+c).then(r=>r.json()).then(function(d){
+    if(!d.rates) throw 0;
+    var dates=Object.keys(d.rates).sort();
+    var pts=dates.map(function(dt){return {t:dt, v:rateToValue(d.rates[dt][c])};});
+    // downsample to ~200 points
+    var step=Math.max(1,Math.floor(pts.length/200));
+    var s=[]; for(var i=0;i<pts.length;i+=step) s.push(pts[i]); if(s[s.length-1]!==pts[pts.length-1]) s.push(pts[pts.length-1]);
+    var cv=document.getElementById('chart'), dpr=Math.max(1,Math.min(2,window.devicePixelRatio||1));
+    var W=cv.clientWidth||860, H=300; cv.style.height=H+'px'; cv.width=W*dpr; cv.height=H*dpr;
+    var ctx=cv.getContext('2d'); ctx.setTransform(dpr,0,0,dpr,0,0); ctx.clearRect(0,0,W,H);
+    var vals=s.map(function(p){return p.v;}); var mn=Math.min.apply(null,vals), mx=Math.max.apply(null,vals);
+    var pad=28, x0=pad, x1=W-pad, y0=18, y1=H-26;
+    function X(i){return x0+(x1-x0)*i/(s.length-1);}
+    function Y(v){return y1-(y1-y0)*(v-mn)/((mx-mn)||1);}
+    // baseline grid
+    ctx.strokeStyle='rgba(255,255,255,.10)'; ctx.lineWidth=1; ctx.beginPath(); ctx.moveTo(x0,y1); ctx.lineTo(x1,y1); ctx.stroke();
+    // area + line
+    ctx.beginPath(); ctx.moveTo(X(0),Y(s[0].v)); for(var i=1;i<s.length;i++) ctx.lineTo(X(i),Y(s[i].v));
+    ctx.strokeStyle='#E7C765'; ctx.lineWidth=2; ctx.stroke();
+    ctx.lineTo(X(s.length-1),y1); ctx.lineTo(X(0),y1); ctx.closePath(); ctx.fillStyle='rgba(231,199,101,.12)'; ctx.fill();
+    // endpoint labels
+    ctx.fillStyle='#9FB0D6'; ctx.font='12px Inter,Arial,sans-serif';
+    ctx.textAlign='left'; ctx.fillText(s[0].t.slice(0,4), x0, y1+16);
+    ctx.textAlign='right'; ctx.fillText(s[s.length-1].t.slice(0,4), x1, y1+16);
+    document.getElementById('cap').textContent='Value of one '+NAMES[c]+' in US dollars, '+s[0].t.slice(0,4)+' to '+s[s.length-1].t.slice(0,4)+' (live ECB reference rates).';
+  }).catch(function(){ document.getElementById('cap').textContent='The ten-year chart could not load, but the figures above are current.'; });
+}
+
+sel.addEventListener('change',load);
+window.addEventListener('resize',function(){ if(sel.value) drawChart(sel.value, yearsAgo(10)); });
+load();
+</script>
+<script src="assets/site-nav.js" defer></script>
+</body>
+</html>

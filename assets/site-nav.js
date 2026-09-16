@@ -34,6 +34,10 @@
     {t:'Cost of Living Compare',h:'cost-compare.html'},
     {t:'US Debt Clock',h:'debt-clock.html'},
     {t:'The Map Lies',h:'truesize.html'},
+    {t:'Currency Erosion',h:'currency-erosion.html'},
+    {t:'Inflation Calculator',h:'inflation-calculator.html'},
+    {t:'Passport Power',h:'passport-power.html'},
+    {t:'Income Tax by Country',h:'tax-compare.html'},
     {t:'Terms',h:'terms.html'},
     {t:'Privacy',h:'privacy.html'}
   ];

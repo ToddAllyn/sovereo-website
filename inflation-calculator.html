@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>What Your Money Was Worth: US Inflation Calculator | Sovereo</title>
+<meta name="description" content="See what a dollar in any past year is worth today, and how much buying power inflation has quietly taken. Built from official US CPI data, 1913 to today. A free Sovereo tool.">
+<link rel="canonical" href="https://www.sovereo.com/inflation-calculator.html">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#12266B">
+<meta property="og:title" content="What Your Money Was Worth: US Inflation Calculator | Sovereo">
+<meta property="og:description" content="What a dollar in any past year is worth today, from official US CPI data.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.sovereo.com/inflation-calculator.html">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--paper);color:var(--ink);font-family:var(--sans);line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:920px;margin:0 auto;padding:0 28px}
+.eyebrow{font-size:12.5px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--gold2)}
+.mast{position:sticky;top:0;z-index:50;background:rgba(251,248,241,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.mast .row{display:flex;align-items:center;justify-content:space-between;height:72px}
+.brand{font-weight:800;letter-spacing:.30em;font-size:19px;color:var(--ink)}
+.brand small{display:block;font-weight:600;letter-spacing:.16em;font-size:9.5px;color:var(--soft);margin-top:2px}
+.nav{display:flex;gap:22px;align-items:center}
+.nav a{font-size:14px;font-weight:500;color:var(--ink)}
+.hero{background:var(--ink);color:var(--paper);padding:52px 0 40px}
+.hero .eyebrow{color:var(--gold2)}
+.hero h1{font-family:var(--serif);font-weight:800;font-size:40px;line-height:1.08;margin:12px 0 0;max-width:20ch}
+.hero p{font-size:18px;color:#C9D2DE;margin:16px 0 0;max-width:64ch}
+.panel{background:#fff;border:1px solid var(--line);border-radius:16px;padding:26px 28px;margin:30px 0 0}
+.row3{display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:14px;align-items:end}
+@media(max-width:640px){.row3{grid-template-columns:1fr}}
+.f label{display:block;font-size:12.5px;font-weight:700;margin:0 0 6px;color:#40505F}
+.f input,.f select{width:100%;font-family:inherit;font-size:16px;padding:12px 13px;border:1px solid var(--line);border-radius:9px;background:#fff;color:var(--ink)}
+.f input:focus,.f select:focus{outline:none;border-color:var(--gold)}
+.inrow{display:flex}.inrow .cur{display:flex;align-items:center;padding:0 13px;border:1px solid var(--line);border-right:none;border-radius:9px 0 0 9px;background:var(--paper2,#f3efe6);font-weight:700;color:#40505F}
+.inrow input{border-radius:0 9px 9px 0}
+.headline{font-family:var(--serif);font-size:28px;font-weight:700;color:var(--ink);margin:24px 0 0;line-height:1.3}
+.headline b{color:var(--gold)}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:18px 0 0}
+@media(max-width:640px){.stats{grid-template-columns:1fr}}
+.stat{background:var(--paper2,#f6f2ea);border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+.stat b{display:block;font-family:var(--serif);font-size:22px;color:var(--ink)}
+.stat span{font-size:12.5px;color:var(--soft)}
+.chartwrap{margin:22px 0 0}
+#chart{width:100%;height:auto;display:block;background:#0b1636;border:1px solid #24356e;border-radius:12px}
+.chart-cap{font-size:12.5px;color:var(--soft);margin:8px 2px 0}
+.cta{background:var(--ink);color:var(--paper);border-radius:16px;padding:28px 32px;margin:26px 0 0}
+.cta h3{font-family:var(--serif);font-size:22px;font-weight:600;margin:0 0 8px;color:#fff}
+.cta p{color:#C9D2DE;font-size:15.5px;margin:0 0 16px}
+.cta .b{display:inline-block;background:#D4AF37;color:#12266B;font-weight:700;font-size:15px;padding:13px 24px;border-radius:8px;margin-top:6px}
+.cta .b.ghost{background:transparent;color:#D4AF37;border:1px solid #D4AF37;margin-left:10px}
+.pnl{background:#fff;border:1px solid var(--line);border-radius:16px;padding:30px 32px;margin:26px 0 0}
+.pnl h2{font-family:var(--serif);font-size:22px;font-weight:600;margin:0 0 6px}
+.pnl h4{font-size:15px;font-weight:700;color:#26303E;margin:16px 0 4px}
+.pnl p{font-size:15px;color:#40505F;margin:0 0 6px}
+.method{font-size:13px;color:var(--soft);margin:28px 0 0;max-width:82ch}
+.method b{color:#40505F}
+footer{background:var(--ink);color:#9AA6B6;padding:34px 0;font-size:13px;margin-top:48px}
+footer .wrap{display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap}
+footer a{color:#C9D2DE}
+@media(max-width:640px){.hero h1{font-size:31px}.cta .b.ghost{margin-left:0;margin-top:10px}}
+</style>
+<script defer src="assets/analytics.js"></script>
+</head>
+<body>
+<div class="mast"><div class="wrap row">
+  <a class="brand" href="index.html">SOVEREO<small>GLOBAL INTELLIGENCE &middot; PERSONAL CONSEQUENCE</small></a>
+  <nav class="nav">
+    <a href="Sovereo_Index_Table.html">The Index</a>
+    <a href="Sovereo_Country_Reports.html">Dossiers</a>
+    <a href="free-tools.html">Free Tools</a>
+  </nav>
+</div></div>
+
+<header class="hero"><div class="wrap">
+  <div class="eyebrow">Free Tools &middot; Inflation</div>
+  <h1>What was your money really worth?</h1>
+  <p>Inflation is the quietest tax there is. Enter an amount and a year, and see what it takes to match that buying power today, and how much value the dollar has silently lost. Built from official US consumer price data going back to 1913.</p>
+</div></header>
+
+<div class="wrap">
+  <div class="panel">
+    <div class="row3">
+      <div class="f"><label for="amt">Amount</label><div class="inrow"><span class="cur">$</span><input id="amt" type="text" inputmode="numeric" value="1,000"></div></div>
+      <div class="f"><label for="from">In this year</label><select id="from"></select></div>
+      <div class="f"><label for="to">Worth in this year</label><select id="to"></select></div>
+    </div>
+    <div class="headline" id="headline"></div>
+    <div class="stats" id="stats"></div>
+    <div class="chartwrap">
+      <canvas id="chart" width="860" height="280" role="img" aria-label="Buying power of the dollar over time"></canvas>
+      <div class="chart-cap" id="cap"></div>
+    </div>
+  </div>
+
+  <div class="cta">
+    <h3>Inflation is why "saving in cash" quietly loses.</h3>
+    <p>The same force erodes some currencies far faster than the dollar. Sovereo tracks where money holds its value and where it does not, every morning, free.</p>
+    <a class="b" href="currency-erosion.html">See how currencies compare &rarr;</a>
+    <a class="b ghost" href="index.html#sitrep">Get the free daily SITREP</a>
+  </div>
+
+  <div class="pnl">
+    <h2>How to read this, in plain English</h2>
+    <p>You do not need any finance background. Here is the whole thing, simply.</p>
+    <h4>What is inflation?</h4>
+    <p>It is the gradual rise in prices over time, which means each dollar buys a little less each year. A dollar is not destroyed; it just quietly shrinks in what it can purchase. Over decades that adds up enormously.</p>
+    <h4>What the main number means</h4>
+    <p>It tells you how many of today's dollars you would need to buy what your original amount bought back then. If $1,000 in 1980 needs several thousand dollars today, that gap is the buying power inflation removed.</p>
+    <h4>Why it matters</h4>
+    <p>Money left sitting in cash loses value every year to inflation, even though the number in the account does not change. This is why holding wealth, and where you hold it, matters, and why a currency that inflates quickly is so costly to the people who earn and save in it.</p>
+  </div>
+
+  <p class="method">
+    <b>Where this comes from.</b> Figures use the official US Consumer Price Index for All Urban Consumers (CPI-U), annual averages, as published by the US Bureau of Labor Statistics and compiled by the Federal Reserve Bank of Minneapolis, covering 1913 to the present. The conversion is amount times the ratio of the two years' index values. The current year is a partial estimate based on the latest available data. CPI measures a national average basket; your own experience of inflation depends on what you actually buy. For general education, not financial advice.
+  </p>
+</div>
+
+<footer><div class="wrap"><div>&copy; 2026 Sovereo Intelligence Research</div><div><a href="terms.html">Terms</a> &middot; <a href="privacy.html">Privacy</a></div></div></footer>
+
+<script>
+// US CPI-U annual averages (1982-84=100). Source: BLS / Federal Reserve Bank of Minneapolis. 2026 is a partial-year estimate.
+var CPI={1913:9.9,1914:10.0,1915:10.1,1916:10.9,1917:12.8,1918:15.0,1919:17.3,1920:20.0,1921:17.9,1922:16.8,1923:17.1,1924:17.1,1925:17.5,1926:17.7,1927:17.4,1928:17.2,1929:17.2,1930:16.7,1931:15.2,1932:13.6,1933:12.9,1934:13.4,1935:13.7,1936:13.9,1937:14.4,1938:14.1,1939:13.9,1940:14.0,1941:14.7,1942:16.3,1943:17.3,1944:17.6,1945:18.0,1946:19.5,1947:22.3,1948:24.0,1949:23.8,1950:24.1,1951:26.0,1952:26.6,1953:26.8,1954:26.9,1955:26.8,1956:27.2,1957:28.1,1958:28.9,1959:29.2,1960:29.6,1961:29.9,1962:30.3,1963:30.6,1964:31.0,1965:31.5,1966:32.5,1967:33.4,1968:34.8,1969:36.7,1970:38.8,1971:40.5,1972:41.8,1973:44.4,1974:49.3,1975:53.8,1976:56.9,1977:60.6,1978:65.2,1979:72.6,1980:82.4,1981:90.9,1982:96.5,1983:99.6,1984:103.9,1985:107.6,1986:109.6,1987:113.6,1988:118.3,1989:124.0,1990:130.7,1991:136.2,1992:140.3,1993:144.5,1994:148.2,1995:152.4,1996:156.9,1997:160.5,1998:163.0,1999:166.6,2000:172.2,2001:177.1,2002:179.9,2003:184.0,2004:188.9,2005:195.3,2006:201.6,2007:207.3,2008:215.3,2009:214.5,2010:218.1,2011:224.9,2012:229.6,2013:233.0,2014:236.7,2015:237.0,2016:240.0,2017:245.1,2018:251.1,2019:255.7,2020:258.8,2021:271.0,2022:292.7,2023:304.7,2024:313.7,2025:321.9,2026:334.4};
+var YEARS=Object.keys(CPI).map(Number).sort(function(a,b){return a-b;});
+var LAST=YEARS[YEARS.length-1];
+
+var amt=document.getElementById('amt'), fromS=document.getElementById('from'), toS=document.getElementById('to');
+YEARS.forEach(function(y){
+  var o1=document.createElement('option'); o1.value=y; o1.textContent=(y===LAST?y+' (est.)':y); fromS.appendChild(o1);
+  var o2=document.createElement('option'); o2.value=y; o2.textContent=(y===LAST?y+' (est.)':y); toS.appendChild(o2);
+});
+fromS.value=1980; toS.value=LAST;
+
+amt.addEventListener('input',function(){ var v=amt.value.replace(/[^0-9]/g,''); amt.value=v?Number(v).toLocaleString('en-US'):''; calc(); });
+fromS.addEventListener('change',calc); toS.addEventListener('change',calc);
+
+function money(n){ return '$'+Math.round(n).toLocaleString('en-US'); }
+function calc(){
+  var a=Number((amt.value||'0').replace(/[^0-9.]/g,''));
+  var fy=Number(fromS.value), ty=Number(toS.value);
+  if(!a||!CPI[fy]||!CPI[ty]) return;
+  var out=a*CPI[ty]/CPI[fy];
+  var totalInf=(CPI[ty]/CPI[fy]-1)*100;
+  var yrs=Math.abs(ty-fy);
+  var annual= yrs>0 ? (Math.pow(CPI[ty]/CPI[fy],1/yrs)-1)*100 : 0;
+  var powerOfOne = CPI[fy]/CPI[ty]; // what $1 of 'from' year buys in 'to' year terms
+  var h=document.getElementById('headline');
+  if(ty>=fy){
+    h.innerHTML=money(a)+' in '+fy+' has the same buying power as <b>'+money(out)+'</b> in '+ty+'.';
+  } else {
+    h.innerHTML=money(a)+' in '+fy+' had the same buying power as <b>'+money(out)+'</b> in '+ty+'.';
+  }
+  document.getElementById('stats').innerHTML=
+    '<div class="stat"><b>'+(totalInf>=0?'+':'')+Math.round(totalInf).toLocaleString('en-US')+'%</b><span>total price change over '+yrs+' years</span></div>'+
+    '<div class="stat"><b>'+annual.toFixed(1)+'%</b><span>average per year</span></div>'+
+    '<div class="stat"><b>'+ (powerOfOne<1 ? (powerOfOne*100).toFixed(0)+'¢' : '$'+powerOfOne.toFixed(2)) +'</b><span>what $1 from '+fy+' buys in '+ty+'</span></div>';
+  drawChart(fy,ty);
+}
+
+function drawChart(fy,ty){
+  var cv=document.getElementById('chart'), dpr=Math.max(1,Math.min(2,window.devicePixelRatio||1));
+  var W=cv.clientWidth||860, H=280; cv.style.height=H+'px'; cv.width=W*dpr; cv.height=H*dpr;
+  var ctx=cv.getContext('2d'); ctx.setTransform(dpr,0,0,dpr,0,0); ctx.clearRect(0,0,W,H);
+  var a=Math.min(fy,ty), b=Math.max(fy,ty);
+  var ys=[]; for(var y=a;y<=b;y++) if(CPI[y]) ys.push(y);
+  if(ys.length<2){ document.getElementById('cap').textContent=''; return; }
+  // buying power of $1 (in year b terms) across the span, indexed so year b = 1
+  var vals=ys.map(function(y){ return CPI[b]/CPI[y]; }); // dollars in year b needed to match $1 of year y -> declining power shown inverse
+  var power=ys.map(function(y){ return CPI[a]/CPI[y]; }); // relative to start=1
+  var mn=Math.min.apply(null,power), mx=Math.max.apply(null,power);
+  var pad=30,x0=pad,x1=W-pad,y0=18,y1=H-26;
+  function X(i){return x0+(x1-x0)*i/(ys.length-1);}
+  function Y(v){return y1-(y1-y0)*(v-mn)/((mx-mn)||1);}
+  ctx.strokeStyle='rgba(255,255,255,.10)';ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(x0,y1);ctx.lineTo(x1,y1);ctx.stroke();
+  ctx.beginPath();ctx.moveTo(X(0),Y(power[0]));for(var i=1;i<ys.length;i++)ctx.lineTo(X(i),Y(power[i]));
+  ctx.strokeStyle='#E7C765';ctx.lineWidth=2;ctx.stroke();
+  ctx.lineTo(X(ys.length-1),y1);ctx.lineTo(X(0),y1);ctx.closePath();ctx.fillStyle='rgba(231,199,101,.12)';ctx.fill();
+  ctx.fillStyle='#9FB0D6';ctx.font='12px Inter,Arial,sans-serif';
+  ctx.textAlign='left';ctx.fillText(ys[0],x0,y1+16);
+  ctx.textAlign='right';ctx.fillText(ys[ys.length-1],x1,y1+16);
+  document.getElementById('cap').textContent='Buying power of $1 from '+a+', measured across the years (a falling line means prices rose and the dollar bought less).';
+}
+
+calc();
+window.addEventListener('resize',function(){ drawChart(Number(fromS.value),Number(toS.value)); });
+</script>
+<script src="assets/site-nav.js" defer></script>
+</body>
+</html>

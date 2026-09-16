@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Passport Power: How Far Does Your Passport Take You? | Sovereo</title>
+<meta name="description" content="See how many destinations each passport opens without a prior visa, ranked. A free Sovereo tool on the mobility side of where you can live and travel.">
+<link rel="canonical" href="https://www.sovereo.com/passport-power.html">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#12266B">
+<meta property="og:title" content="Passport Power: how far does your passport take you? | Sovereo">
+<meta property="og:description" content="How many destinations each passport opens without a prior visa, ranked.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.sovereo.com/passport-power.html">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--paper);color:var(--ink);font-family:var(--sans);line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:920px;margin:0 auto;padding:0 28px}
+.eyebrow{font-size:12.5px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--gold2)}
+.mast{position:sticky;top:0;z-index:50;background:rgba(251,248,241,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.mast .row{display:flex;align-items:center;justify-content:space-between;height:72px}
+.brand{font-weight:800;letter-spacing:.30em;font-size:19px;color:var(--ink)}
+.brand small{display:block;font-weight:600;letter-spacing:.16em;font-size:9.5px;color:var(--soft);margin-top:2px}
+.nav{display:flex;gap:22px;align-items:center}
+.nav a{font-size:14px;font-weight:500;color:var(--ink)}
+.hero{background:var(--ink);color:var(--paper);padding:52px 0 40px}
+.hero .eyebrow{color:var(--gold2)}
+.hero h1{font-family:var(--serif);font-weight:800;font-size:40px;line-height:1.08;margin:12px 0 0;max-width:20ch}
+.hero p{font-size:18px;color:#C9D2DE;margin:16px 0 0;max-width:64ch}
+.panel{background:#fff;border:1px solid var(--line);border-radius:16px;padding:24px 26px;margin:30px 0 0}
+.f label{display:block;font-size:12.5px;font-weight:700;margin:0 0 6px;color:#40505F}
+.f select{font-family:inherit;font-size:16px;padding:12px 13px;border:1px solid var(--line);border-radius:9px;background:#fff;color:var(--ink);min-width:240px}
+.f select:focus{outline:none;border-color:var(--gold)}
+.you{font-family:var(--serif);font-size:22px;font-weight:600;color:var(--ink);margin:18px 0 0}
+.you b{color:var(--gold)}
+.tbl{background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden;margin:22px 0 0}
+.trow{display:grid;grid-template-columns:40px 1.5fr 74px 1fr 96px;align-items:center;gap:11px;padding:12px 18px;border-top:1px solid var(--line);font-size:14.5px}
+.trow:first-child{border-top:none}
+.trow.head{background:var(--paper2,#f3efe6);font-size:12px;font-weight:700;letter-spacing:.04em;color:var(--soft);text-transform:uppercase}
+.trow.you-row{background:rgba(212,175,55,.10);box-shadow:inset 3px 0 0 var(--gold)}
+.trow .rk{color:var(--soft)}
+.trow .nm{font-weight:600;color:var(--ink)}
+.trow .sc{font-family:var(--serif);font-weight:700;font-size:17px;text-align:right}
+.trow .barwrap{background:#eef1f5;border-radius:6px;height:10px;overflow:hidden}
+.trow .barwrap i{display:block;height:100%;border-radius:6px}
+.tag{font-size:11px;font-weight:700;text-align:center;border-radius:6px;padding:4px 6px}
+.t1{background:#DFF0E9;color:#1E6B52}.t2{background:#E2ECF5;color:#2C5480}.t3{background:#F7EAD3;color:#8A6A15}.t4{background:#F6E0DE;color:#9A2A22}
+.note{font-size:13px;color:var(--soft);margin:12px 2px 0}
+.cta{background:var(--ink);color:var(--paper);border-radius:16px;padding:28px 32px;margin:26px 0 0}
+.cta h3{font-family:var(--serif);font-size:22px;font-weight:600;margin:0 0 8px;color:#fff}
+.cta p{color:#C9D2DE;font-size:15.5px;margin:0 0 16px}
+.cta .b{display:inline-block;background:#D4AF37;color:#12266B;font-weight:700;font-size:15px;padding:13px 24px;border-radius:8px;margin-top:6px}
+.cta .b.ghost{background:transparent;color:#D4AF37;border:1px solid #D4AF37;margin-left:10px}
+.pnl{background:#fff;border:1px solid var(--line);border-radius:16px;padding:30px 32px;margin:26px 0 0}
+.pnl h2{font-family:var(--serif);font-size:22px;font-weight:600;margin:0 0 6px}
+.pnl h4{font-size:15px;font-weight:700;color:#26303E;margin:16px 0 4px}
+.pnl p{font-size:15px;color:#40505F;margin:0 0 6px}
+.method{font-size:13px;color:var(--soft);margin:28px 0 0;max-width:82ch}
+.method b{color:#40505F}.method a{color:var(--gold);font-weight:600}
+footer{background:var(--ink);color:#9AA6B6;padding:34px 0;font-size:13px;margin-top:48px}
+footer .wrap{display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap}
+footer a{color:#C9D2DE}
+@media(max-width:640px){.hero h1{font-size:31px}.trow{grid-template-columns:26px 1.3fr 52px 92px;gap:8px;padding:11px 12px;font-size:13.5px}.trow .barwrap,.trow.head span:nth-child(4){display:none}.trow .tag{font-size:10.5px}.cta .b.ghost{margin-left:0;margin-top:10px}}
+</style>
+<script defer src="assets/analytics.js"></script>
+</head>
+<body>
+<div class="mast"><div class="wrap row">
+  <a class="brand" href="index.html">SOVEREO<small>GLOBAL INTELLIGENCE &middot; PERSONAL CONSEQUENCE</small></a>
+  <nav class="nav">
+    <a href="Sovereo_Index_Table.html">The Index</a>
+    <a href="Sovereo_Country_Reports.html">Dossiers</a>
+    <a href="free-tools.html">Free Tools</a>
+  </nav>
+</div></div>
+
+<header class="hero"><div class="wrap">
+  <div class="eyebrow">Free Tools &middot; Passport Power</div>
+  <h1>How far does your passport take you?</h1>
+  <p>A passport is a key, and some open far more doors than others. See roughly how many destinations each passport reaches without arranging a visa in advance, and where yours sits in the world.</p>
+</div></header>
+
+<div class="wrap">
+  <div class="panel">
+    <div class="f"><label for="sel">Highlight your passport</label><select id="sel"></select></div>
+    <div class="you" id="you"></div>
+  </div>
+
+  <div class="tbl" id="tbl"></div>
+  <p class="note">Higher means more destinations reachable visa-free or with visa on arrival. Figures are indicative for 2026 and change each quarter.</p>
+
+  <div class="cta">
+    <h3>Mobility is one lever. Fit is the whole decision.</h3>
+    <p>A strong passport helps, but where you should actually live depends on income, tax, cost, safety, and family. Sovereo weighs all of it for your situation, free.</p>
+    <a class="b" href="Sovereo_Relocation_Diagnostic.html">Find your best-fit countries &rarr;</a>
+    <a class="b ghost" href="free-tools.html">See all free tools</a>
+  </div>
+
+  <div class="pnl">
+    <h2>How to read this, in plain English</h2>
+    <p>You do not need any background. Here is the whole thing, simply.</p>
+    <h4>What is a "visa-free destination"?</h4>
+    <p>A place your passport lets you enter without arranging a visa before you travel, either with no visa at all or with one granted on arrival. The more of these a passport has, the more freely its holder can move for tourism, business, or a quick exit.</p>
+    <h4>Why passports differ so much</h4>
+    <p>Access is built on trust and reciprocity between governments, shaped by security, economics, and diplomacy. Wealthy, stable countries tend to negotiate broad access; countries seen as higher-risk face more closed doors, regardless of the individual traveler.</p>
+    <h4>Why it matters</h4>
+    <p>Passport strength affects how easily you can travel, do business, or relocate, and it is one reason people pursue a second residence or citizenship. It is a real asset, though only one part of deciding where to build a life.</p>
+  </div>
+
+  <p class="method">
+    <b>Where this comes from.</b> Counts are indicative 2026 figures in the style of the Henley Passport Index and similar mobility indices, which measure destinations reachable visa-free or with visa on arrival. Methodologies differ and the numbers are revised every quarter, so treat these as directional rather than exact. For the precise, current score for any passport, consult the official <a href="https://www.henleyglobal.com/passport-index" target="_blank" rel="noopener">Henley Passport Index</a>. For general education, not legal or immigration advice.
+  </p>
+</div>
+
+<footer><div class="wrap"><div>&copy; 2026 Sovereo Intelligence Research</div><div><a href="terms.html">Terms</a> &middot; <a href="privacy.html">Privacy</a></div></div></footer>
+
+<script>
+// Indicative 2026 visa-free / visa-on-arrival destination counts (Henley-style). Directional; revised quarterly.
+var P=[
+["Singapore",193],["Japan",190],["South Korea",189],["Germany",189],["Italy",189],["Spain",189],
+["Finland",188],["France",188],["Austria",188],["Denmark",188],["Ireland",188],["Netherlands",188],
+["Sweden",188],["Belgium",188],["Luxembourg",188],["Portugal",188],["Malta",187],["Norway",187],
+["Switzerland",187],["Greece",187],["Czechia",187],["New Zealand",187],["Australia",186],["Poland",186],
+["United Kingdom",184],["Canada",184],["Hungary",185],["Croatia",185],["United Arab Emirates",185],
+["United States",182],["Malaysia",182],["Chile",176],["Romania",174],["Bulgaria",174],["Brazil",173],
+["Argentina",172],["Israel",171],["Uruguay",163],["Mexico",159],["Costa Rica",152],["Mauritius",151],
+["Ukraine",148],["Panama",145],["Paraguay",143],["Peru",139],["Colombia",133],["Georgia",124],
+["Turkey",118],["Russia",116],["Qatar",110],["South Africa",106],["Kuwait",106],["Oman",103],
+["Ecuador",99],["Saudi Arabia",96],["China",88],["Kazakhstan",84],["Thailand",82],["Indonesia",77],
+["Kenya",77],["Morocco",73],["Ghana",71],["Philippines",68],["Armenia",66],["India",59],
+["Egypt",55],["Vietnam",51],["Nigeria",45]
+];
+var MAX=P[0][1];
+function tier(n){ if(n>=180)return['t1','Very strong']; if(n>=140)return['t2','Strong']; if(n>=90)return['t3','Moderate']; return['t4','Limited']; }
+function barColor(n){ if(n>=180)return'#3F9C7C'; if(n>=140)return'#5E86AE'; if(n>=90)return'#D6A83C'; return'#C0554C'; }
+
+var sel=document.getElementById('sel');
+P.slice().sort(function(a,b){return a[0]<b[0]?-1:1;}).forEach(function(p){var o=document.createElement('option');o.value=p[0];o.textContent=p[0];sel.appendChild(o);});
+sel.value='United States';
+sel.addEventListener('change',render);
+function render(){
+  var mine=sel.value;
+  var rows=P.slice().sort(function(a,b){return b[1]-a[1];});
+  var rank=rows.findIndex(function(r){return r[0]===mine;})+1;
+  var mineScore=(P.find(function(r){return r[0]===mine;})||[,0])[1];
+  document.getElementById('you').innerHTML='The <b>'+mine+'</b> passport reaches about <b>'+mineScore+'</b> destinations without a prior visa, ranking around <b>#'+rank+'</b> of '+rows.length+' in this list.';
+  var h='<div class="trow head"><span>#</span><span>Passport</span><span style="text-align:right">Reach</span><span>Relative</span><span style="text-align:center">Strength</span></div>';
+  rows.forEach(function(r,i){
+    var tg=tier(r[1]), w=Math.max(5,r[1]/MAX*100);
+    h+='<div class="trow'+(r[0]===mine?' you-row':'')+'">'
+      +'<span class="rk">'+(i+1)+'</span>'
+      +'<span class="nm">'+r[0]+'</span>'
+      +'<span class="sc">'+r[1]+'</span>'
+      +'<span class="barwrap"><i style="width:'+w+'%;background:'+barColor(r[1])+'"></i></span>'
+      +'<span class="tag '+tg[0]+'">'+tg[1]+'</span>'
+      +'</div>';
+  });
+  document.getElementById('tbl').innerHTML=h;
+}
+render();
+</script>
+<script src="assets/site-nav.js" defer></script>
+</body>
+</html>

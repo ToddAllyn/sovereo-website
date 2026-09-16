@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Income Tax by Country: Top Rates Compared | Sovereo</title>
+<meta name="description" content="Compare the top personal income tax rate across countries, from zero-tax Gulf states to 60 percent highs. A free Sovereo tool on where your income keeps more of itself.">
+<link rel="canonical" href="https://www.sovereo.com/tax-compare.html">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#12266B">
+<meta property="og:title" content="Income Tax by Country: top rates compared | Sovereo">
+<meta property="og:description" content="Compare the top personal income tax rate across countries, from zero to 60 percent.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.sovereo.com/tax-compare.html">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--paper);color:var(--ink);font-family:var(--sans);line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:920px;margin:0 auto;padding:0 28px}
+.eyebrow{font-size:12.5px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--gold2)}
+.mast{position:sticky;top:0;z-index:50;background:rgba(251,248,241,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.mast .row{display:flex;align-items:center;justify-content:space-between;height:72px}
+.brand{font-weight:800;letter-spacing:.30em;font-size:19px;color:var(--ink)}
+.brand small{display:block;font-weight:600;letter-spacing:.16em;font-size:9.5px;color:var(--soft);margin-top:2px}
+.nav{display:flex;gap:22px;align-items:center}
+.nav a{font-size:14px;font-weight:500;color:var(--ink)}
+.hero{background:var(--ink);color:var(--paper);padding:52px 0 40px}
+.hero .eyebrow{color:var(--gold2)}
+.hero h1{font-family:var(--serif);font-weight:800;font-size:40px;line-height:1.08;margin:12px 0 0;max-width:20ch}
+.hero p{font-size:18px;color:#C9D2DE;margin:16px 0 0;max-width:64ch}
+.panel{background:#fff;border:1px solid var(--line);border-radius:16px;padding:24px 26px;margin:30px 0 0}
+.f label{display:block;font-size:12.5px;font-weight:700;margin:0 0 6px;color:#40505F}
+.f select{font-family:inherit;font-size:16px;padding:12px 13px;border:1px solid var(--line);border-radius:9px;background:#fff;color:var(--ink);min-width:240px}
+.f select:focus{outline:none;border-color:var(--gold)}
+.you{font-family:var(--serif);font-size:22px;font-weight:600;color:var(--ink);margin:18px 0 0}
+.you b{color:var(--gold)}
+.tbl{background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden;margin:22px 0 0}
+.trow{display:grid;grid-template-columns:40px 1.5fr 74px 1fr 96px;align-items:center;gap:11px;padding:12px 18px;border-top:1px solid var(--line);font-size:14.5px}
+.trow:first-child{border-top:none}
+.trow.head{background:var(--paper2,#f3efe6);font-size:12px;font-weight:700;letter-spacing:.04em;color:var(--soft);text-transform:uppercase}
+.trow.you-row{background:rgba(212,175,55,.10);box-shadow:inset 3px 0 0 var(--gold)}
+.trow .rk{color:var(--soft)}
+.trow .nm{font-weight:600;color:var(--ink)}
+.trow .sc{font-family:var(--serif);font-weight:700;font-size:17px;text-align:right}
+.trow .barwrap{background:#eef1f5;border-radius:6px;height:10px;overflow:hidden}
+.trow .barwrap i{display:block;height:100%;border-radius:6px}
+.tag{font-size:11px;font-weight:700;text-align:center;border-radius:6px;padding:4px 6px}
+.t1{background:#F6E0DE;color:#9A2A22}.t2{background:#F7EAD3;color:#8A6A15}.t3{background:#E2ECF5;color:#2C5480}.t4{background:#DFF0E9;color:#1E6B52}
+.note{font-size:13px;color:var(--soft);margin:12px 2px 0}
+.cta{background:var(--ink);color:var(--paper);border-radius:16px;padding:28px 32px;margin:26px 0 0}
+.cta h3{font-family:var(--serif);font-size:22px;font-weight:600;margin:0 0 8px;color:#fff}
+.cta p{color:#C9D2DE;font-size:15.5px;margin:0 0 16px}
+.cta .b{display:inline-block;background:#D4AF37;color:#12266B;font-weight:700;font-size:15px;padding:13px 24px;border-radius:8px;margin-top:6px}
+.cta .b.ghost{background:transparent;color:#D4AF37;border:1px solid #D4AF37;margin-left:10px}
+.pnl{background:#fff;border:1px solid var(--line);border-radius:16px;padding:30px 32px;margin:26px 0 0}
+.pnl h2{font-family:var(--serif);font-size:22px;font-weight:600;margin:0 0 6px}
+.pnl h4{font-size:15px;font-weight:700;color:#26303E;margin:16px 0 4px}
+.pnl p{font-size:15px;color:#40505F;margin:0 0 6px}
+.method{font-size:13px;color:var(--soft);margin:28px 0 0;max-width:82ch}
+.method b{color:#40505F}
+footer{background:var(--ink);color:#9AA6B6;padding:34px 0;font-size:13px;margin-top:48px}
+footer .wrap{display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap}
+footer a{color:#C9D2DE}
+@media(max-width:640px){.hero h1{font-size:31px}.trow{grid-template-columns:26px 1.3fr 52px 92px;gap:8px;padding:11px 12px;font-size:13.5px}.trow .barwrap,.trow.head span:nth-child(4){display:none}.trow .tag{font-size:10.5px}.cta .b.ghost{margin-left:0;margin-top:10px}}
+</style>
+<script defer src="assets/analytics.js"></script>
+</head>
+<body>
+<div class="mast"><div class="wrap row">
+  <a class="brand" href="index.html">SOVEREO<small>GLOBAL INTELLIGENCE &middot; PERSONAL CONSEQUENCE</small></a>
+  <nav class="nav">
+    <a href="Sovereo_Index_Table.html">The Index</a>
+    <a href="Sovereo_Country_Reports.html">Dossiers</a>
+    <a href="free-tools.html">Free Tools</a>
+  </nav>
+</div></div>
+
+<header class="hero"><div class="wrap">
+  <div class="eyebrow">Free Tools &middot; Income Tax</div>
+  <h1>How much does the top tax bracket take?</h1>
+  <p>The same income keeps very different amounts depending on where it is earned. Compare the top personal income tax rate across countries, from zero-tax Gulf states to rates above half, and see where a paycheck holds on to more of itself.</p>
+</div></header>
+
+<div class="wrap">
+  <div class="panel">
+    <div class="f"><label for="sel">Highlight a country</label><select id="sel"></select></div>
+    <div class="you" id="you"></div>
+  </div>
+
+  <div class="tbl" id="tbl"></div>
+  <p class="note">Top marginal (highest-bracket) statutory personal income tax rate. In several countries, local, state, or social charges push the real top rate higher, noted below.</p>
+
+  <div class="cta">
+    <h3>The headline rate is a start. The dossier is the truth.</h3>
+    <p>Effective tax depends on brackets, residency rules, foreign-income treatment, and special regimes. The Sovereo Country Dossiers lay out the real tax picture for a move, jurisdiction by jurisdiction.</p>
+    <a class="b" href="Sovereo_Country_Reports.html">Browse the dossiers &rarr;</a>
+    <a class="b ghost" href="Sovereo_Relocation_Diagnostic.html">Find your best-fit countries</a>
+  </div>
+
+  <div class="pnl">
+    <h2>How to read this, in plain English</h2>
+    <p>You do not need any finance background. Here is the whole thing, simply.</p>
+    <h4>What is the "top marginal rate"?</h4>
+    <p>It is the tax rate applied to the highest slice of income, not to your whole income. Most countries tax in bands: the first chunk is taxed lightly, later chunks more. This shows the rate on the top band, which is the clearest single number for comparing how heavily a country taxes higher earners.</p>
+    <h4>Why the real rate can be higher</h4>
+    <p>Some countries add local or regional income tax, social security contributions, or surcharges on top of the national rate. So the true top rate in places like the United States, Canada, Switzerland, or the Nordics can sit well above the national figure shown here.</p>
+    <h4>Why it matters</h4>
+    <p>Tax is one of the largest recurring costs in a life, and it varies more across borders than almost anything else. A person with portable income can legally keep far more of it simply by where they are tax-resident, which is one of the central questions Sovereo helps people work through.</p>
+  </div>
+
+  <p class="method">
+    <b>Where this comes from.</b> Figures are top statutory personal income tax rates (highest marginal bracket) for 2025, drawn from public compilations by KPMG, PwC, and Trading Economics. They are national statutory rates; local or state income taxes, social security contributions, surcharges, and special expatriate or flat regimes can raise or lower the effective burden, and rates change with each budget. This is a comparison of headline rates for general education, not tax advice. Confirm any figure with a licensed professional before acting.
+  </p>
+</div>
+
+<footer><div class="wrap"><div>&copy; 2026 Sovereo Intelligence Research</div><div><a href="terms.html">Terms</a> &middot; <a href="privacy.html">Privacy</a></div></div></footer>
+
+<script>
+// Top statutory personal income tax rate (top marginal bracket), 2025. National statutory; local/social charges may raise the real top rate.
+var T=[
+["Ivory Coast",60],["Finland",57.7],["Japan",55.9],["Denmark",55.9],["Austria",55],["Sweden",52],
+["Belgium",50],["Israel",50],["Slovenia",50],["Netherlands",49.5],["Portugal",48],["Spain",47],
+["Germany",45],["France",45],["United Kingdom",45],["China",45],["Australia",45],["South Africa",45],
+["South Korea",45],["Greece",44],["Italy",43],["India",43],["Switzerland",40],["Turkey",40],
+["Chile",40],["Norway",39.6],["New Zealand",39],["Colombia",39],["Morocco",38],["Ecuador",37],
+["United States",37],["Uruguay",36],["Mexico",35],["Thailand",35],["Philippines",35],["Indonesia",35],
+["Vietnam",35],["Kenya",35],["Ghana",35],["Canada",33],["Poland",32],["Latvia",31],["Peru",30],
+["Malaysia",30],["Brazil",27.5],["Egypt",27.5],["Costa Rica",25],["Panama",25],["Singapore",24],
+["Czechia",23],["Russia",22],["Georgia",20],["Armenia",20],["Mauritius",20],["Hong Kong SAR",17],
+["Hungary",15],["Kazakhstan",10],["Romania",10],["Bulgaria",10],["Paraguay",10],
+["United Arab Emirates",0],["Saudi Arabia",0],["Qatar",0],["Kuwait",0],["Bahrain",0],["Oman",0]
+];
+var MAX=60;
+function tier(n){ if(n>=45)return['t1','Very high']; if(n>=30)return['t2','High']; if(n>=15)return['t3','Moderate']; return['t4','Low or none']; }
+function barColor(n){ if(n>=45)return'#C0554C'; if(n>=30)return'#D6A83C'; if(n>=15)return'#5E86AE'; return'#3F9C7C'; }
+function rate(n){ return n===0?'0%':(n%1?n.toFixed(1):n)+'%'; }
+
+var sel=document.getElementById('sel');
+T.slice().sort(function(a,b){return a[0]<b[0]?-1:1;}).forEach(function(t){var o=document.createElement('option');o.value=t[0];o.textContent=t[0];sel.appendChild(o);});
+sel.value='United States';
+sel.addEventListener('change',render);
+function render(){
+  var mine=sel.value;
+  var rows=T.slice().sort(function(a,b){return b[1]-a[1];});
+  var rank=rows.findIndex(function(r){return r[0]===mine;})+1;
+  var mineRate=(T.find(function(r){return r[0]===mine;})||[,0])[1];
+  document.getElementById('you').innerHTML='<b>'+mine+'</b> has a top personal income tax rate of about <b>'+rate(mineRate)+'</b>, ranking '+rank+' of '+rows.length+' from highest to lowest here.';
+  var h='<div class="trow head"><span>#</span><span>Country</span><span style="text-align:right">Top rate</span><span>Relative</span><span style="text-align:center">Burden</span></div>';
+  rows.forEach(function(r,i){
+    var tg=tier(r[1]), w=Math.max(3,r[1]/MAX*100);
+    h+='<div class="trow'+(r[0]===mine?' you-row':'')+'">'
+      +'<span class="rk">'+(i+1)+'</span>'
+      +'<span class="nm">'+r[0]+'</span>'
+      +'<span class="sc">'+rate(r[1])+'</span>'
+      +'<span class="barwrap"><i style="width:'+w+'%;background:'+barColor(r[1])+'"></i></span>'
+      +'<span class="tag '+tg[0]+'">'+tg[1]+'</span>'
+      +'</div>';
+  });
+  document.getElementById('tbl').innerHTML=h;
+}
+render();
+</script>
+<script src="assets/site-nav.js" defer></script>
+</body>
+</html>
