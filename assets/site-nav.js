@@ -33,7 +33,7 @@
     {t:'Global Income Rank',h:'income-rank.html'},
     {t:'Cost of Living Compare',h:'cost-compare.html'},
     {t:'US Debt Clock',h:'debt-clock.html'},
-    {t:'The Map Lies',h:'truesize.html'},
+    {t:'The Map Lies',h:'map-lies.html'},
     {t:'Currency Erosion',h:'currency-erosion.html'},
     {t:'Inflation Calculator',h:'inflation-calculator.html'},
     {t:'Passport Power',h:'passport-power.html'},
