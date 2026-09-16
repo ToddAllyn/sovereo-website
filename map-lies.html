@@ -165,7 +165,7 @@ function boot(){
 }
 
 function setSel(sel,val){ for(var i=0;i<sel.options.length;i++){ if(sel.options[i].value===val){ sel.selectedIndex=i; return; } } }
-function fitWorld(){ setTimeout(function(){ try{ map.invalidateSize(); map.fitBounds([[-56,-179],[74,179]],{animate:false,padding:[4,4]}); }catch(e){} },0); }
+function fitWorld(){ setTimeout(function(){ try{ map.invalidateSize(); map.fitBounds([[-58,-179],[84,179]],{animate:false,padding:[4,4]}); }catch(e){} },0); }
 
 function pick(name){
   var f=byName[name]; if(!f) return;
@@ -189,7 +189,7 @@ function place(center){
   center=[center[0],clampLat(center[1])];
   var g=mapCoords(origGeom,function(pt){ return destination(center, distance(origCentroid,pt), bearing(origCentroid,pt)); });
   if(layer) map.removeLayer(layer);
-  layer=L.geoJSON({type:'Feature',geometry:g},{style:{color:'#8a6a15',weight:2,fillColor:'#D4AF37',fillOpacity:0.55}}).addTo(map);
+  layer=L.geoJSON({type:'Feature',geometry:g},{style:{color:'#8a6a15',weight:2.5,fillColor:'#D4AF37',fillOpacity:0.72}}).addTo(map);
   layer.on('mousedown',startDrag);
   layer._sovCenter=center;
   updateReadout(center);
