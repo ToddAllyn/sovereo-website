@@ -137,10 +137,12 @@ function loadScript(src){return new Promise(function(res,rej){var s=document.cre
 
 function boot(){
   if(!window.L){ document.getElementById('map').innerHTML='<div style="padding:24px;color:#40505F">The map could not load right now. Please refresh in a moment.</div>'; return; }
-  map=L.map('map',{worldCopyJump:true,minZoom:1,maxZoom:8,zoomControl:true}).setView([25,0],2);
+  map=L.map('map',{dragging:false,scrollWheelZoom:false,doubleClickZoom:false,touchZoom:false,zoomControl:false,zoomSnap:0.25,minZoom:0,maxZoom:8}).setView([20,0],2);
   L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',{
-    attribution:'&copy; OpenStreetMap contributors, &copy; CARTO', subdomains:'abcd', maxZoom:8
+    attribution:'&copy; OpenStreetMap contributors, &copy; CARTO', subdomains:'abcd', maxZoom:8, noWrap:true
   }).addTo(map);
+  fitWorld();
+  window.addEventListener('resize',function(){ map.invalidateSize(); fitWorld(); });
   Promise.all([
     loadScript('https://cdn.jsdelivr.net/npm/d3@7/dist/d3.min.js'),
     loadScript('https://cdn.jsdelivr.net/npm/topojson-client@3/dist/topojson-client.min.js')
@@ -162,6 +164,7 @@ function boot(){
 }
 
 function setSel(sel,val){ for(var i=0;i<sel.options.length;i++){ if(sel.options[i].value===val){ sel.selectedIndex=i; return; } } }
+function fitWorld(){ setTimeout(function(){ try{ map.invalidateSize(); map.fitBounds([[-56,-179],[74,179]],{animate:false,padding:[4,4]}); }catch(e){} },0); }
 
 function pick(name){
   var f=byName[name]; if(!f) return;
@@ -172,7 +175,6 @@ function pick(name){
   document.getElementById('rname').textContent=name+' (real area)';
   document.getElementById('rarea').innerHTML='<b>'+fmt(curArea)+'</b> km&sup2; &middot; '+fmt(curArea*0.386102)+' sq mi';
   place(origCentroid);
-  map.setView([clampLat(origCentroid[1]),origCentroid[0]], 3);
 }
 
 function mapCoords(geom, fn){
@@ -194,12 +196,11 @@ function place(center){
 
 function startDrag(e){
   dragging=true; grab=[layer._sovCenter[0]-e.latlng.lng, layer._sovCenter[1]-e.latlng.lat];
-  map.dragging.disable();
   if(e.originalEvent){ e.originalEvent.preventDefault(); }
   map.on('mousemove',onDrag); map.on('mouseup',endDrag);
 }
 function onDrag(e){ if(!dragging) return; place([e.latlng.lng+grab[0], clampLat(e.latlng.lat+grab[1])]); }
-function endDrag(){ if(!dragging) return; dragging=false; suppressClick=true; map.dragging.enable(); map.off('mousemove',onDrag); map.off('mouseup',endDrag); }
+function endDrag(){ if(!dragging) return; dragging=false; suppressClick=true; map.off('mousemove',onDrag); map.off('mouseup',endDrag); }
 
 function updateReadout(center){
   var lat=center[1];
