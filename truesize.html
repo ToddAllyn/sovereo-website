@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Map Lies: See Any Country's Real Size | Sovereo Intelligence Research</title>
+<meta name="description" content="The world map lies about size. Drag any country across the map and watch it grow toward the poles and shrink toward the equator, even though its real size never changes. A free Sovereo tool.">
+<link rel="canonical" href="https://www.sovereo.com/truesize.html">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#12266B">
+<meta property="og:title" content="The Map Lies: See Any Country's Real Size | Sovereo">
+<meta property="og:description" content="Drag any country across the map and see how much the standard world map distorts its size.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.sovereo.com/truesize.html">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+<link rel="stylesheet" href="assets/site.css">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--paper);color:var(--ink);font-family:var(--sans);line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:960px;margin:0 auto;padding:0 28px}
+.eyebrow{font-size:12.5px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--gold2)}
+.mast{position:sticky;top:0;z-index:600;background:rgba(251,248,241,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.mast .row{display:flex;align-items:center;justify-content:space-between;height:72px}
+.brand{font-weight:800;letter-spacing:.30em;font-size:19px;color:var(--ink)}
+.brand small{display:block;font-weight:600;letter-spacing:.16em;font-size:9.5px;color:var(--soft);margin-top:2px}
+.nav{display:flex;gap:22px;align-items:center}
+.nav a{font-size:14px;font-weight:500;color:var(--ink)}
+.hero{background:var(--ink);color:var(--paper);padding:52px 0 40px}
+.hero .eyebrow{color:var(--gold2)}
+.hero h1{font-family:var(--serif);font-weight:800;font-size:40px;line-height:1.08;margin:12px 0 0;max-width:20ch}
+.hero p{font-size:18px;color:#C9D2DE;margin:16px 0 0;max-width:64ch}
+.tools{display:flex;flex-wrap:wrap;gap:12px;align-items:end;margin:26px 0 0}
+.f label{display:block;font-size:12.5px;font-weight:700;margin:0 0 6px;color:#40505F}
+.f select{font-family:inherit;font-size:16px;padding:11px 13px;border:1px solid var(--line);border-radius:9px;background:#fff;color:var(--ink);min-width:220px}
+.f select:focus{outline:none;border-color:var(--gold)}
+.btn{background:var(--paper2,#f3efe6);border:1px solid var(--line);border-radius:9px;padding:11px 16px;font-size:14.5px;font-weight:700;color:var(--mut);cursor:pointer}
+.btn:hover{background:var(--ink);color:#fff}
+#map{height:560px;margin:18px 0 0;border:1px solid var(--line);border-radius:14px;z-index:1;background:#e8eef3}
+@media(max-width:640px){#map{height:440px}}
+.readout{display:flex;flex-wrap:wrap;gap:16px;margin:16px 0 0}
+.rcard{flex:1 1 220px;background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+.rcard .k{font-size:12px;font-weight:700;letter-spacing:.04em;color:var(--soft);text-transform:uppercase}
+.rcard .v{font-family:var(--serif);font-size:22px;color:var(--ink);margin-top:3px}
+.rcard.hi{border-left:4px solid var(--gold)}
+.rcard .v b{color:var(--gold)}
+.hint{font-size:14px;color:var(--mut);margin:14px 0 0}
+.cta{background:var(--ink);color:var(--paper);border-radius:16px;padding:28px 32px;margin:26px 0 0}
+.cta h3{font-family:var(--serif);font-size:22px;font-weight:600;margin:0 0 8px;color:#fff}
+.cta p{color:#C9D2DE;font-size:15.5px;margin:0 0 16px}
+.cta .b{display:inline-block;background:#D4AF37;color:#12266B;font-weight:700;font-size:15px;padding:13px 24px;border-radius:8px;margin-top:6px}
+.cta .b.ghost{background:transparent;color:#D4AF37;border:1px solid #D4AF37;margin-left:10px}
+.panel{background:#fff;border:1px solid var(--line);border-radius:16px;padding:30px 32px;margin:26px 0 0}
+.panel h2{font-family:var(--serif);font-size:22px;font-weight:600;margin:0 0 6px}
+.panel h4{font-size:15px;font-weight:700;color:#26303E;margin:16px 0 4px}
+.panel p{font-size:15px;color:#40505F;margin:0 0 6px}
+.method{font-size:13px;color:var(--soft);margin:28px 0 0;max-width:82ch}
+.method b{color:#40505F}
+footer{background:var(--ink);color:#9AA6B6;padding:34px 0;font-size:13px;margin-top:48px}
+footer .wrap{display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap}
+footer a{color:#C9D2DE}
+@media(max-width:640px){.hero h1{font-size:31px}.cta .b.ghost{margin-left:0;margin-top:10px}}
+</style>
+<script defer src="assets/analytics.js"></script>
+</head>
+<body>
+<div class="mast"><div class="wrap row">
+  <a class="brand" href="index.html">SOVEREO<small>GLOBAL INTELLIGENCE &middot; PERSONAL CONSEQUENCE</small></a>
+  <nav class="nav">
+    <a href="Sovereo_Index_Table.html">The Index</a>
+    <a href="Sovereo_Country_Reports.html">Dossiers</a>
+    <a href="free-tools.html">Free Tools</a>
+  </nav>
+</div></div>
+
+<header class="hero"><div class="wrap">
+  <div class="eyebrow">Free Tools &middot; The Map Lies</div>
+  <h1>Drag a country. Watch the map lie.</h1>
+  <p>The flat map most people picture stretches countries near the poles and shrinks those near the equator. Pick a country, then drag it across the map, or tap anywhere to move it, and watch its shape balloon or shrink while its real size never changes.</p>
+</div></header>
+
+<div class="wrap">
+  <div class="tools">
+    <div class="f"><label for="sel">Pick a country to move</label><select id="sel"></select></div>
+    <button class="btn" id="home">Send it home</button>
+  </div>
+  <div id="map"></div>
+  <div class="readout">
+    <div class="rcard hi"><div class="k" id="rname">Country</div><div class="v" id="rarea">--</div></div>
+    <div class="rcard"><div class="k">Now centered near</div><div class="v" id="rlat">--</div></div>
+    <div class="rcard"><div class="k">On the map it now looks</div><div class="v" id="rfactor">--</div></div>
+  </div>
+  <p class="hint">Tip: drag your chosen country up toward Greenland and Russia, then down onto Africa. Its outline changes on screen, but the real area figure never moves.</p>
+
+  <div class="cta">
+    <h3>Size is one distortion. Others cost you money.</h3>
+    <p>The same map that lies about size shapes how people judge opportunity and risk. Sovereo strips the distortion from the decisions that matter: where your income goes furthest, where your money holds its value, and where life actually fits.</p>
+    <a class="b" href="Sovereo_Relocation_Diagnostic.html">Find your best-fit countries &rarr;</a>
+    <a class="b ghost" href="free-tools.html">See all free tools</a>
+  </div>
+
+  <div class="panel">
+    <h2>Why the map is wrong, in plain English</h2>
+    <p>You do not need any background in geography. Here is the whole thing, simply.</p>
+    <h4>What is the distortion?</h4>
+    <p>Most world maps use the Mercator projection, drawn in 1569 for sea navigation. To keep compass directions straight it stretches everything as you move away from the equator. The further from the equator a country sits, the more the map inflates it, and near the poles the stretch becomes enormous.</p>
+    <h4>The famous example</h4>
+    <p>Greenland looks about the size of Africa on a standard map. In reality Africa is roughly fourteen times larger. Greenland sits far north, so the map balloons it; Africa straddles the equator, so it is drawn close to its true size. Drag any country north and it grows on screen; drag it to the equator and it shrinks to the truth.</p>
+    <h4>What this tool does</h4>
+    <p>When you move a country, the tool keeps its true size fixed and re-lays its real outline at the new location, then lets the map project it. So the change you see on screen is the map's distortion, not the country changing. The area figure stays constant because the country never actually changes size.</p>
+    <h4>Why an intelligence site cares</h4>
+    <p>Because the same habit of mind that misreads a map misreads the world. A country that looks dominant may be smaller than you think, and a place you overlooked may be larger or more livable than the map suggests. Seeing clearly is the whole point of Sovereo.</p>
+  </div>
+
+  <p class="method">
+    <b>How this works.</b> Country outlines are from the Natural Earth public dataset via the world-atlas project, on an OpenStreetMap and CARTO basemap. When you move a country, each point of its outline is repositioned by the same true ground distance and bearing from a new center, which preserves real area while the Mercator map renders the apparent-size change. Area is computed from the outline's spherical geometry and shown in square kilometres and square miles; these are close approximations from simplified boundaries, not survey-grade figures, and disputed or maritime boundaries are not adjudicated here. For general education.
+  </p>
+</div>
+
+<footer><div class="wrap"><div>&copy; 2026 Sovereo Intelligence Research</div><div><a href="terms.html">Terms</a> &middot; <a href="privacy.html">Privacy</a></div></div></footer>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+<script>
+var R=6371.0088;
+function toRad(d){return d*Math.PI/180;} function toDeg(r){return r*180/Math.PI;}
+function distance(a,b){var dLat=toRad(b[1]-a[1]),dLon=toRad(b[0]-a[0]),la1=toRad(a[1]),la2=toRad(b[1]);var h=Math.sin(dLat/2)*Math.sin(dLat/2)+Math.cos(la1)*Math.cos(la2)*Math.sin(dLon/2)*Math.sin(dLon/2);return 2*R*Math.asin(Math.min(1,Math.sqrt(h)));}
+function bearing(a,b){var la1=toRad(a[1]),la2=toRad(b[1]),dLon=toRad(b[0]-a[0]);var y=Math.sin(dLon)*Math.cos(la2);var x=Math.cos(la1)*Math.sin(la2)-Math.sin(la1)*Math.cos(la2)*Math.cos(dLon);return toDeg(Math.atan2(y,x));}
+function destination(start,dKm,brgDeg){var d=dKm/R,b=toRad(brgDeg),la1=toRad(start[1]),lo1=toRad(start[0]);var la2=Math.asin(Math.sin(la1)*Math.cos(d)+Math.cos(la1)*Math.sin(d)*Math.cos(b));var lo2=lo1+Math.atan2(Math.sin(b)*Math.sin(d)*Math.cos(la1),Math.cos(d)-Math.sin(la1)*Math.sin(la2));return [toDeg(lo2),toDeg(la2)];}
+function clampLat(x){return Math.max(-80,Math.min(80,x));}
+function fmt(n){return Math.round(n).toLocaleString('en-US');}
+
+var map, layer=null, byName={}, origGeom=null, origCentroid=null, curArea=0, curName='', dragging=false, grab=null, suppressClick=false;
+
+function loadScript(src){return new Promise(function(res,rej){var s=document.createElement('script');s.src=src;s.onload=res;s.onerror=rej;document.head.appendChild(s);});}
+
+function boot(){
+  if(!window.L){ document.getElementById('map').innerHTML='<div style="padding:24px;color:#40505F">The map could not load right now. Please refresh in a moment.</div>'; return; }
+  map=L.map('map',{worldCopyJump:true,minZoom:1,maxZoom:8,zoomControl:true}).setView([25,0],2);
+  L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',{
+    attribution:'&copy; OpenStreetMap contributors, &copy; CARTO', subdomains:'abcd', maxZoom:8
+  }).addTo(map);
+  Promise.all([
+    loadScript('https://cdn.jsdelivr.net/npm/d3@7/dist/d3.min.js'),
+    loadScript('https://cdn.jsdelivr.net/npm/topojson-client@3/dist/topojson-client.min.js')
+  ]).then(function(){
+    return fetch('https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json').then(function(r){return r.json();});
+  }).then(function(world){
+    var feats=topojson.feature(world,world.objects.countries).features.filter(function(f){return f.properties&&f.properties.name;});
+    feats.sort(function(a,b){return a.properties.name<b.properties.name?-1:1;});
+    var sel=document.getElementById('sel');
+    feats.forEach(function(f){ byName[f.properties.name]=f; var o=document.createElement('option'); o.value=f.properties.name; o.textContent=f.properties.name; sel.appendChild(o); });
+    setSel(sel,'Greenland');
+    sel.addEventListener('change',function(){ pick(sel.value); });
+    document.getElementById('home').addEventListener('click',function(){ if(origCentroid) place(origCentroid); });
+    map.on('click',function(e){ if(suppressClick){suppressClick=false;return;} place([e.latlng.lng, clampLat(e.latlng.lat)]); });
+    pick('Greenland');
+  }).catch(function(){
+    document.getElementById('map').innerHTML='<div style="padding:24px;color:#40505F">The country data could not load right now. Please refresh in a moment.</div>';
+  });
+}
+
+function setSel(sel,val){ for(var i=0;i<sel.options.length;i++){ if(sel.options[i].value===val){ sel.selectedIndex=i; return; } } }
+
+function pick(name){
+  var f=byName[name]; if(!f) return;
+  origGeom=f.geometry;
+  origCentroid=d3.geoCentroid(f);
+  curArea=d3.geoArea(f)*R*R;
+  curName=name;
+  document.getElementById('rname').textContent=name+' (real area)';
+  document.getElementById('rarea').innerHTML='<b>'+fmt(curArea)+'</b> km&sup2; &middot; '+fmt(curArea*0.386102)+' sq mi';
+  place(origCentroid);
+  map.setView([clampLat(origCentroid[1]),origCentroid[0]], 3);
+}
+
+function mapCoords(geom, fn){
+  function ring(r){return r.map(fn);}
+  if(geom.type==='Polygon') return {type:'Polygon',coordinates:geom.coordinates.map(ring)};
+  if(geom.type==='MultiPolygon') return {type:'MultiPolygon',coordinates:geom.coordinates.map(function(p){return p.map(ring);})};
+  return geom;
+}
+
+function place(center){
+  center=[center[0],clampLat(center[1])];
+  var g=mapCoords(origGeom,function(pt){ return destination(center, distance(origCentroid,pt), bearing(origCentroid,pt)); });
+  if(layer) map.removeLayer(layer);
+  layer=L.geoJSON({type:'Feature',geometry:g},{style:{color:'#8a6a15',weight:2,fillColor:'#D4AF37',fillOpacity:0.55}}).addTo(map);
+  layer.on('mousedown',startDrag);
+  layer._sovCenter=center;
+  updateReadout(center);
+}
+
+function startDrag(e){
+  dragging=true; grab=[layer._sovCenter[0]-e.latlng.lng, layer._sovCenter[1]-e.latlng.lat];
+  map.dragging.disable();
+  if(e.originalEvent){ e.originalEvent.preventDefault(); }
+  map.on('mousemove',onDrag); map.on('mouseup',endDrag);
+}
+function onDrag(e){ if(!dragging) return; place([e.latlng.lng+grab[0], clampLat(e.latlng.lat+grab[1])]); }
+function endDrag(){ if(!dragging) return; dragging=false; suppressClick=true; map.dragging.enable(); map.off('mousemove',onDrag); map.off('mouseup',endDrag); }
+
+function updateReadout(center){
+  var lat=center[1];
+  document.getElementById('rlat').textContent=Math.abs(lat).toFixed(0)+'° '+(lat>=0?'N':'S');
+  var factor=1/Math.cos(toRad(Math.min(80,Math.abs(lat)))); // linear inflation vs equator
+  var areaFactor=factor*factor;
+  var t;
+  if(areaFactor<1.08) t='about its true size';
+  else t='about '+ (areaFactor>=10?areaFactor.toFixed(0):areaFactor.toFixed(1)) +'× larger than at the equator';
+  document.getElementById('rfactor').innerHTML=t;
+}
+
+if(window.L) boot(); else { window.addEventListener('load',boot); }
+</script>
+<script src="assets/site-nav.js" defer></script>
+</body>
+</html>
