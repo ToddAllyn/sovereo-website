@@ -14,7 +14,6 @@
 <meta property="og:url" content="https://www.sovereo.com/map-lies.html">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
 <link rel="stylesheet" href="assets/site.css">
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
@@ -38,9 +37,8 @@ a{color:inherit;text-decoration:none}
 .f select:focus{outline:none;border-color:var(--gold)}
 .btn{background:var(--paper2,#f3efe6);border:1px solid var(--line);border-radius:9px;padding:11px 16px;font-size:14.5px;font-weight:700;color:var(--mut);cursor:pointer}
 .btn:hover{background:var(--ink);color:#fff}
-#map{height:560px;margin:18px 0 0;border:1px solid var(--line);border-radius:14px;z-index:1;background:#dbe4ec}
-.leaflet-container{background:#dbe4ec}
-@media(max-width:640px){#map{height:440px}}
+#cv{width:100%;height:auto;display:block;border:1px solid var(--line);border-radius:14px;background:#dbe4ec;margin:18px 0 0;touch-action:none;cursor:grab}
+#cv:active{cursor:grabbing}
 .readout{display:flex;flex-wrap:wrap;gap:16px;margin:16px 0 0}
 .rcard{flex:1 1 220px;background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px 16px}
 .rcard .k{font-size:12px;font-weight:700;letter-spacing:.04em;color:var(--soft);text-transform:uppercase}
@@ -87,7 +85,7 @@ footer a{color:#C9D2DE}
     <div class="f"><label for="sel">Pick a country to move</label><select id="sel"></select></div>
     <button class="btn" id="home">Send it home</button>
   </div>
-  <div id="map"></div>
+  <canvas id="cv" width="900" height="560" role="img" aria-label="World map with a draggable country drawn to true size"></canvas>
   <div class="readout">
     <div class="rcard hi"><div class="k" id="rname">Country</div><div class="v" id="rarea">--</div></div>
     <div class="rcard"><div class="k">Now centered near</div><div class="v" id="rlat">--</div></div>
@@ -110,72 +108,77 @@ footer a{color:#C9D2DE}
     <h4>The famous example</h4>
     <p>Greenland looks about the size of Africa on a standard map. In reality Africa is roughly fourteen times larger. Greenland sits far north, so the map balloons it; Africa straddles the equator, so it is drawn close to its true size. Drag any country north and it grows on screen; drag it to the equator and it shrinks to the truth.</p>
     <h4>What this tool does</h4>
-    <p>When you move a country, the tool keeps its true size fixed and re-lays its real outline at the new location, then lets the map project it. So the change you see on screen is the map's distortion, not the country changing. The area figure stays constant because the country never actually changes size.</p>
+    <p>When you move a country, the tool keeps its true size fixed and re-lays its real outline at the new location, then draws it on the same Mercator map. So the change you see on screen is the map's distortion, not the country changing. The area figure stays constant because the country never actually changes size.</p>
     <h4>Why an intelligence site cares</h4>
     <p>Because the same habit of mind that misreads a map misreads the world. A country that looks dominant may be smaller than you think, and a place you overlooked may be larger or more livable than the map suggests. Seeing clearly is the whole point of Sovereo.</p>
   </div>
 
   <p class="method">
-    <b>How this works.</b> The base map and every outline are drawn from the Natural Earth public dataset via the world-atlas project, with no map tiles and no API key. When you move a country, each point of its outline is repositioned by the same true ground distance and bearing from a new center, which preserves real area while the Mercator map renders the apparent-size change. Area is computed from the outline's spherical geometry and shown in square kilometres and square miles; these are close approximations from simplified boundaries, not survey-grade figures, and disputed or maritime boundaries are not adjudicated here. For general education.
+    <b>How this works.</b> The base map and every outline are drawn from the Natural Earth public dataset via the world-atlas project, with no map tiles and no API key. The map uses the Mercator projection, the same one that distorts size on standard world maps. When you move a country, each point of its outline is repositioned by the same true ground distance and bearing from the new center, which preserves real area while Mercator renders the apparent-size change. Area is computed from the outline's spherical geometry and shown in square kilometres and square miles; these are close approximations from simplified boundaries. For general education.
   </p>
 </div>
 
 <footer><div class="wrap"><div>&copy; 2026 Sovereo Intelligence Research</div><div><a href="terms.html">Terms</a> &middot; <a href="privacy.html">Privacy</a></div></div></footer>
 
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 <script>
 var R=6371.0088;
 function toRad(d){return d*Math.PI/180;} function toDeg(r){return r*180/Math.PI;}
 function distance(a,b){var dLat=toRad(b[1]-a[1]),dLon=toRad(b[0]-a[0]),la1=toRad(a[1]),la2=toRad(b[1]);var h=Math.sin(dLat/2)*Math.sin(dLat/2)+Math.cos(la1)*Math.cos(la2)*Math.sin(dLon/2)*Math.sin(dLon/2);return 2*R*Math.asin(Math.min(1,Math.sqrt(h)));}
 function bearing(a,b){var la1=toRad(a[1]),la2=toRad(b[1]),dLon=toRad(b[0]-a[0]);var y=Math.sin(dLon)*Math.cos(la2);var x=Math.cos(la1)*Math.sin(la2)-Math.sin(la1)*Math.cos(la2)*Math.cos(dLon);return toDeg(Math.atan2(y,x));}
 function destination(start,dKm,brgDeg){var d=dKm/R,b=toRad(brgDeg),la1=toRad(start[1]),lo1=toRad(start[0]);var la2=Math.asin(Math.sin(la1)*Math.cos(d)+Math.cos(la1)*Math.sin(d)*Math.cos(b));var lo2=lo1+Math.atan2(Math.sin(b)*Math.sin(d)*Math.cos(la1),Math.cos(d)-Math.sin(la1)*Math.sin(la2));return [toDeg(lo2),toDeg(la2)];}
-function clampLat(x){return Math.max(-80,Math.min(80,x));}
+function clampLat(x){return Math.max(-78,Math.min(80,x));}
 function fmt(n){return Math.round(n).toLocaleString('en-US');}
 
-var map, layer=null, byName={}, origGeom=null, origCentroid=null, curArea=0, curName='', dragging=false, grab=null, suppressClick=false;
+var cv=document.getElementById('cv'), ctx=cv.getContext('2d');
+var proj, path, baseFC=null, byName={}, origGeom=null, origCentroid=null, curArea=0, curCenter=null, lastGold=null;
+var W=900, H=560, dpr=1;
 
 function loadScript(src){return new Promise(function(res,rej){var s=document.createElement('script');s.src=src;s.onload=res;s.onerror=rej;document.head.appendChild(s);});}
 
-function boot(){
-  if(!window.L){ document.getElementById('map').innerHTML='<div style="padding:24px;color:#40505F">The map could not load right now. Please refresh in a moment.</div>'; return; }
-  map=L.map('map',{dragging:false,scrollWheelZoom:false,doubleClickZoom:false,touchZoom:false,zoomControl:false,zoomSnap:0.25,minZoom:0,maxZoom:8,attributionControl:true}).setView([20,0],2);
-  window.addEventListener('resize',function(){ map.invalidateSize(); fitWorld(); });
-  Promise.all([
-    loadScript('https://cdn.jsdelivr.net/npm/d3@7/dist/d3.min.js'),
-    loadScript('https://cdn.jsdelivr.net/npm/topojson-client@3/dist/topojson-client.min.js')
-  ]).then(function(){
-    return fetch('https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json').then(function(r){return r.json();});
-  }).then(function(world){
-    var feats=topojson.feature(world,world.objects.countries).features.filter(function(f){return f.properties&&f.properties.name;});
-    feats.sort(function(a,b){return a.properties.name<b.properties.name?-1:1;});
-    var sel=document.getElementById('sel');
-    feats.forEach(function(f){ byName[f.properties.name]=f; var o=document.createElement('option'); o.value=f.properties.name; o.textContent=f.properties.name; sel.appendChild(o); });
-    // Base world map drawn from country outlines (no tiles, no API key).
-    L.geoJSON({type:'FeatureCollection',features:feats},{interactive:false,style:{color:'#b9c4d2',weight:0.8,fillColor:'#f4f7fa',fillOpacity:1}}).addTo(map);
-    map.attributionControl.addAttribution('Boundaries &copy; Natural Earth');
-    fitWorld();
-    setSel(sel,'Greenland');
-    sel.addEventListener('change',function(){ pick(sel.value); });
-    document.getElementById('home').addEventListener('click',function(){ if(origCentroid) place(origCentroid); });
-    map.on('click',function(e){ if(suppressClick){suppressClick=false;return;} place([e.latlng.lng, clampLat(e.latlng.lat)]); });
-    pick('Greenland');
-  }).catch(function(){
-    document.getElementById('map').innerHTML='<div style="padding:24px;color:#40505F">The country data could not load right now. Please refresh in a moment.</div>';
-  });
-}
+Promise.all([
+  loadScript('https://cdn.jsdelivr.net/npm/d3@7/dist/d3.min.js'),
+  loadScript('https://cdn.jsdelivr.net/npm/topojson-client@3/dist/topojson-client.min.js')
+]).then(function(){
+  return fetch('https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json').then(function(r){return r.json();});
+}).then(function(world){
+  if(!window.d3||!window.topojson) throw 0;
+  var feats=topojson.feature(world,world.objects.countries).features.filter(function(f){return f.properties&&f.properties.name;});
+  feats.sort(function(a,b){return a.properties.name<b.properties.name?-1:1;});
+  baseFC={type:'FeatureCollection',features:feats};
+  var sel=document.getElementById('sel');
+  feats.forEach(function(f){ byName[f.properties.name]=f; var o=document.createElement('option'); o.value=f.properties.name; o.textContent=f.properties.name; sel.appendChild(o); });
+  setSel(sel,'Greenland');
+  sel.addEventListener('change',function(){ pick(sel.value); });
+  document.getElementById('home').addEventListener('click',function(){ if(origCentroid){ curCenter=origCentroid.slice(); draw(); } });
+  setupProjection();
+  window.addEventListener('resize',function(){ setupProjection(); draw(); });
+  attachDrag();
+  pick('Greenland');
+}).catch(function(){
+  ctx.fillStyle='#40505F'; ctx.font='16px Inter,Arial,sans-serif'; ctx.fillText('The map could not load right now. Please refresh in a moment.',24,40);
+});
 
 function setSel(sel,val){ for(var i=0;i<sel.options.length;i++){ if(sel.options[i].value===val){ sel.selectedIndex=i; return; } } }
-function fitWorld(){ setTimeout(function(){ try{ map.invalidateSize(); map.fitBounds([[-58,-179],[84,179]],{animate:false,padding:[4,4]}); }catch(e){} },0); }
+
+function setupProjection(){
+  dpr=Math.max(1,Math.min(2,window.devicePixelRatio||1));
+  W=cv.clientWidth||900; H=Math.round(W*0.62);
+  cv.style.height=H+'px';
+  cv.width=Math.round(W*dpr); cv.height=Math.round(H*dpr);
+  var worldRect={type:'Polygon',coordinates:[[[-179.9,-56],[-179.9,83],[179.9,83],[179.9,-56],[-179.9,-56]]]};
+  proj=d3.geoMercator().fitSize([W,H],worldRect);
+  path=d3.geoPath(proj,ctx);
+}
 
 function pick(name){
   var f=byName[name]; if(!f) return;
   origGeom=f.geometry;
   origCentroid=d3.geoCentroid(f);
+  curCenter=origCentroid.slice();
   curArea=d3.geoArea(f)*R*R;
-  curName=name;
   document.getElementById('rname').textContent=name+' (real area)';
   document.getElementById('rarea').innerHTML='<b>'+fmt(curArea)+'</b> km&sup2; &middot; '+fmt(curArea*0.386102)+' sq mi';
-  place(origCentroid);
+  draw();
 }
 
 function mapCoords(geom, fn){
@@ -184,37 +187,53 @@ function mapCoords(geom, fn){
   if(geom.type==='MultiPolygon') return {type:'MultiPolygon',coordinates:geom.coordinates.map(function(p){return p.map(ring);})};
   return geom;
 }
-
-function place(center){
-  center=[center[0],clampLat(center[1])];
-  var g=mapCoords(origGeom,function(pt){ return destination(center, distance(origCentroid,pt), bearing(origCentroid,pt)); });
-  if(layer) map.removeLayer(layer);
-  layer=L.geoJSON({type:'Feature',geometry:g},{style:{color:'#8a6a15',weight:2.5,fillColor:'#D4AF37',fillOpacity:0.72}}).addTo(map);
-  layer.on('mousedown',startDrag);
-  layer._sovCenter=center;
-  updateReadout(center);
+function goldGeom(center){
+  return mapCoords(origGeom,function(pt){ return destination(center, distance(origCentroid,pt), bearing(origCentroid,pt)); });
 }
 
-function startDrag(e){
-  dragging=true; grab=[layer._sovCenter[0]-e.latlng.lng, layer._sovCenter[1]-e.latlng.lat];
-  if(e.originalEvent){ e.originalEvent.preventDefault(); }
-  map.on('mousemove',onDrag); map.on('mouseup',endDrag);
+function draw(){
+  if(!proj||!baseFC) return;
+  ctx.setTransform(dpr,0,0,dpr,0,0);
+  ctx.clearRect(0,0,W,H);
+  ctx.fillStyle='#dbe4ec'; ctx.fillRect(0,0,W,H);
+  // base countries
+  ctx.beginPath(); path(baseFC); ctx.fillStyle='#f4f7fa'; ctx.fill(); ctx.strokeStyle='#b9c4d2'; ctx.lineWidth=0.7; ctx.stroke();
+  // moved country
+  if(origGeom&&curCenter){
+    var g=goldGeom(curCenter); lastGold={type:'Feature',geometry:g};
+    ctx.beginPath(); path(lastGold); ctx.fillStyle='rgba(212,175,55,.75)'; ctx.fill(); ctx.strokeStyle='#8a6a15'; ctx.lineWidth=2.2; ctx.stroke();
+  }
+  updateReadout();
 }
-function onDrag(e){ if(!dragging) return; place([e.latlng.lng+grab[0], clampLat(e.latlng.lat+grab[1])]); }
-function endDrag(){ if(!dragging) return; dragging=false; suppressClick=true; map.off('mousemove',onDrag); map.off('mouseup',endDrag); }
 
-function updateReadout(center){
-  var lat=center[1];
+function attachDrag(){
+  var dragging=false, grab=[0,0];
+  function ll(e){ var r=cv.getBoundingClientRect(); var x=(e.clientX-r.left), y=(e.clientY-r.top); return proj.invert([x,y]); }
+  cv.addEventListener('pointerdown',function(e){
+    var p=ll(e); if(!p||isNaN(p[0])) return;
+    cv.setPointerCapture(e.pointerId);
+    var inside = lastGold && d3.geoContains(lastGold,p);
+    if(inside){ grab=[curCenter[0]-p[0], curCenter[1]-p[1]]; }
+    else { curCenter=[p[0], clampLat(p[1])]; grab=[0,0]; draw(); }
+    dragging=true;
+  });
+  cv.addEventListener('pointermove',function(e){
+    if(!dragging) return; var p=ll(e); if(!p||isNaN(p[0])) return;
+    curCenter=[p[0]+grab[0], clampLat(p[1]+grab[1])]; draw();
+  });
+  function up(e){ dragging=false; }
+  cv.addEventListener('pointerup',up); cv.addEventListener('pointercancel',up);
+}
+
+function updateReadout(){
+  if(!curCenter) return;
+  var lat=curCenter[1];
   document.getElementById('rlat').textContent=Math.abs(lat).toFixed(0)+'° '+(lat>=0?'N':'S');
   var factor=1/Math.cos(toRad(Math.min(80,Math.abs(lat))));
   var areaFactor=factor*factor;
-  var t;
-  if(areaFactor<1.08) t='about its true size';
-  else t='about '+ (areaFactor>=10?areaFactor.toFixed(0):areaFactor.toFixed(1)) +'× larger than at the equator';
-  document.getElementById('rfactor').innerHTML=t;
+  document.getElementById('rfactor').innerHTML = areaFactor<1.08 ? 'about its true size'
+    : 'about '+(areaFactor>=10?areaFactor.toFixed(0):areaFactor.toFixed(1))+'× larger than at the equator';
 }
-
-if(window.L) boot(); else { window.addEventListener('load',boot); }
 </script>
 <script src="assets/site-nav.js" defer></script>
 </body>
