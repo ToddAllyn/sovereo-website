@@ -38,7 +38,8 @@ a{color:inherit;text-decoration:none}
 .f select:focus{outline:none;border-color:var(--gold)}
 .btn{background:var(--paper2,#f3efe6);border:1px solid var(--line);border-radius:9px;padding:11px 16px;font-size:14.5px;font-weight:700;color:var(--mut);cursor:pointer}
 .btn:hover{background:var(--ink);color:#fff}
-#map{height:560px;margin:18px 0 0;border:1px solid var(--line);border-radius:14px;z-index:1;background:#e8eef3}
+#map{height:560px;margin:18px 0 0;border:1px solid var(--line);border-radius:14px;z-index:1;background:#dbe4ec}
+.leaflet-container{background:#dbe4ec}
 @media(max-width:640px){#map{height:440px}}
 .readout{display:flex;flex-wrap:wrap;gap:16px;margin:16px 0 0}
 .rcard{flex:1 1 220px;background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px 16px}
@@ -115,7 +116,7 @@ footer a{color:#C9D2DE}
   </div>
 
   <p class="method">
-    <b>How this works.</b> Country outlines are from the Natural Earth public dataset via the world-atlas project, on an OpenStreetMap and CARTO basemap. When you move a country, each point of its outline is repositioned by the same true ground distance and bearing from a new center, which preserves real area while the Mercator map renders the apparent-size change. Area is computed from the outline's spherical geometry and shown in square kilometres and square miles; these are close approximations from simplified boundaries, not survey-grade figures, and disputed or maritime boundaries are not adjudicated here. For general education.
+    <b>How this works.</b> The base map and every outline are drawn from the Natural Earth public dataset via the world-atlas project, with no map tiles and no API key. When you move a country, each point of its outline is repositioned by the same true ground distance and bearing from a new center, which preserves real area while the Mercator map renders the apparent-size change. Area is computed from the outline's spherical geometry and shown in square kilometres and square miles; these are close approximations from simplified boundaries, not survey-grade figures, and disputed or maritime boundaries are not adjudicated here. For general education.
   </p>
 </div>
 
@@ -137,11 +138,7 @@ function loadScript(src){return new Promise(function(res,rej){var s=document.cre
 
 function boot(){
   if(!window.L){ document.getElementById('map').innerHTML='<div style="padding:24px;color:#40505F">The map could not load right now. Please refresh in a moment.</div>'; return; }
-  map=L.map('map',{dragging:false,scrollWheelZoom:false,doubleClickZoom:false,touchZoom:false,zoomControl:false,zoomSnap:0.25,minZoom:0,maxZoom:8}).setView([20,0],2);
-  L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',{
-    attribution:'&copy; OpenStreetMap contributors, &copy; CARTO', subdomains:'abcd', maxZoom:8, noWrap:true
-  }).addTo(map);
-  fitWorld();
+  map=L.map('map',{dragging:false,scrollWheelZoom:false,doubleClickZoom:false,touchZoom:false,zoomControl:false,zoomSnap:0.25,minZoom:0,maxZoom:8,attributionControl:true}).setView([20,0],2);
   window.addEventListener('resize',function(){ map.invalidateSize(); fitWorld(); });
   Promise.all([
     loadScript('https://cdn.jsdelivr.net/npm/d3@7/dist/d3.min.js'),
@@ -153,6 +150,10 @@ function boot(){
     feats.sort(function(a,b){return a.properties.name<b.properties.name?-1:1;});
     var sel=document.getElementById('sel');
     feats.forEach(function(f){ byName[f.properties.name]=f; var o=document.createElement('option'); o.value=f.properties.name; o.textContent=f.properties.name; sel.appendChild(o); });
+    // Base world map drawn from country outlines (no tiles, no API key).
+    L.geoJSON({type:'FeatureCollection',features:feats},{interactive:false,style:{color:'#b9c4d2',weight:0.8,fillColor:'#f4f7fa',fillOpacity:1}}).addTo(map);
+    map.attributionControl.addAttribution('Boundaries &copy; Natural Earth');
+    fitWorld();
     setSel(sel,'Greenland');
     sel.addEventListener('change',function(){ pick(sel.value); });
     document.getElementById('home').addEventListener('click',function(){ if(origCentroid) place(origCentroid); });
