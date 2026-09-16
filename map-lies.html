@@ -208,21 +208,35 @@ function draw(){
 
 function attachDrag(){
   var dragging=false, grab=[0,0];
-  function ll(e){ var r=cv.getBoundingClientRect(); var x=(e.clientX-r.left), y=(e.clientY-r.top); return proj.invert([x,y]); }
-  cv.addEventListener('pointerdown',function(e){
+  function ll(e){ if(!proj) return null; var r=cv.getBoundingClientRect(); return proj.invert([e.clientX-r.left, e.clientY-r.top]); }
+  function down(e){
     var p=ll(e); if(!p||isNaN(p[0])) return;
-    cv.setPointerCapture(e.pointerId);
-    var inside = lastGold && d3.geoContains(lastGold,p);
+    dragging=true;
+    try{ if(e.pointerId!=null) cv.setPointerCapture(e.pointerId); }catch(_){}
+    var inside=false; try{ inside = lastGold && d3.geoContains(lastGold,p); }catch(_){}
     if(inside){ grab=[curCenter[0]-p[0], curCenter[1]-p[1]]; }
     else { curCenter=[p[0], clampLat(p[1])]; grab=[0,0]; draw(); }
-    dragging=true;
-  });
-  cv.addEventListener('pointermove',function(e){
+    if(e.cancelable) e.preventDefault();
+  }
+  function move(e){
     if(!dragging) return; var p=ll(e); if(!p||isNaN(p[0])) return;
     curCenter=[p[0]+grab[0], clampLat(p[1]+grab[1])]; draw();
-  });
-  function up(e){ dragging=false; }
-  cv.addEventListener('pointerup',up); cv.addEventListener('pointercancel',up);
+    if(e.cancelable) e.preventDefault();
+  }
+  function up(){ dragging=false; }
+  if(window.PointerEvent){
+    cv.addEventListener('pointerdown',down);
+    window.addEventListener('pointermove',move);
+    window.addEventListener('pointerup',up);
+    window.addEventListener('pointercancel',up);
+  } else {
+    cv.addEventListener('mousedown',down);
+    window.addEventListener('mousemove',move);
+    window.addEventListener('mouseup',up);
+    cv.addEventListener('touchstart',function(e){ if(e.touches[0]) down(e.touches[0]); });
+    cv.addEventListener('touchmove',function(e){ if(e.touches[0]){ move(e.touches[0]); if(e.cancelable) e.preventDefault(); } });
+    window.addEventListener('touchend',up);
+  }
 }
 
 function updateReadout(){
