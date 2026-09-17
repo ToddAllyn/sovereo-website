@@ -38,6 +38,7 @@
     {t:'Inflation Calculator',h:'inflation-calculator.html'},
     {t:'Passport Power',h:'passport-power.html'},
     {t:'Income Tax by Country',h:'tax-compare.html'},
+    {t:'Foreign Investment Climate',h:'invest-climate.html'},
     {t:'Terms',h:'terms.html'},
     {t:'Privacy',h:'privacy.html'}
   ];
