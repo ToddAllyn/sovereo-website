@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>The Sovereo Index | World Map</title>
-<meta name="description" content="The whole Sovereo Index at a glance: every country shaded by its score across the six social determinants of wealth and health.">
+<meta name="description" content="The whole Sovereo Index at a glance: every country shaded by its score on six social conditions that shape your wealth and health.">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="favicon.svg">
 <meta name="theme-color" content="#12266B">
@@ -12,7 +12,7 @@
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Sovereo Intelligence Research">
 <meta property="og:title" content="The Sovereo Index | World Map">
-<meta property="og:description" content="Every country shaded by its score across the six social determinants of wealth and health.">
+<meta property="og:description" content="Every country shaded by its score on six social conditions that shape your wealth and health.">
 <meta property="og:image" content="https://www.sovereo.com/og-image.png">
 <meta property="og:url" content="https://www.sovereo.com/Sovereo_Index_Map.html">
 <meta name="twitter:card" content="summary_large_image">
@@ -90,7 +90,7 @@ footer .links{display:flex;gap:24px;flex-wrap:wrap}
 <header class="head"><div class="wrap">
   <span class="eyebrow">The Sovereo Index &middot; 2026 Edition</span>
   <h1>The world, mapped by the conditions for a long, healthy, wealthy life.</h1>
-  <p>Every nation shaded by its score on the six social determinants of wealth and health. Recolour the map by any single pillar to see where each force concentrates. Blue is high, red is low, grey is insufficient data.</p>
+  <p>The Sovereo Index scores every country on six pillars: the social conditions that shape your wealth and health. Each country is shaded by its score. Recolour the map by any one pillar to see where it is strongest. Blue is high, red is low, grey means not enough data.</p>
 </div></header>
 
 <main class="wrap">
@@ -112,12 +112,12 @@ footer .links{display:flex;gap:24px;flex-wrap:wrap}
     <svg id="map" viewBox="0 0 960 500" preserveAspectRatio="xMidYMid meet" style="display:none"></svg>
   </div>
   <div class="legend">
-    <span class="nd"><span class="sw"></span> Insufficient data</span>
+    <span class="nd"><span class="sw"></span> Not enough data</span>
     <span id="lmin">low</span><span class="legbar"></span><span id="lmax">high</span>
     <span id="metriclabel" style="font-weight:600;color:var(--ink)"></span>
   </div>
   <div class="lead" id="lead"></div>
-  <p class="foot-note">Filled-country choropleth rendered from the Sovereo Index. Hover or tap a country for its score. Pillars are computed from UNDP, the World Bank, WHO, the Yale Environmental Performance Index, the Heritage Foundation, EF and the UCLA Williams Institute, normalised to a common 0 to 100 scale. The Capital and Enterprise layer adds the Chinn-Ito capital-account-openness index and is reported separately from the six-pillar overall. Grey countries lack sufficient public data for a reliable score.</p>
+  <p class="foot-note">This map colours each country by its Sovereo Index score. Hover or tap a country for its score. Pillars are calculated from UNDP, the World Bank, WHO, the Yale Environmental Performance Index, the Heritage Foundation, EF and the UCLA Williams Institute. We put every measure on the same 0 to 100 scale so they can be compared. The Capital and Enterprise layer, a separate score for how a country treats money from abroad, adds the Chinn-Ito index of how freely money can move in and out. It is shown apart from the six-pillar overall score. Grey countries do not have enough public data for a reliable score.</p>
 </main>
 <div class="tip" id="tip"></div>
 
@@ -161,7 +161,7 @@ function draw(){
     .on("mousemove",(e,f)=>{const iso=N2I[String(+f.id)];const d=MD[iso];
       const nm=d?d.n:(f.properties&&f.properties.name)||"";
       const v=valFor(iso);
-      tip.innerHTML=v==null?("<b>"+nm+"</b><br>Insufficient data"):("<b>"+nm+"</b><br><span class='v'>"+v.toFixed(1)+"</span> / 100");
+      tip.innerHTML=v==null?("<b>"+nm+"</b><br>Not enough data"):("<b>"+nm+"</b><br><span class='v'>"+v.toFixed(1)+"</span> / 100");
       tip.style.opacity=1;tip.style.left=Math.min(e.clientX+14,window.innerWidth-250)+"px";tip.style.top=(e.clientY+14)+"px";})
     .on("mouseleave",()=>{tip.style.opacity=0;});
   // leaderboard for current metric

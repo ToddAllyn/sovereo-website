@@ -28,15 +28,15 @@ function bar(l, col, v) {
   return '<div class="prow"><div class="pnm">' + l + '</div><div class="ptrack"><div class="pfill" style="width:' + w + '%;background:' + col + '"></div></div><div class="pval">' + ((v == null) ? "n/a" : v) + '</div></div>';
 }
 function resetPanel() {
-  document.getElementById("panel").innerHTML = '<div class="hint">Pick a country on the globe or search above.<br><br>You will see its <b>Sovereo scorecard</b> and a <b>live signals feed</b>, each story tagged to the index pillar it touches.</div>';
+  document.getElementById("panel").innerHTML = '<div class="hint">Pick a country on the globe or search above.<br><br>You will see its <b>Sovereo scorecard</b>, its 0 to 100 scores on income, education, health and more, and a <b>live news feed</b>. Each story is labelled with the part of life it affects.</div>';
 }
 function select(c) {
   var p = document.getElementById("panel");
   var html = '<div class="ctry">' + esc(c.n) + '</div><div class="reg">' + esc(c.region) + '</div>';
   html += '<div class="ovrow"><div class="ov">' + c.ov + '</div><div class="ovlab">Sovereo<br>Index</div><div class="rank">Rank <b style="color:#E7B85A">' + c.rank + '</b><br>of 192</div></div>';
-  html += '<div class="plab">The six forces, plus capital</div>';
+  html += '<div class="plab">The six pillars, plus money</div>';
   html += PILL.map(function (x) { return bar(x[1], x[2], c[x[0]]); }).join("");
-  html += '<div class="sig" id="sig"><div class="plab">Live signals</div><div class="loading">Loading real headlines...</div></div>';
+  html += '<div class="sig" id="sig"><div class="plab">Latest news</div><div class="loading">Loading the latest headlines...</div></div>';
   html += '<a class="cta" href="Sovereo_Relocation_Diagnostic.html">See where you fit best, free &rarr;</a>';
   p.innerHTML = html;
   loadSignals(c);
@@ -54,11 +54,11 @@ function loadSignals(c) {
   fetch(NEWS + encodeURIComponent(c.n), { signal: ctrl.signal }).then(function (r) { return r.ok ? r.json() : Promise.reject(); }).then(function (d) {
     clearTimeout(to);
     var a = (d && d.articles) || [];
-    if (!a.length) { el.innerHTML = '<div class="plab">Live signals</div><div class="loading">No fresh Sovereo-relevant stories in the last few weeks.</div>'; return; }
-    el.innerHTML = '<div class="plab">Live signals</div>' + a.slice(0, 8).map(itemHTML).join("");
+    if (!a.length) { el.innerHTML = '<div class="plab">Latest news</div><div class="loading">No recent stories on this country in the last few weeks.</div>'; return; }
+    el.innerHTML = '<div class="plab">Latest news</div>' + a.slice(0, 8).map(itemHTML).join("");
   }).catch(function () {
     clearTimeout(to);
-    el.innerHTML = '<div class="plab">Live signals</div><div class="loading">Live feed did not respond. Try again shortly.</div>';
+    el.innerHTML = '<div class="plab">Latest news</div><div class="loading">The news feed did not respond. Please try again soon.</div>';
   });
 }
 function centroid(f) {

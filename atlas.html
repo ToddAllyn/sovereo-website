@@ -2,7 +2,7 @@
 <html lang="en"><head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Sovereo Atlas | An Interactive Globe of the Sovereo Index</title>
-<meta name="description" content="The Sovereo Atlas: a live, interactive globe of the Sovereo Index with real-time, pillar-tagged signals for every country.">
+<meta name="description" content="The Sovereo Atlas: a live globe that shows each country's Sovereo Index score and its latest news, sorted by the part of life it affects.">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
@@ -64,14 +64,14 @@ body{background:#05080f;color:var(--cream);font-family:"Inter",Arial,sans-serif;
 <div class="top">
   <a href="index.html" class="wm" style="text-decoration:none">SOVEREO</a><span class="badge">Atlas</span>
   <div class="search"><input id="q" placeholder="Search a country..." autocomplete="off"><div class="results" id="res"></div></div>
-  <span class="note">Drag to spin. Click a country to fly in. &nbsp;<a href="Sovereo_Index_Map.html" style="color:var(--gold);text-decoration:none">Flat map &rarr;</a></span>
+  <span class="note">Drag to spin. Click a country to zoom in. &nbsp;<a href="Sovereo_Index_Map.html" style="color:var(--gold);text-decoration:none">Flat map &rarr;</a></span>
   <a href="Sovereo_Relocation_Diagnostic.html" style="margin-left:14px;background:#E7B85A;color:#0E1A2B;padding:8px 16px;border-radius:6px;font-weight:700;font-size:13px;text-decoration:none;white-space:nowrap">Take the Best-Fit Countries tool</a>
 </div>
 <div class="wrap">
   <div class="map"><div id="glb"></div><div class="loader" id="loader">Loading the globe...</div>
     <div class="legend">Sovereo Index (overall)<div class="legbar"></div><span style="float:left">low</span><span style="float:right">high</span></div>
   </div>
-  <div class="panel" id="panel"><div class="hint">Pick a country on the globe or search above.<br><br>You will see its <b>Sovereo scorecard</b> and a <b>live signals feed</b>, each story tagged to the index pillar it touches.<br><br><span style="font-size:11.5px">Signals are drawn from curated public news feeds and the GDELT Project, linked to their sources.</span></div></div>
+  <div class="panel" id="panel"><div class="hint">Pick a country on the globe or search above.<br><br>You will see its <b>Sovereo scorecard</b>, its 0 to 100 scores on income, education, health and more, and a <b>live news feed</b>. Each story is labelled with the part of life it affects.<br><br><span style="font-size:11.5px">Stories come from selected public news feeds and the GDELT Project, with links to their sources.</span></div></div>
 </div>
 <script src="atlas-data.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/topojson/3.0.2/topojson.min.js"></script>

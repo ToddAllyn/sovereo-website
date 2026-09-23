@@ -2,7 +2,7 @@
 <html lang="en"><head><meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Build Your Shortlist | The Sovereo Index</title>
-<meta name="description" content="Build a custom country shortlist: set a minimum and maximum on the overall Sovereo Index or any pillar and see every country that meets all your ranges.">
+<meta name="description" content="Build your own country shortlist: set a lowest and highest score on the overall Sovereo Index or any pillar, and see every country that fits all your ranges.">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="favicon.svg">
 <meta name="theme-color" content="#12266B">
@@ -10,12 +10,12 @@
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Sovereo Intelligence Research">
 <meta property="og:title" content="Build Your Shortlist | The Sovereo Index">
-<meta property="og:description" content="Build a custom country shortlist: set a minimum and maximum on the overall Sovereo Index or any pillar and see every country that meets all your ranges.">
+<meta property="og:description" content="Build your own country shortlist: set a lowest and highest score on the overall Sovereo Index or any pillar, and see every country that fits all your ranges.">
 <meta property="og:image" content="https://www.sovereo.com/og-image.png">
 <meta property="og:url" content="https://www.sovereo.com/Sovereo_Index_Builder.html">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Build Your Shortlist | The Sovereo Index">
-<meta name="twitter:description" content="Build a custom country shortlist: set a minimum and maximum on the overall Sovereo Index or any pillar and see every country that meets all your ranges.">
+<meta name="twitter:description" content="Build your own country shortlist: set a lowest and highest score on the overall Sovereo Index or any pillar, and see every country that fits all your ranges.">
 <meta name="twitter:image" content="https://www.sovereo.com/og-image.png">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -112,7 +112,7 @@ footer .links{display:flex;gap:24px;flex-wrap:wrap}
 <header class="hero"><div class="wrap">
   <span class="eyebrow">The Sovereo Index &middot; 2026 Edition</span>
   <h1>Build your own shortlist</h1>
-  <p>Set a minimum and a maximum on the overall index or any of the six pillars. The table shows every country that meets all of your ranges at once, with full scores. For when you already know the conditions you want.</p>
+  <p>The Sovereo Index scores every country from 0 to 100 on six pillars, such as income, health and education. Set a lowest and highest score on the overall index or any pillar. The table shows every country that fits all of your ranges at once, with full scores. Use it when you already know what you want.</p>
 </div></header>
 
 <div class="wrap">
@@ -124,7 +124,7 @@ footer .links{display:flex;gap:24px;flex-wrap:wrap}
   </div>
   <div class="shortlist open" id="shortlist">
     <div class="sl-head" onclick="document.getElementById('shortlist').classList.toggle('open')">
-      <div class="t">Build a shortlist by score range<small>Set a minimum and a maximum on the overall index or any pillar. The table shows only countries that satisfy every range at once.</small></div>
+      <div class="t">Build a shortlist by score range<small>Set a lowest and highest score on the overall index or any pillar. The table shows only countries that fit every range at once.</small></div>
       <div class="chev">Score filter</div>
     </div>
     <div class="sl-body">
@@ -133,7 +133,7 @@ footer .links{display:flex;gap:24px;flex-wrap:wrap}
     </div>
   </div>
   <div class="tbl-wrap"><table id="tbl"><thead id="thead"></thead><tbody id="tbody"></tbody></table></div>
-  <div class="foot"><b>Method.</b> Each pillar is scored 0&ndash;100 from public datasets (UNDP, World Bank, WHO, Yale EPI, Heritage Foundation, EF, Williams Institute); the Sovereo Index is their equal-weighted mean. Countries with fewer than three available pillars are excluded. An educational research instrument, not legal, tax, immigration or financial advice. &copy; 2026 Sovereo Intelligence Research. Research and briefings are AI-assisted with human editorial oversight.</div>
+  <div class="foot"><b>Method.</b> Each pillar is scored 0 to 100 from public data (UNDP, World Bank, WHO, Yale EPI, Heritage Foundation, EF, Williams Institute). The Sovereo Index is their average, with each pillar counting equally. Countries with data for fewer than three pillars are left out. An educational research tool, not legal, tax, immigration or financial advice. &copy; 2026 Sovereo Intelligence Research. Research and briefings are AI-assisted with human editorial oversight.</div>
 </div>
 
 <footer><div class="wrap row">
@@ -172,7 +172,7 @@ function draw(){
  head();
  const tb=d.map((r,i)=>{
    const cells=PN.map(p=>{const v=r.pillars[p];const hot=p===sortKey?'colon-bg':'';
-     if(v==null||isNaN(v))return `<td class="cell ${hot}"><span class="cellnum" style="color:#9aa1ac">&mdash;</span></td>`;
+     if(v==null||isNaN(v))return `<td class="cell ${hot}"><span class="cellnum" style="color:#9aa1ac">n/a</span></td>`;
      return `<td class="cell ${hot}"><span class="cellnum">${v.toFixed(1)}</span><div class="track"><i style="width:${v}%"></i></div></td>`;}).join("");
    const idxHot=sortKey==="overall"?'colon-bg':'';
    return `<tr class="${i<3?'top':''}"><td class="rk">${i+1}</td>`
