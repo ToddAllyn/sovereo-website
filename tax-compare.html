@@ -4,12 +4,12 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Income Tax by Country: Top Rates Compared | Sovereo</title>
-<meta name="description" content="Compare the top personal income tax rate across countries, from zero-tax Gulf states to 60 percent highs. A free Sovereo tool on where your income keeps more of itself.">
+<meta name="description" content="Compare the highest income tax rate in each country, from zero in the Gulf states to 60 percent. A free Sovereo tool that shows where you keep more of what you earn.">
 <link rel="canonical" href="https://www.sovereo.com/tax-compare.html">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <meta name="theme-color" content="#12266B">
 <meta property="og:title" content="Income Tax by Country: top rates compared | Sovereo">
-<meta property="og:description" content="Compare the top personal income tax rate across countries, from zero to 60 percent.">
+<meta property="og:description" content="Compare the highest income tax rate in each country, from zero to 60 percent.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://www.sovereo.com/tax-compare.html">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -81,7 +81,7 @@ footer a{color:#C9D2DE}
 <header class="hero"><div class="wrap">
   <div class="eyebrow">Free Tools &middot; Income Tax</div>
   <h1>How much does the top tax bracket take?</h1>
-  <p>The same income keeps very different amounts depending on where it is earned. Compare the top personal income tax rate across countries, from zero-tax Gulf states to rates above half, and see where a paycheck holds on to more of itself.</p>
+  <p>You keep very different amounts of the same income depending on where you earn it. Compare the highest income tax rate in each country, from zero in the Gulf states to more than half. See where your pay goes further.</p>
 </div></header>
 
 <div class="wrap">
@@ -91,12 +91,12 @@ footer a{color:#C9D2DE}
   </div>
 
   <div class="tbl" id="tbl"></div>
-  <p class="note">Top marginal (highest-bracket) statutory personal income tax rate. In several countries, local, state, or social charges push the real top rate higher, noted below.</p>
+  <p class="note">This is the official national tax rate on the highest band of income (the "top marginal statutory rate"). In several countries, local, state, or social charges push the real top rate higher. See below.</p>
 
   <div class="cta">
-    <h3>The headline rate is a start. The dossier is the truth.</h3>
-    <p>Effective tax depends on brackets, residency rules, foreign-income treatment, and special regimes. The Sovereo Country Dossiers lay out the real tax picture for a move, jurisdiction by jurisdiction.</p>
-    <a class="b" href="Sovereo_Country_Reports.html">Browse the dossiers &rarr;</a>
+    <h3>The headline rate is a start. The full report tells the rest.</h3>
+    <p>What you really pay (your "effective" rate) depends on tax bands, where you count as a resident, how foreign income is taxed, and special schemes. Our Country Dossiers, full reports on each country, set out the real tax picture country by country.</p>
+    <a class="b" href="Sovereo_Country_Reports.html">Browse the country reports &rarr;</a>
     <a class="b ghost" href="Sovereo_Relocation_Diagnostic.html">Find your best-fit countries</a>
   </div>
 
@@ -104,15 +104,15 @@ footer a{color:#C9D2DE}
     <h2>How to read this, in plain English</h2>
     <p>You do not need any finance background. Here is the whole thing, simply.</p>
     <h4>What is the "top marginal rate"?</h4>
-    <p>It is the tax rate applied to the highest slice of income, not to your whole income. Most countries tax in bands: the first chunk is taxed lightly, later chunks more. This shows the rate on the top band, which is the clearest single number for comparing how heavily a country taxes higher earners.</p>
+    <p>It is the tax rate on the highest slice of income, not on your whole income. Most countries tax in bands: the first part of your income is taxed lightly, later parts more. This shows the rate on the top band. It is the clearest single number for comparing how heavily a country taxes higher earners.</p>
     <h4>Why the real rate can be higher</h4>
-    <p>Some countries add local or regional income tax, social security contributions, or surcharges on top of the national rate. So the true top rate in places like the United States, Canada, Switzerland, or the Nordics can sit well above the national figure shown here.</p>
+    <p>Some countries add local or regional income tax, social security payments, or extra charges on top of the national rate. So the true top rate in places like the United States, Canada, Switzerland, or the Nordic countries can be well above the national figure shown here.</p>
     <h4>Why it matters</h4>
-    <p>Tax is one of the largest recurring costs in a life, and it varies more across borders than almost anything else. A person with portable income can legally keep far more of it simply by where they are tax-resident, which is one of the central questions Sovereo helps people work through.</p>
+    <p>Tax is one of the biggest costs you pay, year after year, and it varies between countries more than almost anything else. If your income is not tied to one place, you can legally keep far more of it depending on which country taxes you as a resident. Sovereo helps people think this through.</p>
   </div>
 
   <p class="method">
-    <b>Where this comes from.</b> Figures are top statutory personal income tax rates (highest marginal bracket) for 2025, drawn from public compilations by KPMG, PwC, and Trading Economics. They are national statutory rates; local or state income taxes, social security contributions, surcharges, and special expatriate or flat regimes can raise or lower the effective burden, and rates change with each budget. This is a comparison of headline rates for general education, not tax advice. Confirm any figure with a licensed professional before acting.
+    <b>Where this comes from.</b> Figures are the official ("statutory") top income tax rates, meaning the rate on the highest band, for 2025. They come from public lists by KPMG, PwC, and Trading Economics. They are national rates only. Local or state income taxes, social security payments, extra charges, and special schemes for foreigners or flat taxes can raise or lower what people actually pay. Rates also change with each government budget. This is a comparison of headline rates for general education, not tax advice. Confirm any figure with a licensed professional before acting.
   </p>
 </div>
 
@@ -147,7 +147,7 @@ function render(){
   var rows=T.slice().sort(function(a,b){return b[1]-a[1];});
   var rank=rows.findIndex(function(r){return r[0]===mine;})+1;
   var mineRate=(T.find(function(r){return r[0]===mine;})||[,0])[1];
-  document.getElementById('you').innerHTML='<b>'+mine+'</b> has a top personal income tax rate of about <b>'+rate(mineRate)+'</b>, ranking '+rank+' of '+rows.length+' from highest to lowest here.';
+  document.getElementById('you').innerHTML='<b>'+mine+'</b> has a top personal income tax rate of about <b>'+rate(mineRate)+'</b>, ranking '+rank+' of '+rows.length+' on this list, from highest to lowest.';
   var h='<div class="trow head"><span>#</span><span>Country</span><span style="text-align:right">Top rate</span><span>Relative</span><span style="text-align:center">Burden</span></div>';
   rows.forEach(function(r,i){
     var tg=tier(r[1]), w=Math.max(3,r[1]/MAX*100);

@@ -4,12 +4,12 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Passport Power: How Far Does Your Passport Take You? | Sovereo</title>
-<meta name="description" content="See how many destinations each passport opens without a prior visa, ranked. A free Sovereo tool on the mobility side of where you can live and travel.">
+<meta name="description" content="See how many countries each passport lets you enter without getting a visa first, ranked. A free Sovereo tool on how freely you can travel, work, and live across borders.">
 <link rel="canonical" href="https://www.sovereo.com/passport-power.html">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <meta name="theme-color" content="#12266B">
 <meta property="og:title" content="Passport Power: how far does your passport take you? | Sovereo">
-<meta property="og:description" content="How many destinations each passport opens without a prior visa, ranked.">
+<meta property="og:description" content="How many countries each passport lets you enter without getting a visa first, ranked.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://www.sovereo.com/passport-power.html">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -81,7 +81,7 @@ footer a{color:#C9D2DE}
 <header class="hero"><div class="wrap">
   <div class="eyebrow">Free Tools &middot; Passport Power</div>
   <h1>How far does your passport take you?</h1>
-  <p>A passport is a key, and some open far more doors than others. See roughly how many destinations each passport reaches without arranging a visa in advance, and where yours sits in the world.</p>
+  <p>A passport is a key, and some open far more doors than others. See roughly how many places each passport lets you enter without getting a visa first, and where yours ranks in the world.</p>
 </div></header>
 
 <div class="wrap">
@@ -91,11 +91,11 @@ footer a{color:#C9D2DE}
   </div>
 
   <div class="tbl" id="tbl"></div>
-  <p class="note">Higher means more destinations reachable visa-free or with visa on arrival. Figures are indicative for 2026 and change each quarter.</p>
+  <p class="note">Higher means more places you can enter with no visa, or with a visa you get at the border. Figures are estimates for 2026 and change every three months.</p>
 
   <div class="cta">
-    <h3>Mobility is one lever. Fit is the whole decision.</h3>
-    <p>A strong passport helps, but where you should actually live depends on income, tax, cost, safety, and family. Sovereo weighs all of it for your situation, free.</p>
+    <h3>Travel freedom is one factor. Fit is the whole decision.</h3>
+    <p>A strong passport helps, but which country suits you depends on income, tax, cost, safety, and family. Best-Fit Countries, our free scoring tool, weighs all of it for your situation.</p>
     <a class="b" href="Sovereo_Relocation_Diagnostic.html">Find your best-fit countries &rarr;</a>
     <a class="b ghost" href="free-tools.html">See all free tools</a>
   </div>
@@ -104,15 +104,15 @@ footer a{color:#C9D2DE}
     <h2>How to read this, in plain English</h2>
     <p>You do not need any background. Here is the whole thing, simply.</p>
     <h4>What is a "visa-free destination"?</h4>
-    <p>A place your passport lets you enter without arranging a visa before you travel, either with no visa at all or with one granted on arrival. The more of these a passport has, the more freely its holder can move for tourism, business, or a quick exit.</p>
+    <p>A place your passport lets you enter without arranging a visa before you travel, either with no visa at all or with one granted on arrival. The more of these a passport has, the more freely you can travel for holidays, for business, or to leave at short notice.</p>
     <h4>Why passports differ so much</h4>
-    <p>Access is built on trust and reciprocity between governments, shaped by security, economics, and diplomacy. Wealthy, stable countries tend to negotiate broad access; countries seen as higher-risk face more closed doors, regardless of the individual traveler.</p>
+    <p>Access is built on trust between governments, and on deals where each side lets the other in. Security, the economy, and diplomacy all shape it. Wealthy, stable countries tend to win broad access. Countries seen as higher risk face more closed doors, whoever the traveler is.</p>
     <h4>Why it matters</h4>
-    <p>Passport strength affects how easily you can travel, do business, or relocate, and it is one reason people pursue a second residence or citizenship. It is a real asset, though only one part of deciding where to build a life.</p>
+    <p>Passport strength affects how easily you can travel, do business, or live abroad. It is one reason people seek the right to live in a second country, or a second citizenship. It has real value, but it is only one part of any life decision.</p>
   </div>
 
   <p class="method">
-    <b>Where this comes from.</b> Counts are indicative 2026 figures in the style of the Henley Passport Index and similar mobility indices, which measure destinations reachable visa-free or with visa on arrival. Methodologies differ and the numbers are revised every quarter, so treat these as directional rather than exact. For the precise, current score for any passport, consult the official <a href="https://www.henleyglobal.com/passport-index" target="_blank" rel="noopener">Henley Passport Index</a>. For general education, not legal or immigration advice.
+    <b>Where this comes from.</b> Counts are estimated 2026 figures in the style of the Henley Passport Index and similar rankings. These count the places you can enter with no visa, or with a visa given at the border. Methods differ and the numbers are updated every three months, so treat these as a rough guide, not exact. For the precise, current score for any passport, consult the official <a href="https://www.henleyglobal.com/passport-index" target="_blank" rel="noopener">Henley Passport Index</a>. For general education, not legal or immigration advice.
   </p>
 </div>
 
@@ -147,7 +147,7 @@ function render(){
   var rows=P.slice().sort(function(a,b){return b[1]-a[1];});
   var rank=rows.findIndex(function(r){return r[0]===mine;})+1;
   var mineScore=(P.find(function(r){return r[0]===mine;})||[,0])[1];
-  document.getElementById('you').innerHTML='The <b>'+mine+'</b> passport reaches about <b>'+mineScore+'</b> destinations without a prior visa, ranking around <b>#'+rank+'</b> of '+rows.length+' in this list.';
+  document.getElementById('you').innerHTML='The <b>'+mine+'</b> passport reaches about <b>'+mineScore+'</b> destinations without getting a visa first, ranking around <b>#'+rank+'</b> of '+rows.length+' in this list.';
   var h='<div class="trow head"><span>#</span><span>Passport</span><span style="text-align:right">Reach</span><span>Relative</span><span style="text-align:center">Strength</span></div>';
   rows.forEach(function(r,i){
     var tg=tier(r[1]), w=Math.max(5,r[1]/MAX*100);

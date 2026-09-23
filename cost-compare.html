@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Cost of Living Compare | Sovereo Intelligence Research</title>
-<meta name="description" content="Compare the cost of living between any two countries in plain language, adjusted for purchasing power, and see what your monthly budget is really worth abroad. Built on World Bank data.">
+<meta name="description" content="Compare the cost of living between any two countries in plain language, based on what money actually buys in each. See what your monthly budget is really worth abroad. Built on World Bank data.">
 <link rel="canonical" href="https://www.sovereo.com/cost-compare.html">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <meta name="theme-color" content="#12266B">
@@ -132,28 +132,28 @@ footer a{color:#C9D2DE}
 
   <div class="cta" id="cta" style="display:none">
     <h3>Cheaper is only half the decision.</h3>
-    <p>A low cost of living means nothing if the tax, the visa, or the safety picture is wrong for you. See which countries actually fit your whole situation, then read the full file on the ones that make your shortlist.</p>
+    <p>Low prices mean little if the taxes, visa rules, or safety are wrong for you. Best-Fit Countries, our scoring tool, shows which countries fit your whole situation. Then read our full report on each one you like.</p>
     <a class="b" href="Sovereo_Relocation_Diagnostic.html">Find your best-fit countries &rarr;</a>
-    <a class="b ghost" href="Sovereo_Country_Reports.html">Browse the dossiers</a>
+    <a class="b ghost" href="Sovereo_Country_Reports.html">Browse the country reports</a>
   </div>
 
   <div class="explain">
     <h2>How to read this, in plain English</h2>
     <p>You do not need to know anything about finance to use this. Here is what the numbers mean.</p>
     <h4>The percentage: cheaper or more expensive</h4>
-    <p>This is the main answer. If it says a country is "40% cheaper," it means a normal month of life there, rent, food, transport, the usual, costs roughly 40 percent less than where you live now. "More expensive" means the opposite.</p>
+    <p>This is the main answer. If it says a country is "40% cheaper," it means a normal month of life there (rent, food, transport, the usual) costs roughly 40 percent less than where you live now. "More expensive" means the opposite.</p>
     <h4>The two bars</h4>
-    <p>Each bar shows how pricey a country is compared to the United States, which we set at 1.00 as a fixed yardstick. A bar below 1.00 means cheaper than the US; above 1.00 means pricier. Longer bar, more expensive.</p>
+    <p>Each bar shows how pricey a country is compared to the United States, which we set at 1.00 as a fixed yardstick. A bar below 1.00 means cheaper than the US. Above 1.00 means pricier. The longer the bar, the more expensive the country.</p>
     <h4>Your budget, matched abroad</h4>
-    <p>If you enter what you spend in a month, we show the amount you would need to live the same way in the other country, first in that country's own money, then in US dollars so it is easy to picture. If the other country is cheaper, that number is smaller than what you spend now.</p>
+    <p>If you enter what you spend in a month, we show how much you would need to live the same way in the other country. We show it first in that country's own money, then in US dollars so it is easy to picture. If the other country is cheaper, that number is smaller than what you spend now.</p>
     <h4>Why "purchasing power," not just the exchange rate</h4>
-    <p>An exchange rate only tells you how many units of foreign money you get for a dollar. It does not tell you that a haircut, a bus ride, or a week of groceries is far cheaper in some places. We use World Bank "purchasing power" data, which measures what money actually buys on the ground, so the comparison reflects real daily life, not just currency math. The exchange rate is used only for the final "in US dollars" figure, and we show you the exact rate we used.</p>
+    <p>An exchange rate only tells you how many units of foreign money you get for a dollar. It does not tell you that a haircut, a bus ride, or a week of groceries is far cheaper in some places. We use World Bank "purchasing power" data, which measures what money actually buys in each country. So the comparison shows real daily life, not just currency math. The exchange rate is used only for the final "in US dollars" figure, and we show you the exact rate we used.</p>
     <h4>Treat it as a guide, not a quote</h4>
-    <p>These are country-wide averages for orientation. A big capital city costs more than a small town, and your own lifestyle matters. Use this to see the shape of the difference, then dig into the details before you decide.</p>
+    <p>These are country-wide averages for orientation. A big capital city costs more than a small town, and your own lifestyle matters. Use this to see the rough size of the difference. Then check the details before you decide.</p>
   </div>
 
   <p class="method">
-    <b>The data.</b> Cost of living is measured as each country's price level: the World Bank purchasing-power-parity conversion factor divided by the market exchange rate, relative to the United States. World Bank purchasing-power figures are 2021 base, inflation-adjusted. Exchange rates are fetched live where available and otherwise fall back to a stored reference set dated September 2026; the tool shows which was used. Figures are country-level estimates, not city-level prices, and are best estimates rather than exact facts.
+    <b>The data.</b> We measure cost of living as each country's price level, compared with the United States. To get it, we divide the World Bank purchasing power parity (PPP) factor by the market exchange rate. PPP compares money across countries by what it buys locally. The World Bank figures use 2021 as the base year and are adjusted for inflation (rising prices). We fetch live exchange rates where we can. If not, we use a stored set of rates dated September 2026. The tool shows which one it used. Figures are country-level estimates, not city-level prices, and are best estimates rather than exact facts.
   </p>
 </div>
 
@@ -264,14 +264,14 @@ function run(){
       '<div class="stat"><b>'+a[2]+money(raw)+'</b><span>what you spend a month now, in '+a[0]+'</span></div>'+
       '<div class="stat"><b>'+b[2]+money(equivLocalB)+'</b><span>to live the same way in '+b[0]+', in its own money ('+b[1]+')</span></div>';
     usdbox.innerHTML='<a href="#" id="usdToggle" style="color:var(--gold);font-weight:600;text-decoration:underline;font-size:14px">Show me that in US dollars</a>'+
-      '<div id="usdVal" style="display:none;margin-top:10px;font-size:15px;color:#40505F">That is roughly <b>US$'+money(equivUSD)+' a month</b>, converted at the exchange rate shown below. This dollar figure is only a rough conversion for a familiar reference; the comparison above is based on what money actually buys (purchasing power), which is the more reliable number.</div>';
+      '<div id="usdVal" style="display:none;margin-top:10px;font-size:15px;color:#40505F">That is roughly <b>US$'+money(equivUSD)+' a month</b>, converted at the exchange rate shown below. This dollar figure is only a rough conversion to give you a familiar reference. The comparison above is based on what money actually buys locally, which is the more reliable number.</div>';
     var t=document.getElementById('usdToggle');
     t.addEventListener('click',function(e){e.preventDefault();var v=document.getElementById('usdVal');var show=(v.style.display==='none');v.style.display=show?'block':'none';t.textContent=show?'Hide the US dollar figure':'Show me that in US dollars';});
   } else {
     stats.innerHTML=
       '<div class="stat"><b>'+plA.toFixed(2)+'</b><span>'+a[0]+' price level (US = 1.00)</span></div>'+
       '<div class="stat"><b>'+plB.toFixed(2)+'</b><span>'+b[0]+' price level (US = 1.00)</span></div>'+
-      '<div class="stat"><b>'+(cheaper?'-':'+')+pct+'%</b><span>cost difference vs '+a[0]+'</span></div>';
+      '<div class="stat"><b>'+(cheaper?'-':'+')+pct+'%</b><span>cost difference compared with '+a[0]+'</span></div>';
   }
 
   var rlabel=[];
