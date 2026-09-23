@@ -36,11 +36,11 @@ Top navigation, five items plus the call to action:
 | Page | Action | Notes |
 |---|---|---|
 | `index.html` | Light edit | Add a "Your stage" section and the method line. Keep the rest. |
-| `assets/site-nav.js` | Rewrite | New nav above. Footer grouped by the same five sections. |
+| `assets/site-nav.js` | Done | Dropdown nav in the structure above; grouped mobile menu; footer grouped by the same sections. Falls back to the compact menu whenever the full menu does not fit. |
 | `Sovereo_Country_Reports.html` (Dossiers) | Reframe, needs decision | Replace "Aspiring expat / Active expat / Retiree / Legacy builder" lenses with the four life stages. Lead with "what this country means for your decisions" before residency routes. |
 | `advisory.html` | Reframe, needs decision | From "talk your move through" to "talk your decision through." Moving becomes one topic among income, retirement, education, health, and legacy. |
 | `contact.html` | Reframe | Follows the dossier decision. "Tell us where you are headed" becomes "tell us the decision you are facing." |
-| `Sovereo_Relocation_Diagnostic.html` | Keep tool, rename file | Tool is already titled Best-Fit Countries. Rename to `best-fit-countries.html` with a 301 in `_redirects` so old links keep working. |
+| `best-fit-countries.html` (was `Sovereo_Relocation_Diagnostic.html`) | Done: renamed, 301 redirects in place | Tool is already titled Best-Fit Countries. Rename to `best-fit-countries.html` with a 301 in `_redirects` so old links keep working. |
 | `Sovereo_Scientific_Basis.html` | Light edit | Title says "Best-Fit Countries"; add the link to the five domains. |
 | `free-tools.html` | Regroup | Group tools by domain. Retitle "Location decision" as a country decision among others. |
 | `guides.html` | Light edit | "Guides to living, retiring, and moving your money across borders" becomes guides to decisions, with country guides as one shelf. |
@@ -63,11 +63,11 @@ Top navigation, five items plus the call to action:
 2. **Advisory.** The call covers any major life decision. Done: advisory and consultation pages reframed.
 3. **"The Great Relocation" infographic.** Keep.
 4. **Atlas "Rank X of 192".** Correct as written.
-5. **Rename the Best-Fit file.** Still open.
+5. **Rename the Best-Fit file.** Done.
 
 ## Sequence
 
-1. Navigation, homepage "Your stage" section, How Sovereo works page.
+1. Navigation (done), Your Stage page `life-stages.html` (done, one page for all four stages), homepage "Your stage" section, How Sovereo works page.
 2. Pre-retirement hub, then Retirement, Building, Launch.
 3. Dossier and advisory reframe (after decisions 1 and 2).
 4. Tool regrouping and globalizing inflation and currency tools.

@@ -37,7 +37,7 @@ function select(c) {
   html += '<div class="plab">The six pillars, plus money</div>';
   html += PILL.map(function (x) { return bar(x[1], x[2], c[x[0]]); }).join("");
   html += '<div class="sig" id="sig"><div class="plab">Latest news</div><div class="loading">Loading the latest headlines...</div></div>';
-  html += '<a class="cta" href="Sovereo_Relocation_Diagnostic.html">See where you fit best, free &rarr;</a>';
+  html += '<a class="cta" href="best-fit-countries.html">See where you fit best, free &rarr;</a>';
   p.innerHTML = html;
   loadSignals(c);
 }

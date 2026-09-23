@@ -1,6 +1,7 @@
 # Friendly short paths
 /brief        /brief.html                           301
-/diagnostic   /Sovereo_Relocation_Diagnostic.html   301
+/diagnostic   /best-fit-countries.html              301
+/best-fit     /best-fit-countries.html              301
 /index-table  /Sovereo_Index_Table.html             301
 /map          /Sovereo_Index_Map.html               301
 /methodology  /Sovereo_Index_Background.html        301
@@ -9,3 +10,7 @@
 /shortlist    /Sovereo_Index_Builder.html           301
 /build        /Sovereo_Index_Builder.html           301
 
+
+# Renamed pages (keep old links working)
+/Sovereo_Relocation_Diagnostic.html  /best-fit-countries.html  301
+/Sovereo_Relocation_Diagnostic       /best-fit-countries       301
