@@ -150,6 +150,38 @@ Revisit the stage and market rankings once a year against audience and revenue d
 - **Not advice**: Sovereo publishes research and education, not personalized financial, tax, legal, immigration, or medical advice in any jurisdiction. Rules differ by country; readers confirm with a licensed professional where they live.
 - **Privacy**: design to the strictest regime a reader may fall under (GDPR as the baseline).
 
+## Plain language
+
+Write for a smart reader who has never studied economics, finance, or geopolitics. If a 15-year-old or a busy retiree would stop to ask "what does that mean?", rewrite it.
+
+- **Short sentences.** One idea per sentence. Aim for 20 words or fewer.
+- **Everyday words first.** Use the plain word, and add the technical term only if the reader will meet it elsewhere, explained once in brackets or a short clause.
+- **Explain before you use.** Every product name, index, or measure is explained the first time it appears on a page ("the SITREP, our free morning briefing").
+- **Say what it means for the reader.** Follow any number or concept with why it matters to them.
+- **Active voice, second person.** "Inflation cuts what your savings can buy," not "purchasing power is eroded."
+- **No insider shorthand.** No unexplained acronyms, military terms, or research jargon.
+
+Common swaps:
+
+| Instead of | Write |
+|---|---|
+| purchasing power | what your money can buy |
+| falsifiable forecast | a prediction that can be proven right or wrong |
+| vantage-balanced sources | sources from many countries, not only Western media |
+| mechanism / transmission | how it reaches you |
+| exposure | how much it affects you |
+| next observable event | the next thing to watch |
+| sovereign debt | government debt |
+| capital repatriation | taking your money back out of a country |
+| capital-account openness | how freely money can move in and out |
+| jurisdiction | country |
+| multi-criteria decision analysis | scoring each country on several factors and combining them |
+| calibrated uncertainty | how sure we are, stated honestly |
+| drawdown | living off your savings |
+| macro events | big world events |
+
+Brand names stay (SITREP, The Sovereo Brief, The Reckoning, The Sovereo Index) but are always explained on first use.
+
 ## Language rules
 
 - Say "decision," "choice," "tradeoff," "exposure," "what it costs you." Avoid leading with "relocate," "move abroad," "escape," or "exit."
