@@ -57,11 +57,13 @@ Top navigation, five items plus the call to action:
 - Debt clock: "Why an intelligence site about moving abroad tracks this" replaced with a decision-first explanation.
 - Infographics, dossier, contact, and advisory metadata: "relocation" removed from descriptions and schema where it described the business rather than a specific topic.
 
-## Decisions needed
+## Decisions made
 
-1. **Dossiers.** Do the dossier PDFs themselves change (life-stage lenses, decision-first verdict), or only the sales page? The page should not promise what the PDF does not contain.
-2. **Advisory.** Is the $250 call now about any major life decision, or still mainly about cross-border moves?
-3. **Rename the Best-Fit file** and add a redirect? Low risk, better URL.
+1. **Dossiers.** Only the sales page changes. The PDFs stay as they are, so the page must not promise anything they do not contain.
+2. **Advisory.** The call covers any major life decision. Done: advisory and consultation pages reframed.
+3. **"The Great Relocation" infographic.** Keep.
+4. **Atlas "Rank X of 192".** Correct as written.
+5. **Rename the Best-Fit file.** Still open.
 
 ## Sequence
 
