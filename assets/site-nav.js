@@ -6,7 +6,7 @@
     {t:'Best-Fit Countries',h:'Sovereo_Relocation_Diagnostic.html'},
     {t:'Free Tools',h:'free-tools.html'},
     {t:'Guides',h:'guides.html'},
-    {t:'Country Reports',h:'Sovereo_Country_Reports.html'},
+    {t:'Country Dossiers',h:'Sovereo_Country_Reports.html'},
     {t:'Advisory',h:'advisory.html'}
   ];
   var MOBILE_EXTRA=[
@@ -23,7 +23,7 @@
     {t:'Shortlist',h:'Sovereo_Index_Builder.html'},
     {t:'World Map',h:'atlas.html'},
     {t:'Guides',h:'guides.html'},
-    {t:'Country Reports',h:'Sovereo_Country_Reports.html'},
+    {t:'Country Dossiers',h:'Sovereo_Country_Reports.html'},
     {t:'Advisory',h:'advisory.html'},
     {t:'The Reckoning',h:'forecast-ledger.html'},
     {t:'Retire on Social Security',h:'retire-on-social-security.html'},

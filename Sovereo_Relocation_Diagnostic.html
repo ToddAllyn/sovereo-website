@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Your Best-Fit Countries | Sovereo Intelligence Research</title>
-<meta name="description" content="A five-step tool that scores all 195 countries for your life and returns the three that fit you best. No data stored, scored in your browser.">
+<meta name="description" content="A free five-step quiz that scores all 195 countries for your life and shows the three that fit you best. Nothing is stored; it runs in your browser.">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="favicon.svg">
 <meta name="theme-color" content="#12266B">
@@ -12,12 +12,12 @@
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Sovereo Intelligence Research">
 <meta property="og:title" content="Your Best-Fit Countries | Sovereo Intelligence Research">
-<meta property="og:description" content="A five-step tool that scores all 195 countries for your life and returns the three that fit you best. No data stored, scored in your browser.">
+<meta property="og:description" content="A free five-step quiz that scores all 195 countries for your life and shows the three that fit you best. Nothing is stored; it runs in your browser.">
 <meta property="og:image" content="https://www.sovereo.com/og-image.png">
 <meta property="og:url" content="https://www.sovereo.com/Sovereo_Relocation_Diagnostic.html">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Your Best-Fit Countries | Sovereo Intelligence Research">
-<meta name="twitter:description" content="A five-step tool that scores all 195 countries for your life and returns the three that fit you best. No data stored, scored in your browser.">
+<meta name="twitter:description" content="A free five-step quiz that scores all 195 countries for your life and shows the three that fit you best. Nothing is stored; it runs in your browser.">
 <meta name="twitter:image" content="https://www.sovereo.com/og-image.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -197,7 +197,7 @@ footer .links{display:flex;gap:24px;flex-wrap:wrap}
 <header class="hero" id="hero"><div class="wrap narrow">
   <span class="eyebrow">Your Best-Fit Countries &middot; SRDI v1.0</span>
   <h1>Three countries, chosen for the life you are actually trying to build.</h1>
-  <p>Sixteen questions, about two minutes. Your Best-Fit Countries tool scores all 195 countries against your money, your family, your values, and your must-haves, then returns the three that fit and tells you plainly where they do not. It is grounded in the social determinants of health, value-fit science, and the wellbeing evidence on migration. Free and private, scored on your own device, and nothing is stored.</p>
+  <p>Sixteen questions, about two minutes. Best-Fit Countries, our free matching quiz, scores all 195 countries against your money, your family, your values, and your must-haves. It shows the three that fit and tells you plainly where they do not. It rests on research into how daily conditions shape health, how shared values help people fit in, and how moving affects wellbeing. Free and private, scored on your own device, and nothing is stored.</p>
 </div></header>
 
 <div class="prog" id="prog"><div class="wrap inner">
@@ -215,13 +215,13 @@ footer .links{display:flex;gap:24px;flex-wrap:wrap}
       <a href="index.html">Home</a>
       <a href="Sovereo_Index_Table.html">The Index</a>
       <a href="Sovereo_Scientific_Basis.html">Scientific Basis</a>
-      <a href="Sovereo_Country_Reports.html">Dossiers</a>
+      <a href="Sovereo_Country_Reports.html">Country Dossiers</a>
       <a href="terms.html">Terms</a>
       <a href="privacy.html">Privacy</a>
     </div>
   </div>
   <div class="fineprint">
-    &copy; 2026 Sovereo Intelligence Research. Research and briefings are AI-assisted with human editorial oversight. The Sovereo Best-Fit Countries tool is an educational and advisory decision aid, not legal, tax, immigration, medical or financial advice. It is computed on your device and stores no personally identifiable information. Country data is point in time and recalibrated annually.
+    &copy; 2026 Sovereo Intelligence Research. Research and briefings are AI-assisted with human editorial oversight. The Sovereo Best-Fit Countries tool is an educational aid for decisions, not legal, tax, immigration, medical or financial advice. It runs on your device and stores no information that could identify you. Country data reflects one point in time and is updated every year.
   </div>
 </div></footer>
 <script>
@@ -229,46 +229,46 @@ const DATA={"countries":[{"name":"Algeria","iso":"DZA","region":"Africa","overal
 const C=DATA.countries;
 // ---------- QUESTION SET: five steps ----------
 const MODULES=[
-{id:"1",name:"Your move",sub:"Why you are moving, who you are, and who is coming with you.",q:[
- {id:"driver",t:"What is the single biggest reason you would move?",h:"Sets your primary weighting.",opts:[
-  ["tax","Lower my tax"],["cost","Stretch my money further (cost and currency)"],["safety","Safety and a stable Plan B"],
+{id:"1",name:"Your situation",sub:"What you want most, who you are, and who would come with you.",q:[
+ {id:"driver",t:"What is the main thing you want a country to give you?",h:"This counts most in your score.",opts:[
+  ["tax","Lower my tax"],["cost","Make my money go further (lower costs, better exchange rate)"],["safety","Safety, and a stable backup option"],
   ["lifestyle","Lifestyle, climate and culture"],["family","Family: schools, healthcare, community"],
   ["retire","Retire well"],["career","Better career and income"]]},
  {id:"life",t:"Which best describes you right now?",h:"Choose any that apply.",multi:true,opts:[
-  ["remote","Remote earner or digital nomad"],["entrepreneur","Business owner or entrepreneur"],
+  ["remote","Remote worker or digital nomad"],["entrepreneur","Business owner or entrepreneur"],
   ["professional","Employed professional"],["family","Family with children"],
-  ["retiree","Pre-retiree or retiree"],["investor","Living mainly off investments or a pension"]]},
- {id:"household",t:"Who is moving with you?",opts:[
+  ["retiree","Near retirement or retired"],["investor","Living mainly off investments or a pension"]]},
+ {id:"household",t:"Who would come with you?",opts:[
   ["solo","Just me"],["couple","A spouse or partner"],["family","Partner and children"],["single_parent","Children, I am a single parent"]]}
 ]},
-{id:"2",name:"Money and tax",sub:"How your money behaves and what you want from tax. We never ask your net worth.",q:[
+{id:"2",name:"Money and tax",sub:"Where your money comes from and what you want from tax. We never ask how much you own.",q:[
  {id:"incomeSource",t:"Where does most of your money come from?",opts:[
   ["salary","A salary or wages"],["business","A business I own"],["remote","Remote or freelance work"],
   ["investments","Investments, dividends or rent"],["pension","A pension or retirement income"],["savings","Savings I am living on"]]},
- {id:"portable",t:"If you moved, would that income keep coming in from abroad?",h:"Portable income is the engine of currency arbitrage.",opts:[
-  ["yes","Yes, it is fully portable"],["partly","Partly"],["no","No, I would need to earn locally"]]},
+ {id:"portable",t:"If you moved, would that income keep coming in from abroad?",h:"Income that follows you lets you earn in one currency and spend where costs are lower.",opts:[
+  ["yes","Yes, all of it would"],["partly","Partly"],["no","No, I would need to earn locally"]]},
  {id:"taxGoal",t:"What is your tax goal?",opts:[
-  ["aggressive","Aggressively minimise, zero or territorial"],["moderate","Lower than now, but I value services"],["none","Not a priority, I care more about life quality"]]},
+  ["aggressive","As low as legally possible (zero, or tax on local income only)"],["moderate","Lower than now, but I value good public services"],["none","Not a priority, I care more about quality of life"]]},
  {id:"spend",t:"Roughly, what could you comfortably live on each month?",opts:[["0","Under $1,500"],["1","$1,500 to $3,000"],["2","$3,000 to $6,000"],["3","$6,000 to $12,000"],["4","Over $12,000"]]}
 ]},
-{id:"3",name:"Mobility and legal",sub:"The passport you hold, your appetite for a second one, and your timeline.",q:[
+{id:"3",name:"Passport and timing",sub:"How much you want a second passport, and your timeline.",q:[
  {id:"passport",t:"How important is a clear path to a second citizenship?",opts:[
-  ["critical","Critical, it is part of why I am moving"],["nice","Useful but not essential"],["no","Not needed"]]},
- {id:"timeline",t:"When do you want to be living abroad?",h:"A feasibility input.",opts:[
+  ["critical","Critical, it is one of my main reasons"],["nice","Useful but not essential"],["no","Not needed"]]},
+ {id:"timeline",t:"If you did move, when would you want to be living abroad?",h:"Helps us judge how realistic each country is for you.",opts:[
   ["6m","Within 6 months"],["18m","6 to 18 months"],["3y","1 to 3 years"],["explore","Just exploring"]]}
 ]},
-{id:"4",name:"Values and wellbeing",sub:"A values forced-choice locates you on the World Values Survey, and your honest wellbeing baseline calibrates expectations.",q:[
+{id:"4",name:"Values and wellbeing",sub:"Your answer matches you to countries that share your values, using the World Values Survey. Your honest rating of your life today helps us set fair expectations.",q:[
  {id:"valueMost",t:"Which statement is closest to you?",opts:[
   ["tradition","Tradition, faith and family continuity anchor a good life"],["freedom","Freedom to choose my own path matters most"],
   ["achievement","Achievement and getting ahead drive me"],["caring","Caring for others and fairness come first"]]},
- {id:"cantril",t:"On a ladder from 0 (worst possible life) to 10 (best), where do you stand today?",h:"The Gallup Cantril ladder.",slider:true}
+ {id:"cantril",t:"On a ladder from 0 (worst possible life) to 10 (best), where do you stand today?",h:"This is the Cantril ladder, the life-rating scale Gallup uses worldwide.",slider:true}
 ]},
-{id:"5",name:"Your must-haves",sub:"The non-negotiables. These can exclude a country regardless of how well it scores elsewhere.",q:[
+{id:"5",name:"Your must-haves",sub:"Your deal-breakers. These can rule out a country, however well it scores elsewhere.",q:[
  {id:"climate",t:"Climate you want.",opts:[["Warm","Warm"],["Temperate","Temperate"],["Cool","Cool"],["Any","No preference"]]},
  {id:"english",t:"Language.",opts:[["need","I need to function in English"],["adapt","I will learn the local language"]]},
  {id:"stability",t:"Stability you require.",opts:[
-  ["high","Rock-solid rule of law and safety"],["moderate","Moderate"],["frontier","I am comfortable with frontier and emerging"]]},
- {id:"racial",t:"How important is a racially open and equal society to you?",h:"Scored from real data: Gallup migrant acceptance, World Values Survey racial tolerance, and legal anti-discrimination protection.",opts:[
+  ["high","Very safe, with laws applied fairly to all"],["moderate","Moderate"],["frontier","I am fine with less stable, fast-changing countries"]]},
+ {id:"racial",t:"How important is a racially open and equal society to you?",h:"Scored from real data: Gallup and World Values Survey polls on acceptance of migrants and other races, plus laws against discrimination.",opts:[
   ["high","Very important, I want a welcoming and equal society"],["some","Somewhat important"],["low","Not a priority for me"]]},
  {id:"region",t:"Any region you are especially drawn to?",opts:[["any","No preference, score the whole world"],["Europe","Europe"],["Americas","The Americas"],["AsiaPac","Asia Pacific"],["MEAfrica","Middle East and Africa"]]}
 ]}
@@ -411,28 +411,28 @@ function score(){
   const reasons=[],cautions=[];let b=0;
   // tax
   if(ST.taxGoal==='aggressive'&&c.tax>=80){b+=18;reasons.push([9,'Very low personal tax ('+(c.taxNote?c.taxNote.split(';')[0].trim():'low headline tax burden')+')']);}
-  else if(ST.taxGoal==='aggressive'&&c.tax>=65){b+=8;reasons.push([6,'Favourable tax regime for your income type']);}
+  else if(ST.taxGoal==='aggressive'&&c.tax>=65){b+=8;reasons.push([6,'Tax rules that favour your kind of income']);}
   // currency arbitrage
-  if(arbActive&&c.col>=72){b+=12;reasons.push([8,'Strong purchasing-power gain, your portable '+curName+' income stretches far here']);}
-  else if(arbActive&&c.col>=64){b+=5;reasons.push([5,'Your portable income buys a comfortable margin here']);}
+  if(arbActive&&c.col>=72){b+=12;reasons.push([8,'Your '+curName+' income from abroad buys much more here']);}
+  else if(arbActive&&c.col>=64){b+=5;reasons.push([5,'Your income from abroad goes comfortably further here']);}
   // climate
   if(ST.climate&&ST.climate!=='Any'){if(c.climcat===ST.climate){b+=10;reasons.push([7,ST.climate+' climate, as you wanted']);}else b-=8;}
   // passport (deep only carry real cit; non-deep cit=50 so won't trigger)
   if(ST.passport==='critical'&&c.cit>=70){b+=10;reasons.push([8,'Clear path to a second passport'+(c.visaNote?' ('+c.visaNote.split(';').slice(-1)[0].trim()+')':'')]);}
   // retirement
-  if((ST.driver==='retire'||(ST.life||[]).includes('retiree'))&&c.retire>=82){b+=6;reasons.push([6,'Strong retirement profile']);}
+  if((ST.driver==='retire'||(ST.life||[]).includes('retiree'))&&c.retire>=82){b+=6;reasons.push([6,'Scores well for retirees']);}
   // english
   if(ST.english==='need'&&!c.engFriendly){b-=16;cautions.push([7,'Limited everyday English, and you said you need it']);}
   else if(ST.english==='need'&&c.engFriendly){reasons.push([5,'English widely spoken']);}
   // budget / capital
   if(c.tier>capital+1){b-=26;cautions.push([8,'Needs a larger budget than you indicated']);}
-  else if(ST.invest>='2'&&c.tier>=3){reasons.push([6,'Residency-by-investment route fits your means']);}
-  else if(c.tier<=capital&&c.res>=78){reasons.push([4,'Residency achievable on your means']);}
+  else if(ST.invest>='2'&&c.tier>=3){reasons.push([6,'You could afford its route to residency through investing']);}
+  else if(c.tier<=capital&&c.res>=78){reasons.push([4,'The right to live here looks within your means']);}
   // relationship legal recognition (neutral)
   if(ST.recognition==='yes'){
    if(c.ssm==='hostile'){b-=55;cautions.push([10,'Your relationship may not be legally recognised or protected here, and some partnerships are criminalised']);}
    else if(c.ssm==='none'){b-=16;cautions.push([8,'Limited legal recognition of partnerships like yours']);}
-   else if(c.ssm==='civil'){b-=5;cautions.push([5,'Partnership recognition is partial, short of full marriage equality']);}
+   else if(c.ssm==='civil'){b-=5;cautions.push([5,'Partnerships are only partly recognised, short of equal marriage']);}
    else if(c.ssm==='legal'){b+=4;reasons.push([6,'Full legal recognition and protection of partnerships']);}
   }else if(ST.recognition==='prefer'){
    if(c.ssm==='hostile'){b-=18;cautions.push([7,'Weak legal protection for non-traditional partnerships']);}
@@ -448,8 +448,8 @@ function score(){
    else if(c.racialEq<=42){b-=6;cautions.push([5,'Mixed record on racial acceptance']);}
   }else{ if(c.racialEq<=33)cautions.push([4,'Lower measured racial acceptance']); }
   // healthcare / schools
-  if(needHealth){if(c.health>=78)reasons.push([5,'Top-tier healthcare']);else{b-=10;cautions.push([6,'Healthcare may fall short of your top-tier requirement']);}}
-  if(needSchools){if(c.edu>=72)reasons.push([5,'Strong schooling and international options']);else{b-=8;cautions.push([5,'Limited international schooling']);}}
+  if(needHealth){if(c.health>=78)reasons.push([5,'Top-tier healthcare']);else{b-=10;cautions.push([6,'Healthcare may fall short of the top level you asked for']);}}
+  if(needSchools){if(c.edu>=72)reasons.push([5,'Strong schools, including international schools']);else{b-=8;cautions.push([5,'Limited international schooling']);}}
   // region preference
   const reg=inRegion(c);
   if(reg===false){b-=7;}else if(reg===true)reasons.push([3,'In your preferred region']);
@@ -460,23 +460,23 @@ function score(){
   const vAmp=ST.openness==='low'||ST.cq==='low'?1.4:ST.openness==='high'&&ST.cq==='high'?0.7:1;
   b+=Math.max(-9,Math.min(8,(vfit-60)*0.18*vAmp));
   if(vfit>=74)reasons.push([6,'Cultural values closely match yours']);
-  else if(vfit<=46)cautions.push([5,'Wide cultural distance, expect a real adjustment'+(vAmp>1?' (and you flagged lower adaptability)':'')]);
+  else if(vfit<=46)cautions.push([5,'A very different culture from yours, expect a real adjustment'+(vAmp>1?' (and you said adapting is harder for you)':'')]);
   // stability gate
   const stab=(c.safe+c.pol+c.sov)/3;
   const pen=Math.max(0,stabThr-stab)*stabSens;
-  if(pen>8)cautions.push([7,'Stability sits below the level you said you require']);
+  if(pen>8)cautions.push([7,'Less stable than the level you asked for']);
   // matrimonial
-  if(ST.assets==='matters')cautions.push([4,'Matrimonial regime to plan for: '+(c.matri||'confirm the local regime with an adviser')]);
+  if(ST.assets==='matters')cautions.push([4,'Marriage property rules to plan for: '+(c.matri||'confirm the local rules with an adviser')]);
   (c.flags||[]).forEach(f=>cautions.push([4,f]));
   // data-limited note for non-deep
-  if(!c.deep)cautions.push([2,'Visa and tax specifics not yet profiled here; treat the residency route as indicative']);
+  if(!c.deep)cautions.push([2,'We have not yet checked visa and tax details here, so treat the residency route as a rough guide']);
   // wellbeing
-  const sd={money:'income gains, which the evidence shows fade fastest',settled:'belonging and social connection, which last',
-   safety:'safety and peace of mind, which hold',freedom:'autonomy and control, which persist',
-   children:'your children’s schooling and health, which compound'}[ST.success]||'belonging and autonomy, which persist';
-  let well=c.name+' sits at '+(c.cantril||6).toFixed(1)+' on the global life-evaluation ladder; you placed yourself at '+ST.cantril+'. ';
-  if(ST.pushpull==='away')well+='Because you are moving partly away from a situation, weight the durable gains over the immediate relief, and lean on '+sd+'.';
-  else well+='Expect the lasting lift to come from '+sd+', not from the first-year novelty.';
+  const sd={money:'higher income, which research shows fades fastest',settled:'belonging and social connection, which last',
+   safety:'safety and peace of mind, which hold',freedom:'freedom and control over your life, which last',
+   children:'your children’s schooling and health, which build over time'}[ST.success]||'belonging and freedom, which last';
+  let well='People in '+c.name+' rate their lives '+(c.cantril||6).toFixed(1)+' out of 10 on average, on the same ladder you used. You placed yourself at '+ST.cantril+'. ';
+  if(ST.pushpull==='away')well+='Because you are partly leaving a hard situation, value lasting gains over quick relief, and lean on '+sd+'.';
+  else well+='Expect the lasting lift to come from '+sd+', not from the excitement of the first year.';
   // feasibility
   let feas=50+((c.res||55)-62)*0.45;
   if(ST.resTol==='simple'&&(c.res||55)<72)feas-=15;else if(ST.resTol==='hard')feas+=8;
@@ -508,15 +508,15 @@ function showResults(){applyDefaults();
  const top=ranked.slice(0,3),also=ranked.slice(3,7);
  const spread=top[0].rank-top[2].rank;
  let conf,confnote;
- if(spread>=10){conf='High';confnote='Your leading match is clearly ahead of the field.';}
- else if(spread>=5){conf='Moderate';confnote='Your top match leads, but the next two are genuine alternatives.';}
- else{conf='Exploratory';confnote='Several countries cluster closely. Treat the three as a set and weigh the caveats, rather than reading the order too precisely.';}
+ if(spread>=10){conf='High';confnote='Your top match is clearly ahead of the rest.';}
+ else if(spread>=5){conf='Moderate';confnote='Your top match leads, but the next two are real alternatives.';}
+ else{conf='Exploratory';confnote='Several countries score close together. Treat the three as a group and weigh the warnings, rather than reading too much into the order.';}
  const notes=[];
- if(ST.pushpull==='away')notes.push('You are moving partly away from a situation at home. The wellbeing evidence is clear that relief fades and the durable gains come from belonging and autonomy, so we have weighted those and tempered the first-year expectations.');
- if(ST.currency==='usd'&&ST.taxGoal==='aggressive')notes.push('If you are a US citizen, citizenship-based taxation follows you abroad regardless of where you live. Most destinations below cannot change that on their own; plan it with a cross-border tax adviser.');
- if(ST.custody==='complicated')notes.push('You flagged shared custody. International relocation of children can require the other parent’s consent or a court order under the Hague Convention. Confirm this before committing to any country.');
- if(ST.spouse==='reluctant')notes.push('A reluctant partner is the single most common cause of an early, costly return. We have leaned toward places with established expatriate communities, high acceptance and easy English to ease a partner in.');
- if(!top.every(t=>t.deep))notes.push('One or more of your matches sits outside our 150 deep-profile countries. Those are scored on the same real index data, but their specific visa, tax and citizenship routes are not yet individually profiled, so treat the practical pathway as indicative until confirmed.');
+ if(ST.pushpull==='away')notes.push('You are partly leaving a situation at home. Research is clear that relief fades, and lasting gains come from belonging and control over your life. So we gave those more weight and set more modest first-year expectations.');
+ if(ST.currency==='usd'&&ST.taxGoal==='aggressive')notes.push('If you are a US citizen, the US taxes you as a citizen wherever you live. Most countries below cannot change that on their own. Plan it with a tax adviser who works across borders.');
+ if(ST.custody==='complicated')notes.push('You said you share custody of children. Taking children to another country can require the other parent’s consent or a court order under the Hague Convention, an international treaty. Confirm this before committing to any country.');
+ if(ST.spouse==='reluctant')notes.push('A reluctant partner is the most common cause of an early, costly return home. We have favoured places with large communities of foreign residents, high acceptance and easy English, to help a partner settle.');
+ if(!top.every(t=>t.deep))notes.push('One or more of your matches is outside the 150 countries we have profiled in depth. Those are scored on the same real index data. But we have not yet checked their visa, tax and citizenship routes one by one, so treat the practical path as a rough guide until confirmed.');
 
  document.getElementById('hero').classList.add('hide');
  document.getElementById('prog').classList.add('hide');
@@ -525,7 +525,7 @@ function showResults(){applyDefaults();
  h+='<div class="res-hero"><div class="wrap narrow">'+
     '<span class="eyebrow">Your result &middot; scored across 195 countries</span>'+
     '<h2>Your three countries</h2>'+
-    '<p>Chosen from all 195 countries in the Sovereo Index by directional fit to your priorities and constraints, then checked for whether you could realistically execute the move. Each carries its single biggest caveat, stated plainly. This is the only tool of its kind that also tells you where your best-fit countries fall short.</p>'+
+    '<p>Chosen from all 195 countries in the Sovereo Index by how well they match your priorities and limits, then checked for whether you could realistically make it happen. Each shows its single biggest warning, stated plainly. This is the only tool of its kind that also tells you where your best-fit countries fall short.</p>'+
     '<div class="conf">Confidence: <b>'+conf+'</b> &middot; '+confnote+'</div>'+
     '</div></div>';
  h+='<div class="wrap narrow"><div class="podium">';
@@ -533,26 +533,26 @@ function showResults(){applyDefaults();
   h+='<div class="rescard"><div class="top">'+
      '<div class="rk">'+(i+1)+'</div>'+
      '<div class="nm"><h3>'+r.name+(r.deep?'':' <span style="font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--soft);border:1px solid var(--line);border-radius:20px;padding:2px 9px;vertical-align:middle">index data</span>')+'</h3>'+
-     '<div class="reg">'+r.region+' &middot; Racial equality '+r.racialEq+'/100 &middot; '+(r.deep?'Visa &amp; tax verified Jun 2026':'Index data only')+'</div>'+
+     '<div class="reg">'+r.region+' &middot; Racial equality '+r.racialEq+'/100 &middot; '+(r.deep?'Visa &amp; tax checked Jun 2026':'Index data only')+'</div>'+
      '<div class="head">'+fmt(r.head)+'</div></div>'+
      '<div class="scores"><div class="s fit"><span class="n">'+Math.min(100,Math.round(r.fit))+'</span><span class="l">Fit</span></div>'+
-     '<div class="s"><span class="n" style="color:#33556F">'+r.feas+'</span><span class="l">Feasibility</span></div></div>'+
+     '<div class="s"><span class="n" style="color:#33556F">'+r.feas+'</span><span class="l">Doable</span></div></div>'+
      '</div><div class="body">'+
      '<div><h4>Why it fits you</h4><ul class="why">'+
      r.reasons.map(x=>'<li>'+fmt(x)+'</li>').join('')+'</ul>'+
      '<div class="meters">'+
      '<div class="meter fit"><div class="ml"><span>Fit to your profile</span><span>'+r.fitN+'/100</span></div><div class="mt"><i style="width:'+r.fitN+'%"></i></div></div>'+
-     '<div class="meter feas"><div class="ml"><span>Feasibility to execute</span><span>'+r.feas+'/100</span></div><div class="mt"><i style="width:'+r.feas+'%"></i></div></div>'+
+     '<div class="meter feas"><div class="ml"><span>How doable it is for you</span><span>'+r.feas+'/100</span></div><div class="mt"><i style="width:'+r.feas+'%"></i></div></div>'+
      '</div></div>'+
-     '<div><h4>The one caveat</h4>'+
-     (r.caveat?'<div class="caveat"><b>Watch this.</b> '+fmt(r.caveat)+'</div>':'<div class="caveat">No single disqualifying concern surfaced for your profile. Verify visa specifics before acting.</div>')+
+     '<div><h4>The one warning</h4>'+
+     (r.caveat?'<div class="caveat"><b>Watch this.</b> '+fmt(r.caveat)+'</div>':'<div class="caveat">No single deal-breaker showed up for you. Check the visa details before you act.</div>')+
      '<div class="wellnote">'+fmt(r.well)+'</div>'+
      '</div></div></div>';
  });
  h+='</div>';
  h+='<div class="savemine"><div><div class="sm-eyebrow">Keep your three</div>'+
     '<h3>Track these countries in the free daily SITREP.</h3>'+
-    '<p>The day\'s cross-border signals that move your money, your freedom, and where you can safely live, each traced to a primary source, in about sixty seconds a morning. Free, and nothing you entered here was stored.</p></div>'+
+    '<p>The SITREP is our free morning briefing: the day’s world events that affect your money, your freedom, and where you can safely live, each traced to its original source, in about sixty seconds. Nothing you entered here was stored.</p></div>'+
     '<form class="smform" id="subRes" novalidate>'+
     '<input type="email" name="email" placeholder="Your email address" required autocomplete="email" aria-label="Email address">'+
     '<button type="submit">Email me the daily SITREP &rarr;</button>'+
@@ -561,47 +561,47 @@ function showResults(){applyDefaults();
     '</form></div>';
  if(also.length){
   h+='<div class="alsoran"><h4>Also worth a look</h4><ol>';
-  also.forEach((r,i)=>{h+='<li><span>'+(i+4)+'. '+r.name+'</span><span class="sc">Fit '+r.fitN+'</span><span class="fe">Feas '+r.feas+'</span></li>';});
+  also.forEach((r,i)=>{h+='<li><span>'+(i+4)+'. '+r.name+'</span><span class="sc">Fit '+r.fitN+'</span><span class="fe">Doable '+r.feas+'</span></li>';});
   h+='</ol></div>';
  }
  if(notes.length){
   h+='<div class="alsoran" style="background:#fff"><h4>Read this before you act</h4>'+
      notes.map(n=>'<p style="font-size:14.5px;color:var(--mut);margin-bottom:10px">'+fmt(n)+'</p>').join('')+'</div>';
  }
- h+='<div class="result-actions"><button class="ra-save" onclick="window.print()">&#8595;&nbsp; Save as PDF or print</button>'+'<span class="hint">Your three countries, plus every caveat, on one page.</span></div>';
+ h+='<div class="result-actions"><button class="ra-save" onclick="window.print()">&#8595;&nbsp; Save as PDF or print</button>'+'<span class="hint">Your three countries, plus every warning, on one page.</span></div>';
  const AVAIL=new Set(['Portugal','Spain','Mexico','Italy','Greece','France','Germany','Cyprus','Indonesia','Japan','Thailand','Costa Rica','Panama','Colombia','United Arab Emirates','Malta','Estonia','Uruguay','Malaysia','Vietnam','Croatia','Georgia','Montenegro','Ecuador','Paraguay','Argentina','Chile','Peru','Brazil','Philippines','Dominican Republic','Mauritius','Belize','Nicaragua','Guatemala','Honduras','El Salvador','Bolivia','Guyana','Canada','United States','Venezuela','Switzerland','Singapore','Turkey','Saudi Arabia','Qatar','Netherlands','New Zealand','Oman']);
  const names=top.map(r=>r.name), c1=names[0], have=AVAIL.has(c1);
  const three=names.slice(0,3), list=three.length===3?(three[0]+', '+three[1]+', and '+three[2]):three.join(' and ');
  if(have){
   h+='<div class="ctaband"><div><h3>Go deep on your three: the Sovereo Intelligence Dossiers.</h3>'+
-     '<p>The tool narrows the world to three. The dossiers tell you how to actually move into each one: the residency and tax routes, the costs, the timeline, the capital picture, and the on-the-ground reality. Most people compare their finalists, so the three-pack covers '+list+'. Prefer to start with one? Take your number one alone.</p></div>'+
+     '<p>The quiz narrows the world to three. The dossiers, our full reports on one country, cover each in depth: the right to live there, tax, costs, timeline, what happens to your money, and daily life. Most people compare their top choices, so the three-pack covers '+list+'. Prefer to start with one? Take your number one alone.</p></div>'+
      '<div style="display:flex;flex-direction:column;gap:12px;align-items:flex-start">'+
      '<a class="btn gold" href="Sovereo_Country_Reports.html">Get all three dossiers &middot; $162 &rarr;</a>'+
      '<a href="Sovereo_Country_Reports.html" style="font-size:14.5px;color:var(--gold);font-weight:600;text-decoration:underline">Or just '+c1+', $99</a>'+
      '</div></div>';
  } else {
   h+='<div class="ctaband"><div><h3>Go deep: a Sovereo Intelligence Dossier.</h3>'+
-     '<p>The tool narrows the world to three. A Sovereo Intelligence Dossier tells you how to actually move: routes, tax, costs, timeline, and the on-the-ground reality. '+c1+' is not in the published set yet, so request it and we will prioritize it.</p></div>'+
+     '<p>The quiz narrows the world to three. A Sovereo Intelligence Dossier, our full report on one country, covers the right to live there, tax, costs, timeline, and daily life. '+c1+' is not published yet, so request it and we will move it up our list.</p></div>'+
      '<a class="btn gold" href="mailto:sovereo@proton.me?subject='+encodeURIComponent('Intelligence Dossier request: '+c1)+'">Request the '+c1+' dossier &rarr;</a></div>';
  }
  h+='<div class="alsoran" style="background:#fff"><h4>Method and sources</h4>';
  h+='<p style="font-size:14px;color:var(--mut);margin-bottom:10px">All 195 countries in the Sovereo Index are scored and eligible. '+
-    '150 carry a deep visa and tax profile, verified June 2026 and marked on each card; the remaining 45, '+
-    'mostly active-conflict or sanctioned states, are scored on index data only and labelled as such. '+
-    'Visa and tax notes are point in time and should be confirmed before acting.</p>';
- h+='<p style="font-size:14px;color:var(--mut);margin-bottom:10px">Scoring follows Multi-Criteria Decision Analysis: directional '+
-    'matching to your stated priorities, hard constraints, a currency-arbitrage multiplier, person-to-place '+
-    'value fit (World Values Survey and Hofstede) and wellbeing calibration (the Gallup Cantril ladder and '+
-    'the migration-wellbeing evidence). Different answers produce materially different countries.</p>';
- h+='<p style="font-size:14px;color:var(--mut);margin-bottom:0">The racial-equality factor blends attitudes '+
+    '150 have a detailed visa and tax profile, checked June 2026 and marked on each card. The other 45, '+
+    'mostly countries at war or under international sanctions, are scored on index data only and labelled that way. '+
+    'Visa and tax notes reflect one point in time, so confirm them before you act.</p>';
+ h+='<p style="font-size:14px;color:var(--mut);margin-bottom:10px">We score each country on several factors and combine them (multi-criteria decision analysis). '+
+    'We weigh your priorities, your hard limits, a boost where your income from abroad goes further, how well a country’s '+
+    'values match yours (World Values Survey and Hofstede), and a wellbeing check (the Gallup Cantril ladder and '+
+    'research on how moving affects wellbeing). Different answers produce very different countries.</p>';
+ h+='<p style="font-size:14px;color:var(--mut);margin-bottom:0">The racial-equality score combines attitudes '+
     '(Gallup Migrant Acceptance Index and World Values Survey racial tolerance) with the V-Dem measure of '+
-    'equal civil liberties across racial, ethnic and religious groups. Safety is derived from UNODC homicide '+
-    'data. The six pillars draw on UNDP, the World Bank, WHO, the Yale Environmental Performance Index, the '+
+    'whether racial, ethnic and religious groups have equal civil rights. Safety comes from UN (UNODC) murder-rate '+
+    'data. The six Index areas draw on UNDP, the World Bank, WHO, the Yale Environmental Performance Index, the '+
     'Heritage Foundation, EF and the UCLA Williams Institute.</p></div>';
- h+='<div class="disclaim">This tool is an educational and advisory decision aid, not legal, tax, '+
-    'immigration, medical or financial advice. It does not determine legal eligibility for any specific visa '+
-    'or programme; feasibility scores are indicative and require professional verification. Country data is '+
-    'point in time. Your answers were scored on your device and were not stored or transmitted.</div>';
+ h+='<div class="disclaim">This tool is an educational aid for decisions. It is not legal, tax, '+
+    'immigration, medical or financial advice. It does not decide whether you legally qualify for any visa '+
+    'or programme. The "Doable" (feasibility) scores are a rough guide and need checking by a professional. Country data '+
+    'reflects one point in time. Your answers were scored on your device and were not stored or sent anywhere.</div>';
  h+='<span class="restart" onclick="location.reload()">&#8617; Start over</span></div>';
  stage.parentElement.classList.remove('stage');
  stage.outerHTML='<div id="resultroot">'+h+'</div>';
