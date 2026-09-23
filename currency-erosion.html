@@ -81,7 +81,7 @@ footer a{color:#C9D2DE}
 <header class="hero"><div class="wrap">
   <div class="eyebrow">Free Tools &middot; Currency Erosion</div>
   <h1>How much has your money lost against the dollar?</h1>
-  <p>A currency can quietly lose a third, a half, or almost all of its value in a decade. Pick a currency and see what it has lost, or gained, against the US dollar over the last one, five, and ten years, from live exchange-rate data.</p>
+  <p>A currency can quietly lose a third, a half, or almost all of its value in a decade. Pick a currency and see what it has lost, or gained, against the US dollar over the last one, five, and ten years. We use live exchange rates (how much of one currency you get for another).</p>
 </div></header>
 
 <div class="wrap">
@@ -98,7 +98,7 @@ footer a{color:#C9D2DE}
 
   <div class="cta">
     <h3>A weakening currency is a tax you never voted for.</h3>
-    <p>Where you hold your income and savings decides how much of this erosion reaches you. Sovereo tracks the forces behind it every day and shows you where money holds its value.</p>
+    <p>The currency your income and savings are in decides how much of this loss reaches you. Sovereo tracks the forces behind it every day and shows you where money holds its value.</p>
     <a class="b" href="index.html#sitrep">Get the free daily SITREP &rarr;</a>
     <a class="b ghost" href="free-tools.html">See all free tools</a>
   </div>
@@ -107,15 +107,15 @@ footer a{color:#C9D2DE}
     <h2>How to read this, in plain English</h2>
     <p>You do not need any finance background. Here is the whole thing, simply.</p>
     <h4>What does "lost against the dollar" mean?</h4>
-    <p>It means one unit of the currency buys fewer US dollars than it used to. If a currency has lost 50 percent against the dollar, money kept in it now converts to half as many dollars as it did then. For anyone who earns, saves, or spends across borders, that is a real cut in buying power.</p>
+    <p>It means one unit of the currency buys fewer US dollars than it used to. If a currency has lost 50 percent against the dollar, money kept in it now converts to half as many dollars as it did then. For anyone who earns, saves, or spends across borders, that is a real cut in what your money can buy.</p>
     <h4>Why currencies lose value</h4>
-    <p>Mostly heavy money printing, large government deficits, high inflation, or a loss of confidence from investors and savers. Strong, stable economies tend to hold their value; economies under strain tend to erode, sometimes slowly, sometimes in a sudden break.</p>
+    <p>Mostly heavy money printing, large government deficits (spending more than it collects in taxes), high inflation (fast-rising prices), or investors and savers losing confidence. Currencies of strong, stable economies tend to hold their value. Those under strain tend to lose value, sometimes slowly, sometimes all at once.</p>
     <h4>Why it matters for your life</h4>
-    <p>If your income and savings sit in a currency that is eroding, you get poorer in global terms even if the local number on your paycheck rises. This is one of the quiet reasons people move income, savings, or themselves toward more stable ground.</p>
+    <p>If your income and savings are in a currency that is losing value, you get poorer compared with the rest of the world, even if the number on your paycheck rises. It is one quiet reason people shift income and savings toward steadier currencies.</p>
   </div>
 
   <p class="method">
-    <b>Where this comes from.</b> Exchange rates are pulled live from the Frankfurter service, which publishes European Central Bank reference rates, with no key required. Change is measured from the reference rate on or just before the same calendar date one, five, and ten years ago to the latest published rate, expressed as the change in the currency's value in US dollars. The service covers around thirty widely traded currencies; some highly volatile or restricted currencies are not included. Rates are indicative reference values, not the price at any particular bank or exchange. For general education, not financial advice.
+    <b>Where this comes from.</b> Exchange rates are pulled live from the Frankfurter service, which publishes European Central Bank reference rates, with no key required. Change is measured from the reference rate on or just before the same calendar date one, five, and ten years ago to the latest published rate, expressed as the change in the currency's value in US dollars. The service covers around thirty widely traded currencies; some currencies that swing wildly or face government limits are not included. Rates are guide values, not the price at any particular bank or exchange. For general education, not financial advice.
   </p>
 </div>
 
@@ -165,7 +165,7 @@ function load(){
 
     var held=document.getElementById('held');
     var worth=1000*(vNow/v10);
-    held.innerHTML='If you had held <b>the equivalent of US$1,000</b> in '+nm+' cash ten years ago, it would be worth about <b>US$'+Math.round(worth).toLocaleString('en-US')+'</b> today, purely from the currency move.';
+    held.innerHTML='If you had held <b>the equivalent of US$1,000</b> in '+nm+' cash ten years ago, it would be worth about <b>US$'+Math.round(worth).toLocaleString('en-US')+'</b> today, from the change in exchange rate alone.';
 
     drawChart(c, d10);
   }).catch(function(){
@@ -199,7 +199,7 @@ function drawChart(c, start){
     ctx.fillStyle='#9FB0D6'; ctx.font='12px Inter,Arial,sans-serif';
     ctx.textAlign='left'; ctx.fillText(s[0].t.slice(0,4), x0, y1+16);
     ctx.textAlign='right'; ctx.fillText(s[s.length-1].t.slice(0,4), x1, y1+16);
-    document.getElementById('cap').textContent='Value of one '+NAMES[c]+' in US dollars, '+s[0].t.slice(0,4)+' to '+s[s.length-1].t.slice(0,4)+' (live ECB reference rates).';
+    document.getElementById('cap').textContent='Value of one '+NAMES[c]+' in US dollars, '+s[0].t.slice(0,4)+' to '+s[s.length-1].t.slice(0,4)+' (live European Central Bank reference rates).';
   }).catch(function(){ document.getElementById('cap').textContent='The ten-year chart could not load, but the figures above are current.'; });
 }
 
